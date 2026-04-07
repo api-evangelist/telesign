@@ -1,9 +1,9 @@
 aid: telesign
 name: Telesign
 description: >-
-  Explore our documentation, then try our products for yourself using our
-  no-code API Explorer or by installing an SDK in your favorite language and
-  following along with one of our tutorials. 
+  Explore our documentation, then try our products for yourself using our no-code
+  API Explorer or by installing an SDK in your favorite language and following along
+  with one of our tutorials.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -19,9 +19,9 @@ apis:
   - aid: telesign:telesign
     name: Telesign
     description: >-
-      Explore our documentation, then try our products for yourself using our
-      no-code API Explorer or by installing an SDK in your favorite language and
-      following along with one of our tutorials. 
+      Explore our documentation, then try our products for yourself using our no-code
+      API Explorer or by installing an SDK in your favorite language and following
+      along with one of our tutorials.
     humanURL: ' https://developer.telesign.com/enterprise'
     tags:
       - API
