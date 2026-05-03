@@ -1,0 +1,142 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Telesign SMS API
+  description: >-
+    Send SMS messages including alerts, notifications, reminders, and one-time
+    passwords to phone numbers worldwide. Supports OTP, transactional, and
+    marketing message types with delivery status tracking.
+  tags:
+    - Messaging
+    - Notifications
+    - OTP
+    - SMS
+    - Telesign
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TELESIGN_CUSTOMER_ID: TELESIGN_CUSTOMER_ID
+      TELESIGN_API_KEY: TELESIGN_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: telesign-sms
+      baseUri: https://rest-ww.telesign.com/v1
+      description: Telesign SMS messaging service for global SMS delivery.
+      authentication:
+        type: basic
+        username: "{{TELESIGN_CUSTOMER_ID}}"
+        password: "{{TELESIGN_API_KEY}}"
+      resources:
+        - name: messaging
+          path: /messaging
+          description: Send and retrieve SMS messages
+          operations:
+            - name: send-sms
+              method: POST
+              description: Send an SMS message to a specified phone number
+              inputParameters:
+                - name: phone_number
+                  in: body
+                  type: string
+                  required: true
+                  description: Recipient phone number including country code
+                - name: message
+                  in: body
+                  type: string
+                  required: true
+                  description: Text content of the message
+                - name: message_type
+                  in: body
+                  type: string
+                  required: true
+                  description: Message type - OTP, ARN, or MKT
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-sms-status
+              method: GET
+              description: Retrieve the delivery status of an SMS transaction
+              inputParameters:
+                - name: reference_id
+                  in: path
+                  type: string
+                  required: true
+                  description: Transaction reference ID returned when message was sent
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: telesign-sms-rest
+      resources:
+        - path: /v1/messages
+          name: messages
+          description: Send and retrieve SMS messages
+          operations:
+            - method: POST
+              name: send-sms
+              description: Send an SMS message
+              call: "telesign-sms.send-sms"
+              with:
+                phone_number: "rest.phone_number"
+                message: "rest.message"
+                message_type: "rest.message_type"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/messages/{reference_id}
+          name: message-status
+          description: Get SMS delivery status
+          operations:
+            - method: GET
+              name: get-sms-status
+              description: Get message status by reference ID
+              call: "telesign-sms.get-sms-status"
+              with:
+                reference_id: "rest.reference_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: telesign-sms-mcp
+      transport: http
+      tools:
+        - name: send-sms
+          description: Send an SMS message to a phone number
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "telesign-sms.send-sms"
+          with:
+            phone_number: "tools.phone_number"
+            message: "tools.message"
+            message_type: "tools.message_type"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-sms-status
+          description: Get the delivery status of a sent SMS message
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "telesign-sms.get-sms-status"
+          with:
+            reference_id: "tools.reference_id"
+          outputParameters:
+            - type: object
+              mapping: "$."

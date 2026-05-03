@@ -1,0 +1,97 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Telesign PhoneID API
+  description: >-
+    Retrieve global phone number intelligence including carrier information, geographic
+    location, phone type, and subscriber data for fraud prevention and risk assessment.
+  tags:
+    - Fraud Prevention
+    - Phone Intelligence
+    - Risk Assessment
+    - Telesign
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TELESIGN_CUSTOMER_ID: TELESIGN_CUSTOMER_ID
+      TELESIGN_API_KEY: TELESIGN_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: telesign-phoneid
+      baseUri: https://rest-ww.telesign.com/v1
+      description: Telesign phone number intelligence and lookup service.
+      authentication:
+        type: basic
+        username: "{{TELESIGN_CUSTOMER_ID}}"
+        password: "{{TELESIGN_API_KEY}}"
+      resources:
+        - name: phoneid
+          path: /phoneid
+          description: Phone number intelligence lookup
+          operations:
+            - name: lookup-phone-id
+              method: POST
+              description: Look up carrier, location, and type information for a phone number
+              inputParameters:
+                - name: complete_phone_number
+                  in: path
+                  type: string
+                  required: true
+                  description: Complete phone number including country code
+                - name: account_lifecycle_event
+                  in: body
+                  type: string
+                  required: false
+                  description: Account lifecycle stage (create, sign-in, transact, update, delete)
+                - name: originating_ip
+                  in: body
+                  type: string
+                  required: false
+                  description: End user's IP address for additional fraud signals
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8101
+      namespace: telesign-phoneid-rest
+      resources:
+        - path: /v1/phone-intelligence/{phone_number}
+          name: phone-intelligence
+          description: Look up phone number intelligence
+          operations:
+            - method: POST
+              name: lookup-phone-id
+              description: Get intelligence for a phone number
+              call: "telesign-phoneid.lookup-phone-id"
+              with:
+                complete_phone_number: "rest.phone_number"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9101
+      namespace: telesign-phoneid-mcp
+      transport: http
+      tools:
+        - name: lookup-phone-intelligence
+          description: Look up carrier, location, and type information for a phone number
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "telesign-phoneid.lookup-phone-id"
+          with:
+            complete_phone_number: "tools.phone_number"
+          outputParameters:
+            - type: object
+              mapping: "$."

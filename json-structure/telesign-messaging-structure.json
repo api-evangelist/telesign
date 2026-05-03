@@ -1,0 +1,56 @@
+{
+  "title": "Telesign Messaging API Structure",
+  "description": "JSON structure documentation for the Telesign SMS Messaging API",
+  "resources": {
+    "POST /messaging": {
+      "description": "Send an SMS message",
+      "request": {
+        "content_type": "application/x-www-form-urlencoded",
+        "required_fields": ["phone_number", "message", "message_type"],
+        "fields": {
+          "phone_number": { "type": "string", "description": "E.164 formatted phone number with country code" },
+          "message": { "type": "string", "description": "Message text, max 1600 chars" },
+          "message_type": { "type": "string", "enum": ["OTP", "ARN", "MKT"] },
+          "sender_id": { "type": "string", "description": "Custom sender ID" },
+          "external_id": { "type": "string", "description": "Your internal reference" },
+          "originating_ip": { "type": "string", "description": "End user IP address" },
+          "account_lifecycle_event": { "type": "string", "enum": ["create", "sign-in", "transact", "update", "delete"] }
+        }
+      },
+      "response": {
+        "content_type": "application/json",
+        "fields": {
+          "reference_id": { "type": "string", "description": "32-digit hex transaction ID" },
+          "status": {
+            "type": "object",
+            "fields": {
+              "code": { "type": "integer", "description": "Delivery status code" },
+              "description": { "type": "string" },
+              "updated_on": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    "GET /messaging/{reference_id}": {
+      "description": "Get SMS delivery status",
+      "path_params": {
+        "reference_id": { "type": "string", "description": "Transaction reference ID" }
+      },
+      "response": {
+        "content_type": "application/json",
+        "fields": {
+          "reference_id": { "type": "string" },
+          "status": {
+            "type": "object",
+            "fields": {
+              "code": { "type": "integer" },
+              "description": { "type": "string" },
+              "updated_on": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

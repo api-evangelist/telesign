@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.telesign.com/schemas/phoneid-response",
+  "title": "Telesign PhoneID Response",
+  "description": "Response schema for Telesign PhoneID phone number intelligence lookups",
+  "type": "object",
+  "properties": {
+    "reference_id": {
+      "type": "string",
+      "description": "Unique 32-digit hex transaction identifier"
+    },
+    "status": {
+      "$ref": "#/$defs/TransactionStatus"
+    },
+    "phone_type": {
+      "$ref": "#/$defs/PhoneType"
+    },
+    "numbering": {
+      "$ref": "#/$defs/NumberingInfo"
+    },
+    "location": {
+      "$ref": "#/$defs/LocationInfo"
+    }
+  },
+  "required": ["reference_id", "status"],
+  "$defs": {
+    "TransactionStatus": {
+      "type": "object",
+      "properties": {
+        "code": { "type": "string" },
+        "description": { "type": "string" },
+        "updated_on": { "type": "string", "format": "date-time" }
+      }
+    },
+    "PhoneType": {
+      "type": "object",
+      "description": "Classification of the phone number type",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "Phone type code"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable phone type (e.g. Mobile, Landline, VOIP)"
+        }
+      }
+    },
+    "NumberingInfo": {
+      "type": "object",
+      "description": "Numbering and cleansing information for the phone number",
+      "properties": {
+        "original": {
+          "type": "object",
+          "properties": {
+            "phone_number": { "type": "string" },
+            "complete_phone_number": { "type": "string" },
+            "country_code": { "type": "string" }
+          }
+        },
+        "cleansing": {
+          "type": "object",
+          "properties": {
+            "call": {
+              "type": "object",
+              "properties": {
+                "cleansed_code": { "type": "string" },
+                "country_code": { "type": "string" },
+                "phone_number": { "type": "string" },
+                "min_length": { "type": "string" },
+                "max_length": { "type": "string" }
+              }
+            },
+            "sms": {
+              "type": "object",
+              "properties": {
+                "cleansed_code": { "type": "string" },
+                "country_code": { "type": "string" },
+                "phone_number": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "LocationInfo": {
+      "type": "object",
+      "description": "Geographic location associated with the phone number",
+      "properties": {
+        "city": { "type": "string" },
+        "county": { "type": "string" },
+        "state": { "type": "string" },
+        "zip": { "type": "string" },
+        "country": {
+          "type": "object",
+          "properties": {
+            "iso2": { "type": "string", "minLength": 2, "maxLength": 2 },
+            "iso3": { "type": "string", "minLength": 3, "maxLength": 3 },
+            "name": { "type": "string" }
+          }
+        },
+        "time_zone": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "utc_offset_min": { "type": "string" },
+            "utc_offset_max": { "type": "string" }
+          }
+        },
+        "coordinates": {
+          "type": "object",
+          "properties": {
+            "latitude": { "type": "string" },
+            "longitude": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

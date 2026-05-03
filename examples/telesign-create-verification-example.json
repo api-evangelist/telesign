@@ -1,0 +1,31 @@
+{
+  "title": "Create OTP Verification Example",
+  "description": "Send a multi-channel OTP to verify a phone number for MFA login",
+  "request": {
+    "method": "POST",
+    "url": "https://rest-ww.telesign.com/v1/verify",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Basic {base64(customer_id:api_key)}"
+    },
+    "body": {
+      "phone_number": "15551234567",
+      "channel": "sms",
+      "code_length": 6
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "reference_id": "c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6",
+      "status": {
+        "code": 290,
+        "description": "Verification in progress",
+        "updated_on": "2026-05-03T12:00:00Z"
+      }
+    }
+  }
+}

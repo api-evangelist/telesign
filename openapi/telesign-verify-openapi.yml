@@ -1,0 +1,171 @@
+openapi: 3.0.3
+info:
+  title: Telesign Verify API
+  description: >-
+    The Telesign Verify API enables multi-channel phone-based verification and
+    multi-factor authentication (MFA). Send one-time passcodes (OTPs) via SMS,
+    voice, WhatsApp, Viber, RCS, or email, and verify the code the end user submits.
+  version: '2'
+  contact:
+    name: Telesign Developer Support
+    url: https://developer.telesign.com/enterprise
+  termsOfService: https://www.telesign.com/terms-conditions/
+servers:
+  - url: https://rest-ww.telesign.com/v1
+    description: Telesign REST API
+security:
+  - BasicAuth: []
+tags:
+  - name: Verification
+    description: Create, retrieve, and update verification processes
+paths:
+  /verify:
+    post:
+      operationId: createVerification
+      summary: Create Verification Process
+      description: >-
+        Initiate a verification process by sending an OTP to a phone number via
+        the specified channel (SMS, voice, WhatsApp, etc.). Returns a reference ID
+        to track the verification.
+      tags:
+        - Verification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - phone_number
+              properties:
+                phone_number:
+                  type: string
+                  description: >-
+                    The end user's phone number including country code.
+                channel:
+                  type: string
+                  description: Delivery channel for the OTP.
+                  enum:
+                    - sms
+                    - voice
+                    - whatsapp
+                    - viber
+                    - rcs
+                    - email
+                  default: sms
+                language:
+                  type: string
+                  description: Language for the OTP message (BCP 47 language tag).
+                template:
+                  type: string
+                  description: Custom message template for the OTP.
+                code_length:
+                  type: integer
+                  description: Length of the OTP code (4-10 digits).
+                  minimum: 4
+                  maximum: 10
+                  default: 6
+      responses:
+        '200':
+          description: Verification process created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyResponse'
+        '400':
+          description: Invalid request parameters
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+  /verify/{reference_id}:
+    get:
+      operationId: getVerification
+      summary: Retrieve Verification Process
+      description: Check the status of an existing verification process.
+      tags:
+        - Verification
+      parameters:
+        - name: reference_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The reference ID returned when the verification was created.
+      responses:
+        '200':
+          description: Verification status retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Reference ID not found
+    patch:
+      operationId: updateVerification
+      summary: Update Verification Process
+      description: Submit the OTP code entered by the end user to complete verification.
+      tags:
+        - Verification
+      parameters:
+        - name: reference_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The reference ID of the verification to update.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - verify_code
+              properties:
+                verify_code:
+                  type: string
+                  description: The OTP code entered by the end user.
+      responses:
+        '200':
+          description: Verification update processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyResponse'
+        '400':
+          description: Invalid OTP code
+        '401':
+          description: Unauthorized
+        '404':
+          description: Reference ID not found
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Basic authentication using Customer ID as username and API key as password.
+  schemas:
+    VerifyResponse:
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: Unique identifier for the verification transaction.
+        status:
+          $ref: '#/components/schemas/VerificationStatus'
+    VerificationStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code for the verification state.
+        description:
+          type: string
+          description: Human-readable status description.
+        updated_on:
+          type: string
+          format: date-time
+          description: Timestamp of the last status update.

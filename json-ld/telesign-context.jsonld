@@ -1,0 +1,59 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "ts": "https://telesign.com/vocabulary/",
+    "name": "schema:name",
+    "description": "schema:description",
+    "telephone": "schema:telephone",
+    "PhoneVerification": {
+      "@id": "ts:PhoneVerification",
+      "@context": {
+        "phoneNumber": "schema:telephone",
+        "channel": "ts:channel",
+        "status": "ts:verificationStatus",
+        "referenceId": "ts:referenceId",
+        "otpCode": "ts:otpCode"
+      }
+    },
+    "SmsMessage": {
+      "@id": "ts:SmsMessage",
+      "@context": {
+        "recipient": "schema:recipient",
+        "messageBody": "schema:text",
+        "messageType": "ts:messageType",
+        "senderId": "ts:senderId",
+        "referenceId": "ts:referenceId",
+        "deliveryStatus": "ts:deliveryStatus"
+      }
+    },
+    "PhoneIntelligence": {
+      "@id": "ts:PhoneIntelligence",
+      "@context": {
+        "phoneNumber": "schema:telephone",
+        "phoneType": "ts:phoneType",
+        "carrier": "ts:carrier",
+        "location": "schema:location",
+        "countryCode": "ts:countryCode",
+        "riskScore": "ts:riskScore"
+      }
+    },
+    "FraudScore": {
+      "@id": "ts:FraudScore",
+      "@context": {
+        "score": "ts:riskScore",
+        "level": "ts:riskLevel",
+        "recommendation": "ts:recommendation",
+        "phoneNumber": "schema:telephone"
+      }
+    },
+    "TransactionStatus": {
+      "@id": "ts:TransactionStatus",
+      "@context": {
+        "code": "ts:statusCode",
+        "description": "schema:description",
+        "updatedOn": "schema:dateModified"
+      }
+    }
+  }
+}

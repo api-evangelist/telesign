@@ -1,0 +1,71 @@
+{
+  "title": "PhoneID Lookup Example",
+  "description": "Look up phone number intelligence for fraud risk assessment during account creation",
+  "request": {
+    "method": "POST",
+    "url": "https://rest-ww.telesign.com/v1/phoneid/15551234567",
+    "headers": {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Authorization": "Basic {base64(customer_id:api_key)}"
+    },
+    "body": "account_lifecycle_event=create&originating_ip=192.168.1.1"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "reference_id": "b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5",
+      "status": {
+        "code": "300",
+        "description": "Transaction successfully completed",
+        "updated_on": "2026-05-03T12:00:00Z"
+      },
+      "phone_type": {
+        "code": "1",
+        "description": "MOBILE"
+      },
+      "numbering": {
+        "original": {
+          "phone_number": "5551234567",
+          "complete_phone_number": "15551234567",
+          "country_code": "1"
+        },
+        "cleansing": {
+          "call": {
+            "cleansed_code": "100",
+            "country_code": "1",
+            "phone_number": "5551234567",
+            "min_length": "10",
+            "max_length": "10"
+          },
+          "sms": {
+            "cleansed_code": "100",
+            "country_code": "1",
+            "phone_number": "5551234567"
+          }
+        }
+      },
+      "location": {
+        "city": "San Francisco",
+        "state": "CA",
+        "zip": "94105",
+        "country": {
+          "iso2": "US",
+          "iso3": "USA",
+          "name": "United States"
+        },
+        "time_zone": {
+          "name": "America/Los_Angeles",
+          "utc_offset_min": "-8",
+          "utc_offset_max": "-8"
+        },
+        "coordinates": {
+          "latitude": "37.77493",
+          "longitude": "-122.41942"
+        }
+      }
+    }
+  }
+}

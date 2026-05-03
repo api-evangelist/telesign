@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.telesign.com/schemas/messaging-response",
+  "title": "Telesign Messaging Response",
+  "description": "Response schema for Telesign SMS messaging operations",
+  "type": "object",
+  "properties": {
+    "reference_id": {
+      "type": "string",
+      "description": "Unique 32-digit hex identifier for the messaging transaction",
+      "pattern": "^[a-f0-9]{32}$"
+    },
+    "status": {
+      "$ref": "#/$defs/TransactionStatus"
+    }
+  },
+  "required": ["reference_id", "status"],
+  "$defs": {
+    "TransactionStatus": {
+      "type": "object",
+      "description": "Transaction status information",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "Status code indicating the delivery state"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of the status"
+        },
+        "updated_on": {
+          "type": "string",
+          "format": "date-time",
+          "description": "RFC 3339 timestamp of last status update"
+        }
+      },
+      "required": ["code", "description", "updated_on"]
+    }
+  }
+}

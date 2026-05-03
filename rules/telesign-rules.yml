@@ -1,0 +1,104 @@
+rules:
+  telesign-operation-summary-title-case:
+    description: All operation summaries must use Title Case
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 ]*$"
+
+  telesign-operation-must-have-operationid:
+    description: All operations must have an operationId
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: operationId
+      function: truthy
+
+  telesign-operationid-kebab-case:
+    description: Operation IDs should use camelCase
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  telesign-phone-number-parameter:
+    description: >-
+      Phone number parameters should be named 'phone_number' or 'complete_phone_number'
+      and include country code in their description
+    severity: hint
+    given: "$.paths[*][*].parameters[?(@.name == 'phone_number' || @.name == 'complete_phone_number')]"
+    then:
+      field: description
+      function: truthy
+
+  telesign-reference-id-response:
+    description: >-
+      Successful responses should include a reference_id field for transaction tracking
+    severity: warn
+    given: "$.paths[*].post.responses.200.content['application/json'].schema.properties"
+    then:
+      field: reference_id
+      function: truthy
+
+  telesign-status-object-in-response:
+    description: >-
+      Successful responses should include a status object with code and description
+    severity: warn
+    given: "$.paths[*].post.responses.200.content['application/json'].schema.properties"
+    then:
+      field: status
+      function: truthy
+
+  telesign-requires-basic-auth:
+    description: All paths must require BasicAuth security
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: security
+      function: truthy
+
+  telesign-server-must-be-telesign:
+    description: Server URL must point to rest-ww.telesign.com
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://rest-ww\\.telesign\\.com"
+
+  telesign-response-must-have-400:
+    description: POST operations must handle 400 Bad Request
+    severity: warn
+    given: "$.paths[*].post.responses"
+    then:
+      field: '400'
+      function: truthy
+
+  telesign-response-must-have-401:
+    description: All operations must handle 401 Unauthorized
+    severity: error
+    given: "$.paths[*][*].responses"
+    then:
+      field: '401'
+      function: truthy
+
+  telesign-response-must-have-429:
+    description: POST operations must handle 429 rate limiting
+    severity: warn
+    given: "$.paths[*].post.responses"
+    then:
+      field: '429'
+      function: truthy
+
+  telesign-account-lifecycle-enum:
+    description: >-
+      account_lifecycle_event must use the approved enum values
+    severity: warn
+    given: "$.paths[*][*]..properties.account_lifecycle_event"
+    then:
+      field: enum
+      function: truthy

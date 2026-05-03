@@ -1,0 +1,89 @@
+vocabulary:
+  provider: Telesign
+  description: >-
+    Core vocabulary for Telesign communications and identity verification APIs,
+    covering SMS messaging, phone intelligence, fraud scoring, and multi-channel
+    verification concepts.
+  tags:
+    - Authentication
+    - Communications
+    - Fraud Prevention
+    - Phone Intelligence
+  terms:
+    - term: OTP (One-Time Password)
+      definition: >-
+        A time-limited, single-use numeric code sent to a user's phone via SMS, voice,
+        or messaging app to verify their identity. Telesign OTPs are used for MFA, account
+        creation, login verification, and password reset flows.
+      tags:
+        - Authentication
+        - Security
+    - term: PhoneID
+      definition: >-
+        Telesign's phone number intelligence service that returns carrier, geographic
+        location, phone type, and subscriber data for any global phone number. Used for
+        fraud prevention and identity risk assessment.
+      tags:
+        - Fraud Prevention
+        - Phone Intelligence
+    - term: Reference ID
+      definition: >-
+        A unique 32-digit hexadecimal identifier returned by Telesign for every transaction.
+        Used to track message delivery status, retrieve verification states, and correlate
+        events across systems.
+      tags:
+        - Transaction Tracking
+    - term: Message Type
+      definition: >-
+        Classification of an SMS message's purpose. Telesign recognizes three types:
+        OTP (one-time passwords for verification), ARN (alerts, reminders, notifications),
+        and MKT (marketing messages subject to opt-out regulations).
+      tags:
+        - Compliance
+        - Messaging
+    - term: Account Lifecycle Event
+      definition: >-
+        Context parameter indicating the stage of a user's account activity when a Telesign
+        API call is made. Values include: create (new account), sign-in, transact (financial
+        action), update (profile change), and delete (account removal).
+      tags:
+        - Fraud Prevention
+        - Risk Assessment
+    - term: Verify API
+      definition: >-
+        Telesign's multi-channel verification service that sends OTPs via SMS, voice,
+        WhatsApp, Viber, RCS, or email, and validates the code submitted by end users.
+        Enables MFA and phone number ownership verification.
+      tags:
+        - Authentication
+        - Verification
+    - term: Score API
+      definition: >-
+        Telesign's fraud risk scoring service that evaluates phone numbers using a combination
+        of phone number intelligence, traffic patterns, machine learning models, and global
+        data consortium signals. Returns a 0-1000 risk score with allow/flag/block recommendation.
+      tags:
+        - Fraud Detection
+        - Risk Scoring
+    - term: Sender ID
+      definition: >-
+        A custom alphanumeric or numeric identifier displayed as the sender of an SMS message.
+        Availability varies by country and carrier. Used to establish brand recognition in
+        mobile messaging.
+      tags:
+        - Messaging
+        - Branding
+    - term: Customer ID
+      definition: >-
+        Telesign's identifier for an enterprise customer account, used as the username in
+        HTTP Basic authentication. Combined with the API key, it authenticates all API requests.
+      tags:
+        - Authentication
+    - term: Risk Level
+      definition: >-
+        Telesign Score API's categorical risk classification for a phone number: low, medium,
+        high, or block. Maps to a recommended action (allow, flag, block) for real-time
+        fraud decision-making.
+      tags:
+        - Fraud Prevention
+        - Risk Assessment

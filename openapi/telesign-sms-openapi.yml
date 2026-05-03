@@ -1,0 +1,142 @@
+openapi: 3.0.3
+info:
+  title: Telesign SMS API
+  description: >-
+    The Telesign SMS API enables sending SMS messages including alerts, notifications,
+    reminders, marketing messages, and one-time passwords to phone numbers worldwide.
+    Messages are classified by type (OTP, ARN, or MKT) and support delivery status tracking.
+  version: '2'
+  contact:
+    name: Telesign Developer Support
+    url: https://developer.telesign.com/enterprise
+  termsOfService: https://www.telesign.com/terms-conditions/
+servers:
+  - url: https://rest-ww.telesign.com/v1
+    description: Telesign REST API
+security:
+  - BasicAuth: []
+tags:
+  - name: Messaging
+    description: Send and track SMS messages
+paths:
+  /messaging:
+    post:
+      operationId: sendSms
+      summary: Send SMS Message
+      description: >-
+        Send an SMS message to a specified phone number. Supports OTP verification
+        codes, transactional alerts, and marketing messages.
+      tags:
+        - Messaging
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - phone_number
+                - message
+                - message_type
+              properties:
+                phone_number:
+                  type: string
+                  description: Recipient's phone number including country code, no spaces or special characters.
+                message:
+                  type: string
+                  description: Text content of the SMS message, maximum 1600 characters.
+                  maxLength: 1600
+                message_type:
+                  type: string
+                  description: Classification of the message type.
+                  enum:
+                    - OTP
+                    - ARN
+                    - MKT
+                sender_id:
+                  type: string
+                  description: Sender ID to display on the recipient's device.
+                external_id:
+                  type: string
+                  description: External identifier for correlating the transaction in your system.
+                originating_ip:
+                  type: string
+                  description: End user's IP address (IPv4 or IPv6). Do not send your own IP.
+                account_lifecycle_event:
+                  type: string
+                  description: Stage of the account lifecycle when this message is sent.
+                  enum:
+                    - create
+                    - sign-in
+                    - transact
+                    - update
+                    - delete
+      responses:
+        '200':
+          description: Message accepted for delivery
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessagingResponse'
+        '400':
+          description: Bad request - invalid parameters
+        '401':
+          description: Unauthorized - invalid credentials
+        '429':
+          description: Too many requests - rate limit exceeded
+        '500':
+          description: Internal server error
+  /messaging/{reference_id}:
+    get:
+      operationId: getSmsStatus
+      summary: Get SMS Transaction Status
+      description: Retrieve the delivery status of an SMS transaction by reference ID.
+      tags:
+        - Messaging
+      parameters:
+        - name: reference_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique reference ID returned when the message was sent.
+      responses:
+        '200':
+          description: Transaction status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessagingResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Reference ID not found
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        Basic authentication using Customer ID as username and API key as password.
+  schemas:
+    MessagingResponse:
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: Unique 32-digit hex identifier for this transaction.
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
+    TransactionStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code indicating the delivery state of the message.
+        description:
+          type: string
+          description: Human-readable description of the transaction status.
+        updated_on:
+          type: string
+          format: date-time
+          description: RFC 3339 timestamp of when the status was last updated.

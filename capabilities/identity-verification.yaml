@@ -1,0 +1,236 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Telesign Identity Verification
+  description: >-
+    Unified workflow for phone-based identity verification and fraud prevention.
+    Combines PhoneID intelligence, fraud risk scoring, and multi-channel OTP
+    verification to enable secure account creation, login MFA, and transaction
+    authorization. Used by fraud analysts and security engineers.
+  tags:
+    - Authentication
+    - Fraud Prevention
+    - Identity Verification
+    - MFA
+    - Phone Intelligence
+    - Telesign
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TELESIGN_CUSTOMER_ID: TELESIGN_CUSTOMER_ID
+      TELESIGN_API_KEY: TELESIGN_API_KEY
+
+capability:
+  consumes:
+    - import: telesign-phoneid
+      location: ./shared/phoneid.yaml
+    - import: telesign-score
+      location: ./shared/score.yaml
+    - import: telesign-verify
+      location: ./shared/verify.yaml
+    - import: telesign-sms
+      location: ./shared/sms.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: telesign-identity-api
+      description: >-
+        Unified REST API for phone-based identity verification and fraud prevention
+        combining PhoneID intelligence, risk scoring, and multi-channel OTP.
+      resources:
+        - path: /v1/phone-intelligence/{phone_number}
+          name: phone-intelligence
+          description: Look up phone number intelligence for risk assessment
+          operations:
+            - method: POST
+              name: lookup-phone-intelligence
+              description: Get carrier, location, and type data for a phone number
+              call: "telesign-phoneid.lookup-phone-id"
+              with:
+                complete_phone_number: "rest.phone_number"
+                account_lifecycle_event: "rest.account_lifecycle_event"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/fraud-scores/{phone_number}
+          name: fraud-scores
+          description: Assess fraud risk for a phone number
+          operations:
+            - method: POST
+              name: score-phone-number
+              description: Score a phone number for fraud risk
+              call: "telesign-score.score-phone-number"
+              with:
+                complete_phone_number: "rest.phone_number"
+                account_lifecycle_event: "rest.account_lifecycle_event"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/verifications
+          name: verifications
+          description: Create OTP verification processes
+          operations:
+            - method: POST
+              name: create-verification
+              description: Send OTP to initiate a verification flow
+              call: "telesign-verify.create-verification"
+              with:
+                phone_number: "rest.phone_number"
+                channel: "rest.channel"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/verifications/{reference_id}
+          name: verification
+          description: Get or update a verification process
+          operations:
+            - method: GET
+              name: get-verification
+              description: Get verification status
+              call: "telesign-verify.get-verification"
+              with:
+                reference_id: "rest.reference_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: PATCH
+              name: complete-verification
+              description: Submit OTP code to complete verification
+              call: "telesign-verify.update-verification"
+              with:
+                reference_id: "rest.reference_id"
+                verify_code: "rest.verify_code"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/messages
+          name: messages
+          description: Send SMS notifications and alerts
+          operations:
+            - method: POST
+              name: send-sms
+              description: Send an SMS message
+              call: "telesign-sms.send-sms"
+              with:
+                phone_number: "rest.phone_number"
+                message: "rest.message"
+                message_type: "rest.message_type"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/messages/{reference_id}
+          name: message-status
+          description: Track SMS delivery status
+          operations:
+            - method: GET
+              name: get-sms-status
+              description: Get SMS delivery status by reference ID
+              call: "telesign-sms.get-sms-status"
+              with:
+                reference_id: "rest.reference_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: telesign-identity-mcp
+      transport: http
+      description: >-
+        MCP server for AI-assisted phone-based identity verification and fraud
+        prevention workflows.
+      tools:
+        - name: lookup-phone-intelligence
+          description: Look up carrier, location, and phone type data for a number
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "telesign-phoneid.lookup-phone-id"
+          with:
+            complete_phone_number: "tools.phone_number"
+            account_lifecycle_event: "tools.account_lifecycle_event"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: score-phone-for-fraud
+          description: Score a phone number for fraud risk using Telesign intelligence
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "telesign-score.score-phone-number"
+          with:
+            complete_phone_number: "tools.phone_number"
+            account_lifecycle_event: "tools.account_lifecycle_event"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-otp-verification
+          description: Send an OTP to a phone number to initiate identity verification
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "telesign-verify.create-verification"
+          with:
+            phone_number: "tools.phone_number"
+            channel: "tools.channel"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: check-verification-status
+          description: Check whether a verification OTP has been successfully submitted
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "telesign-verify.get-verification"
+          with:
+            reference_id: "tools.reference_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: complete-otp-verification
+          description: Submit the OTP code entered by the user to complete verification
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "telesign-verify.update-verification"
+          with:
+            reference_id: "tools.reference_id"
+            verify_code: "tools.verify_code"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: send-sms-notification
+          description: Send an SMS message for alerts, notifications, or OTP delivery
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "telesign-sms.send-sms"
+          with:
+            phone_number: "tools.phone_number"
+            message: "tools.message"
+            message_type: "tools.message_type"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-sms-delivery-status
+          description: Check the delivery status of a previously sent SMS message
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "telesign-sms.get-sms-status"
+          with:
+            reference_id: "tools.reference_id"
+          outputParameters:
+            - type: object
+              mapping: "$."

@@ -1,0 +1,145 @@
+openapi: 3.0.3
+info:
+  title: Telesign Score API
+  description: >-
+    The Telesign Score API delivers reputation scoring for phone numbers based on
+    phone number intelligence, traffic patterns, machine learning, and a global data
+    consortium. Use it to assess fraud risk during account creation, sign-in, and
+    financial transactions.
+  version: '2'
+  contact:
+    name: Telesign Developer Support
+    url: https://developer.telesign.com/enterprise
+  termsOfService: https://www.telesign.com/terms-conditions/
+servers:
+  - url: https://rest-ww.telesign.com/v1
+    description: Telesign REST API
+security:
+  - BasicAuth: []
+tags:
+  - name: Fraud Scoring
+    description: Phone number reputation and fraud risk scoring
+paths:
+  /score/{complete_phone_number}:
+    post:
+      operationId: scorePhoneNumber
+      summary: Score Phone Number for Fraud Risk
+      description: >-
+        Submit a phone number to receive a reputation score indicating the likelihood
+        of fraudulent activity. Combines phone number intelligence, traffic patterns,
+        and global consortium data.
+      tags:
+        - Fraud Scoring
+      parameters:
+        - name: complete_phone_number
+          in: path
+          required: true
+          schema:
+            type: string
+          description: >-
+            The complete phone number including country code, no spaces or special characters.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - account_lifecycle_event
+              properties:
+                account_lifecycle_event:
+                  type: string
+                  description: Stage of the account lifecycle when this score is requested.
+                  enum:
+                    - create
+                    - sign-in
+                    - transact
+                    - update
+                    - delete
+                originating_ip:
+                  type: string
+                  description: End user's IP address for additional fraud signals.
+                device_id:
+                  type: string
+                  description: End user's device ID. Case sensitive, Unicode characters encoded as UTF-8.
+                account_id:
+                  type: string
+                  description: Your internal identifier for the end user's account.
+                email_address:
+                  type: string
+                  format: email
+                  description: End user's email address for additional risk signals.
+      responses:
+        '200':
+          description: Score calculated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreResponse'
+        '400':
+          description: Invalid request parameters
+        '401':
+          description: Unauthorized
+        '402':
+          description: Insufficient credits
+        '429':
+          description: Rate limit exceeded
+        '500':
+          description: Invalid transaction
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Basic authentication using Customer ID as username and API key as password.
+  schemas:
+    ScoreResponse:
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: Unique 32-digit hex identifier for this transaction.
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
+        risk:
+          $ref: '#/components/schemas/RiskScore'
+        phone_type:
+          type: object
+          properties:
+            code:
+              type: string
+            description:
+              type: string
+    TransactionStatus:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        updated_on:
+          type: string
+          format: date-time
+    RiskScore:
+      type: object
+      properties:
+        level:
+          type: string
+          description: Risk level classification.
+          enum:
+            - low
+            - medium
+            - high
+            - block
+        score:
+          type: integer
+          description: Numeric risk score from 0 (lowest risk) to 1000 (highest risk).
+          minimum: 0
+          maximum: 1000
+        recommendation:
+          type: string
+          description: Recommended action based on the risk score.
+          enum:
+            - allow
+            - flag
+            - block
