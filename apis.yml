@@ -122,6 +122,20 @@ common:
     url: https://www.telesign.com/terms-conditions/
   - type: GitHub Organization
     url: https://github.com/TeleSign
+  - type: Integrations
+    url: https://www.telesign.com/partners
+integrations:
+  - name: Telesign
+  - name: referral
+  - name: Growth
+  - name: web tool set
+  - name: amplify icons
+  - name: shield
+  - name: suitcase
+  - name: Linkedin logo in white
+  - name: Facebook logo in white
+  - name: Youtube logo in white
+  - name: Proximus global white
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
