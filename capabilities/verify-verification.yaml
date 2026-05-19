@@ -1,0 +1,165 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Telesign Verify API — Verification
+  description: 'Telesign Verify API — Verification. 3 operations. Lead operation: Create Verification Process. Self-contained
+    Naftiko capability covering one Telesign business surface.'
+  tags:
+  - Telesign
+  - Verification
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TELESIGN_API_KEY: TELESIGN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: verify-verification
+    baseUri: https://rest-ww.telesign.com/v1
+    description: Telesign Verify API — Verification business capability. Self-contained, no shared references.
+    resources:
+    - name: verify
+      path: /verify
+      operations:
+      - name: createverification
+        method: POST
+        description: Create Verification Process
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: verify-reference_id
+      path: /verify/{reference_id}
+      operations:
+      - name: getverification
+        method: GET
+        description: Retrieve Verification Process
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: reference_id
+          in: path
+          type: string
+          description: The reference ID returned when the verification was created.
+          required: true
+      - name: updateverification
+        method: PATCH
+        description: Update Verification Process
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: reference_id
+          in: path
+          type: string
+          description: The reference ID of the verification to update.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.TELESIGN_USER}}'
+      password: '{{env.TELESIGN_PASS}}'
+  exposes:
+  - type: rest
+    namespace: verify-verification-rest
+    port: 8080
+    description: REST adapter for Telesign Verify API — Verification. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/verify
+      name: verify
+      description: REST surface for verify.
+      operations:
+      - method: POST
+        name: createverification
+        description: Create Verification Process
+        call: verify-verification.createverification
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/verify/{reference-id}
+      name: verify-reference-id
+      description: REST surface for verify-reference_id.
+      operations:
+      - method: GET
+        name: getverification
+        description: Retrieve Verification Process
+        call: verify-verification.getverification
+        with:
+          reference_id: rest.reference_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateverification
+        description: Update Verification Process
+        call: verify-verification.updateverification
+        with:
+          reference_id: rest.reference_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: verify-verification-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Telesign Verify API — Verification. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: create-verification-process
+      description: Create Verification Process
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: verify-verification.createverification
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-verification-process
+      description: Retrieve Verification Process
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: verify-verification.getverification
+      with:
+        reference_id: tools.reference_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-verification-process
+      description: Update Verification Process
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: verify-verification.updateverification
+      with:
+        reference_id: tools.reference_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
