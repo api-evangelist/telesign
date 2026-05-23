@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VerificationStatus",
+  "title": "VerificationStatus",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "integer",
+      "description": "Status code for the verification state."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable status description."
+    },
+    "updated_on": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the last status update."
+    }
+  }
+}

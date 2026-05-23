@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VerifyResponse",
+  "title": "VerifyResponse",
+  "type": "object",
+  "properties": {
+    "reference_id": {
+      "type": "string",
+      "description": "Unique identifier for the verification transaction."
+    },
+    "status": {
+      "$ref": "#/components/schemas/VerificationStatus"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TransactionStatus",
+  "title": "TransactionStatus",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "updated_on": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

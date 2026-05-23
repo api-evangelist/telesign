@@ -1,0 +1,51 @@
+{
+  "provider": "Telesign",
+  "providerId": "telesign",
+  "kind": "json-structure",
+  "description": "Structural overview of the Telesign API surface; extracted from openapi/.",
+  "schemaCount": 5,
+  "operationCount": 1,
+  "schemas": [
+    {
+      "name": "PhoneIdResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "TransactionStatus",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "PhoneType",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "NumberingInfo",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "LocationInfo",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/phoneid/{complete_phone_number}",
+      "operationId": "lookupPhoneId",
+      "summary": "Look Up Phone ID",
+      "tags": [
+        "Phone Intelligence"
+      ]
+    }
+  ]
+}

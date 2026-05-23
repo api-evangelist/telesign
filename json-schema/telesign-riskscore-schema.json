@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RiskScore",
+  "title": "RiskScore",
+  "type": "object",
+  "properties": {
+    "level": {
+      "type": "string",
+      "description": "Risk level classification.",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "block"
+      ]
+    },
+    "score": {
+      "type": "integer",
+      "description": "Numeric risk score from 0 (lowest risk) to 1000 (highest risk).",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "recommendation": {
+      "type": "string",
+      "description": "Recommended action based on the risk score.",
+      "enum": [
+        "allow",
+        "flag",
+        "block"
+      ]
+    }
+  }
+}

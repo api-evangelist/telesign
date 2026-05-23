@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PhoneIdResponse",
+  "title": "PhoneIdResponse",
+  "type": "object",
+  "properties": {
+    "reference_id": {
+      "type": "string",
+      "description": "Unique 32-digit hex identifier for this transaction."
+    },
+    "status": {
+      "$ref": "#/components/schemas/TransactionStatus"
+    },
+    "phone_type": {
+      "$ref": "#/components/schemas/PhoneType"
+    },
+    "numbering": {
+      "$ref": "#/components/schemas/NumberingInfo"
+    },
+    "location": {
+      "$ref": "#/components/schemas/LocationInfo"
+    }
+  }
+}

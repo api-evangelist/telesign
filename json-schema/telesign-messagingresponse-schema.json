@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessagingResponse",
+  "title": "MessagingResponse",
+  "type": "object",
+  "properties": {
+    "reference_id": {
+      "type": "string",
+      "description": "Unique 32-digit hex identifier for this transaction."
+    },
+    "status": {
+      "$ref": "#/components/schemas/TransactionStatus"
+    }
+  }
+}

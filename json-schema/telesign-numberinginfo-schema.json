@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NumberingInfo",
+  "title": "NumberingInfo",
+  "type": "object",
+  "properties": {
+    "original": {
+      "type": "object",
+      "properties": {
+        "phone_number": {
+          "type": "string"
+        },
+        "complete_phone_number": {
+          "type": "string"
+        },
+        "country_code": {
+          "type": "string"
+        }
+      }
+    },
+    "cleansing": {
+      "type": "object",
+      "properties": {
+        "call": {
+          "type": "object",
+          "properties": {
+            "cleansed_code": {
+              "type": "string"
+            },
+            "country_code": {
+              "type": "string"
+            },
+            "phone_number": {
+              "type": "string"
+            }
+          }
+        },
+        "sms": {
+          "type": "object",
+          "properties": {
+            "cleansed_code": {
+              "type": "string"
+            },
+            "country_code": {
+              "type": "string"
+            },
+            "phone_number": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
