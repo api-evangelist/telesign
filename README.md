@@ -1,55 +1,148 @@
-# Telesign
+# Telesign (telesign)
 
 Telesign provides a comprehensive suite of communications and security APIs enabling businesses to verify phone numbers, send SMS and voice messages, and assess fraud risk. Core offerings include SMS messaging, voice calls, multi-channel verification (OTP/MFA), phone number intelligence (PhoneID), reputation scoring, and silent verification. Telesign serves thousands of enterprises globally for account security, fraud prevention, and customer communications.
 
-**Website:** https://www.telesign.com/
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/telesign/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/telesign/refs/heads/main/apis.yml)
 
-**Developer Portal:** https://developer.telesign.com/enterprise
+## Tags
+
+- Authentication
+- Communications
+- Fraud Prevention
+- Phone Intelligence
+- SMS
+- Verification
+
+## Timestamps
+
+- **Modified:** 2026-05-19
 
 ## APIs
 
-| API | Description |
-|-----|-------------|
-| [SMS API](openapi/telesign-sms-openapi.yml) | Send SMS alerts, notifications, and OTPs worldwide |
-| [PhoneID API](openapi/telesign-phoneid-openapi.yml) | Phone number intelligence for carrier, location, and type data |
-| [Verify API](openapi/telesign-verify-openapi.yml) | Multi-channel OTP verification (SMS, voice, WhatsApp, etc.) |
-| [Score API](openapi/telesign-score-openapi.yml) | Phone number fraud risk scoring |
+### Telesign SMS API
 
-## Links
+Send SMS messages including alerts, notifications, reminders, marketing messages, and one-time passwords to phone numbers worldwide. Messages are classified by type (OTP, ARN, MKT) and provide delivery status tracking via reference IDs.
 
+- **Human URL:** [https://developer.telesign.com/enterprise/docs/sms-get-started](https://developer.telesign.com/enterprise/docs/sms-get-started)
+- **Base URL:** `https://rest-ww.telesign.com/v1`
+
+#### Tags
+
+- Alerts
+- Messaging
+- Notifications
+- OTP
+- SMS
+
+#### Properties
+
+- [Documentation](https://developer.telesign.com/enterprise/docs/sms-get-started)
+- [OpenAPI](openapi/telesign-sms-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/telesign-sms.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telesign-sms.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Telesign PhoneID API
+
+Retrieve global phone number intelligence including carrier information, geographic location, phone type (mobile, landline, VoIP), and subscriber data. Used for fraud prevention, identity verification, and risk assessment during account creation and transactions.
+
+- **Human URL:** [https://developer.telesign.com/enterprise/docs/phoneid-api-overview](https://developer.telesign.com/enterprise/docs/phoneid-api-overview)
+- **Base URL:** `https://rest-ww.telesign.com/v1`
+
+#### Tags
+
+- Carrier Data
+- Fraud Prevention
+- Identity Verification
+- Phone Intelligence
+- Risk Assessment
+
+#### Properties
+
+- [Documentation](https://developer.telesign.com/enterprise/docs/phoneid-api-overview)
+- [OpenAPI](openapi/telesign-phoneid-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/telesign-phoneid.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telesign-phoneid.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Telesign Verify API
+
+Multi-channel phone-based verification and MFA. Send one-time passcodes via SMS, voice, WhatsApp, Viber, RCS, or email, and verify codes submitted by end users. Supports password reset, account creation verification, and login MFA flows.
+
+- **Human URL:** [https://developer.telesign.com/enterprise/docs/verify-api-overview](https://developer.telesign.com/enterprise/docs/verify-api-overview)
+- **Base URL:** `https://rest-ww.telesign.com/v1`
+
+#### Tags
+
+- Authentication
+- MFA
+- OTP
+- Two-Factor Authentication
+- Verification
+
+#### Properties
+
+- [Documentation](https://developer.telesign.com/enterprise/docs/verify-api-overview)
+- [OpenAPI](openapi/telesign-verify-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/telesign-verify.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telesign-verify.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Telesign Score API
+
+Assess fraud risk for phone numbers using reputation scoring based on intelligence, traffic patterns, machine learning, and a global data consortium. Returns a risk level and numeric score with a recommended action (allow, flag, block).
+
+- **Human URL:** [https://developer.telesign.com/enterprise/docs/score-api-overview](https://developer.telesign.com/enterprise/docs/score-api-overview)
+- **Base URL:** `https://rest-ww.telesign.com/v1`
+
+#### Tags
+
+- Fraud Detection
+- Phone Intelligence
+- Risk Scoring
+
+#### Properties
+
+- [Documentation](https://developer.telesign.com/enterprise/docs/score-api-overview)
+- [OpenAPI](openapi/telesign-score-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/telesign-score.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telesign-score.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Telesign Voice API
+
+Send voice messages including OTPs, alerts, and notifications to phone numbers worldwide. Supports text-to-speech message delivery and call status tracking.
+
+- **Human URL:** [https://developer.telesign.com/enterprise/docs/voice-get-started](https://developer.telesign.com/enterprise/docs/voice-get-started)
+- **Base URL:** `https://rest-ww.telesign.com/v1`
+
+#### Tags
+
+- OTP
+- Telecommunications
+- Voice
+
+#### Properties
+
+- [Documentation](https://developer.telesign.com/enterprise/docs/voice-get-started)
+- [Postman Collection](collections/telesign-phoneid.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telesign-phoneid.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telesign-score.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telesign-score.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telesign-sms.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telesign-sms.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telesign-verify.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telesign-verify.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+## Common Properties
+
+- [LinkedIn](https://www.linkedin.com/company/telesign)
 - [Website](https://www.telesign.com/)
-- [Developer Portal](https://developer.telesign.com/enterprise)
-- [Authentication Guide](https://developer.telesign.com/enterprise/docs/authentication)
+- [Developer  Portal](https://developer.telesign.com/enterprise)
+- [Authentication](https://developer.telesign.com/enterprise/docs/authentication)
 - [Status Page](https://status.telesign.com/)
 - [Pricing](https://www.telesign.com/pricing/)
 - [Terms of Service](https://www.telesign.com/terms-conditions/)
+- [GitHub Organization](https://github.com/TeleSign)
+- [Integrations](https://www.telesign.com/partners)
 
-## Capabilities
+## Maintainers
 
-| Capability | Description |
-|------------|-------------|
-| [identity-verification.yaml](capabilities/identity-verification.yaml) | Unified phone verification + fraud prevention workflow |
-
-### Shared Definitions
-
-| File | API |
-|------|-----|
-| [capabilities/shared/sms.yaml](capabilities/shared/sms.yaml) | SMS API |
-| [capabilities/shared/phoneid.yaml](capabilities/shared/phoneid.yaml) | PhoneID API |
-| [capabilities/shared/verify.yaml](capabilities/shared/verify.yaml) | Verify API |
-| [capabilities/shared/score.yaml](capabilities/shared/score.yaml) | Score API |
-
-## Artifacts
-
-| Artifact | Description |
-|----------|-------------|
-| [apis.yml](apis.yml) | API catalog index |
-| [rules/telesign-rules.yml](rules/telesign-rules.yml) | Spectral ruleset |
-| [json-schema/telesign-messaging-response-schema.json](json-schema/telesign-messaging-response-schema.json) | SMS response schema |
-| [json-schema/telesign-phoneid-response-schema.json](json-schema/telesign-phoneid-response-schema.json) | PhoneID response schema |
-| [json-structure/telesign-messaging-structure.json](json-structure/telesign-messaging-structure.json) | Messaging API structure |
-| [json-ld/telesign-context.jsonld](json-ld/telesign-context.jsonld) | JSON-LD context |
-| [examples/telesign-send-sms-example.json](examples/telesign-send-sms-example.json) | Send SMS example |
-| [examples/telesign-phoneid-lookup-example.json](examples/telesign-phoneid-lookup-example.json) | PhoneID lookup example |
-| [examples/telesign-create-verification-example.json](examples/telesign-create-verification-example.json) | Create verification example |
-| [vocabulary/telesign-vocabulary.yml](vocabulary/telesign-vocabulary.yml) | Domain vocabulary |
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com

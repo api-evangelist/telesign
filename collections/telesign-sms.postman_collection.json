@@ -1,0 +1,857 @@
+{
+  "item": [
+    {
+      "id": "933ee0c7-25e5-4fb1-966b-c713f952def2",
+      "name": "Messaging",
+      "description": {
+        "content": "Send and track SMS messages",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f9241a4c-f402-45f7-a099-f808d3f66f4a",
+          "name": "Send SMS Message",
+          "request": {
+            "name": "Send SMS Message",
+            "description": {
+              "content": "Send an SMS message to a specified phone number. Supports OTP verification codes, transactional alerts, and marketing messages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messaging"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "phone_number",
+                  "value": "<string>",
+                  "description": "(Required) Recipient's phone number including country code, no spaces or special characters."
+                },
+                {
+                  "disabled": false,
+                  "key": "message",
+                  "value": "<string>",
+                  "description": "(Required) Text content of the SMS message, maximum 1600 characters."
+                },
+                {
+                  "disabled": false,
+                  "key": "message_type",
+                  "value": "<string>",
+                  "description": "(Required) Classification of the message type."
+                },
+                {
+                  "disabled": false,
+                  "key": "sender_id",
+                  "value": "<string>",
+                  "description": "Sender ID to display on the recipient's device."
+                },
+                {
+                  "disabled": false,
+                  "key": "external_id",
+                  "value": "<string>",
+                  "description": "External identifier for correlating the transaction in your system."
+                },
+                {
+                  "disabled": false,
+                  "key": "originating_ip",
+                  "value": "<string>",
+                  "description": "End user's IP address (IPv4 or IPv6). Do not send your own IP."
+                },
+                {
+                  "disabled": false,
+                  "key": "account_lifecycle_event",
+                  "value": "<string>",
+                  "description": "Stage of the account lifecycle when this message is sent."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3a6a19f7-e05e-48fe-8af1-f806f2a965a3",
+              "name": "Message accepted for delivery",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messaging"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Recipient's phone number including country code, no spaces or special characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "phone_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Text content of the SMS message, maximum 1600 characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Classification of the message type.",
+                        "type": "text/plain"
+                      },
+                      "key": "message_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sender ID to display on the recipient's device.",
+                        "type": "text/plain"
+                      },
+                      "key": "sender_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "External identifier for correlating the transaction in your system.",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's IP address (IPv4 or IPv6). Do not send your own IP.",
+                        "type": "text/plain"
+                      },
+                      "key": "originating_ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Stage of the account lifecycle when this message is sent.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_lifecycle_event",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reference_id\": \"string\",\n  \"status\": {\n    \"code\": 9009,\n    \"description\": \"string\",\n    \"updated_on\": \"2023-06-14T03:37:01.541Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "052d6355-8167-42e3-b95b-983fae243f5f",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messaging"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Recipient's phone number including country code, no spaces or special characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "phone_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Text content of the SMS message, maximum 1600 characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Classification of the message type.",
+                        "type": "text/plain"
+                      },
+                      "key": "message_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sender ID to display on the recipient's device.",
+                        "type": "text/plain"
+                      },
+                      "key": "sender_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "External identifier for correlating the transaction in your system.",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's IP address (IPv4 or IPv6). Do not send your own IP.",
+                        "type": "text/plain"
+                      },
+                      "key": "originating_ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Stage of the account lifecycle when this message is sent.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_lifecycle_event",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6eaa77e4-4752-40e5-8582-e6f0b2d13072",
+              "name": "Unauthorized - invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messaging"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Recipient's phone number including country code, no spaces or special characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "phone_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Text content of the SMS message, maximum 1600 characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Classification of the message type.",
+                        "type": "text/plain"
+                      },
+                      "key": "message_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sender ID to display on the recipient's device.",
+                        "type": "text/plain"
+                      },
+                      "key": "sender_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "External identifier for correlating the transaction in your system.",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's IP address (IPv4 or IPv6). Do not send your own IP.",
+                        "type": "text/plain"
+                      },
+                      "key": "originating_ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Stage of the account lifecycle when this message is sent.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_lifecycle_event",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f6948e1d-0076-43e9-a683-ac33a4df60ec",
+              "name": "Too many requests - rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messaging"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Recipient's phone number including country code, no spaces or special characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "phone_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Text content of the SMS message, maximum 1600 characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Classification of the message type.",
+                        "type": "text/plain"
+                      },
+                      "key": "message_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sender ID to display on the recipient's device.",
+                        "type": "text/plain"
+                      },
+                      "key": "sender_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "External identifier for correlating the transaction in your system.",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's IP address (IPv4 or IPv6). Do not send your own IP.",
+                        "type": "text/plain"
+                      },
+                      "key": "originating_ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Stage of the account lifecycle when this message is sent.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_lifecycle_event",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e4842fa-f5ae-4f5c-be9d-8db6da38fdf5",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messaging"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Recipient's phone number including country code, no spaces or special characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "phone_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Text content of the SMS message, maximum 1600 characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Classification of the message type.",
+                        "type": "text/plain"
+                      },
+                      "key": "message_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sender ID to display on the recipient's device.",
+                        "type": "text/plain"
+                      },
+                      "key": "sender_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "External identifier for correlating the transaction in your system.",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's IP address (IPv4 or IPv6). Do not send your own IP.",
+                        "type": "text/plain"
+                      },
+                      "key": "originating_ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Stage of the account lifecycle when this message is sent.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_lifecycle_event",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0c6e7b6-93ba-4640-b391-be4f718391de",
+          "name": "Get SMS Transaction Status",
+          "request": {
+            "name": "Get SMS Transaction Status",
+            "description": {
+              "content": "Retrieve the delivery status of an SMS transaction by reference ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messaging",
+                ":reference_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reference_id",
+                  "description": "(Required) The unique reference ID returned when the message was sent."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c57241cb-7840-4a12-8340-492e5f755660",
+              "name": "Transaction status retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messaging",
+                    ":reference_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reference_id",
+                      "description": "(Required) The unique reference ID returned when the message was sent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reference_id\": \"string\",\n  \"status\": {\n    \"code\": 9009,\n    \"description\": \"string\",\n    \"updated_on\": \"2023-06-14T03:37:01.541Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c17652b-ed56-4f4c-859e-7b688a0c514a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messaging",
+                    ":reference_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reference_id",
+                      "description": "(Required) The unique reference ID returned when the message was sent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8792f64a-d445-423c-a032-4ff66d2882b3",
+              "name": "Reference ID not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messaging",
+                    ":reference_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reference_id",
+                      "description": "(Required) The unique reference ID returned when the message was sent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest-ww.telesign.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cfc96ed3-9cf8-4f7e-9078-52199ee36bb3",
+    "name": "Telesign SMS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Telesign SMS API enables sending SMS messages including alerts, notifications, reminders, marketing messages, and one-time passwords to phone numbers worldwide. Messages are classified by type (OTP, ARN, or MKT) and support delivery status tracking.\n\nContact Support:\n Name: Telesign Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

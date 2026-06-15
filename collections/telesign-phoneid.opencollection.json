@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telesign PhoneID API",
+    "version": "2"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Phone Intelligence",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Look Up Phone ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest-ww.telesign.com/v1/phoneid/:complete_phone_number",
+            "params": [
+              {
+                "name": "complete_phone_number",
+                "value": "",
+                "type": "path",
+                "description": "The complete phone number including country code, with no spaces or special characters."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "account_lifecycle_event",
+                  "value": ""
+                },
+                {
+                  "name": "originating_ip",
+                  "value": ""
+                },
+                {
+                  "name": "addons",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Submit a phone number to receive detailed intelligence including carrier information, geographic location, phone type classification, and subscriber data. Used for fraud prevention and risk scoring."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

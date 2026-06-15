@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telesign SMS API",
+    "version": "2"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messaging",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send SMS Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest-ww.telesign.com/v1/messaging",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "phone_number",
+                  "value": ""
+                },
+                {
+                  "name": "message",
+                  "value": ""
+                },
+                {
+                  "name": "message_type",
+                  "value": ""
+                },
+                {
+                  "name": "sender_id",
+                  "value": ""
+                },
+                {
+                  "name": "external_id",
+                  "value": ""
+                },
+                {
+                  "name": "originating_ip",
+                  "value": ""
+                },
+                {
+                  "name": "account_lifecycle_event",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Send an SMS message to a specified phone number. Supports OTP verification codes, transactional alerts, and marketing messages."
+        },
+        {
+          "info": {
+            "name": "Get SMS Transaction Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest-ww.telesign.com/v1/messaging/:reference_id",
+            "params": [
+              {
+                "name": "reference_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique reference ID returned when the message was sent."
+              }
+            ]
+          },
+          "docs": "Retrieve the delivery status of an SMS transaction by reference ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

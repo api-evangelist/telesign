@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telesign Score API",
+    "version": "2"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fraud Scoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Score Phone Number for Fraud Risk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest-ww.telesign.com/v1/score/:complete_phone_number",
+            "params": [
+              {
+                "name": "complete_phone_number",
+                "value": "",
+                "type": "path",
+                "description": "The complete phone number including country code, no spaces or special characters."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "account_lifecycle_event",
+                  "value": ""
+                },
+                {
+                  "name": "originating_ip",
+                  "value": ""
+                },
+                {
+                  "name": "device_id",
+                  "value": ""
+                },
+                {
+                  "name": "account_id",
+                  "value": ""
+                },
+                {
+                  "name": "email_address",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Submit a phone number to receive a reputation score indicating the likelihood of fraudulent activity. Combines phone number intelligence, traffic patterns, and global consortium data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telesign Verify API",
+    "version": "2"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Verification Process",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest-ww.telesign.com/v1/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate a verification process by sending an OTP to a phone number via the specified channel (SMS, voice, WhatsApp, etc.). Returns a reference ID to track the verification."
+        },
+        {
+          "info": {
+            "name": "Retrieve Verification Process",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest-ww.telesign.com/v1/verify/:reference_id",
+            "params": [
+              {
+                "name": "reference_id",
+                "value": "",
+                "type": "path",
+                "description": "The reference ID returned when the verification was created."
+              }
+            ]
+          },
+          "docs": "Check the status of an existing verification process."
+        },
+        {
+          "info": {
+            "name": "Update Verification Process",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://rest-ww.telesign.com/v1/verify/:reference_id",
+            "params": [
+              {
+                "name": "reference_id",
+                "value": "",
+                "type": "path",
+                "description": "The reference ID of the verification to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit the OTP code entered by the end user to complete verification."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
