@@ -110,7 +110,7 @@ common:
     url: https://www.linkedin.com/company/telesign
   - type: Website
     url: https://www.telesign.com/
-  - type: Developer Portal
+  - type: DeveloperPortal
     url: https://developer.telesign.com/enterprise
   - type: Authentication
     url: https://developer.telesign.com/enterprise/docs/authentication
