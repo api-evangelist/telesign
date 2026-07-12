@@ -106,6 +106,12 @@ apis:
       - type: Documentation
         url: https://developer.telesign.com/enterprise/docs/voice-get-started
 common:
+  - type: TrustCenter
+    url: security/telesign-trust-center.yml
+  - type: DomainSecurity
+    url: security/telesign-domain-security.yml
+  - type: Authentication
+    url: authentication/telesign-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/telesign
   - type: Website
@@ -124,6 +130,8 @@ common:
     url: https://github.com/TeleSign
   - type: Integrations
     url: https://www.telesign.com/partners
+  - type: Blog
+    url: https://www.telesign.com/blog
 integrations:
   - name: Telesign
   - name: referral

@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/telesign-phoneid-openapi.yml, openapi/telesign-score-openapi.yml, openapi/telesign-sms-openapi.yml,
+  openapi/telesign-verify-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BasicAuth
+  type: http
+  scheme: basic
+  description: Basic authentication using Customer ID as username and API key as password.
+  sources:
+  - openapi/telesign-phoneid-openapi.yml
+  - openapi/telesign-score-openapi.yml
+  - openapi/telesign-sms-openapi.yml
+  - openapi/telesign-verify-openapi.yml
