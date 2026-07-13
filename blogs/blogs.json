@@ -1,0 +1,21 @@
+{
+  "repo": "telesign",
+  "feeds": [
+    {
+      "source": "https://www.telesign.com/blog",
+      "feed_url": "https://www.telesign.com/feed",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
+      "source": "https://www.telesign.com/partners",
+      "feed_url": "https://www.telesign.com/feed",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 14
+}
