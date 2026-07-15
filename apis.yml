@@ -106,6 +106,8 @@ apis:
       - type: Documentation
         url: https://developer.telesign.com/enterprise/docs/voice-get-started
 common:
+  - type: AgenticAccess
+    url: agentic-access/telesign-agentic-access.yml
   - type: TrustCenter
     url: security/telesign-trust-center.yml
   - type: DomainSecurity
