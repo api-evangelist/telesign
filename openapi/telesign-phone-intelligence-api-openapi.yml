@@ -1,43 +1,35 @@
 openapi: 3.0.3
 info:
-  title: Telesign PhoneID API
-  description: >-
-    The Telesign PhoneID API provides global phone number intelligence, enabling businesses
-    to verify and enrich phone number data for fraud prevention and risk assessment. Submit
-    any phone number to receive carrier information, location data, phone type, and
-    subscriber intelligence.
+  title: Telesign PhoneID Fraud Scoring Phone Intelligence API
+  description: The Telesign PhoneID API provides global phone number intelligence, enabling businesses to verify and enrich phone number data for fraud prevention and risk assessment. Submit any phone number to receive carrier information, location data, phone type, and subscriber intelligence.
   version: '2'
   contact:
     name: Telesign Developer Support
     url: https://developer.telesign.com/enterprise
   termsOfService: https://www.telesign.com/terms-conditions/
 servers:
-  - url: https://rest-ww.telesign.com/v1
-    description: Telesign REST API
+- url: https://rest-ww.telesign.com/v1
+  description: Telesign REST API
 security:
-  - BasicAuth: []
+- BasicAuth: []
 tags:
-  - name: Phone Intelligence
-    description: Phone number lookup and intelligence operations
+- name: Phone Intelligence
+  description: Phone number lookup and intelligence operations
 paths:
   /phoneid/{complete_phone_number}:
     post:
       operationId: lookupPhoneId
       summary: Look Up Phone ID
-      description: >-
-        Submit a phone number to receive detailed intelligence including carrier information,
-        geographic location, phone type classification, and subscriber data. Used for fraud
-        prevention and risk scoring.
+      description: Submit a phone number to receive detailed intelligence including carrier information, geographic location, phone type classification, and subscriber data. Used for fraud prevention and risk scoring.
       tags:
-        - Phone Intelligence
+      - Phone Intelligence
       parameters:
-        - name: complete_phone_number
-          in: path
-          required: true
-          schema:
-            type: string
-          description: >-
-            The complete phone number including country code, with no spaces or special characters.
+      - name: complete_phone_number
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The complete phone number including country code, with no spaces or special characters.
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -48,11 +40,11 @@ paths:
                   type: string
                   description: Account lifecycle stage when this lookup is performed.
                   enum:
-                    - create
-                    - sign-in
-                    - transact
-                    - update
-                    - delete
+                  - create
+                  - sign-in
+                  - transact
+                  - update
+                  - delete
                 originating_ip:
                   type: string
                   description: End user's IP address for additional fraud signals.
@@ -77,36 +69,7 @@ paths:
         '500':
           description: Invalid transaction
 components:
-  securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic
-      description: Basic authentication using Customer ID as username and API key as password.
   schemas:
-    PhoneIdResponse:
-      type: object
-      properties:
-        reference_id:
-          type: string
-          description: Unique 32-digit hex identifier for this transaction.
-        status:
-          $ref: '#/components/schemas/TransactionStatus'
-        phone_type:
-          $ref: '#/components/schemas/PhoneType'
-        numbering:
-          $ref: '#/components/schemas/NumberingInfo'
-        location:
-          $ref: '#/components/schemas/LocationInfo'
-    TransactionStatus:
-      type: object
-      properties:
-        code:
-          type: string
-        description:
-          type: string
-        updated_on:
-          type: string
-          format: date-time
     PhoneType:
       type: object
       properties:
@@ -149,6 +112,16 @@ components:
                   type: string
                 phone_number:
                   type: string
+    TransactionStatus:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        updated_on:
+          type: string
+          format: date-time
     LocationInfo:
       type: object
       properties:
@@ -185,3 +158,22 @@ components:
               type: string
             longitude:
               type: string
+    PhoneIdResponse:
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: Unique 32-digit hex identifier for this transaction.
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
+        phone_type:
+          $ref: '#/components/schemas/PhoneType'
+        numbering:
+          $ref: '#/components/schemas/NumberingInfo'
+        location:
+          $ref: '#/components/schemas/LocationInfo'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Basic authentication using Customer ID as username and API key as password.

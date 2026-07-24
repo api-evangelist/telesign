@@ -1,43 +1,35 @@
 openapi: 3.0.3
 info:
-  title: Telesign Score API
-  description: >-
-    The Telesign Score API delivers reputation scoring for phone numbers based on
-    phone number intelligence, traffic patterns, machine learning, and a global data
-    consortium. Use it to assess fraud risk during account creation, sign-in, and
-    financial transactions.
+  title: Telesign PhoneID Fraud Scoring API
+  description: The Telesign PhoneID API provides global phone number intelligence, enabling businesses to verify and enrich phone number data for fraud prevention and risk assessment. Submit any phone number to receive carrier information, location data, phone type, and subscriber intelligence.
   version: '2'
   contact:
     name: Telesign Developer Support
     url: https://developer.telesign.com/enterprise
   termsOfService: https://www.telesign.com/terms-conditions/
 servers:
-  - url: https://rest-ww.telesign.com/v1
-    description: Telesign REST API
+- url: https://rest-ww.telesign.com/v1
+  description: Telesign REST API
 security:
-  - BasicAuth: []
+- BasicAuth: []
 tags:
-  - name: Fraud Scoring
-    description: Phone number reputation and fraud risk scoring
+- name: Fraud Scoring
+  description: Phone number reputation and fraud risk scoring
 paths:
   /score/{complete_phone_number}:
     post:
       operationId: scorePhoneNumber
       summary: Score Phone Number for Fraud Risk
-      description: >-
-        Submit a phone number to receive a reputation score indicating the likelihood
-        of fraudulent activity. Combines phone number intelligence, traffic patterns,
-        and global consortium data.
+      description: Submit a phone number to receive a reputation score indicating the likelihood of fraudulent activity. Combines phone number intelligence, traffic patterns, and global consortium data.
       tags:
-        - Fraud Scoring
+      - Fraud Scoring
       parameters:
-        - name: complete_phone_number
-          in: path
-          required: true
-          schema:
-            type: string
-          description: >-
-            The complete phone number including country code, no spaces or special characters.
+      - name: complete_phone_number
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The complete phone number including country code, no spaces or special characters.
       requestBody:
         required: true
         content:
@@ -45,17 +37,17 @@ paths:
             schema:
               type: object
               required:
-                - account_lifecycle_event
+              - account_lifecycle_event
               properties:
                 account_lifecycle_event:
                   type: string
                   description: Stage of the account lifecycle when this score is requested.
                   enum:
-                    - create
-                    - sign-in
-                    - transact
-                    - update
-                    - delete
+                  - create
+                  - sign-in
+                  - transact
+                  - update
+                  - delete
                 originating_ip:
                   type: string
                   description: End user's IP address for additional fraud signals.
@@ -87,11 +79,6 @@ paths:
         '500':
           description: Invalid transaction
 components:
-  securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic
-      description: Basic authentication using Customer ID as username and API key as password.
   schemas:
     ScoreResponse:
       type: object
@@ -127,10 +114,10 @@ components:
           type: string
           description: Risk level classification.
           enum:
-            - low
-            - medium
-            - high
-            - block
+          - low
+          - medium
+          - high
+          - block
         score:
           type: integer
           description: Numeric risk score from 0 (lowest risk) to 1000 (highest risk).
@@ -140,6 +127,11 @@ components:
           type: string
           description: Recommended action based on the risk score.
           enum:
-            - allow
-            - flag
-            - block
+          - allow
+          - flag
+          - block
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Basic authentication using Customer ID as username and API key as password.

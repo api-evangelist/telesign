@@ -1,33 +1,28 @@
 openapi: 3.0.3
 info:
-  title: Telesign SMS API
-  description: >-
-    The Telesign SMS API enables sending SMS messages including alerts, notifications,
-    reminders, marketing messages, and one-time passwords to phone numbers worldwide.
-    Messages are classified by type (OTP, ARN, or MKT) and support delivery status tracking.
+  title: Telesign PhoneID Fraud Scoring Messaging API
+  description: The Telesign PhoneID API provides global phone number intelligence, enabling businesses to verify and enrich phone number data for fraud prevention and risk assessment. Submit any phone number to receive carrier information, location data, phone type, and subscriber intelligence.
   version: '2'
   contact:
     name: Telesign Developer Support
     url: https://developer.telesign.com/enterprise
   termsOfService: https://www.telesign.com/terms-conditions/
 servers:
-  - url: https://rest-ww.telesign.com/v1
-    description: Telesign REST API
+- url: https://rest-ww.telesign.com/v1
+  description: Telesign REST API
 security:
-  - BasicAuth: []
+- BasicAuth: []
 tags:
-  - name: Messaging
-    description: Send and track SMS messages
+- name: Messaging
+  description: Send and track SMS messages
 paths:
   /messaging:
     post:
       operationId: sendSms
       summary: Send SMS Message
-      description: >-
-        Send an SMS message to a specified phone number. Supports OTP verification
-        codes, transactional alerts, and marketing messages.
+      description: Send an SMS message to a specified phone number. Supports OTP verification codes, transactional alerts, and marketing messages.
       tags:
-        - Messaging
+      - Messaging
       requestBody:
         required: true
         content:
@@ -35,9 +30,9 @@ paths:
             schema:
               type: object
               required:
-                - phone_number
-                - message
-                - message_type
+              - phone_number
+              - message
+              - message_type
               properties:
                 phone_number:
                   type: string
@@ -50,9 +45,9 @@ paths:
                   type: string
                   description: Classification of the message type.
                   enum:
-                    - OTP
-                    - ARN
-                    - MKT
+                  - OTP
+                  - ARN
+                  - MKT
                 sender_id:
                   type: string
                   description: Sender ID to display on the recipient's device.
@@ -66,11 +61,11 @@ paths:
                   type: string
                   description: Stage of the account lifecycle when this message is sent.
                   enum:
-                    - create
-                    - sign-in
-                    - transact
-                    - update
-                    - delete
+                  - create
+                  - sign-in
+                  - transact
+                  - update
+                  - delete
       responses:
         '200':
           description: Message accepted for delivery
@@ -92,14 +87,14 @@ paths:
       summary: Get SMS Transaction Status
       description: Retrieve the delivery status of an SMS transaction by reference ID.
       tags:
-        - Messaging
+      - Messaging
       parameters:
-        - name: reference_id
-          in: path
-          required: true
-          schema:
-            type: string
-          description: The unique reference ID returned when the message was sent.
+      - name: reference_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique reference ID returned when the message was sent.
       responses:
         '200':
           description: Transaction status retrieved successfully
@@ -112,21 +107,7 @@ paths:
         '404':
           description: Reference ID not found
 components:
-  securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic
-      description: >-
-        Basic authentication using Customer ID as username and API key as password.
   schemas:
-    MessagingResponse:
-      type: object
-      properties:
-        reference_id:
-          type: string
-          description: Unique 32-digit hex identifier for this transaction.
-        status:
-          $ref: '#/components/schemas/TransactionStatus'
     TransactionStatus:
       type: object
       properties:
@@ -140,3 +121,16 @@ components:
           type: string
           format: date-time
           description: RFC 3339 timestamp of when the status was last updated.
+    MessagingResponse:
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: Unique 32-digit hex identifier for this transaction.
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Basic authentication using Customer ID as username and API key as password.

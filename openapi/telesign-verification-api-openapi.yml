@@ -1,34 +1,28 @@
 openapi: 3.0.3
 info:
-  title: Telesign Verify API
-  description: >-
-    The Telesign Verify API enables multi-channel phone-based verification and
-    multi-factor authentication (MFA). Send one-time passcodes (OTPs) via SMS,
-    voice, WhatsApp, Viber, RCS, or email, and verify the code the end user submits.
+  title: Telesign PhoneID Fraud Scoring Verification API
+  description: The Telesign PhoneID API provides global phone number intelligence, enabling businesses to verify and enrich phone number data for fraud prevention and risk assessment. Submit any phone number to receive carrier information, location data, phone type, and subscriber intelligence.
   version: '2'
   contact:
     name: Telesign Developer Support
     url: https://developer.telesign.com/enterprise
   termsOfService: https://www.telesign.com/terms-conditions/
 servers:
-  - url: https://rest-ww.telesign.com/v1
-    description: Telesign REST API
+- url: https://rest-ww.telesign.com/v1
+  description: Telesign REST API
 security:
-  - BasicAuth: []
+- BasicAuth: []
 tags:
-  - name: Verification
-    description: Create, retrieve, and update verification processes
+- name: Verification
+  description: Create, retrieve, and update verification processes
 paths:
   /verify:
     post:
       operationId: createVerification
       summary: Create Verification Process
-      description: >-
-        Initiate a verification process by sending an OTP to a phone number via
-        the specified channel (SMS, voice, WhatsApp, etc.). Returns a reference ID
-        to track the verification.
+      description: Initiate a verification process by sending an OTP to a phone number via the specified channel (SMS, voice, WhatsApp, etc.). Returns a reference ID to track the verification.
       tags:
-        - Verification
+      - Verification
       requestBody:
         required: true
         content:
@@ -36,22 +30,21 @@ paths:
             schema:
               type: object
               required:
-                - phone_number
+              - phone_number
               properties:
                 phone_number:
                   type: string
-                  description: >-
-                    The end user's phone number including country code.
+                  description: The end user's phone number including country code.
                 channel:
                   type: string
                   description: Delivery channel for the OTP.
                   enum:
-                    - sms
-                    - voice
-                    - whatsapp
-                    - viber
-                    - rcs
-                    - email
+                  - sms
+                  - voice
+                  - whatsapp
+                  - viber
+                  - rcs
+                  - email
                   default: sms
                 language:
                   type: string
@@ -84,14 +77,14 @@ paths:
       summary: Retrieve Verification Process
       description: Check the status of an existing verification process.
       tags:
-        - Verification
+      - Verification
       parameters:
-        - name: reference_id
-          in: path
-          required: true
-          schema:
-            type: string
-          description: The reference ID returned when the verification was created.
+      - name: reference_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The reference ID returned when the verification was created.
       responses:
         '200':
           description: Verification status retrieved
@@ -108,14 +101,14 @@ paths:
       summary: Update Verification Process
       description: Submit the OTP code entered by the end user to complete verification.
       tags:
-        - Verification
+      - Verification
       parameters:
-        - name: reference_id
-          in: path
-          required: true
-          schema:
-            type: string
-          description: The reference ID of the verification to update.
+      - name: reference_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The reference ID of the verification to update.
       requestBody:
         required: true
         content:
@@ -123,7 +116,7 @@ paths:
             schema:
               type: object
               required:
-                - verify_code
+              - verify_code
               properties:
                 verify_code:
                   type: string
@@ -142,20 +135,7 @@ paths:
         '404':
           description: Reference ID not found
 components:
-  securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic
-      description: Basic authentication using Customer ID as username and API key as password.
   schemas:
-    VerifyResponse:
-      type: object
-      properties:
-        reference_id:
-          type: string
-          description: Unique identifier for the verification transaction.
-        status:
-          $ref: '#/components/schemas/VerificationStatus'
     VerificationStatus:
       type: object
       properties:
@@ -169,3 +149,16 @@ components:
           type: string
           format: date-time
           description: Timestamp of the last status update.
+    VerifyResponse:
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: Unique identifier for the verification transaction.
+        status:
+          $ref: '#/components/schemas/VerificationStatus'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Basic authentication using Customer ID as username and API key as password.
