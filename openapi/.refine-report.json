@@ -1,0 +1,20 @@
+{
+  "provider": "telesign",
+  "sources": [
+    "telesign-fraud-scoring-api-openapi.yml",
+    "telesign-messaging-api-openapi.yml",
+    "telesign-phone-intelligence-api-openapi.yml",
+    "telesign-verification-api-openapi.yml"
+  ],
+  "outputs": [
+    "telesign-fraud-scoring-api-openapi.yml",
+    "telesign-messaging-api-openapi.yml",
+    "telesign-phone-intelligence-api-openapi.yml",
+    "telesign-verification-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  title: Telesign PhoneID API
+  description: >-
+    The Telesign PhoneID API provides global phone number intelligence, enabling businesses
+    to verify and enrich phone number data for fraud prevention and risk assessment. Submit
+    any phone number to receive carrier information, location data, phone type, and
+    subscriber intelligence.
+  version: '2'
+  contact:
+    name: Telesign Developer Support
+    url: https://developer.telesign.com/enterprise
+  termsOfService: https://www.telesign.com/terms-conditions/
+servers:
+  - url: https://rest-ww.telesign.com/v1
+    description: Telesign REST API
+security:
+  - BasicAuth: []
+tags:
+  - name: Phone Intelligence
+    description: Phone number lookup and intelligence operations
+paths:
+  /phoneid/{complete_phone_number}:
+    post:
+      operationId: lookupPhoneId
+      summary: Look Up Phone ID
+      description: >-
+        Submit a phone number to receive detailed intelligence including carrier information,
+        geographic location, phone type classification, and subscriber data. Used for fraud
+        prevention and risk scoring.
+      tags:
+        - Phone Intelligence
+      parameters:
+        - name: complete_phone_number
+          in: path
+          required: true
+          schema:
+            type: string
+          description: >-
+            The complete phone number including country code, with no spaces or special characters.
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                account_lifecycle_event:
+                  type: string
+                  description: Account lifecycle stage when this lookup is performed.
+                  enum:
+                    - create
+                    - sign-in
+                    - transact
+                    - update
+                    - delete
+                originating_ip:
+                  type: string
+                  description: End user's IP address for additional fraud signals.
+                addons:
+                  type: string
+                  description: Enable contact add-on to receive additional subscriber data.
+      responses:
+        '200':
+          description: Phone ID lookup successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PhoneIdResponse'
+        '400':
+          description: Bad request - invalid phone number or parameters
+        '401':
+          description: Unauthorized - invalid credentials
+        '402':
+          description: Payment required - insufficient credits
+        '429':
+          description: Rate limit exceeded
+        '500':
+          description: Invalid transaction
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Basic authentication using Customer ID as username and API key as password.
+  schemas:
+    PhoneIdResponse:
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: Unique 32-digit hex identifier for this transaction.
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
+        phone_type:
+          $ref: '#/components/schemas/PhoneType'
+        numbering:
+          $ref: '#/components/schemas/NumberingInfo'
+        location:
+          $ref: '#/components/schemas/LocationInfo'
+    TransactionStatus:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        updated_on:
+          type: string
+          format: date-time
+    PhoneType:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Phone type code (mobile, landline, VOIP, etc.)
+        description:
+          type: string
+          description: Human-readable phone type description.
+    NumberingInfo:
+      type: object
+      properties:
+        original:
+          type: object
+          properties:
+            phone_number:
+              type: string
+            complete_phone_number:
+              type: string
+            country_code:
+              type: string
+        cleansing:
+          type: object
+          properties:
+            call:
+              type: object
+              properties:
+                cleansed_code:
+                  type: string
+                country_code:
+                  type: string
+                phone_number:
+                  type: string
+            sms:
+              type: object
+              properties:
+                cleansed_code:
+                  type: string
+                country_code:
+                  type: string
+                phone_number:
+                  type: string
+    LocationInfo:
+      type: object
+      properties:
+        city:
+          type: string
+        county:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: object
+          properties:
+            iso2:
+              type: string
+            iso3:
+              type: string
+            name:
+              type: string
+        time_zone:
+          type: object
+          properties:
+            name:
+              type: string
+            utc_offset_min:
+              type: string
+            utc_offset_max:
+              type: string
+        coordinates:
+          type: object
+          properties:
+            latitude:
+              type: string
+            longitude:
+              type: string
