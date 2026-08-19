@@ -1,0 +1,714 @@
+{
+  "item": [
+    {
+      "id": "24bbc28a-b7b4-43ce-9684-bf951fab69a1",
+      "name": "Fraud Scoring",
+      "description": {
+        "content": "Phone number reputation and fraud risk scoring",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2d4ca764-782e-42db-95bc-672b2b1eadf6",
+          "name": "Score Phone Number for Fraud Risk",
+          "request": {
+            "name": "Score Phone Number for Fraud Risk",
+            "description": {
+              "content": "Submit a phone number to receive a reputation score indicating the likelihood of fraudulent activity. Combines phone number intelligence, traffic patterns, and global consortium data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "score",
+                ":complete_phone_number"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "complete_phone_number",
+                  "description": "(Required) The complete phone number including country code, no spaces or special characters."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "account_lifecycle_event",
+                  "value": "<string>",
+                  "description": "(Required) Stage of the account lifecycle when this score is requested."
+                },
+                {
+                  "disabled": false,
+                  "key": "originating_ip",
+                  "value": "<string>",
+                  "description": "End user's IP address for additional fraud signals."
+                },
+                {
+                  "disabled": false,
+                  "key": "device_id",
+                  "value": "<string>",
+                  "description": "End user's device ID. Case sensitive, Unicode characters encoded as UTF-8."
+                },
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "Your internal identifier for the end user's account."
+                },
+                {
+                  "disabled": false,
+                  "key": "email_address",
+                  "value": "<email>",
+                  "description": "End user's email address for additional risk signals."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fa980918-856e-4318-bcd1-f6a82424e64b",
+              "name": "Score calculated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "score",
+                    ":complete_phone_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "complete_phone_number",
+                      "description": "(Required) The complete phone number including country code, no spaces or special characters."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Stage of the account lifecycle when this score is requested.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_lifecycle_event",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's IP address for additional fraud signals.",
+                        "type": "text/plain"
+                      },
+                      "key": "originating_ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's device ID. Case sensitive, Unicode characters encoded as UTF-8.",
+                        "type": "text/plain"
+                      },
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Your internal identifier for the end user's account.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's email address for additional risk signals.",
+                        "type": "text/plain"
+                      },
+                      "key": "email_address",
+                      "value": "<email>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reference_id\": \"string\",\n  \"status\": {\n    \"code\": \"string\",\n    \"description\": \"string\",\n    \"updated_on\": \"1993-05-16T16:12:55.202Z\"\n  },\n  \"risk\": {\n    \"level\": \"medium\",\n    \"score\": 433,\n    \"recommendation\": \"allow\"\n  },\n  \"phone_type\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fcd1e539-fdff-4710-8e2d-93917b786024",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "score",
+                    ":complete_phone_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "complete_phone_number",
+                      "description": "(Required) The complete phone number including country code, no spaces or special characters."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Stage of the account lifecycle when this score is requested.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_lifecycle_event",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's IP address for additional fraud signals.",
+                        "type": "text/plain"
+                      },
+                      "key": "originating_ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's device ID. Case sensitive, Unicode characters encoded as UTF-8.",
+                        "type": "text/plain"
+                      },
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Your internal identifier for the end user's account.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's email address for additional risk signals.",
+                        "type": "text/plain"
+                      },
+                      "key": "email_address",
+                      "value": "<email>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dfcb5617-e09d-4cdd-81de-4547bfc4891c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "score",
+                    ":complete_phone_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "complete_phone_number",
+                      "description": "(Required) The complete phone number including country code, no spaces or special characters."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Stage of the account lifecycle when this score is requested.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_lifecycle_event",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's IP address for additional fraud signals.",
+                        "type": "text/plain"
+                      },
+                      "key": "originating_ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's device ID. Case sensitive, Unicode characters encoded as UTF-8.",
+                        "type": "text/plain"
+                      },
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Your internal identifier for the end user's account.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's email address for additional risk signals.",
+                        "type": "text/plain"
+                      },
+                      "key": "email_address",
+                      "value": "<email>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "29974c46-dda4-4570-8496-0e119335ba8a",
+              "name": "Insufficient credits",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "score",
+                    ":complete_phone_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "complete_phone_number",
+                      "description": "(Required) The complete phone number including country code, no spaces or special characters."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Stage of the account lifecycle when this score is requested.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_lifecycle_event",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's IP address for additional fraud signals.",
+                        "type": "text/plain"
+                      },
+                      "key": "originating_ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's device ID. Case sensitive, Unicode characters encoded as UTF-8.",
+                        "type": "text/plain"
+                      },
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Your internal identifier for the end user's account.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's email address for additional risk signals.",
+                        "type": "text/plain"
+                      },
+                      "key": "email_address",
+                      "value": "<email>"
+                    }
+                  ]
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3002914d-9b87-4545-9d70-ca570f265310",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "score",
+                    ":complete_phone_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "complete_phone_number",
+                      "description": "(Required) The complete phone number including country code, no spaces or special characters."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Stage of the account lifecycle when this score is requested.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_lifecycle_event",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's IP address for additional fraud signals.",
+                        "type": "text/plain"
+                      },
+                      "key": "originating_ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's device ID. Case sensitive, Unicode characters encoded as UTF-8.",
+                        "type": "text/plain"
+                      },
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Your internal identifier for the end user's account.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's email address for additional risk signals.",
+                        "type": "text/plain"
+                      },
+                      "key": "email_address",
+                      "value": "<email>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0c4eb969-e4f2-42c0-940d-599b79589b6d",
+              "name": "Invalid transaction",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "score",
+                    ":complete_phone_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "complete_phone_number",
+                      "description": "(Required) The complete phone number including country code, no spaces or special characters."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Stage of the account lifecycle when this score is requested.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_lifecycle_event",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's IP address for additional fraud signals.",
+                        "type": "text/plain"
+                      },
+                      "key": "originating_ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's device ID. Case sensitive, Unicode characters encoded as UTF-8.",
+                        "type": "text/plain"
+                      },
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Your internal identifier for the end user's account.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "End user's email address for additional risk signals.",
+                        "type": "text/plain"
+                      },
+                      "key": "email_address",
+                      "value": "<email>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest-ww.telesign.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b3f90e32-0bcf-46e7-9051-0e642988257e",
+    "name": "Telesign PhoneID Fraud Scoring API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Telesign PhoneID API provides global phone number intelligence, enabling businesses to verify and enrich phone number data for fraud prevention and risk assessment. Submit any phone number to receive carrier information, location data, phone type, and subscriber intelligence.\n\nContact Support:\n Name: Telesign Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
