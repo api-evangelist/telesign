@@ -22,7 +22,7 @@ description: >-
   communications.
 url: https://raw.githubusercontent.com/api-evangelist/telesign/refs/heads/main/apis.yml
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 tags:
   - Authentication
   - Communications
