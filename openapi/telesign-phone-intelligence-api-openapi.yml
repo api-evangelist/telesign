@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Telesign PhoneID Fraud Scoring Phone Intelligence API
+  title: Telesign PhoneID Phone Intelligence API
   description: The Telesign PhoneID API provides global phone number intelligence, enabling businesses to verify and enrich phone number data for fraud prevention and risk assessment. Submit any phone number to receive carrier information, location data, phone type, and subscriber intelligence.
   version: '2'
   contact:
@@ -70,15 +70,6 @@ paths:
           description: Invalid transaction
 components:
   schemas:
-    PhoneType:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Phone type code (mobile, landline, VOIP, etc.)
-        description:
-          type: string
-          description: Human-readable phone type description.
     NumberingInfo:
       type: object
       properties:
@@ -112,16 +103,6 @@ components:
                   type: string
                 phone_number:
                   type: string
-    TransactionStatus:
-      type: object
-      properties:
-        code:
-          type: string
-        description:
-          type: string
-        updated_on:
-          type: string
-          format: date-time
     LocationInfo:
       type: object
       properties:
@@ -172,6 +153,25 @@ components:
           $ref: '#/components/schemas/NumberingInfo'
         location:
           $ref: '#/components/schemas/LocationInfo'
+    TransactionStatus:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        updated_on:
+          type: string
+          format: date-time
+    PhoneType:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Phone type code (mobile, landline, VOIP, etc.)
+        description:
+          type: string
+          description: Human-readable phone type description.
   securitySchemes:
     BasicAuth:
       type: http

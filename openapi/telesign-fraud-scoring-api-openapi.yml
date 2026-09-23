@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Telesign PhoneID Fraud Scoring API
-  description: The Telesign PhoneID API provides global phone number intelligence, enabling businesses to verify and enrich phone number data for fraud prevention and risk assessment. Submit any phone number to receive carrier information, location data, phone type, and subscriber intelligence.
+  title: Telesign Score Fraud Scoring API
+  description: The Telesign Score API delivers reputation scoring for phone numbers based on phone number intelligence, traffic patterns, machine learning, and a global data consortium. Use it to assess fraud risk during account creation, sign-in, and financial transactions.
   version: '2'
   contact:
     name: Telesign Developer Support
@@ -80,6 +80,16 @@ paths:
           description: Invalid transaction
 components:
   schemas:
+    TransactionStatus:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        updated_on:
+          type: string
+          format: date-time
     ScoreResponse:
       type: object
       properties:
@@ -97,16 +107,6 @@ components:
               type: string
             description:
               type: string
-    TransactionStatus:
-      type: object
-      properties:
-        code:
-          type: string
-        description:
-          type: string
-        updated_on:
-          type: string
-          format: date-time
     RiskScore:
       type: object
       properties:

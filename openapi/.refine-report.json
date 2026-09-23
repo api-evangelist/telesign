@@ -1,20 +1,32 @@
 {
   "provider": "telesign",
   "sources": [
-    "telesign-fraud-scoring-api-openapi.yml",
-    "telesign-messaging-api-openapi.yml",
-    "telesign-phone-intelligence-api-openapi.yml",
-    "telesign-verification-api-openapi.yml"
+    "_original/telesign-phoneid-openapi.yml",
+    "_original/telesign-score-openapi.yml",
+    "_original/telesign-sms-openapi.yml",
+    "_original/telesign-verify-openapi.yml"
   ],
   "outputs": [
+    "telesign-phone-intelligence-api-openapi.yml",
     "telesign-fraud-scoring-api-openapi.yml",
     "telesign-messaging-api-openapi.yml",
-    "telesign-phone-intelligence-api-openapi.yml",
     "telesign-verification-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "telesign-phoneid-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "telesign-score-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "telesign-sms-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "telesign-verify-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "telesign-fraud-scoring-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telesign-messaging-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telesign-phone-intelligence-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telesign-verification-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Telesign PhoneID Fraud Scoring Messaging API
-  description: The Telesign PhoneID API provides global phone number intelligence, enabling businesses to verify and enrich phone number data for fraud prevention and risk assessment. Submit any phone number to receive carrier information, location data, phone type, and subscriber intelligence.
+  title: Telesign SMS Messaging API
+  description: The Telesign SMS API enables sending SMS messages including alerts, notifications, reminders, marketing messages, and one-time passwords to phone numbers worldwide. Messages are classified by type (OTP, ARN, or MKT) and support delivery status tracking.
   version: '2'
   contact:
     name: Telesign Developer Support
@@ -108,6 +108,14 @@ paths:
           description: Reference ID not found
 components:
   schemas:
+    MessagingResponse:
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: Unique 32-digit hex identifier for this transaction.
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
     TransactionStatus:
       type: object
       properties:
@@ -121,14 +129,6 @@ components:
           type: string
           format: date-time
           description: RFC 3339 timestamp of when the status was last updated.
-    MessagingResponse:
-      type: object
-      properties:
-        reference_id:
-          type: string
-          description: Unique 32-digit hex identifier for this transaction.
-        status:
-          $ref: '#/components/schemas/TransactionStatus'
   securitySchemes:
     BasicAuth:
       type: http

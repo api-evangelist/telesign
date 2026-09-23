@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Telesign PhoneID Fraud Scoring Verification API
-  description: The Telesign PhoneID API provides global phone number intelligence, enabling businesses to verify and enrich phone number data for fraud prevention and risk assessment. Submit any phone number to receive carrier information, location data, phone type, and subscriber intelligence.
+  title: Telesign Verify Verification API
+  description: The Telesign Verify API enables multi-channel phone-based verification and multi-factor authentication (MFA). Send one-time passcodes (OTPs) via SMS, voice, WhatsApp, Viber, RCS, or email, and verify the code the end user submits.
   version: '2'
   contact:
     name: Telesign Developer Support
