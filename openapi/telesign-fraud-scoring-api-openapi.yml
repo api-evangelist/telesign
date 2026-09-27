@@ -80,33 +80,6 @@ paths:
           description: Invalid transaction
 components:
   schemas:
-    TransactionStatus:
-      type: object
-      properties:
-        code:
-          type: string
-        description:
-          type: string
-        updated_on:
-          type: string
-          format: date-time
-    ScoreResponse:
-      type: object
-      properties:
-        reference_id:
-          type: string
-          description: Unique 32-digit hex identifier for this transaction.
-        status:
-          $ref: '#/components/schemas/TransactionStatus'
-        risk:
-          $ref: '#/components/schemas/RiskScore'
-        phone_type:
-          type: object
-          properties:
-            code:
-              type: string
-            description:
-              type: string
     RiskScore:
       type: object
       properties:
@@ -130,6 +103,33 @@ components:
           - allow
           - flag
           - block
+    ScoreResponse:
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: Unique 32-digit hex identifier for this transaction.
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
+        risk:
+          $ref: '#/components/schemas/RiskScore'
+        phone_type:
+          type: object
+          properties:
+            code:
+              type: string
+            description:
+              type: string
+    TransactionStatus:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        updated_on:
+          type: string
+          format: date-time
   securitySchemes:
     BasicAuth:
       type: http

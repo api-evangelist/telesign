@@ -42,6 +42,7 @@ tags:
   - Phone Intelligence
   - SMS
   - Verification
+  - Telecommunications
 apis:
 - aid: telesign:voice-api
   name: Telesign Voice API
