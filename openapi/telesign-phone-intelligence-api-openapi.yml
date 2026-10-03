@@ -70,53 +70,6 @@ paths:
           description: Invalid transaction
 components:
   schemas:
-    NumberingInfo:
-      type: object
-      properties:
-        original:
-          type: object
-          properties:
-            phone_number:
-              type: string
-            complete_phone_number:
-              type: string
-            country_code:
-              type: string
-        cleansing:
-          type: object
-          properties:
-            call:
-              type: object
-              properties:
-                cleansed_code:
-                  type: string
-                country_code:
-                  type: string
-                phone_number:
-                  type: string
-            sms:
-              type: object
-              properties:
-                cleansed_code:
-                  type: string
-                country_code:
-                  type: string
-                phone_number:
-                  type: string
-    PhoneIdResponse:
-      type: object
-      properties:
-        reference_id:
-          type: string
-          description: Unique 32-digit hex identifier for this transaction.
-        status:
-          $ref: '#/components/schemas/TransactionStatus'
-        phone_type:
-          $ref: '#/components/schemas/PhoneType'
-        numbering:
-          $ref: '#/components/schemas/NumberingInfo'
-        location:
-          $ref: '#/components/schemas/LocationInfo'
     LocationInfo:
       type: object
       properties:
@@ -153,15 +106,53 @@ components:
               type: string
             longitude:
               type: string
-    PhoneType:
+    PhoneIdResponse:
       type: object
       properties:
-        code:
+        reference_id:
           type: string
-          description: Phone type code (mobile, landline, VOIP, etc.)
-        description:
-          type: string
-          description: Human-readable phone type description.
+          description: Unique 32-digit hex identifier for this transaction.
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
+        phone_type:
+          $ref: '#/components/schemas/PhoneType'
+        numbering:
+          $ref: '#/components/schemas/NumberingInfo'
+        location:
+          $ref: '#/components/schemas/LocationInfo'
+    NumberingInfo:
+      type: object
+      properties:
+        original:
+          type: object
+          properties:
+            phone_number:
+              type: string
+            complete_phone_number:
+              type: string
+            country_code:
+              type: string
+        cleansing:
+          type: object
+          properties:
+            call:
+              type: object
+              properties:
+                cleansed_code:
+                  type: string
+                country_code:
+                  type: string
+                phone_number:
+                  type: string
+            sms:
+              type: object
+              properties:
+                cleansed_code:
+                  type: string
+                country_code:
+                  type: string
+                phone_number:
+                  type: string
     TransactionStatus:
       type: object
       properties:
@@ -172,6 +163,15 @@ components:
         updated_on:
           type: string
           format: date-time
+    PhoneType:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Phone type code (mobile, landline, VOIP, etc.)
+        description:
+          type: string
+          description: Human-readable phone type description.
   securitySchemes:
     BasicAuth:
       type: http

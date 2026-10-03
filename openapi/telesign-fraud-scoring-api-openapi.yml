@@ -80,6 +80,16 @@ paths:
           description: Invalid transaction
 components:
   schemas:
+    TransactionStatus:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        updated_on:
+          type: string
+          format: date-time
     RiskScore:
       type: object
       properties:
@@ -120,16 +130,6 @@ components:
               type: string
             description:
               type: string
-    TransactionStatus:
-      type: object
-      properties:
-        code:
-          type: string
-        description:
-          type: string
-        updated_on:
-          type: string
-          format: date-time
   securitySchemes:
     BasicAuth:
       type: http
