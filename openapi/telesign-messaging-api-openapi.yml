@@ -108,14 +108,6 @@ paths:
           description: Reference ID not found
 components:
   schemas:
-    MessagingResponse:
-      type: object
-      properties:
-        reference_id:
-          type: string
-          description: Unique 32-digit hex identifier for this transaction.
-        status:
-          $ref: '#/components/schemas/TransactionStatus'
     TransactionStatus:
       type: object
       properties:
@@ -129,6 +121,14 @@ components:
           type: string
           format: date-time
           description: RFC 3339 timestamp of when the status was last updated.
+    MessagingResponse:
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: Unique 32-digit hex identifier for this transaction.
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
   securitySchemes:
     BasicAuth:
       type: http

@@ -70,6 +70,16 @@ paths:
           description: Invalid transaction
 components:
   schemas:
+    TransactionStatus:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        updated_on:
+          type: string
+          format: date-time
     LocationInfo:
       type: object
       properties:
@@ -153,16 +163,6 @@ components:
                   type: string
                 phone_number:
                   type: string
-    TransactionStatus:
-      type: object
-      properties:
-        code:
-          type: string
-        description:
-          type: string
-        updated_on:
-          type: string
-          format: date-time
     PhoneType:
       type: object
       properties:
