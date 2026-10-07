@@ -26,151 +26,3192 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/telesign.png
 name: Telesign
-description: >-
-  Telesign provides a comprehensive suite of communications and security APIs enabling businesses to verify phone
-  numbers, send SMS and voice messages, and assess fraud risk. Core offerings include SMS messaging, voice calls,
-  multi-channel verification (OTP/MFA), phone number intelligence (PhoneID), reputation scoring, and silent
-  verification. Telesign serves thousands of enterprises globally for account security, fraud prevention, and customer
-  communications.
+description: Telesign provides a comprehensive suite of communications and security APIs enabling businesses to
+  verify phone numbers, send SMS, omnichannel and voice messages, and assess fraud risk. The developer portal publishes
+  22 OpenAPI contracts (65 operations) covering SMS Verify, Voice Verify, Silent Verify, App Verify and the multi-channel
+  Verify API; Messaging (SMS, WhatsApp, Viber, RCS, MMS, email), Voice, Number Masking and Bulk SMS; Phone ID, Intelligence
+  Cloud and Email Intelligence risk signals; and Accounts, Deactivated Numbers, Flow Builder and Protect Platform
+  management surfaces, plus an RFC 9727 API catalog and callback (webhook) payload contracts.
 url: https://raw.githubusercontent.com/api-evangelist/telesign/refs/heads/main/apis.yml
-modified: '2026-05-19'
+modified: '2026-10-07'
 specificationVersion: '0.23'
 tags:
-  - Authentication
-  - Communications
-  - Fraud Prevention
-  - Phone Intelligence
-  - SMS
-  - Verification
-  - Telecommunications
+- Authentication
+- Communications
+- Fraud Prevention
+- Phone Intelligence
+- SMS
+- Verification
+- Telecommunications
+- Messaging
+- Voice
+- Email Intelligence
+- Identity
+- Number Masking
+- Accounts
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+common:
+- type: Webhooks
+  url: asyncapi/telesign-webhooks.yml
+- type: FinOps
+  url: finops/telesign-finops.yml
+- type: RateLimits
+  url: rate-limits/telesign-rate-limits.yml
+- type: Plans
+  url: plans/telesign-plans-pricing.yml
+- type: Spectral
+  url: rules/telesign-rules.yml
+- type: Spectral
+  url: rules/telesign-jsonschema-spectral-rules.yml
+- type: JSONLD
+  url: json-ld/telesign-context.jsonld
+- type: Vocabulary
+  url: vocabulary/telesign-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/telesign-data-model.yml
+- type: ChangeLog
+  url: changelog/telesign-changelog.yml
+- type: Conventions
+  url: conventions/telesign-conventions.yml
+- type: Compliance
+  url: https://www.telesign.com/security
+- type: Deprecation
+  url: lifecycle/telesign-lifecycle.yml
+- type: Lifecycle
+  url: lifecycle/telesign-lifecycle.yml
+- type: ErrorCatalog
+  url: errors/telesign-error-codes.yml
+- type: ErrorCatalog
+  url: errors/telesign-problem-types.yml
+- type: Conformance
+  url: conformance/telesign-conformance.yml
+- type: Overlay
+  url: overlays/telesign-accounts-api-overlay.yaml
+- type: SecurityTxt
+  url: well-known/telesign-status-security.txt
+- type: WellKnown
+  url: well-known/telesign-well-known.yml
+- type: Hosts
+  url: hosts/telesign-hosts.yml
+- type: Vendors
+  url: vendors/telesign-vendors.yml
+- type: SDKs
+  url: packages/telesign-packages.yml
+- type: Packages
+  url: packages/telesign-packages.yml
+- type: AgenticAccess
+  url: agentic-access/telesign-agentic-access.yml
+- type: TrustCenter
+  url: security/telesign-trust-center.yml
+- type: DomainSecurity
+  url: security/telesign-domain-security.yml
+- type: Authentication
+  url: authentication/telesign-authentication.yml
+- type: LinkedIn
+  url: https://www.linkedin.com/company/telesign
+- type: Website
+  url: https://www.telesign.com/
+- type: DeveloperPortal
+  url: https://developer.telesign.com/enterprise
+- type: Authentication
+  url: https://developer.telesign.com/enterprise/docs/authentication
+- type: StatusPage
+  url: https://status.telesign.com/
+- type: Pricing
+  url: https://www.telesign.com/pricing/
+- type: TermsOfService
+  url: https://www.telesign.com/terms-conditions/
+- type: GitHubOrganization
+  url: https://github.com/TeleSign
+- type: Integrations
+  url: https://www.telesign.com/partners
+- type: Blog
+  url: https://www.telesign.com/blog
+- type: Documentation
+  url: https://developer.telesign.com/enterprise/docs
+- type: APIReference
+  url: https://developer.telesign.com/enterprise/reference
+- type: GettingStarted
+  url: https://developer.telesign.com/enterprise/docs/get-started-with-docs
+- type: ChangeLog
+  url: https://developer.telesign.com/enterprise/changelog
+- type: Support
+  url: https://support.telesign.com/
+- type: PrivacyPolicy
+  url: https://www.telesign.com/privacy-notice
+- type: Security
+  url: https://www.telesign.com/security
+- type: Newsroom
+  url: https://www.telesign.com/newsroom
+- type: Login
+  url: https://my.telesign.com/login
 apis:
-- aid: telesign:voice-api
-  name: Telesign Voice API
-  description: >-
-    Send voice messages including OTPs, alerts, and notifications to phone numbers worldwide. Supports
-    text-to-speech message delivery and call status tracking.
-  humanURL: https://developer.telesign.com/enterprise/docs/voice-get-started
-  baseURL: https://rest-ww.telesign.com/v1
+- aid: telesign:accounts-api
+  name: Telesign Accounts API
+  description: Use this API to programmatically manage your Telesign accounts and their configurations.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
   tags:
-  - OTP
-  - Telecommunications
-  - Voice
-  properties:
-  - type: Documentation
-    url: https://developer.telesign.com/enterprise/docs/voice-get-started
-- aid: telesign:telesign-fraud-scoring-api
-  name: Telesign Fraud Scoring API
-  description: Phone number reputation and fraud risk scoring
-  humanURL: https://developer.telesign.com/enterprise/docs/sms-get-started
-  baseURL: https://rest-ww.telesign.com/v1
-  tags:
-  - Fraud Scoring
+  - Accounts
+  - API Keys
+  - Account Management
   properties:
   - type: OpenAPI
-    url: openapi/telesign-fraud-scoring-api-openapi.yml
+    url: openapi/telesign-accounts-api-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://developer.telesign.com/enterprise/openapi/accounts-api.json
   - type: Documentation
-    url: https://developer.telesign.com/enterprise/docs/sms-get-started
+    url: https://developer.telesign.com/enterprise/reference/cloneaccount
+  - type: JSONSchema
+    url: json-schema/telesign-account-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-account-details-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-rest-apikey-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-fields-schema.json
+- aid: telesign:deactivated-numbers-api
+  name: Telesign Deactivated Numbers API
+  description: >-
+    Encoding: Accepts only UTF-8 encoded unicode characters as inputs. The Deactivated Numbers API can
+    be used to get lists of deactivated numbers. These can be used to ensure you don't send SMS messages
+    to these numbers using our SMS and SMS Verify products.
+  humanURL: https://developer.telesign.com/enterprise/reference/getdeactnumfilelist
+  baseURL: https://deact-api.telesign.com
+  tags:
+  - Phone Intelligence
+  - Deactivated Numbers
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-deactivated-numbers-api-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://developer.telesign.com/enterprise/openapi/deactivated-numbers-api.json
   - type: Documentation
-    url: https://developer.telesign.com/enterprise/docs/phoneid-api-overview
+    url: https://developer.telesign.com/enterprise/reference/getdeactnumfilelist
+  - type: JSONSchema
+    url: json-schema/telesign-deact-res-file-list-schema.json
+- aid: telesign:email-intelligence-api
+  name: Telesign Email Intelligence API
+  description: >-
+    Email Intelligence API (1 operations): Email Intelligence - Submit an email address to evaluate.
+  humanURL: >-
+    https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligence
+  baseURL: https://detect.telesign.com
+  tags:
+  - Email Intelligence
+  - Fraud Prevention
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-email-intelligence-api-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://developer.telesign.com/enterprise/openapi/email-intelligence-api.json
   - type: Documentation
-    url: https://developer.telesign.com/enterprise/docs/verify-api-overview
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+- aid: telesign:flow-builder-api
+  name: Telesign Flow Builder API
+  description: >-
+    The Flow Builder solution is designed to streamline the creation, execution, and management of transactional
+    flows. By leveraging business rules and data from both internal and external sources, the Flow Builder
+    enables organizations to automate decision-making processes efficiently and securely.
+  humanURL: https://developer.telesign.com/enterprise/reference/initializetransactionalflow
+  baseURL: https://us-east-1.di-hub.telesign.com
+  tags:
+  - Fraud Prevention
+  - Workflow
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-flow-builder-api-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://developer.telesign.com/enterprise/openapi/flow-builder-api.json
   - type: Documentation
-    url: https://developer.telesign.com/enterprise/docs/score-api-overview
+    url: https://developer.telesign.com/enterprise/reference/initializetransactionalflow
+- aid: telesign:telesign-api-keys-api
+  name: Telesign API Keys API
+  description: The API Keys API from Telesign — 2 operation(s) for api keys.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - API Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-api-keys-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-bulk-sms-api
+  name: Telesign Bulk SMS API
+  description: The Bulk SMS API from Telesign — 1 operation(s) for bulk sms.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Bulk SMS
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-bulk-sms-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-bulk-sms-callbacks-api
+  name: Telesign Bulk SMS Callbacks API
+  description: The Bulk SMS Callbacks API from Telesign — 1 operation(s) for bulk sms callbacks.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Bulk SMS Callbacks
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-bulk-sms-callbacks-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-calls-api
+  name: Telesign Calls API
+  description: The Calls API from Telesign — 1 operation(s) for calls.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Calls
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-calls-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-completions-api
+  name: Telesign Completions API
+  description: The Completions API from Telesign — 1 operation(s) for completions.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Completions
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-completions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-delivery-reports-api
+  name: Telesign Delivery Reports API
+  description: The Delivery Reports API from Telesign — 2 operation(s) for delivery reports.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Delivery Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-delivery-reports-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-email-intelligence-extended-response-api
+  name: Telesign Email Intelligence Extended Response API
+  description: >-
+    The Email Intelligence Extended Response API from Telesign — 1 operation(s) for email intelligence
+    extended response.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Email Intelligence Extended Response
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-email-intelligence-extended-response-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-finalize-api
+  name: Telesign Finalize API
+  description: The Finalize API from Telesign — 4 operation(s) for finalize.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Finalize
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-finalize-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-initiate-api
+  name: Telesign Initiate API
+  description: The Initiate API from Telesign — 2 operation(s) for initiate.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Initiate
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-initiate-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-intelligence-api
+  name: Telesign Intelligence API
+  description: The Intelligence API from Telesign — 2 operation(s) for intelligence.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Intelligence
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-intelligence-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-messages-api
+  name: Telesign Messages API
+  description: The Messages API from Telesign — 1 operation(s) for messages.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-messages-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
 - aid: telesign:telesign-messaging-api
   name: Telesign Messaging API
-  description: Send and track SMS messages
-  humanURL: https://developer.telesign.com/enterprise/docs/sms-get-started
-  baseURL: https://rest-ww.telesign.com/v1
+  description: The Messaging API from Telesign — 4 operation(s) for messaging.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
   tags:
   - Messaging
   properties:
   - type: OpenAPI
     url: openapi/telesign-messaging-api-openapi.yml
   - type: Documentation
-    url: https://developer.telesign.com/enterprise/docs/sms-get-started
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
   - type: Documentation
-    url: https://developer.telesign.com/enterprise/docs/phoneid-api-overview
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
   - type: Documentation
-    url: https://developer.telesign.com/enterprise/docs/verify-api-overview
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
   - type: Documentation
-    url: https://developer.telesign.com/enterprise/docs/score-api-overview
-- aid: telesign:telesign-phone-intelligence-api
-  name: Telesign Phone Intelligence API
-  description: Phone number lookup and intelligence operations
-  humanURL: https://developer.telesign.com/enterprise/docs/sms-get-started
-  baseURL: https://rest-ww.telesign.com/v1
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-messaging-callbacks-api
+  name: Telesign Messaging Callbacks API
+  description: The Messaging Callbacks API from Telesign — 6 operation(s) for messaging callbacks.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
   tags:
-  - Phone Intelligence
+  - Messaging Callbacks
   properties:
   - type: OpenAPI
-    url: openapi/telesign-phone-intelligence-api-openapi.yml
+    url: openapi/telesign-messaging-callbacks-api-openapi.yml
   - type: Documentation
-    url: https://developer.telesign.com/enterprise/docs/sms-get-started
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
   - type: Documentation
-    url: https://developer.telesign.com/enterprise/docs/phoneid-api-overview
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
   - type: Documentation
-    url: https://developer.telesign.com/enterprise/docs/verify-api-overview
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
   - type: Documentation
-    url: https://developer.telesign.com/enterprise/docs/score-api-overview
-- aid: telesign:telesign-verification-api
-  name: Telesign Verification API
-  description: Create, retrieve, and update verification processes
-  humanURL: https://developer.telesign.com/enterprise/docs/sms-get-started
-  baseURL: https://rest-ww.telesign.com/v1
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-number-masking-api
+  name: Telesign Number Masking API
+  description: The Number Masking API from Telesign — 2 operation(s) for number masking.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
   tags:
-  - Verification
+  - Number Masking
   properties:
   - type: OpenAPI
-    url: openapi/telesign-verification-api-openapi.yml
+    url: openapi/telesign-number-masking-api-openapi.yml
   - type: Documentation
-    url: https://developer.telesign.com/enterprise/docs/sms-get-started
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
   - type: Documentation
-    url: https://developer.telesign.com/enterprise/docs/phoneid-api-overview
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
   - type: Documentation
-    url: https://developer.telesign.com/enterprise/docs/verify-api-overview
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
   - type: Documentation
-    url: https://developer.telesign.com/enterprise/docs/score-api-overview
-common:
-  - type: AgenticAccess
-    url: agentic-access/telesign-agentic-access.yml
-  - type: TrustCenter
-    url: security/telesign-trust-center.yml
-  - type: DomainSecurity
-    url: security/telesign-domain-security.yml
-  - type: Authentication
-    url: authentication/telesign-authentication.yml
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/telesign
-  - type: Website
-    url: https://www.telesign.com/
-  - type: DeveloperPortal
-    url: https://developer.telesign.com/enterprise
-  - type: Authentication
-    url: https://developer.telesign.com/enterprise/docs/authentication
-  - type: StatusPage
-    url: https://status.telesign.com/
-  - type: Pricing
-    url: https://www.telesign.com/pricing/
-  - type: TermsOfService
-    url: https://www.telesign.com/terms-conditions/
-  - type: GitHubOrganization
-    url: https://github.com/TeleSign
-  - type: Integrations
-    url: https://www.telesign.com/partners
-  - type: Blog
-    url: https://www.telesign.com/blog
-integrations:
-  - name: Telesign
-  - name: referral
-  - name: Growth
-  - name: web tool set
-  - name: amplify icons
-  - name: shield
-  - name: suitcase
-  - name: Linkedin logo in white
-  - name: Facebook logo in white
-  - name: Youtube logo in white
-  - name: Proximus global white
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-one-time-passcodes-api
+  name: Telesign One-time passcodes API
+  description: The One-time passcodes API from Telesign — 1 operation(s) for one-time passcodes.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - One-time passcodes
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-one-time-passcodes-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-phone-id-api
+  name: Telesign Phone ID API
+  description: The Phone ID API from Telesign — 3 operation(s) for phone id.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Phone ID
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-phone-id-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-phone-id-contact-api
+  name: Telesign Phone ID Contact API
+  description: The Phone ID Contact API from Telesign — 1 operation(s) for phone id contact.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Phone ID Contact
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-phone-id-contact-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-phone-id-number-deactivation-api
+  name: Telesign Phone ID Number Deactivation API
+  description: >-
+    The Phone ID Number Deactivation API from Telesign — 1 operation(s) for phone id number deactivation.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Phone ID Number Deactivation
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-phone-id-number-deactivation-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-protect-api-authentication-api
+  name: Telesign Protect API Authentication API
+  description: >-
+    The Protect API Authentication API from Telesign — 1 operation(s) for protect api authentication.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Protect API Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-protect-api-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-recordings-api
+  name: Telesign Recordings API
+  description: The Recordings API from Telesign — 2 operation(s) for recordings.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Recordings
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-recordings-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-sms-api
+  name: Telesign SMS API
+  description: The SMS API from Telesign — 3 operation(s) for sms.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - SMS
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-sms-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-sms-callbacks-api
+  name: Telesign SMS Callbacks API
+  description: The SMS Callbacks API from Telesign — 1 operation(s) for sms callbacks.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - SMS Callbacks
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-sms-callbacks-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-templates-api
+  name: Telesign Templates API
+  description: The Templates API from Telesign — 2 operation(s) for templates.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-templates-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-templates-callbacks-api
+  name: Telesign Templates Callbacks API
+  description: The Templates Callbacks API from Telesign — 1 operation(s) for templates callbacks.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Templates Callbacks
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-templates-callbacks-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-transaction-status-api
+  name: Telesign Transaction Status API
+  description: The Transaction Status API from Telesign — 2 operation(s) for transaction status.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Transaction Status
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-transaction-status-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-verification-process-api
+  name: Telesign Verification Process API
+  description: The Verification Process API from Telesign — 3 operation(s) for verification process.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Verification Process
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-verification-process-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+- aid: telesign:telesign-voice-api
+  name: Telesign Voice API
+  description: The Voice API from Telesign — 1 operation(s) for voice.
+  humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
+  baseURL: https://accounts.telesign.com
+  tags:
+  - Voice
+  properties:
+  - type: OpenAPI
+    url: openapi/telesign-voice-api-openapi.yml
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendappverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-initiate-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-200-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-finalize-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-caller-id-av-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-av-status-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligence
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-live-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-phone-idrequest-body-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-score-response-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitemailaddressforemailintelligenceextendedresponse
+  - type: JSONSchema
+    url: json-schema/telesign-post-email-int-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createmaskedsmssession
+  - type: JSONSchema
+    url: json-schema/telesign-num-mask-inputs-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsms
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-rcs-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-viber-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-details-for-wa-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-smssuccess-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-put-completion-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-omni-req-channel-obj-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceaction
+  - type: JSONSchema
+    url: json-schema/telesign-recording-with-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-recording-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-action-schema.json
+  - type: Documentation
+    url: >-
+      https://developer.telesign.com/enterprise/reference/submitphonenumberforintelligencecloud
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/getphonenumberdeactstatus
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-phone-id-ndresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createsilentverifyrequest
+  - type: JSONSchema
+    url: json-schema/telesign-svresponse-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmartverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-score-numbering-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-shared-response-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-carrier-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-score-phone-type-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendsmsverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-get-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-simswap-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/createverificationprocess
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-get-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-post-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-request-schema.json
+  - type: JSONSchema
+    url: json-schema/telesign-patch-verification-state-response-schema.json
+  - type: Documentation
+    url: https://developer.telesign.com/enterprise/reference/sendvoiceverifycode
+  - type: JSONSchema
+    url: json-schema/telesign-send-voice-code-response-schema.json
+x-enrichment:
+  date: '2026-10-07'
+  status: enriched
+  artifacts_added: 65
+  pass: local-v5
