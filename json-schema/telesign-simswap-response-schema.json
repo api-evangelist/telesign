@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-simswap-response-schema.json",
+  "title": "SIMSwapResponse",
+  "description": "Properties related to the SIM Swap check for this transaction. This is only included if enabled by our [Customer Support Team](mailto:support@telesign.com).",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-sms-verify-api-openapi.yml#/components/schemas/SIMSwapResponse",
+  "type": "object",
+  "properties": {
+    "swap_date": {
+      "type": "string",
+      "description": "The date of the SIM swap, if one is detected. "
+    },
+    "swap_time": {
+      "type": "string",
+      "description": "The time of the SIM swap, if one is detected. "
+    },
+    "risk_indicator": {
+      "type": "integer",
+      "description": "Indicates the likelihood that a SIM swap occured for this number. The response ranges between `1` and `4`.\n* `1` - **(very low)** Swap did not occur or it occurred 15+ days ago. \n* `2` - **(low)** Swap occurred between 3 and 14 days ago. \n* `3` - **(medium)** Swap occurred in the last 72 hours. \n* `4` - **(high)** Swap occurred in the last 24 hours."
+    },
+    "status": {
+      "type": "object",
+      "description": "Contains properties related to the status of the SIM Swap check.",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "A code indicating the status of your request. "
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the status of your request."
+        }
+      }
+    }
+  }
+}

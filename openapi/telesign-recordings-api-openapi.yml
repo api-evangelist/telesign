@@ -1,0 +1,302 @@
+openapi: 3.2.0
+info:
+  title: Telesign Recordings API
+  version: '2.0'
+  contact:
+    name: Telesign Customer Support Team
+    email: support@telesign.com
+  description: 'Operations tagged Recordings across 2 of this provider''s published API definitions: telesign-engage-api-voice-openapi.json, telesign-engage-api-voice-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://rest-ww.telesign.com/v2
+security:
+- Basic: []
+tags:
+- name: Recordings
+paths:
+  /call_recording:
+    get:
+      summary: Get recordings list by date range
+      tags:
+      - Recordings
+      responses:
+        '200':
+          description: '**Success.** A list of recordings was successfully retrieved.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  call_recordings:
+                    $ref: '#/components/schemas/Recording'
+                  token:
+                    type: string
+                    description: An arbitrary string you can include in your next request to the API, to return the next page of results.
+                    example: Z0FBQUFBQmRTM01KYUtpQUlRc0FNcEpuMjczYmlZcC1CMlZVe
+              examples:
+                Example:
+                  value:
+                    call_recordings:
+                      reference_id: 0123456789ABCDEF0123456789ABCDEF
+                      file_name: 0123456789ABCDEF0123456789ABCDEF_1631039244.wav
+                      status: available
+                      date: '2021-09-07T18:27:24'
+                    token: Z0FBQUFBQmRTM01KYUtpQUlRc0FNcEpuMjczYmlZcC1CMlZVe
+        '400':
+          description: '**Bad Request.** Your request contains invalid parameters, contains mutually exclusive parameters, or is missing required parameters. If you included `start_date_time` and `end_date_time`, check that their values were in proper UTC format, and that `token` was not included. If you included `token`, check that its value was a valid token from a previous request to this API, and that `start_date_time` and `end_date_time` were not included.'
+        '401':
+          $ref: '#/components/responses/resCRRShared401'
+        '404':
+          $ref: '#/components/responses/resCRRShared404'
+      operationId: getRecordingsListByDateRange
+      parameters:
+      - schema:
+          type: string
+          example: '2019-04-01T03:00:00'
+        in: query
+        name: start_date_time
+        description: A timestamp defining the beginning of the date range (inclusive). If you include this, you must also include the `end_date_time` param, and must not include `token`.
+      - schema:
+          type: string
+          example: '2019-04-02T23:00:00'
+        in: query
+        name: end_date_time
+        description: A timestamp defining the end of the date range (inclusive). If you include this, you must also include the `start_date_time` param, and must not include `token`.
+      - schema:
+          type: string
+          maxLength: 100
+          example: '10'
+        in: query
+        name: pagesize
+        description: The number of records to return per page.
+      - schema:
+          type: string
+        in: query
+        name: token
+        description: Indicates to the service at which page of records to begin retrieval. Found in your previous request to the API. If you include this, you must not include either the `start_date_time` or the `end_date_time` params.
+      description: 'Retrieve a list of recordings by date range. Each record includes a reference ID that you can use with other Recordings actions.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic
+
+        * **Protocols:** HTTPS
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:** `Content-Type - application/json`
+
+        * **Rate limit:** Default rate limits by product'
+    servers:
+    - url: https://rest-ww.telesign.com/v2
+  /call_recording/{reference_id}:
+    parameters:
+    - $ref: '#/components/parameters/reference_id'
+    get:
+      summary: Retrieve a list of recordings for a call
+      tags:
+      - Recordings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RecordingWithDetail'
+              examples:
+                Example:
+                  value:
+                  - reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    file_name: 0123456789ABCDEF0123456789ABCDEF_1631039244.wav
+                    status: available
+                    date: '2021-09-07T18:27:24'
+                    url: https://call-recording-stg.tlsn.io/call_recording/D596D7B0D1800164898350B4E71B005C_1631039244.wav?Expires=1631043688&Signature=Jm-Y-qPZMMTbnye-NumQETh~5mNGd6PBRKURKXqeiqj44WeFaKzbdiyXln6ijXff409Srdqme0527mKU15CMuEQXepPeNI64m-ovtt6faE1TbRCa6zHaWeO2dcZM4XYCrILtsgi~j0S5Jj0~PnDMpGXw1XEFOKU55B2o-~asXkxbo-WniO9R8fGV8AHAATwON5roEmxJHNfT1oujq6M3Tq-CNwd46jEhf2tLuVdC1h1XTeHx6UATHPLw3shTPafR3iQ8PP9T8qjWQucoWuAUh5Y7WtDS6U3HMGkOC2QzveHpbA1RNaQMCqT~TvrCtTwEaQr7W~YD82mPwESr9DlRUg__&Key-Pair-Id=APKAJ2B7QX7EM7MEC7SA
+                    transcribe:
+                      language_code: en-US
+                      transcription:
+                      - status: completed
+                        result: Welcome to Vero-Finto's customer service line. To better assist you with your issue, please state your name.
+        '400':
+          $ref: '#/components/responses/resCRRByID400'
+        '401':
+          $ref: '#/components/responses/resCRRShared401'
+        '404':
+          $ref: '#/components/responses/resCRRShared404'
+      operationId: getRecordingsListByCallID
+      description: 'Retrieve a list of recordings associated with the specified call. Each record includes a URL that can be used to download the recording, if available.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic
+
+        * **Protocols:** HTTPS
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:** `Content-Type - application/json`
+
+        * **Rate limit:** Default rate limits by product'
+    delete:
+      summary: Delete recordings by ID
+      operationId: deleteRecordings
+      responses:
+        '204':
+          description: '**Success.** Recordings and transcripts deleted, if authorized.'
+        '400':
+          $ref: '#/components/responses/resCRRByID400'
+        '401':
+          $ref: '#/components/responses/resCRRShared401'
+        '404':
+          $ref: '#/components/responses/resCRRShared404'
+        '503':
+          description: '**Deletion Failure.** One or more of the files you attempted to delete could not be deleted. The response payload lists which files were deleted and which were not.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteFailureDetails'
+              examples:
+                Example:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    failed_delete:
+                    - 0123456789ABCDEF0123456789ABCDEF_1631039233.wav
+                    succeed_delete:
+                    - 0123456789ABCDEF0123456789ABCDEF_1631039234.wav
+      description: 'Delete all recordings and transcripts associated with the call specified by this reference ID.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic
+
+        * **Protocols:** HTTPS
+
+        * **Endpoint:** `https://rest-ww.telesign.com/call_recording/{reference_id}`
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:** `Content-Type - application/json`
+
+        * **Rate limit:** Default rate limits by product'
+      tags:
+      - Recordings
+    servers:
+    - url: https://rest-ww.telesign.com/v2
+components:
+  responses:
+    resCRRShared401:
+      description: '**Unauthorized.** Customer ID and/or API Key were not provided or were not valid.'
+      content: {}
+    resCRRShared404:
+      description: '**Not Found.** No records were found matching the details of your request.'
+      content: {}
+    resCRRByID400:
+      description: '**Bad Request.** Your request contains invalid parameters or is missing required parameters. Check that you''ve included a valid `reference_id` for a Telesign Voice phone call in the path.'
+      content: {}
+  schemas:
+    Transcription:
+      title: Transcription
+      type: object
+      description: Contains additional properties related to the transcript.
+      properties:
+        status:
+          type: string
+          description: The status of generating the transcript. Note that there is a delay of up to a few seconds between completion of the call recording and completion of the transcript.
+          example: completed
+        result:
+          type: string
+          description: The text transcript of this call recording. If the recording has been deleted, this property is not returned.
+          example: Welcome to Vero-Finto's customer service line. To better assist you with your issue, please state your name.
+    Recording:
+      title: Recording
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: Specifies the Telesign Voice call for which you want to retrieve or delete recordings.
+          example: 0123456789ABCDEF0123456789ABCDEF
+        file_name:
+          type: string
+          description: The name of this call record file. If the recording is still in progress, this property does not appear.
+          example: 0123456789ABCDEF0123456789ABCDEF_1631039244.wav
+        status:
+          type: string
+          example: available
+          description: The status of the recording. Possible values are:<br/>* `recording` - The call recording is still in progress. It is not yet available for retrieval.<br/>* `available` - The call recording is complete and available for retrieval.<br/>* `deleted` - The call recording has been deleted and is not available for retrieval.
+        date:
+          type: string
+          description: 'The UTC+0 date when the recording was created. It follows this format: {YYYY}-{MM}-{DD}T{hh}:{mm}:{ss}.'
+          example: '2021-09-07T18:27:24'
+    DeleteFailureDetails:
+      title: DeleteFailureDetails
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: Specifies the Telesign Voice call for which you want to retrieve or delete recordings.
+          example: 0123456789ABCDEF0123456789ABCDEF
+        failed_delete:
+          type: array
+          description: Each element in this array contains the name of a file that could not be deleted.
+          items:
+            type: string
+            example: 0123456789ABCDEF0123456789ABCDEF_1631039233.wav
+        succeed_delete:
+          type: array
+          description: Each element in this array contains the name of a file that was successfully deleted. If no files were successfully deleted, this property is not returned.
+          items:
+            type: string
+            example: 0123456789ABCDEF0123456789ABCDEF_1631039234.wav
+      required:
+      - failed_delete
+    RecordingWithDetail:
+      title: RecordingWithDetail
+      allOf:
+      - $ref: '#/components/schemas/Recording'
+      - type: object
+        properties:
+          url:
+            type: string
+            description: A full URL you can use to download the call recording. If the recording is still in progress, this property does not appear.
+            example: https://call-recording-stg.tlsn.io/call_recording/D596D7B0D1800164898350B4E71B005C_1631039244.wav?Expires=1631043688&Signature=Jm-Y-qPZMMTbnye-NumQETh~5mNGd6PBRKURKXqeiqj44WeFaKzbdiyXln6ijXff409Srdqme0527mKU15CMuEQXepPeNI64m-ovtt6faE1TbRCa6zHaWeO2dcZM4XYCrILtsgi~j0S5Jj0~PnDMpGXw1XEFOKU55B2o-~asXkxbo-WniO9R8fGV8AHAATwON5roEmxJHNfT1oujq6M3Tq-CNwd46jEhf2tLuVdC1h1XTeHx6UATHPLw3shTPafR3iQ8PP9T8qjWQucoWuAUh5Y7WtDS6U3HMGkOC2QzveHpbA1RNaQMCqT~TvrCtTwEaQr7W~YD82mPwESr9DlRUg__&Key-Pair-Id=APKAJ2B7QX7EM7MEC7SA
+          transcribe:
+            type: object
+            description: Contains properties related to the transcript for this recording. This package is only present if a transcript was made.
+            properties:
+              language_code:
+                type: string
+                description: A code indicating the language you set for the transcription.
+                example: en-US
+              transcription:
+                type: array
+                description: Contains additional properties related to the transcript.
+                items:
+                  $ref: '#/components/schemas/Transcription'
+  parameters:
+    reference_id:
+      name: reference_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Specifies the call for which you want to retrieve or delete recordings. This ID is returned in the HTTP response to the `dial` action that begins an outbound call or in the `incoming_call` event for an inbound call.
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+x-refined-from:
+- telesign-engage-api-voice-openapi.json
+- telesign-engage-api-voice-openapi.yml
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

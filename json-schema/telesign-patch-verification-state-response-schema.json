@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-patch-verification-state-response-schema.json",
+  "title": "PatchVerificationStateResponse",
+  "description": "Succesful response when updating a verification process.",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-verify-api-openapi.yml#/components/schemas/PatchVerificationStateResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/SlimResponseStatus"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer"
+            },
+            "description": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "SlimResponseStatus": {
+      "title": "Slim Response Status",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "A numeric code that indicates the status of your transaction."
+        },
+        "description": {
+          "type": "string",
+          "description": "Text describing the status of your transaction."
+        }
+      },
+      "required": [
+        "code",
+        "description"
+      ]
+    }
+  }
+}

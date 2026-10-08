@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-patch-verification-state-request-schema.json",
+  "title": "PATCH Verification State Change Request",
+  "description": "Payload for request to update a verification process.",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-verify-api-openapi.yml#/components/schemas/PatchVerificationStateRequest",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "description": "Specifies how you want to change the verification state for this verification process. Use one of these values:\n* \"finalize\" - Finalize this verification process. Telesign either verifies or rejects at this stage."
+    },
+    "security_factor": {
+      "type": "string",
+      "description": "If Telesign has sent a one-time passcode (OTP) to your end user as part of this verification process, include the asserted OTP from your end user here. If Telesign generated the code, this is necessary to determine if the OTPs match. If you generated the code, this is necessary to end the verification process and avoid added costs due to additional sends to the end user.",
+      "minLength": 3,
+      "maxLength": 10
+    }
+  },
+  "required": [
+    "action",
+    "security_factor"
+  ]
+}

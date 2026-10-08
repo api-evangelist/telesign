@@ -1,0 +1,330 @@
+openapi: 3.2.0
+info:
+  version: '1.0'
+  title: Engage Bulk SMS API
+  description: This spec contains details about the Telesign Engage API.
+  contact:
+    name: Telesign Customer Support Team
+    email: support@telesign.com
+servers:
+- url: https://rest-ww.telesign.com
+security:
+- Basic: []
+tags:
+- name: Bulk SMS
+paths:
+  /v1/verify/bulk_sms:
+    post:
+      description: 'Use this endpoint to send the same SMS message to multiple recipients.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/x-www-form-urlencoded`
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:** `Content-Type - application/x-www-form-urlencoded`
+
+        * **Rate limit:** Default rate limits by product'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                recipients:
+                  type: string
+                  description: Comma separated list of recipient phone numbers (maximum of 1000). Optionally append a session ID to each phone number separated by a colon.
+                  example: 381606878232:255E3E34382C0E049046BF14FF7F3435,381647559476:255DEBF29DA410049042F97AF48F3D04
+                template:
+                  type: string
+                  description: The text of the message to your recipients.
+                  example: Your message here.
+                ucid:
+                  description: 'A string specifying a use case code. Choices include -
+
+                    * ATCK - for use in a 2FA situation like updating an account or logging in
+
+                    * BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters
+
+                    * BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers
+
+                    * CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them
+
+                    * CLDR - calendar event
+
+                    * LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not
+
+                    * OTHR - if you have a situation not addressed by other tags
+
+                    * PWRT - for use in a situation where a password reset is required
+
+                    * RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop
+
+                    * RXPF - for use when you are trying to prevent prescription fraud
+
+                    * SHIP - for use when you are sending a shipping notification
+
+                    * THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else''s identity
+
+                    * TRVF - for use when you are transferring money and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction
+
+                    * UNKN - if you have a situation not addressed by other tags (same as OTHR)
+
+                    '
+                  type: string
+                sender_id:
+                  description: The phone number from which to send these SMS messages.
+                  type: string
+              required:
+              - recipients
+              - template
+      responses:
+        '200':
+          description: "**Success.** Your request to the service was created.\n\n| Status Code | Associated text string | Description|\n|-------------|------------------------|------------|\n| 293 | Bulk request accepted | The bulk request was accepted by Telesign. |   \n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/postBulkSMSResponse'
+              examples:
+                Example:
+                  value:
+                    reference_id: B562A981D0E0010488434B07861B1862
+                    sub_resource: bulk_sms
+                    status:
+                      code: 293
+                      description: Bulk request accepted
+                      updated_on: '2022-06-14T23:36:56.164428Z'
+                    errors: []
+        '400':
+          description: '**Bad request.** The request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.
+
+
+            |Status Code | Status Description     | Error Code |Error Description |
+
+            |------------|------------------------|------------|------------------|
+
+            |500|Transaction not attempted|-10001|Invalid Request: Missing parameter Parameter: Template|
+
+            |500|Transaction not attempted|-10002|Empty recipients list|
+
+            |500|Transaction not attempted|-10003|Max number of recipients exceeded|
+
+            |500|Transaction not attempted|-40006|Bad Request|
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/postBulkSMSResponse'
+              examples:
+                Example:
+                  value:
+                    reference_id: B562A981D0E0010488434B07861B1862
+                    sub_resource: bulk_sms
+                    status:
+                      code: 500
+                      description: Transaction not attempted
+                      updated_on: '2022-06-14T23:36:56.164428Z'
+                    errors:
+                    - code: -10002
+                      description: Empty recipients list
+        '401':
+          description: '**Unauthorized.** The request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.
+
+
+
+            |Status Code | Status Description     | Error Code |Error Description |
+
+            |------------|------------------------|------------|------------------|
+
+            |500|Transaction not attempted|-10009|Invalid source IP address|
+
+            |501|Not authorized|-20002|This product is not enabled for this Customer ID.|
+
+            |501|Not authorized|-30000|Invalid Customer ID.|
+
+            |501|Not authorized|-30001|Customer ID Account Suspended.|
+
+            |501|Not authorized|-30006| Invalid Signature.|'
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/postBulkSMSResponse'
+                - type: object
+                  properties:
+                    signature_string:
+                      type: string
+                      description: Returned when request signature is not valid. Signature from failed authorization requests - doesn’t contain all required data (like x-ts-auth-method), or it’s not ordered properly.
+                      example: 'POST\napplication/x-www-form-urlencoded\n\nx-ts-auth-method: HMAC-SHA256\nx-ts-date:Tue, 31 Jan 2024 11:36:42 GMT\nx-ts-nonce:ab$CDef/gh123+II4jk\nrecipients=11234567890:0123456789ABCDEF0123456789ABCDEG,11234567891:0123456789ABCDEF0123456789ABCDEH&template=Your message here.&session_id=CustomExternalID1234\n/v1/verify/bulk_sms'
+              examples:
+                Unauthorized:
+                  value:
+                    reference_id: B562A981D0E0010488434B07861B1862
+                    sub_resource: bulk_sms
+                    status:
+                      code: 500
+                      description: Transaction not attempted
+                      updated_on: '2022-06-14T23:36:56.164428Z'
+                    errors:
+                    - code: -20002
+                      description: This product is not enabled for this Customer ID.
+                Invalid signature string:
+                  value:
+                    reference_id: B562A981D0E0010488434B07861B1862
+                    sub_resource: bulk_sms
+                    status:
+                      code: 501
+                      description: Not authorized
+                      updated_on: '2022-06-14T23:36:56.164428Z'
+                    errors:
+                    - code: -30006
+                      description: Invalid Signature.
+                    signature_string: 'POST\napplication/x-www-form-urlencoded\n\nx-ts-auth-method: HMAC-SHA256\nx-ts-date:Tue, 31 Jan 2024 11:36:42 GMT\nx-ts-nonce:ab$CDef/gh123+II4jk\nrecipients=11234567890:0123456789ABCDEF0123456789ABCDEG,11234567891:0123456789ABCDEF0123456789ABCDEH&template=Your message here.&session_id=CustomExternalID1234\n/v1/verify/bulk_sms'
+        '429':
+          description: '**Too Many Requests.** The user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.
+
+
+
+
+            |Status Code | Status Description     | Error Code |Error Description |
+
+            |------------|------------------------|------------|------------------|
+
+            |500|Transaction not attempted|-40007|Rate Limit Exceeded|
+
+            |500|Transaction not attempted|-40008|Verify SMS exceeded transaction hard cap. Request denied.|
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/postBulkSMSResponse'
+              examples:
+                Example:
+                  value:
+                    reference_id: B562A981D0E0010488434B07861B1862
+                    sub_resource: bulk_sms
+                    status:
+                      code: 500
+                      description: Transaction not attempted
+                      updated_on: '2022-06-14T23:36:56.164428Z'
+                    errors:
+                    - code: -40007
+                      description: Rate Limit Exceeded
+        '500':
+          description: '**Service Unavailable.** System unavailable, try again.
+
+
+
+            |Status Code | Status Description     | Error Code |Error Description |
+
+            |------------|------------------------|------------|------------------|
+
+            |500|Transaction not attempted|-90001|System Unavailable, please try again later.|
+
+            '
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/postBulkSMSResponse'
+                - type: object
+                  properties:
+                    signature_string:
+                      type: string
+                      example: 'POST\napplication/x-www-form-urlencoded\n\nx-ts-auth-method: HMAC-SHA256\nx-ts-date:Tue, 31 Jan 2024 11:36:42 GMT\nx-ts-nonce:ab$CDef/gh123+II4jk\nrecipients=11234567890:0123456789ABCDEF0123456789ABCDEG,11234567891:0123456789ABCDEF0123456789ABCDEH&template=Your message here.&session_id=CustomExternalID1234\n/v1/verify/bulk_sms'
+                      description: Returned when request signature is not valid. Signature from failed authorization requests - doesn’t contain all required data (like x-ts-auth-method), or it’s not ordered properly.
+              examples:
+                Example:
+                  value:
+                    reference_id: B562A981D0E0010488434B07861B1862
+                    sub_resource: bulk_sms
+                    status:
+                      code: 500
+                      description: Transaction not attempted
+                      updated_on: '2022-06-14T23:36:56.164428Z'
+                    errors:
+                    - code: -90001
+                      description: System Unavailable, please try again later.
+      summary: Send bulk SMS
+      operationId: sendBulkSMS
+      tags:
+      - Bulk SMS
+components:
+  schemas:
+    BulkSMSStatus:
+      title: BulkSMSStatus
+      type: object
+      description: Contains properties related to the processing status of the transaction.
+      properties:
+        code:
+          type: integer
+          description: One of the status codes or error codes.
+          example: 293
+        description:
+          type: string
+          description: Text describing the transaction status.
+          example: Bulk request accepted
+        updated_on:
+          type: string
+          description: 'An [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) timestamp indicating when the transaction status was updated. '
+          example: '2022-06-14T23:36:56.164428Z'
+    postBulkSMSResponse:
+      type: object
+      title: postBulkSMSResponse
+      properties:
+        reference_id:
+          type: string
+          minLength: 32
+          maxLength: 32
+          description: The service's unique identifier for this transaction.
+          example: B562A981D0E0010488434B07861B1862
+        sub_resource:
+          type: string
+          example: bulk_sms
+          description: The Telesign service you made this request to.
+        status:
+          $ref: '#/components/schemas/BulkSMSStatus'
+        errors:
+          type: array
+          description: Each object in this array describes an error that occurred during the processing of this request.
+          items:
+            $ref: '#/components/schemas/BulkSMSError'
+      required:
+      - reference_id
+    BulkSMSError:
+      title: BulkSMSError
+      type: object
+      properties:
+        code:
+          type: integer
+          example: -10002
+          description: A 1 to 5-digit error code (possibly negative) that indicates the type of error that occurred.
+        description:
+          type: string
+          example: Empty recipients list
+          description: Text describing the error that occurred.
+      required:
+      - code
+      - description
+  securitySchemes:
+    Basic:
+      type: http
+      description: Easiest to implement. See [Basic Authentication](/enterprise/docs/authentication#basic-authentication) for more details.
+      scheme: basic
+    Digest:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: See [Digest Authentication](/enterprise/docs/authentication#basic-authentication) for more details.
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-score-numbering-schema.json",
+  "title": "ScoreNumbering",
+  "description": "Contains properties related to the numbering attributes of the specified phone number. This object is only included if enabled by the [Telesign Customer Support Team](mailto:support@telesign.com).",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-smart-verify-api-openapi.yml#/components/schemas/ScoreNumbering",
+  "type": "object",
+  "properties": {
+    "original": {
+      "type": "object",
+      "description": "Contains details about the original phone number included in the request.",
+      "properties": {
+        "phone_number": {
+          "type": "string",
+          "description": "The base phone number without the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes)."
+        },
+        "complete_phone_number": {
+          "type": "string",
+          "description": "The base phone number prefixed with the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes)."
+        },
+        "country_code": {
+          "type": "string",
+          "description": "The 1, 2, or 3-digit [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes). For example, the country dialing code for both the U.S.A. and Canada is `1`, and the country dialing code for the United Kingdom is `44`."
+        }
+      }
+    },
+    "cleansing": {
+      "type": "object",
+      "description": "Contains details about how the phone number was cleansed. Phone cleansing corrects common formatting issues in submitted phone numbers.",
+      "properties": {
+        "call": {
+          "type": "object",
+          "description": "Contains cleansing details for the phone number if it is enabled to receive voice calls.",
+          "properties": {
+            "cleansed_code": {
+              "type": "integer",
+              "description": "One of the [phone number cleansing codes](/enterprise/docs/codes-languages-and-time-zones#phone-number-cleansing-codes) specifying the cleansing operation performed on the phone number."
+            },
+            "country_code": {
+              "type": "string",
+              "description": "The 1, 2, or 3-digit [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes). For example, the country dialing code for both the U.S.A. and Canada is `1`, and the country dialing code for United Kingdom is `44`."
+            },
+            "max_length": {
+              "type": "integer",
+              "description": "The maximum number of digits allowed for phone numbers with this country dialing code."
+            },
+            "min_length": {
+              "type": "integer",
+              "description": "The minimum number of digits allowed for phone numbers with this country dialing code."
+            },
+            "phone_number": {
+              "type": "string",
+              "description": "The base phone number without the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes)."
+            }
+          }
+        },
+        "sms": {
+          "type": "object",
+          "description": "Contains cleansing details for the phone number if it is enabled to receive SMS.",
+          "properties": {
+            "cleansed_code": {
+              "type": "integer",
+              "description": "One of the [phone number cleansing codes](/enterprise/docs/codes-languages-and-time-zones#phone-number-cleansing-codes) specifying the cleansing operation performed on the phone number."
+            },
+            "country_code": {
+              "type": "string",
+              "description": "The 1, 2, or 3-digit [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes). For example, the country dialing code for both the U.S.A. and Canada is `1`, and the country dialing code for United Kingdom is `44`."
+            },
+            "max_length": {
+              "type": "integer",
+              "description": "The maximum number of digits allowed for phone numbers with this country dialing code."
+            },
+            "min_length": {
+              "type": "integer",
+              "description": "The minimum number of digits allowed for phone numbers with this country dialing code."
+            },
+            "phone_number": {
+              "type": "string",
+              "description": "The base phone number without the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes)."
+            }
+          }
+        }
+      }
+    }
+  }
+}

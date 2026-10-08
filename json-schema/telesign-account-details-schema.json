@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-account-details-schema.json",
+  "title": "AccountDetails",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-accounts-api-openapi.yml#/components/schemas/AccountDetails",
+  "type": "object",
+  "properties": {
+    "account_name": {
+      "type": "string",
+      "description": "The name of this account. This must be unique within your organization."
+    },
+    "users": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/UserDetails"
+      }
+    }
+  },
+  "required": [
+    "account_name",
+    "users"
+  ],
+  "$defs": {
+    "UserDetails": {
+      "title": "UserDetails",
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": "string",
+          "description": "The user's given name."
+        },
+        "last_name": {
+          "type": "string",
+          "description": "The user's surname."
+        },
+        "phone": {
+          "type": "string",
+          "description": "The contact phone number associated with this user. This is used for MFA when the user signs in. Include the country code. Do not include special characters or spaces."
+        },
+        "email": {
+          "type": "string",
+          "description": "The contact email address for this user."
+        }
+      },
+      "required": [
+        "first_name",
+        "last_name",
+        "phone",
+        "email"
+      ]
+    }
+  }
+}

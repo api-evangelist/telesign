@@ -1,0 +1,869 @@
+# x-archived-from: telesign-email-intelligence-extended-response-openapi.yml
+# x-archived-on: 2026-10-07
+openapi: 3.2.0
+info:
+  title: Email Intelligence - Extended response
+  version: '1.0'
+  description: This spec contains details about the Telesign Email Intelligence API.
+  contact:
+    name: TeleSign Customer Support Team
+    email: support@telesign.com
+servers:
+- url: detect.telesign.com
+paths:
+  /intelligence/email:
+    post:
+      summary: Email Intelligence - Extended response - Submit an email address to evaluate
+      operationId: submitEmailAddressForEmailIntelligenceExtendedResponse
+      responses:
+        '200':
+          description: "**Success.** Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status code property in the response object and use that, rather than the HTTP status code. Individual packages within the response may have their own status codes as well.\n           \n| Status Code | Associated Text String | Description                                |\n|-------------|------------------------|--------|\n| 300         | Transaction successfully completed           | The system was able to obtain all of the requested data.                      |\n| 301         | Transaction partially completed | The system was able to obtain some of the data, but not all of it.                  |"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/postEmailIntResponse'
+              examples:
+                Success:
+                  value:
+                    reference_id: CFMJ6FTL09O22UE1KC5NBD7ZMWKTMJB8
+                    external_id: CustomExternalID7349
+                    status:
+                      code: 300
+                      description: Transaction successfully completed
+                      updated_on: '2024-10-06T21:25:03.420503Z'
+                    email_address_details:
+                      original:
+                        'email_address ': u.s.e.rr1+telesign@gmail.comm!
+                        is_valid: true
+                      cleansed:
+                        email_address: userr1@gmail.com
+                        is_valid: true
+                        username: userr1
+                        domain: gmail.com
+                      cleansing_details:
+                        is_modified: true
+                        gibberish_probability: 0.29
+                        tag: telesign
+                      domain_details:
+                        general_info:
+                          registered_domain: gmail.com
+                          tld: com
+                          tld_type: general
+                          is_disposable: false
+                        domain_tenure:
+                          months_since_creation: 33
+                          months_since_update: 27
+                          months_until_expiration: 3
+                        registrant_info:
+                          phone_country_iso2: US
+                          phone_type: mobile
+                          is_phone_valid: true
+                          is_email_address_valid: true
+                          is_domain_disposable: false
+                          address_country_iso2: US
+                        registrar_info:
+                          registrar: GoDaddy.com
+                          is_accredited: true
+                          is_in_top20_registrars: true
+                    phone_number_details:
+                      location:
+                        city: Odessa
+                        county: Ector
+                        state: TX
+                        zip: '79758'
+                        country:
+                          iso2: US
+                          iso3: USA
+                          name: United States
+                        time_zone:
+                          name: America/Chicago
+                          utc_offset_min: '-6'
+                          utc_offset_max: '-6'
+                        coordinates:
+                          latitude: 31.8466
+                          longitude: -102.36778
+                        metro_code: '36220'
+                      numbering:
+                        original:
+                          phone_number: '1234567890'
+                          complete_phone_number: '11234567890'
+                          country_code: '1'
+                        cleansing:
+                          call:
+                            cleansed_code: 100
+                            country_code: '1'
+                            max_length: 10
+                            min_length: 10
+                            phone_number: '1234567890'
+                          sms:
+                            cleansed_code: 100
+                            country_code: '1'
+                            min_length: 10
+                            max_length: 10
+                            phone_number: '1234567890'
+                      phone_type:
+                        code: '1'
+                        description: FIXED_LINE
+                        override_reason: Non SMS-enabled Phone Number
+                        override_reason_id: 11
+                      blocklisting:
+                        block_code: 0
+                        block_description: Not blocked
+                        blocked: true
+                      carrier:
+                        carrier_id: 309
+                        name: AT&T Wireless
+                    intelligence_details:
+                      risk:
+                        level: high
+                        recommendation: block
+                        score: 959
+                      insights:
+                        category:
+                        - 10031
+                        phone_number:
+                          activity:
+                          - 20003
+                          static:
+                          - 40005
+                        ip_address:
+                          activity:
+                          - 50005
+                          static:
+                          - 50015
+                        email_address:
+                          activity:
+                          - 60005
+                          static:
+                          - 60011
+                          domain:
+                          - 60101
+        '400':
+          description: "**Bad request.** The request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n  | Status Code | Associated Text String | \n  |-------------|------------------------|\n  | 10032       | Request blocked due to this number appearing on a TeleSign blocklist.  | \n  | 10033       | Unverified phone_number requested for trial account. | \n  | 10041       | Blocked due to legal compliance | \n  | 11000       | Invalid value for parameter phone_number | \n  | 11001       | Invalid country code for parameter phone_number           | \n  | 11002       | Invalid value for parameter account_id   |\n  | 11003       | Invalid value for parameter account_lifecycle_event | \n  | 11005       | Invalid value for parameter customer_id  | \n  | 11006       | Invalid value for parameter device_id    |\n  | 11007       | Invalid value\
+            \ for email_address          |\n  | 11010       | Invalid value for parameter originating_ip         | \n  | 11011       | Invalid value for parameter reference_id | \n  | 12000       | Missing required parameter phone_number |\n  | 12003       | Missing required parameter account_lifecycle_event |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+              examples:
+                Invalid Request:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    external_id: CustomExternalID7349
+                    status:
+                      updated_on: '2024-02-01T00:33:34.860418Z'
+                      code: 10032
+                      description: Request blocked due to this number appearing on a TeleSign blacklist.
+        '401':
+          description: "**Unauthorized.** The request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n | Status Code | Associated Text String | \n |-------------|------------------------|\n | 10008       | Invalid signature      | \n | 10009       | Invalid value for parameter message      | \n | 10010       | Invalid value for parameter originating_ip         | \n | 10011       | Invalid value for parameter reference_id | \n | 10012       | This feature is not enabled for this CustomerID             |\n | 10013       | Invalid Request. CustomerID Account Not Found              |\n | 10014       | Invalid source IP address                |\n | 10015       | Invalid customer ID    |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+              examples:
+                Unauthorized:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    external_id: CustomExternalID7349
+                    status:
+                      updated_on: '2024-02-01T00:33:34.860418Z'
+                      code: 10008
+                      description: Invalid signature
+        '402':
+          description: "**Payment Required.** If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | \n|-------------|------------------------|\n| 10030       | Insufficient funds in prepaid wallet         |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+              examples:
+                Payment Required:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    external_id: CustomExternalID7349
+                    status:
+                      updated_on: '2024-02-01T00:33:34.860418Z'
+                      code: 10030
+                      description: Insufficient funds in prepaid wallet
+        '404':
+          description: "**Not Found.** The server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | \n|-------------|------------------------|\n| 10017       | Customer ID / Reference ID not found           |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+              examples:
+                Not Found:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    external_id: CustomExternalID7349
+                    status:
+                      updated_on: '2024-02-01T00:33:34.860418Z'
+                      code: 10017
+                      description: Customer ID / Reference ID not found
+        '429':
+          description: "**Too Many Requests.** The user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | \n|-------------|------------------------|\n| 10019       | Rate Limit Exceeded    |\n| 10020       | PhoneId Standard exceeded transaction hard cap. Request denied.                |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+              examples:
+                Too Many Requests:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    external_id: CustomExternalID7349
+                    status:
+                      updated_on: '2024-02-01T00:33:34.860418Z'
+                      code: 10019
+                      description: Rate Limit Exceeded
+        '500':
+          description: '**Invalid Transaction.** Transaction not attempted.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+              examples:
+                Invalid Transaction:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    external_id: CustomExternalID7349
+                    status:
+                      updated_on: '2024-02-01T00:33:34.860418Z'
+                      code: -90001
+                      description: Transaction not attempted
+        '503':
+          description: '**Service Unavailable.** System unavailable, try again.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+              examples:
+                System Unavailable:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    external_id: CustomExternalID7349
+                    status:
+                      updated_on: '2024-02-01T00:33:34.860418Z'
+                      code: -10000
+                      description: System unavailable. Please try again later.
+      description: 'Obtain a risk recommendation for this email address, as well as other relevant information using the Telesign Cloud API. In addition to the standard response, see the [Standard Response Reference](/enterprise/reference/submitemailaddressforemailintelligence). You may also request **extended response elements**, which provide additional context beyond what is returned by default.
+
+
+        The extended response includes optional **Phone number details** (location, numbering information, phone type, carrier, and blocklisting status) and **additional Domain details**, which expand on the standard domain information by including domain tenure, registrant attributes, and registrar information. These extended response elements are available only when explicitly requested and are **not enabled by default**. To enable access to these extended response fields, please contact your Telesign account manager for further information.
+
+
+
+        ## General requirements
+
+        * **Authentication:** [Basic](/enterprise/docs/authentication#basic-authentication) (easiest to implement) or [Digest](/enterprise/docs/authentication#digest-authentication)
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/x-www-form-urlencoded`
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:** `Content-Type - application/x-www-form-urlencoded`
+
+        * **Rate limit:** [Default rate limits by product](https://support.telesign.com/s/article/do-you-have-any-rate-limits)
+
+        '
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email_address:
+                  type: string
+                  description: Your end user's email address. This value is case sensitive.
+                account_lifecycle_event:
+                  type: string
+                  enum:
+                  - create
+                  - sign-in
+                  - transact
+                  - update
+                  - delete
+                  description: 'The attempted action associated with this email address for which you want to evaluate the risk. Acceptable values for this parameter are -
+
+
+                    * create - For the creation of a new account.
+
+                    * sign-in - For when an end user signs in to their account.
+
+                    * transact - For when an end user completes a transaction within their account.
+
+                    * update - For when an update is performed, such as an update of account information or similar.
+
+                    * delete - For when an account is deleted.'
+                account_id:
+                  type: string
+                  description: Your end user's account ID. This value is case sensitive.
+                phone_number:
+                  type: string
+                  description: Your end user's phone number.
+                device_id:
+                  type: string
+                  description: Your end user's device ID. This value is case sensitive.
+                external_id:
+                  type: string
+                  example: CustomExternalID7349
+                  description: Any ID passed from you that can uniquely identify this transaction in your system. The response simply echoes the value provided for this parameter.
+                originating_ip:
+                  type: string
+                  description: Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).
+              required:
+              - email_address
+              - account_lifecycle_event
+        description: ''
+      tags:
+      - Email Intelligence Extended Response
+      security:
+      - Basic: []
+    parameters: []
+components:
+  schemas:
+    postEmailIntResponse:
+      title: postEmailIntResponse
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: A 32-digit hex value used to identify the web service request. The value is unique to each web service request, is randomly-generated by Telesign, and is returned in the response message immediately following the web service request.
+          example: CFMJ6FTL09O22UE1KC5NBD7ZMWKTMJB8
+        external_id:
+          type:
+          - string
+          - 'null'
+          description: The customer-generated ID for this transaction that was provided in the request. If the `external_id` parameter was not included in the request, the value here is `null`.
+          example: CustomExternalID7349
+        status:
+          type: object
+          description: 'An object containing details about the request status. '
+          properties:
+            code:
+              type: integer
+              example: 300
+              description: "Transaction status code. Successful transactions can be assigned one of the following values: <br/>\n\t•\t300 - successful transaction<br/>\n\t•\t301 - partially successful transaction"
+            description:
+              type: string
+              description: Text describing the transaction status.
+              example: Transaction successfully completed
+            updated_on:
+              type: string
+              description: An [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) timestamp indicating when the transaction status was updated.
+              example: '2024-10-06T21:25:03.420503Z'
+        email_address_details:
+          type: object
+          description: Contains cleansing and intelligence details about the submitted email address.
+          properties:
+            original:
+              $ref: '#/components/schemas/Original'
+            cleansed:
+              type: object
+              description: Provides the normalized version of the email address along with the extracted username and domain components.
+              properties:
+                email_address:
+                  type: string
+                  description: The cleansed email address after correcting common formatting issues.
+                  example: userr1@gmail.com
+                is_valid:
+                  type: boolean
+                  description: Indicates whether the cleansed email address is syntactically valid.
+                username:
+                  type: string
+                  description: The local-part (username) extracted from the cleansed email address
+                  example: userr1
+                domain:
+                  type: string
+                  description: The domain portion extracted from the cleansed email address.
+                  example: gmail.com
+            cleansing_details:
+              type: object
+              description: Describes modifications applied during cleansing and includes indicators such as gibberish probability and tagging.
+              properties:
+                is_modified:
+                  type: boolean
+                  description: Indicates whether the submitted email address was modified during cleansing.
+                gibberish_probability:
+                  type: number
+                  example: 0.29
+                  description: A probability score indicating how likely the email username appears algorithmically generated or nonsensical.
+                tag:
+                  type: string
+                  description: A tag extracted from the email address, such as a plustag, if applicable.
+                  example: telesign
+            domain_details:
+              type: object
+              description: Provides structured information about the domain associated with the email address.
+              properties:
+                general_info:
+                  type: object
+                  properties:
+                    registered_domain:
+                      type: string
+                      description: The registered/base domain associated with the email address.
+                      example: gmail.com
+                    tld:
+                      type: string
+                      description: The toplevel domain extracted from the email address.
+                      example: com
+                    tld_type:
+                      type: string
+                      description: The classification of the toplevel domain, such as general or countrycode.
+                      example: general
+                    is_disposable:
+                      type: boolean
+                      description: Indicates whether the email domain is known to be disposable.
+                domain_tenure:
+                  type: object
+                  description: Describes the domain’s creation age, last update timing, and time remaining until expiration.
+                  properties:
+                    months_since_creation:
+                      type: integer
+                      description: 'The number of months since the domain was originally created.
+
+                        '
+                      example: 33
+                    months_since_update:
+                      type: integer
+                      description: The number of months since the domain’s registration information was last updated.
+                      example: 27
+                    months_until_expiration:
+                      type: integer
+                      description: The number of months remaining until the domain registration expires.
+                      example: 3
+                registrant_info:
+                  type: object
+                  description: Contains information about the domain registrant, including phone, email, and address validity attributes.
+                  properties:
+                    phone_country_iso2:
+                      type: string
+                      description: 'The ISO2 country code for the registrant’s phone number.
+
+                        '
+                      example: US
+                    phone_type:
+                      type: string
+                      description: The classification of the registrant’s phone line (e.g., mobile, fixed).
+                      example: mobile
+                    is_phone_valid:
+                      type: boolean
+                      description: Indicates whether the registrant’s phone number is valid.
+                    is_email_address_valid:
+                      type: boolean
+                      description: Indicates whether the registrant’s email address is valid.
+                    is_domain_disposable:
+                      type: boolean
+                      description: Indicates whether the registrant’s email domain is considered disposable.
+                    address_country_iso2:
+                      type: string
+                      description: The ISO2 country code of the registrant’s physical address.
+                      example: US
+                registrar_info:
+                  type: object
+                  description: Provides details about the registrar managing the domain and its accreditation or ranking status.
+                  properties:
+                    registrar:
+                      type: string
+                      description: The registrar responsible for managing the domain’s registration.
+                    is_accredited:
+                      type: boolean
+                      description: 'Indicates whether the registrar is officially accredited.
+
+                        '
+                    is_in_top20_registrars:
+                      type: boolean
+                      description: Indicates whether the registrar is ranked among the top 20 registrars globally.
+        phone_number_details:
+          type: object
+          description: Provides structured information about a phone number, including its location, numbering attributes, carrier, type, and blocklisting status. This data helps characterize the phone number and its associated attributes.
+          properties:
+            location:
+              $ref: '#/components/schemas/Location'
+            numbering:
+              $ref: '#/components/schemas/Numbering'
+            phone_type:
+              $ref: '#/components/schemas/PhoneType'
+            blocklisting:
+              $ref: '#/components/schemas/Blocklisting'
+            carrier:
+              $ref: '#/components/schemas/Carrier'
+        intelligence_details:
+          type: object
+          description: Contains properties related to the risk recommendation and supporting insights.
+          properties:
+            risk:
+              $ref: '#/components/schemas/Risk'
+            insights:
+              $ref: '#/components/schemas/RiskInsights'
+    Numbering:
+      title: Numbering
+      type: object
+      description: Contains properties related to the numbering attributes of the specified phone number.
+      properties:
+        original:
+          type: object
+          description: Contains details about the original phone number included in the request.
+          properties:
+            phone_number:
+              type: string
+              example: '1234567890'
+              description: Input phone number before any transformation, returned as is, with all special characters, if any.
+            complete_phone_number:
+              type: string
+              example: '11234567890'
+              description: Input phone number after splitting country code from complete phone number, with special characters removed.
+            country_code:
+              type: string
+              example: '1'
+              description: The input country calling code after splitting the country code from the complete phone number, with special characters removed. It is the 1, 2, or 3-digit [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes). For example, the country dialing code for both the U.S.A. and Canada is `1`, and the country dialing code for the United Kingdom is `44`.
+        cleansing:
+          type: object
+          description: Contains details about how the phone number was cleansed. Phone cleansing corrects common formatting issues in submitted phone numbers.
+          properties:
+            call:
+              type: object
+              description: Contains cleansing details for the phone number if it is enabled to receive voice calls.
+              properties:
+                cleansed_code:
+                  type: integer
+                  example: 100
+                  description: "One of the following values: \n<br/>\n•\t100 - Exact match found using original number.<br/>\n•\t101 - Match found by applying changes to the original number.<br/>\n•\t102 - Restricted number.<br/>\n•\t103 - No match found.<br/>\n•\t104 - Country code and/or phone number are invalid.<br/>\n•\t105 - No change but the match was either too long or too short.<br/>"
+                country_code:
+                  type: string
+                  description: The 1, 2, or 3-digit [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes). For example, the country dialing code for both the U.S.A. and Canada is `1`, and the country dialing code for United Kingdom is `44`.
+                  example: '1'
+                max_length:
+                  type: integer
+                  example: 10
+                  description: The maximum number of dialing digits allowed for phone numbers with this county dialing code, excluding the country code.
+                min_length:
+                  type: integer
+                  example: 10
+                  description: The minimum number of dialing digits allowed for phone numbers with this county dialing code, excluding the country code.
+                phone_number:
+                  type: string
+                  example: '1234567890'
+                  description: Phone number after all cleansing transformation rules (for the Voice request type) have been applied.
+            sms:
+              type: object
+              description: Contains cleansing details for the phone number if it is enabled to receive SMS.
+              properties:
+                cleansed_code:
+                  type: integer
+                  description: "One of the following values: \n<br/>\n•\t100 - Exact match found using original number.<br/>\n•\t101 - Match found by applying changes to the original number.<br/>\n•\t102 - Restricted number.<br/>\n•\t103 - No match found.<br/>\n•\t104 - Country code and/or phone number are invalid.<br/>\n•\t105 - No change but the match was either too long or too short.<br/>"
+                  example: 100
+                country_code:
+                  type: string
+                  description: The 1, 2, or 3-digit [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes). For example, the country dialing code for both the U.S.A. and Canada is `1`, and the country dialing code for United Kingdom is `44`.
+                  example: '1'
+                min_length:
+                  type: integer
+                  example: 10
+                  description: The minimum number of dialing digits allowed for phone numbers with this county dialing code, excluding the country code.
+                max_length:
+                  type: integer
+                  description: The maximum number of dialing digits allowed for phone numbers with this county dialing code, excluding the country code.
+                  example: 10
+                phone_number:
+                  type: string
+                  description: The base phone number without the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes).
+                  example: '1234567890'
+    PhoneType:
+      title: PhoneType
+      type: object
+      properties:
+        code:
+          type: string
+          example: '1'
+          description: "Type of service based on dial plan data (numbering_plan.dial_plan). \n\n| Code | Type |\n| :--- | :--- |\n| **1** | Fixed line |\n| **2** | Mobile |\n| **3** | PrePaid Mobile |\n| **4** | Toll Free |\n| **5** | VOIP |\n| **6** | Pager |\n| **7** | Payphone |\n| **9** | Restricted/Premium Rate |\n| **10** | Personal |\n| **11** | Voicemail |\n| **20** | Other |\n| **30** | Email |\n\nOR \n\n`null`\n\n"
+        description:
+          type: string
+          example: FIXED_LINE
+          description: 'Description of the phone type, an enumerated value from the list of codes for `code`, which identifies the phone type. '
+        override_reason:
+          type: string
+          example: Non SMS-enabled Phone Number
+          description: 'Text describing the [phone type override](/enterprise/docs/codes-languages-and-time-zones#phone-type-override-reason-codes) status of this phone number. Not included in response by default - depends on the “Phone Type Overrides Enabled” customer feature.
+
+            Contact our [Customer Support Team](mailto:support@telesign.com) to include this property in your response.
+
+            '
+        override_reason_id:
+          type: integer
+          example: 11
+          description: 'A numeric code specifying the [phone type override](/enterprise/docs/codes-languages-and-time-zones#phone-type-override-reason-codes) status of this phone number.  Not included in response by default - depends on the “Phone Type Overrides Enabled” customer feature. Contact our [Customer Support Team](mailto:support@telesign.com) to include this property in your response.
+
+            '
+    Risk:
+      title: Risk
+      type: object
+      description: Contains properties related to the risk recommendation for the specified email address.
+      properties:
+        level:
+          type: string
+          example: high
+          description: 'The severity of the risk. '
+        recommendation:
+          type: string
+          example: block
+          enum:
+          - allow
+          - flag
+          - block
+          description: The action that Telesign recommends that you take based on the risk recommendation.
+        score:
+          type: integer
+          example: 959
+          description: A measure of transaction risk, ranging from zero to 1000, with a higher value indicating a higher risk.
+    errorObject:
+      title: errorObject
+      type: object
+      properties:
+        reference_id:
+          type:
+          - string
+          - 'null'
+          example: 0123456789ABCDEF0123456789ABCDEF
+          description: A unique identifier assigned by Telesign for this transaction.
+        external_id:
+          type:
+          - string
+          - 'null'
+          description: A customer-generated ID for this transaction. The response simply echoes the value provided for this parameter.
+          example: CustomExternalID7349
+        status:
+          type: object
+          description: Contains properties related to the processing status of this request.
+          properties:
+            updated_on:
+              type: string
+              description: The date-time when the processing status of this transaction was last updated.
+              example: '2024-02-01T00:33:34.860418Z'
+            code:
+              type: integer
+              description: A numeric code indicating the processing status of this transaction.
+            description:
+              type: string
+              description: Text explaining the meaning of the status code returned.
+    RiskInsights:
+      title: RiskInsights
+      type: object
+      description: Contains reason code properties with additional info related to the risk recommendation.
+      properties:
+        category:
+          type: array
+          description: Reason codes related to the risk category.
+          items:
+            type: integer
+            example: 10031
+        phone_number:
+          type: object
+          description: Provides activity‑based and static reason codes related to the phone number linked to the email address.
+          properties:
+            activity:
+              type: array
+              description: Reason codes related to activity associated with the phone number linked to this email address.
+              items:
+                type: integer
+                example: 20003
+            static:
+              type: array
+              description: Reason codes related to static attributes of the phone number linked to this email address.
+              items:
+                type: integer
+                example: 40005
+        ip_address:
+          type: object
+          description: Contains activity‑based and static reason codes associated with the IP address linked to the email address.
+          properties:
+            activity:
+              type: array
+              description: Reason codes related to activity associated with the IP address linked to this email address.
+              items:
+                type: integer
+                example: 50005
+            static:
+              type: array
+              description: Reason codes related to static attributes of the IP address linked to this email address.
+              items:
+                type: integer
+                example: 50015
+        email_address:
+          type: object
+          description: Provides activity, static, and domain‑related reason codes associated directly with the email address itself.
+          properties:
+            activity:
+              type: array
+              description: Reason codes related to activity associated with the email address.
+              items:
+                type: integer
+                example: 60005
+            static:
+              type: array
+              description: Reason codes related to static attributes of the email address.
+              items:
+                type: integer
+                example: 60011
+            domain:
+              type: array
+              description: Reason codes related to domain based attributes of the email address.
+              items:
+                type: integer
+                example: 60101
+    Blocklisting:
+      title: Blocklisting
+      type: object
+      description: 'Contains details about whether the number was blocked and who requested the block. Contact our [Customer Support Team](mailto:support@telesign.com) to include this package in your response.
+
+        '
+      properties:
+        block_code:
+          type: integer
+          example: 0
+          description: 'A code indicating whether the number is blocked, and who blocked it. <br/>
+
+            * `0` - Not blocked<br/>
+
+            * `1`- Blocked by Telesign<br/>
+
+            * `2` - Block requested by your organization<br/>
+
+            *  `3` - Block requested by your account or set by Telesign on behalf of your account<br/>
+
+            * `4` - Block state is unknown.
+
+            '
+        block_description:
+          type: string
+          example: Not blocked
+          description: Text explaining the block status.
+        blocked:
+          type: boolean
+          description: If `true`, this number is blocked. If `false`, this number is not blocked.
+    Carrier:
+      title: Carrier
+      type: object
+      description: Contains details about the company that provides telecommunications services for this phone number. Behavior of this property, including information returned for ported phone numbers, can vary depending on the country of the phone number. See [How does carrier data vary by country?](https://support.telesign.com/s/article/How-does-carrier-data-vary-by-country) for more details.
+      properties:
+        carrier_id:
+          type: integer
+          example: 309
+          description: Six-character identifier for the provider associated with the phone number by prefix that can be used for billing purposes (carrier ID, operator ID). Might be incorrect in countries where MNP is possible, since the carrier information is provided by the prefix of the phone number, and not from the carrier itself. Not included in response by default - depends on the “Carrier ID Enabled” customer feature. Contact our [Customer Support Team](mailto:support@telesign.com) to include this property in your response.
+        name:
+          type: string
+          example: AT&T Wireless
+          description: Name of the provider associated with the phone number by prefix. Might be incorrect in countries where MNP is possible, since the carrier information is provided by the prefix of the phone number, and not from the carrier itself.
+    Location:
+      title: Location
+      type: object
+      description: Contains geographical location information associated with the rate center of the phone number when the device was activated. Null is returned when data for a field isn't available for a specific market or country.
+      properties:
+        city:
+          type: string
+          example: Odessa
+          description: The city associated with the rate center of the phone number when the device was activated.
+        county:
+          type: string
+          example: Ector
+          description: The county (or parish) associated with the rate center of the phone number when the device was activated (U.S. only).
+        state:
+          type: string
+          description: The two-letter [state abbreviation code](http://pe.usps.com/text/pub28/28apb.htm) of the state (province, district, or territory) associated with the rate center of the phone number when the device was activated (North America only).
+          example: TX
+        zip:
+          type: string
+          example: '79758'
+          description: The five-digit United States Postal Service [ZIP Code](https://www.usps.com/nationalpremieraccounts/findzipcodes.htm) associated with the rate center of the phone number when the device was activated (U.S. only).
+        country:
+          type: object
+          description: Contains properties related to the country associated with the rate center of the phone number when the device was activated.
+          properties:
+            iso2:
+              type: string
+              example: US
+              description: The ISO 3166-1 2-letter [country code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes) associated with the rate center of the phone number when the device was activated.
+            iso3:
+              type: string
+              example: USA
+              description: ' The ISO 3166-1 3-letter country code associated with the rate center of the phone number when the device was activated.'
+            name:
+              type: string
+              example: United States
+              description: The [country name](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes) associated with the rate center of the phone number when the device was activated.
+        time_zone:
+          type: object
+          description: Contains properties related to the time zone associated with the rate center of the phone number when the device was activated. For maximum and minimum UTC offsets, they are specified in units of hours, and range from -12 to +14. For positive numbers, the plus sign (+) may not be returned. Additional offsets due to Daylight Savings Time or Summer Time are not considered. For example, Russia, which spans 11 time zones, has a minimum UTC offset of +2, and a maximum of +12.
+          properties:
+            name:
+              type: string
+              example: America/Chicago
+              description: The time zone associated with the rate center of the phone number when the device was activated (U.S. only).
+            utc_offset_min:
+              type: string
+              example: '-6'
+              description: 'For international phone numbers, this parameter returns the minimum UTC offset for the country associated with the rate center of the phone number when the device was activated. For U.S. phone numbers, this parameter returns the UTC offset associated with the rate center of the phone number when the device was activated. '
+            utc_offset_max:
+              type: string
+              example: '-6'
+              description: ' For international phone numbers, this parameter returns the maximum UTC offset for the country associated with the rate center of the phone number when the device was activated. For U.S. phone numbers, this parameter returns the same result as utc_offset_min.'
+        coordinates:
+          type: object
+          description: Contains properties with details about the geographical coordinates of the location where the phone number is registered.
+          properties:
+            latitude:
+              type: number
+              description: Latitude specifies the North-South position of a point on the Earth’s surface. It is an angular measurement that ranges from 0° at the Equator, to 90° at the North Pole (and -90° at the South Pole). It is returned here as a value indicating the number of degrees of latitude of the location associated with the phone number, expressed in seven decimal digits, with five decimal places.
+              example: 31.8466
+              format: float
+            longitude:
+              type: number
+              example: -102.36778
+              description: Longitude specifies the East-West position of a point on the Earth’s surface. It is an angle measured East or West from the [prime meridian](https://en.wikipedia.org/wiki/Prime_meridian) —ranging from 0° at the prime meridian, to +180° Eastward and -180° Westward. It is returned here as a value indicating the number of degrees of longitude of the location associated with the phone number, expressed in eight decimal digits, with five decimal places.
+              format: float
+        metro_code:
+          type: string
+          example: '36220'
+          description: 'A 4-digit string indicating the Primary Metropolitan Statistical Area (PMSA) code for the location associated with the rate center of the phone number when the device was activated (U.S. only). '
+    Original:
+      type: object
+      properties:
+        'email_address ':
+          type: string
+          description: The email address value exactly as provided in the request.
+          example: u.s.e.rr1+telesign@gmail.comm!
+        is_valid:
+          type: boolean
+          description: Indicates whether the original email address is syntactically valid.
+      description: Contains the submitted email address exactly as provided and its initial validity evaluation.
+    ExtendedResponse:
+      title: ExtendedResponse
+      type: object
+      description: These are additional response fields that can be included when they are enabled for your account. These fields are not returned by default. Contact our [Customer Support Team](mailto:support@telesign.com) to include these properties in your response.
+      properties:
+        LOCATION:
+          $ref: '#/components/schemas/Location'
+        PHONETYPE:
+          $ref: '#/components/schemas/PhoneType'
+  securitySchemes:
+    Basic:
+      type: http
+      description: Easiest to implement. See [Basic Authentication](/enterprise/docs/authentication#basic-authentication) for more details.
+      scheme: basic
+    Digest:
+      name: Authorization
+      type: apiKey
+      in: header
+      description: See [Digest Authentication](/enterprise/docs/authentication#basic-authentication) for more details.
+  requestBodies: {}
+  responses: {}
+security:
+- Basic: []
+- Digest: []
+tags:
+- name: Email Intelligence
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-original-source: https://developer.telesign.com/enterprise/openapi/email-intelligence-extended-response.json

@@ -1,0 +1,759 @@
+openapi: 3.2.0
+info:
+  title: Accounts API Keys API
+  version: '2.0'
+  description: Use this API to programmatically manage your Telesign accounts and their configurations.
+  contact:
+    email: support@telesign.com
+    name: Telesign Customer Support Team
+servers:
+- url: accounts.telesign.com
+security:
+- Basic: []
+tags:
+- name: API Keys
+paths:
+  /keys:
+    parameters: []
+    get:
+      summary: List REST API keys
+      operationId: listRestAPIKeys
+      responses:
+        '200':
+          description: '**Success.** A list of REST API key objects associated with this account was successfully returned.
+
+
+            Status code | Associated text string
+
+            --|--
+
+            5001|Key list was successfully retrieved.'
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/SharedResponseFields'
+                - type: object
+                  properties:
+                    data:
+                      type: object
+                      description: 'Contains REST API key data. '
+                      properties:
+                        keys:
+                          type: array
+                          minItems: 1
+                          maxItems: 10
+                          uniqueItems: true
+                          items:
+                            $ref: '#/components/schemas/RestAPIKey'
+                    status:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 5001
+                        description:
+                          type: string
+                          example: Key list was successfully retrieved.
+              examples:
+                Success:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 5001
+                      description: Key list was successfully retrieved.
+                    data:
+                      keys:
+                      - key_id: '123456'
+                        last_updated: '2024-01-01T00:00:00Z'
+                        expiration_date: '2026-09-05T00:00:00Z'
+        '401':
+          $ref: '#/components/responses/AccountsShared401'
+        '403':
+          $ref: '#/components/responses/AccountsShared403'
+        '429':
+          $ref: '#/components/responses/AccountsShared429'
+        '503':
+          $ref: '#/components/responses/AccountsShared503'
+      description: '> 📘 NOTE:
+
+        >
+
+        > Accounts API is currently available on a limited basis. Contact our Customer Support Team if you’d like to explore using this API.
+
+
+        Use this action to list details related to all REST API keys for this account. The key values are not returned.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Responds with:** `application/json`'
+      parameters: []
+      tags:
+      - API Keys
+    post:
+      summary: Create new REST API key
+      operationId: post-accounts-account_id-keys-rest
+      responses:
+        '201':
+          description: '**Success.** A new REST API key was successfully created for this account.
+
+
+            Status code | Associated text string
+
+            --|--
+
+            5000|New key was successfully created.'
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      allOf:
+                      - $ref: '#/components/schemas/RestAPIKey'
+                      - type: object
+                        properties:
+                          key:
+                            type: string
+                            description: The value of the REST API key.
+                            example: ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==
+                      description: 'Contains REST API key data. '
+                - $ref: '#/components/schemas/SharedResponseFields'
+                - type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 5000
+                        description:
+                          type: string
+                          example: New key was successfully created.
+              examples:
+                Success:
+                  value:
+                    data:
+                      key_id: '123456'
+                      last_updated: '2024-01-01T00:00:00Z'
+                      expiration_date: '2026-09-05T00:00:00Z'
+                      key: 'ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==
+
+                        '
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 5000
+                      description: New key was successfully created.
+        '400':
+          description: '**Bad Request.**
+
+
+            Status code | Associated text string
+
+            --|--
+
+            5101|Invalid value for body parameter {param name}.
+
+            5110|Request payload is improperly formatted.
+
+            5111|The limit of {max_no_keys} keys has been reached.
+
+            5112|Missing required parameter {param_name}.
+
+            5113|{date-time-stamp} is not a valid future date.'
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/SharedResponseFields'
+                - type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 5101
+                        description:
+                          type: string
+                          example: Invalid value for body parameter expiration_date.
+              examples:
+                Invalid body param:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 5101
+                      description: Invalid value for body parameter expiration_date.
+        '401':
+          $ref: '#/components/responses/AccountsShared401'
+        '403':
+          $ref: '#/components/responses/AccountsShared403'
+        '429':
+          $ref: '#/components/responses/AccountsShared429'
+        '503':
+          $ref: '#/components/responses/AccountsShared503'
+      description: '> 📘 NOTE:
+
+        >
+
+        > Accounts API is currently available on a limited basis. Contact our Customer Support Team if you’d like to explore using this API.
+
+
+        Use this action to create a new REST API key for this Telesign account.
+
+
+        This is the only action of this API that returns the key’s value. Be sure to map it to the key ID in a secure fashion on your own system.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/json`
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:** `Content-Type - application/json`'
+      tags:
+      - API Keys
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  expiration_date: ''
+              properties:
+                expiration_date:
+                  type: string
+                  example: '2026-09-05T00:00:00Z'
+                  description: The expiration date of this REST API key. A value of `never` indicates that this key never expires.
+              required:
+              - expiration_date
+            examples:
+              Request body:
+                value:
+                  expiration_date: '2026-09-05T00:00:00Z'
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+  /keys/{key_id}:
+    parameters:
+    - $ref: '#/components/parameters/key_id'
+    get:
+      summary: Get one REST API key
+      tags:
+      - API Keys
+      responses:
+        '200':
+          description: '**Success**. The specified key object was successfully returned.
+
+
+            Status code | Associated text string
+
+            --|--
+
+            5002| Key object was successfully retrieved.'
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/SharedResponseFields'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/RestAPIKey'
+                    status:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 5002
+                        description:
+                          type: string
+                          example: Key object was successfully retrieved.
+              examples:
+                Success:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 5002
+                      description: Key object was successfully retrieved.
+                    data:
+                      key_id: '123456'
+                      last_updated: '2024-01-01T00:00:00Z'
+                      expiration_date: '2026-09-05T00:00:00Z'
+        '400':
+          description: '**Bad Request.**
+
+
+            Status code | Associated text string
+
+            --|--
+
+            5103|Invalid value for path parameter {param name}
+
+            '
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/SharedResponseFields'
+                - type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 5103
+                        description:
+                          type: string
+                          example: Invalid value for path parameter key_id
+              examples:
+                Invalid path parameter:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 5103
+                      description: Invalid value for path parameter key_id
+        '401':
+          $ref: '#/components/responses/AccountsShared401'
+        '403':
+          $ref: '#/components/responses/AccountsShared403'
+        '429':
+          $ref: '#/components/responses/AccountsShared429'
+        '503':
+          $ref: '#/components/responses/AccountsShared503'
+      operationId: get-accounts-account_id-keys-rest-key_id
+      description: '> 📘 NOTE:
+
+        >
+
+        > Accounts API is currently available on a limited basis. Contact our Customer Support Team if you’d like to explore using this API.
+
+
+        Use this action to list details related to the provided REST API key ID. The key value is not returned.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Responds with:** `application/json`'
+    delete:
+      summary: Remove REST API key
+      operationId: delete-accounts-account_id-keys-rest-key_id
+      responses:
+        '200':
+          description: '**Success.** The specified REST API key has been successfully expired and removed from the list of active keys for this account.
+
+
+            Status code | Associated text string
+
+            --|--
+
+            5004|Key successfully expired.'
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/SharedResponseFields'
+                - type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 5004
+                        description:
+                          type: string
+                          example: Key successfully expired.
+              examples:
+                Success:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 5004
+                      description: Key successfully expired.
+        '400':
+          description: '**Bad Request.**
+
+
+            Status code | Associated text string
+
+            --|--
+
+            5103|Invalid value for path parameter {param name}'
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/SharedResponseFields'
+                - type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 5103
+                        description:
+                          type: string
+                          example: Invalid value for path parameter key_id
+              examples:
+                Invalid path parameter:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 5103
+                      description: Invalid value for path parameter key_id
+        '401':
+          $ref: '#/components/responses/AccountsShared401'
+        '403':
+          $ref: '#/components/responses/AccountsShared403'
+        '429':
+          $ref: '#/components/responses/AccountsShared429'
+        '503':
+          $ref: '#/components/responses/AccountsShared503'
+      description: '> 📘 NOTE:
+
+        >
+
+        > Accounts API is currently available on a limited basis. Contact our Customer Support Team if you’d like to explore using this API.
+
+
+        Use this action to expire this REST API key immediately.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Responds with:** `application/json`'
+      tags:
+      - API Keys
+    patch:
+      summary: Update REST API key
+      operationId: patch-accounts-account_id-keys-rest-key_id
+      responses:
+        '200':
+          description: '**Success** The specified REST API key has been succesfully updated and the key object with its new details has been returned.
+
+
+            Status code | Associated text string
+
+            --|--
+
+            5003|Key was successfully updated.
+
+            '
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/SharedResponseFields'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/RestAPIKey'
+                    status:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 5003
+                        description:
+                          type: string
+                          example: Key was successfully updated.
+              examples:
+                Success:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 5003
+                      description: Key was successfully updated.
+                    data:
+                      key_id: '123456'
+                      last_updated: '2024-01-01T00:00:00Z'
+                      expiration_date: '2026-09-05T00:00:00Z'
+        '400':
+          description: "**Bad Request.**\n\nStatus code | Associated text string\n--|--\n5101|Invalid value for body parameter {param name}. \n5103|Invalid value for path parameter {param name}\n5110|Request payload is improperly formatted.\n5112|Missing required parameter {param_name}.\n5113|{date-time-stamp} is not a valid future date."
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/SharedResponseFields'
+                - type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 5103
+                        description:
+                          type: string
+                          example: Invalid value for path parameter key_id
+              examples:
+                Invalid path parameter:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 5103
+                      description: Invalid value for path parameter key_id
+        '401':
+          $ref: '#/components/responses/AccountsShared401'
+        '403':
+          $ref: '#/components/responses/AccountsShared403'
+        '429':
+          $ref: '#/components/responses/AccountsShared429'
+        '503':
+          $ref: '#/components/responses/AccountsShared503'
+      description: '> 📘 NOTE:
+
+        >
+
+        > Accounts API is currently available on a limited basis. Contact our Customer Support Team if you’d like to explore using this API.
+
+
+        Use this action to update a REST API key. This is used to set an expiration date for a key, change the expiration date, or remove the expiration date (making it a non-expiring key).
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/json`
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:** `Content-Type - application/json`'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                expiration_date:
+                  type: string
+                  description: The expiration date of this REST API key. A value of `never` indicates that this key never expires.
+                  example: '2026-09-05T00:00:00Z'
+              required:
+              - expiration_date
+            examples:
+              Request body:
+                value:
+                  expiration_date: '2026-09-05T00:00:00Z'
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+      tags:
+      - API Keys
+components:
+  responses:
+    AccountsShared401:
+      description: '**Unauthorized.**
+
+
+        Status code | Associated text string
+
+        -- | --
+
+        5400 | Authentication failed.'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/SharedResponseFields'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 5400
+                    description:
+                      type: string
+                      example: Authentication failed.
+          examples:
+            Authentication failed:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status:
+                  code: 5400
+                  description: Authentication failed.
+    AccountsShared503:
+      description: '**Service unavailable.**
+
+
+        Status code | Associated text string
+
+        -- | --
+
+        5500 | System unavailable. Please try again later.'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/SharedResponseFields'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 5500
+                    description:
+                      type: string
+                      example: System unavailable. Please try again later.
+          examples:
+            System unavailable:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status:
+                  code: 5500
+                  description: System unavailable. Please try again later.
+    AccountsShared429:
+      description: '**Rate limit exceeded.**
+
+
+        Status code | Associated text string
+
+        -- | --
+
+        5204 | Rate limit exceeded.
+
+        '
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/SharedResponseFields'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 5204
+                    description:
+                      type: string
+                      example: Rate limit exceeded.
+          examples:
+            Rate limit error:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status:
+                  code: 5204
+                  description: Rate limit exceeded.
+    AccountsShared403:
+      description: '**Forbidden.**
+
+
+        Status code | Associated text string
+
+        -- | --
+
+        5401 | No permissions for this resource.'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/SharedResponseFields'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 5401
+                    description:
+                      type: string
+                      example: No permissions for this resource.
+          examples:
+            Resource forbidden:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status:
+                  code: 5401
+                  description: No permissions for this resource.
+  schemas:
+    RestAPIKey:
+      title: RestAPIKey
+      allOf:
+      - type: object
+        properties:
+          key_id:
+            type: string
+            description: A unique identifier for managing this REST API key. Cannot be used as a token to authenticate REST API requests.
+            example: '123456'
+      - $ref: '#/components/schemas/RestAPIKeyDetails'
+    SharedResponseFields:
+      title: SharedResponseFields
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: A unique, randomly generated hex value that identifies your web service request.
+          example: 0123456789ABCDEF0123456789ABCDEF
+        status:
+          $ref: '#/components/schemas/Status'
+    RestAPIKeyDetails:
+      type: object
+      properties:
+        last_updated:
+          type: string
+          description: When this REST API key was last updated.
+          example: '2024-01-01T00:00:00Z'
+        expiration_date:
+          type: string
+          description: The expiration date of this REST API key. A value of `never` indicates that this key never expires.
+          example: '2025-01-01T00:00:00Z'
+    Status:
+      title: Status
+      type: object
+      description: Contains properties related to the processing status of the transaction.
+      properties:
+        code:
+          type: integer
+          description: A numeric code that indicates the status of your transaction.
+        description:
+          type: string
+          description: Text describing the status of your transaction.
+  parameters:
+    key_id:
+      name: key_id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: '1234567'
+      description: Unique identifier for managing this REST API key. This is NOT the key’s value, which is used to authenticate REST API requests.
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: Easiest to implement. See [Basic Authentication](/enterprise/docs/authentication#basic-authentication) for more details.
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

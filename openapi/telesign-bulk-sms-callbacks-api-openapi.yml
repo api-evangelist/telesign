@@ -1,0 +1,134 @@
+openapi: 3.2.0
+info:
+  title: Telesign Bulk SMS Callbacks API
+  version: '1.0'
+  contact:
+    name: Telesign Customer Support Team
+    email: support@telesign.com
+  description: 'Operations tagged Bulk SMS Callbacks across 2 of this provider''s published API definitions: telesign-engage-callbacks-openapi.json, telesign-engage-callbacks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://your-callback-url.com
+tags:
+- name: Bulk SMS Callbacks
+paths:
+  /bulk_sms_callback_endpoint:
+    parameters: []
+    post:
+      summary: Receive Bulk SMS callbacks
+      operationId: bulkSMSCallbacks
+      responses:
+        '200':
+          description: OK
+      description: This is a web service created by you, to receive notifications from Telesign.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/DeliveryStatusNotification'
+              - type: object
+                properties:
+                  session_id:
+                    type: string
+                    example: 255E3E34382C0E049046BF14FF7F3435
+                    description: 'Your unique identifier for the message recipient this notification relates to. '
+                    maxLength: 64
+                  errors:
+                    type: array
+                    description: Contains an object for each error that occurred.
+                    items:
+                      $ref: '#/components/schemas/Error'
+                  sub_resource:
+                    type: string
+                    example: sms
+                    description: Indicates which Telesign service processed the original transaction.
+            examples:
+              'Example 1: Success':
+                value:
+                  reference_id: 0123456789ABCDEF0123456789ABCDEF
+                  status:
+                    code: 200
+                    description: Delivered to handset
+                    updated_on: '2016-10-21T14:05:36.181346Z'
+                  errors: []
+                  sub_resource: bulk_sms
+                  session_id: 255E3E34382C0E049046BF14FF7F3435
+              'Example 2: Fail':
+                value:
+                  reference_id: 0123456789ABCDEF0123456789ABCDEF
+                  status:
+                    code: 500
+                    description: Transaction not attempted
+                    updated_on: '2016-10-25T12:33:45.420798Z'
+                  errors:
+                  - code: -90001
+                    description: System Unavailable, Please try again later.
+                  sub_resource: bulk_sms
+        description: ''
+      tags:
+      - Bulk SMS Callbacks
+    servers:
+    - url: https://your-callback-url.com
+components:
+  schemas:
+    Status:
+      title: Status
+      type: object
+      description: Contains properties related to the processing status of this transaction or send.
+      properties:
+        code:
+          type: integer
+          example: 200
+          description: Numeric code that indicates the processing status of this transaction or send.
+        description:
+          type: string
+          example: Delivered to handset
+          description: Text that describes the processing status of this transaction or send.
+        updated_on:
+          type: string
+          example: '2016-10-21T14:05:36.181346Z'
+          description: Timestamp that indicates when the status of this transaction or send was last updated.
+      required:
+      - code
+      - description
+      - updated_on
+    DeliveryStatusNotification:
+      title: DeliveryStatusNotification
+      type: object
+      properties:
+        reference_id:
+          type: string
+          example: B56259E45884010488343BAA15FB0002
+          description: The service's unique identifier for the original transaction this notification is related to.
+          minLength: 32
+          maxLength: 32
+        status:
+          $ref: '#/components/schemas/Status'
+        submit_timestamp:
+          type: string
+          description: An ISO 8601 UTC timestamp indicating when the request was received.
+          example: '2016-01-01T01:01:01.010101Z'
+      required:
+      - status
+    Error:
+      title: Error
+      type: object
+      properties:
+        code:
+          type: integer
+          example: -90001
+          description: Numeric code that indicates which error occurred.
+        description:
+          type: string
+          example: System Unavailable, Please try again later.
+          description: Text that describes this error.
+      required:
+      - code
+      - description
+x-refined-from:
+- telesign-engage-callbacks-openapi.json
+- telesign-engage-callbacks-openapi.yml
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

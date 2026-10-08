@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-num-mask-inputs-schema.json",
+  "title": "NumMaskInputs",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-engage-api-number-masking-openapi.yml#/components/schemas/NumMaskInputs",
+  "type": "object",
+  "properties": {
+    "phone_number_1": {
+      "type": "string",
+      "description": "The phone number for one of the end users that will engage in the anonymous exchange. "
+    },
+    "phone_number_2": {
+      "type": "string",
+      "description": "The phone number for the other end user that will engage in the anonymous exchange. Must be different from `phone_number_1`. "
+    },
+    "validity_period": {
+      "type": "integer",
+      "description": "The amount of time you want the two end users to be able to communicate for. The unit this number represents can be seconds, minutes, hours, or days. The unit used is configured by Telesign; ask our Customer Support Team if you need it changed. The maximum value depends on the units configured for your account, but will always be equivalent to 720 hours.",
+      "minimum": 1
+    }
+  }
+}

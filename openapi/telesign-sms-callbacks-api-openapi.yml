@@ -1,0 +1,137 @@
+openapi: 3.2.0
+info:
+  title: Telesign SMS Callbacks API
+  version: '1.0'
+  contact:
+    name: Telesign Customer Support Team
+    email: support@telesign.com
+  description: 'Operations tagged SMS Callbacks across 2 of this provider''s published API definitions: telesign-engage-callbacks-openapi.json, telesign-engage-callbacks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://your-callback-url.com
+tags:
+- name: SMS Callbacks
+paths:
+  /sms_delivery_reports_endpoint:
+    parameters: []
+    post:
+      summary: Receive SMS delivery reports
+      operationId: SMSDeliveryReports
+      responses:
+        '200':
+          description: OK
+      description: This is a web service created by you, to receive notifications from Telesign.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/DeliveryStatusNotification'
+              - type: object
+                properties:
+                  additional_info:
+                    type: object
+                    description: Contains properties related to optional product features. Only included if at least one of those features is enabled.
+                    properties:
+                      mcc:
+                        type: string
+                        description: Mobile country code (MCC) of the destination number. Only included if this feature is enabled.
+                        example: '310'
+                      mnc:
+                        type: string
+                        description: Mobile network code (MNC) of the destination number. Only included if this feature is enabled.
+                        example: '004'
+                      price:
+                        type: string
+                        description: The price of the message sent.
+                        example: '0.01'
+                      currency:
+                        type: string
+                        description: The currency of the price of the message sent.
+                        example: USD
+                      message_parts_count:
+                        type: integer
+                        description: The total number of split parts for the longer message. If the message is not split, this value is `1`.
+                        example: 2
+                      message_parts_reference_ids:
+                        type: string
+                        description: The reference IDs for each part of the longer message, separated by commas.
+                        example: 35E63E88CB000E049196AD1CFCFFB89C,35E63E88CC7C050491613443467F3F12
+                      sender_id:
+                        type: string
+                        description: The [sender ID](https://support.telesign.com/s/article/What-is-a-Sender-ID) that Telesign used while sending the message. To receive this parameter, ask our [Customer Support Team](mailto:support@telesign.com) to turn on the appropriate feature.
+                        example: '15558675310'
+                      cleansed_phone_number:
+                        type: string
+                        description: The corrected version of the submitted phone number returned in the callback after common formatting issues are fixed to improve deliverability. If there are no changes, the original phone number from the SMS API request is returned. Contact our [Customer Support Team](mailto:support@telesign.com) to enable this feature.
+                  external_id:
+                    type: string
+                    description: "The customer-generated ID for this transaction that was provided in the original request. If the `external_id` parameter was not included in the request, the value here is `null`.\t"
+                    example: CustomExternalID7349
+            examples:
+              Example:
+                value:
+                  reference_id: B56259E45884010488343BAA15FB0002
+                  status:
+                    code: 200
+                    description: Delivered to handset
+                    updated_on: '2016-10-21T14:05:36.181346Z'
+                  additional_info:
+                    mcc: '310'
+                    mnc: '004'
+                    price: '0.01'
+                    currency: USD
+                    message_parts_count: 2
+                    message_parts_reference_ids: 35E63E88CB000E049196AD1CFCFFB89C,35E63E88CC7C050491613443467F3F12
+                  external_id: CustomExternalID7349
+      tags:
+      - SMS Callbacks
+    servers:
+    - url: https://your-callback-url.com
+components:
+  schemas:
+    Status:
+      title: Status
+      type: object
+      description: Contains properties related to the processing status of this transaction or send.
+      properties:
+        code:
+          type: integer
+          example: 200
+          description: Numeric code that indicates the processing status of this transaction or send.
+        description:
+          type: string
+          example: Delivered to handset
+          description: Text that describes the processing status of this transaction or send.
+        updated_on:
+          type: string
+          example: '2016-10-21T14:05:36.181346Z'
+          description: Timestamp that indicates when the status of this transaction or send was last updated.
+      required:
+      - code
+      - description
+      - updated_on
+    DeliveryStatusNotification:
+      title: DeliveryStatusNotification
+      type: object
+      properties:
+        reference_id:
+          type: string
+          example: B56259E45884010488343BAA15FB0002
+          description: The service's unique identifier for the original transaction this notification is related to.
+          minLength: 32
+          maxLength: 32
+        status:
+          $ref: '#/components/schemas/Status'
+        submit_timestamp:
+          type: string
+          description: An ISO 8601 UTC timestamp indicating when the request was received.
+          example: '2016-01-01T01:01:01.010101Z'
+      required:
+      - status
+x-refined-from:
+- telesign-engage-callbacks-openapi.json
+- telesign-engage-callbacks-openapi.yml
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

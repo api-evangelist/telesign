@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-200-av-response-schema.json",
+  "title": "200-av-response",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-app-verify-api-openapi.yml#/components/schemas/200-av-response",
+  "type": "object",
+  "properties": {
+    "reference_id": {
+      "type": "string",
+      "description": "A unique, randomly generated hex value that identifies your web service request.",
+      "minLength": 32,
+      "maxLength": 32
+    },
+    "sub_resource": {
+      "type": "string",
+      "description": "The name of the subresource accessed."
+    },
+    "errors": {
+      "type": "array",
+      "description": "Contains an object for each error condition that resulted from the request.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "A one to five-digit error code (possibly negative) that indicates the type of error that occurred."
+          },
+          "description": {
+            "type": "string",
+            "description": "A description of the type of error that occurred."
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "description": "Contains details about the request status.",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "A numeric code indicating the processing status of this request.\n\n| **Value** | **Description**                     |\n|-----------|-------------------------------------|\n| 2400      | Pending                             |\n| 2401      | Success                             |\n| 2402      | Failure                             |\n| 2403      | Not Attempted                       |\n| 2404      | Invalid Phone Number                |\n| 2405      | Not Supported                       |\n| 2407      | CallerID prefix did not match       |\n| 2408      | Unsupported phone type              |\n| 2409      | Verification call not received      |\n| 2410      | Please retry verification           |\n| 2411      | Verification call failed            |\n| 2429      | Call blocked by customer request    |\n| 2430      | Call blocked by Telesign            |"
+        },
+        "description": {
+          "type": "string",
+          "description": "Text describing the transaction status."
+        },
+        "updated_on": {
+          "type": "string",
+          "description": "An [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) timestamp indicating when the request status was updated. "
+        }
+      }
+    },
+    "resource_uri": {
+      "type": "string",
+      "description": "You should disregard this parameter, as it is not currently needed to use the API."
+    }
+  }
+}

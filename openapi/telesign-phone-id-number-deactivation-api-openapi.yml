@@ -1,0 +1,188 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: Legacy Phone ID Phone ID Number Deactivation API
+  description: This spec contains details about the deprecated Telesign Phone ID API. This API is no longer fully supported, but has not reached end of life.
+  contact:
+    name: Telesign Customer Support Team
+    email: support@telesign.com
+servers:
+- url: https://rest-ww.telesign.com/v1
+security:
+- Basic: []
+tags:
+- name: Phone ID Number Deactivation
+paths:
+  /phoneid/number_deactivation/{complete_phone_number}:
+    parameters:
+    - name: complete_phone_number
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      description: 'The Phone ID Number Deactivation API determines whether a phone number has been deactivated, when, and by which carrier the phone number was deactivated based on carriers'' phone number data and Telesign''s proprietary analysis. NOTE: If you try this API out using the API Explorer, you will be billed for the transaction as you normally would.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/x-www-form-urlencoded`
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:** `Content-Type - application/x-www-form-urlencoded`'
+      parameters:
+      - in: path
+        name: complete_phone_number
+        required: true
+        description: 'The phone number you want to collect information about. Provide the entire phone number, including the country code, with no spaces or special characters.
+
+          '
+        schema:
+          type: string
+      - in: query
+        name: ucid
+        description: One of the use case codes. | Use case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. |
+        schema:
+          type: string
+      responses:
+        '200':
+          description: "Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n           \n| Status code | Associated text string | Description                                      |\n|-------------|------------------------|--------------------------------------------------|\n| 300         | Transaction successfully completed            | The system was able to obtain all of the requested data for Phone ID.                      |\n| 301         | Transaction partially completed | The system was able to obtain some of the data for Phone ID, but not all of it.                  |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getPhoneIdNDResponse'
+        '400':
+          description: "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n\n| Error Code | Description |\n|------------|-------------|\n| -10001 | Not Allowed Host (indicates that the IP address you are connecting from is not authorized to access the service) -or- Unsupported product name | \n| -40007 | Rate limit exceeded | \n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getPhoneIdNDResponse'
+        '401':
+          description: "Unauthorized, the request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n\n  | Error Codes | Description |\n  |-------------|-------------|   \n  | -10009 | Invalid source IP address |\n  | -20002 | This product is not enabled for this customer ID |\n  | -20003 | This feature is not enabled for this CustomerID  |\n  | -30002 | CustomerID Account Not Activated | \n  | -30003 | CustomerID New Account Limit Reached |\n  | -40002 | Not Authorized | \n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getPhoneIdNDResponse'
+        '402':
+          description: "Payment Required. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getPhoneIdNDResponse'
+        '404':
+          description: "Not Found, the server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n\n  | Error Codes | Description |\n  |-------------|-------------|\n  | -40001 | Status unavailable |\n  | -40004 | Resource not found | \n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getPhoneIdNDResponse'
+        '405':
+          description: '| Error Codes | Description |
+
+            |-------------|-------------|
+
+            | -40005 | Method not allowed |
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getPhoneIdNDResponse'
+        '429':
+          description: "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n\n| Error Code | Description |\n|------------|-------------|\n| -40008 | [Product method] exceed transaction hard cap; Request denied |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getPhoneIdNDResponse'
+        '500':
+          description: "Invalid Transaction, transaction not attempted. Error codes are listed in the `error` parameter in the response. \n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getPhoneIdNDResponse'
+        '503':
+          description: "Service Unavailable, system unavailable, try again. Error codes are listed in the `error` parameter in the response. \n\n| Error Code | Description |\n|------------|-------------|\n| -90001 | System unavailable; please try again later |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getPhoneIdNDResponse'
+      deprecated: true
+      tags:
+      - Phone ID Number Deactivation
+      summary: Get deactivation status of a number
+      operationId: getPhoneNumberDeactStatus
+components:
+  schemas:
+    getPhoneIdNDResponse:
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: A unique, randomly generated hex value that identifies your web service request.
+        sub_resource:
+          type: string
+          description: The subresource accessed by your request. It is set to `number_deactivation`.
+          example: number_deactivation
+          enum:
+          - number_deactivation
+        number_deactivation:
+          type: object
+          description: Contains properties related to number deactivation for the specified phone number.
+          properties:
+            number:
+              type: string
+              description: The number for which the deactivation check is being performed.
+            tracking_since:
+              type: string
+              description: 'A timestamp indicating when number deactication began storing records for the carreier. '
+            last_deactivated:
+              type: string
+              description: A timestamp indicating when the phone number was seen and/or reported as deactivated from the data stream provider.
+            mcc:
+              type: integer
+              description: 'The Mobile Country Code, consisting of three decimal digits. Mobile Country Code (MCC) is used in wireless telephone networks (for example GSM, CDMA, UMTS) in order to identify the country which a mobile subscriber belongs to. '
+            mnc:
+              type: integer
+              description: "The Mobile Network Code, consisting of two or three decimal digits. The Mobile Country Code (MCC) is used in combination with the Mobile Network Code (MNC) to uniquely identify a mobile network operator (carrier) who deactivated a phone number. One operator (carrier) can own more than one MNC and in that case, a list of MNCs is provided in the response, separated by a semicolon. The table contains carrier county and carrier name with corresponding MCC and MNC for carriers in coverage of Phone ID Number Deactivation. \n\n| MCC | MNC | Carrier's country | Carrier's name |\n|--|--|--|--|\n| 310 | 030;070;080;150;170;410;670;680;950 | United States of America | AT&T |\n| 310 | 004;005;006;010;012;013;590;820;890;910 | United States of America | Verizon |\n| 310 | 024;025;026;160;200;210;220;230;240;250;260;270;310;490;660;800 | United States of America | T-Mobile |\n| 310 | 053;120;830;991 | United States of America | Sprint | \n| 310 | 220 | United States of America | US Cellular |\n| 310 | 120 | United States of America | Boost |\n| 310 | 150 | United States of America | Tracfone |\n| 228 | 01 | Switzerland | Swisscom |\n| 515 | 02 | Philippines | Globe Telecom |\n| 240 | 07;44 | Sweden | Tele2 |\n"
+        errors:
+          type: array
+          description: Contains an object for each error that resulted from the request.
+          items:
+            type: object
+            description: Contains properties describing this error.
+            properties:
+              code:
+                type: integer
+                description: A numeric code indicating the processing status for this transaction.
+              description:
+                type: string
+                description: Text describing the type of error that occurred.
+        status:
+          type: object
+          description: Contains details about the processing status of this request.
+          properties:
+            code:
+              type: string
+              description: A numeric code indicating the processing status for this transaction.
+            description:
+              type: string
+              description: Text describing the transaction status.
+            updated_on:
+              type: string
+              description: An [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) timestamp indicating when the transaction status was updated.
+      title: ''
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+x-stoplight:
+  docs:
+    showModels: false
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

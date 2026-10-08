@@ -1,0 +1,214 @@
+openapi: 3.2.0
+info:
+  title: Protect Platform Protect API Authentication API
+  version: '1.0'
+  description: Use this API to initiate authentication for the Protect Platform API.
+  contact:
+    name: Telesign Customer Support Team
+    email: support@telesign.com
+servers:
+- url: https://us-east-1.di-platform.telesign.com
+tags:
+- name: Protect API Authentication
+paths:
+  /authenticationmanager/v1/authenticate/api:
+    parameters: []
+    post:
+      summary: Generate access token
+      operationId: initiateAuthentication
+      responses:
+        '200':
+          description: '**Success.** The request was processed successfully.
+
+
+            | Status | Condition | error.message | Description |
+
+            | --- | --- | --- | --- |
+
+            | Success | — | The request was processed successfully. |'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Describes the results of the authentication request.
+                    example: Operation completed successfully.
+                  data:
+                    type: object
+                    description: 'Contains properties related to the the access token. '
+                    properties:
+                      accessToken:
+                        type: string
+                        description: 'Access token to be used in `Authorization: Bearer`. Must be used in all subsequent API requests.'
+                        example: YOUR_ACCESS_TOKEN_HERE
+                      expirationTimeSeconds:
+                        type: integer
+                        description: 'The validity of the token, measured in seconds. '
+                        example: 28800
+              examples:
+                Response:
+                  value:
+                    message: Operation completed successfully.
+                    data:
+                      accessToken: YOUR_ACCESS_TOKEN_HERE
+                      expirationTimeSeconds: 28800
+        '400':
+          description: "**Request validation failed.** One or more fields are missing or have the wrong type/format. See `errors.description` for more details.\n\nStatus Condition | error.message  | Description\n------------|---------------------|------------------------------\nMalformed JSON/body fields  | `Request validation failed`         | One or more fields are missing or have the wrong type/format. See `errors.description` for a per-field breakdown.                                           \n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tokenResponse'
+              examples:
+                Validation errors:
+                  value:
+                    errors:
+                    - name: The authorization field is required.
+                      description: One or more validation errors occurred.
+        '401':
+          description: "**Authorization Errors.** The authentication request failed because the token was invalid, expired, couldn't be validated or because no authorization header was provided. \n\nStatus Condition | error.message  | Description\n------------|---------------------|------------------------------\nToken failed validation  | Error validating token         | Token could not be parsed or verified.                                           \nProduct failed validation | Error validating token access to product | Credentials have no access to the product.                                                           \nNo Authorization header | No authorization header provided | Authentication header is completely absent.  \nToken expired / not found | Invalid or expired token | Token is syntactically valid but expired or no longer accepted."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tokenResponse'
+              examples:
+                Incorrect API key:
+                  value:
+                    errors:
+                    - name: Unauthorized
+                      description: Incorrect api key
+                Invalid authorization header:
+                  value:
+                    errors:
+                    - name: Unauthorized
+                      description: Invalid authorization header
+                Invalid credentials:
+                  value:
+                    errors:
+                    - name: Unauthorized
+                      description: API Credentials do not exist, check that credentials are suitable for this product
+        '404':
+          description: '**Unknown path.** The requested resource or endpoint does not exist. Invalid Path or endpoint requested, the API returns an error.
+
+
+            Status Condition | error.message  | Description
+
+            ------------|---------------------|----------------
+
+            Unknown path | `Endpoint not found` | The requested resource or endpoint does not exist.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tokenResponse'
+              examples:
+                Endpoint not found:
+                  value:
+                    errors:
+                    - name: Unknown path
+                      description: The requested resource or endpoint does not exist
+        '500':
+          description: '**Internal error.** Unexpected exception on the server side.
+
+
+            Status Condition | error.message  | Description
+
+            ------------|---------------------|----------------
+
+            Internal error | Internal Server Error | Unexpected exception on the server side.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tokenResponse'
+              examples:
+                Internal server error:
+                  value:
+                    errors:
+                    - name: Internal Server Error
+                      description: Unexpected exception on the server side
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productId:
+                  type: integer
+                  default: 3
+                  description: The Product ID associated with the Flow Builder. The Product Id for the Flow Builder is `3`.
+            examples:
+              Authentication request:
+                value:
+                  productId: 3
+        description: ''
+      description: '> 📘 NOTE:
+
+        >
+
+        > Select regional availability. This feature is currently available for customers with end users in select countries. To find out if this feature is available in your region, contact a Telesign expert. This product is available for full-service accounts only.
+
+
+        Use this endpoint to generate an access token to interact securely with Protect Platform services, which require an external authentication service that issues an access token upon successful validation of an API Key.
+
+
+        Send credentials via Basic Auth ("Authorization: Basic ...") together with "x-API-key". After you send a POST request to the authentication service with the required credentials, the service returns a Bearer token, which must be included in the Authorization header of all subsequent API requests to ensure secure access. If your access token expires, you must re-authenticate using this endpoint to obtain a new token. Include the accessToken in the Authorization header of every API request for authentication and authorization.
+
+
+        ## General requirements
+
+        * **Authentication:** [Basic]
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/json`
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:**
+
+        * `Content-Type: application/json`
+
+        * `x-API-key: [YOUR_API_KEY_HERE]`'
+      parameters:
+      - schema:
+          type: string
+        in: header
+        name: Authorization
+        description: Your credentials encoded in Base64 (e.g., Basic YOUR_BASE64_ENCODED_CREDENTIALS)
+        required: true
+      - schema:
+          type: string
+        in: header
+        name: x-API-key
+        description: The API Key associated with your account. (e.g., YOUR_API_KEY_HERE)
+        required: true
+      - schema:
+          type: string
+        in: header
+        name: Content-Type
+        description: Must be set to application/json.
+        required: true
+      tags:
+      - Protect API Authentication
+components:
+  schemas:
+    tokenResponse:
+      title: tokenResponse
+      type: object
+      x-examples: {}
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The error returned by the API.
+              description:
+                type: string
+                description: A description of an error returned by the API.
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

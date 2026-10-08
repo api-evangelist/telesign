@@ -1,0 +1,232 @@
+generated: '2026-10-07'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 18
+  own: 16
+  other_domain: 0
+  platform: 2
+  roles:
+  - api
+  - identity
+  - other
+  - portal
+  - source
+  - status
+  - support
+  - website
+hosts:
+- host: accounts.telesign.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: telesign.com
+  role: identity
+  relation: own
+- host: api.telesign.com
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: telesign.com
+  role: api
+  relation: own
+- host: deact-api.telesign.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: telesign.com
+  role: other
+  relation: own
+- host: detect.telesign.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: telesign.com
+  role: other
+  relation: own
+- host: developer.telesign.com
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - site-links
+  - docs-index
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - DeveloperPortal
+  - Authentication
+  - Documentation
+  - APIReference
+  - GettingStarted
+  - ChangeLog
+  serves:
+  - docs
+  - documentation
+  vendor: readme
+  registrable_domain: telesign.com
+  role: portal
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubOrganization
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: my.telesign.com
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - well-known
+  types:
+  - Login
+  serves: []
+  registrable_domain: telesign.com
+  role: identity
+  relation: own
+- host: portal.telesign.com
+  found_by:
+  - probed
+  - site-links
+  - docs-index
+  - well-known
+  types: []
+  serves:
+  - docs
+  registrable_domain: telesign.com
+  role: other
+  relation: own
+- host: rest-ww.telesign.com
+  found_by:
+  - apis[]
+  - probed
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types: []
+  serves:
+  - api
+  - cdn
+  vendor: akamai
+  registrable_domain: telesign.com
+  role: other
+  relation: own
+- host: status.telesign.com
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  types:
+  - StatusPage
+  serves: []
+  registrable_domain: telesign.com
+  role: status
+  relation: own
+- host: support.telesign.com
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - well-known
+  types:
+  - Support
+  serves: []
+  registrable_domain: telesign.com
+  role: support
+  relation: own
+- host: telesign.com
+  found_by:
+  - probed
+  - site-links
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: telesign.com
+  role: other
+  relation: own
+- host: trust.telesign.com
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: telesign.com
+  role: other
+  relation: own
+- host: us-east-1.di-hub.telesign.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: telesign.com
+  role: other
+  relation: own
+- host: us-east-1.di-platform.telesign.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: telesign.com
+  role: other
+  relation: own
+- host: verify.telesign.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: telesign.com
+  role: other
+  relation: own
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
+- host: www.telesign.com
+  found_by:
+  - pointer
+  - probed
+  - docs-index
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - Compliance
+  - Website
+  - Pricing
+  - TermsOfService
+  - Integrations
+  - Blog
+  - PrivacyPolicy
+  - Security
+  - Newsroom
+  serves:
+  - docs
+  - cdn
+  - hosting
+  vendor: cloudflare
+  registrable_domain: telesign.com
+  role: website
+  relation: own

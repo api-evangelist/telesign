@@ -1,0 +1,126 @@
+generated: '2026-10-07'
+method: searched
+source:
+- https://developer.telesign.com/enterprise/docs/transaction-callback-service
+- https://developer.telesign.com/enterprise/docs/authenticate-callbacks
+- https://developer.telesign.com/enterprise/docs/sms-callback-service
+- https://developer.telesign.com/enterprise/openapi/engage-callbacks.json
+- https://developer.telesign.com/enterprise/openapi/sms-verify-api-callbacks.json
+- https://developer.telesign.com/enterprise/openapi/verify-api-callbacks.json
+api: Telesign Messaging, SMS Verify and Verify APIs
+summary: Telesign delivers transaction status (delivery reports), inbound-message and template-management callbacks as HTTPS POSTs to a callback URL registered per account (or passed as callback_url where
+  enabled). The provider publishes the callback payloads as three OpenAPI documents whose server is the customer receiver (https://your-callback-url.com); no AsyncAPI document is published. Every callback
+  is signed with HMAC-SHA256 using the account API Key.
+asyncapi_published: false
+delivery:
+  transport: https-post
+  content_type: application/json
+  signature:
+    algorithm: HMAC-SHA256
+    headers:
+    - Authorization
+    - X-TS-Authorization
+    format: 'Authorization: TSA {Customer ID}:{base64(HMAC-SHA256(base64decode(API Key), raw body))}; X-TS-Authorization carries the bare signature'
+    docs: https://developer.telesign.com/enterprise/docs/authenticate-callbacks
+  retries: true
+  retry_policy: For SMS and the SMS Verify API, Telesign makes up to four attempts to deliver your callback notification; each attempt waits 5 seconds for an HTTP response, and a non-200 response is followed
+    by an additional wait of 5, 10 and then 15 seconds before the next attempt; the 4th attempt is final.
+  timeout_seconds: 5
+  expected_response: HTTP 200
+  dedup_field: reference_id
+  common_fields:
+  - reference_id
+  - status.code
+  - status.description
+  - status.updated_on
+  - submit_timestamp
+  docs: https://developer.telesign.com/enterprise/docs/transaction-callback-service
+contracts:
+- file: openapi/telesign-engage-callbacks-openapi.yml
+  api: Messaging API
+  provider_hosted: https://developer.telesign.com/enterprise/openapi/engage-callbacks.json
+- file: openapi/telesign-sms-verify-api-callbacks-openapi.yml
+  api: SMS Verify API
+  provider_hosted: https://developer.telesign.com/enterprise/openapi/sms-verify-api-callbacks.json
+- file: openapi/telesign-verify-api-callbacks-openapi.yml
+  api: Verify API
+  provider_hosted: https://developer.telesign.com/enterprise/openapi/verify-api-callbacks.json
+event_count: 11
+events:
+- name: SMSDeliveryReports
+  api: Messaging API
+  summary: Receive SMS delivery reports
+  description: This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Engage for delivery reports for SMS requests (excluding
+    bulk requests). You can receive notifications from multiple Telesign services at the same endpoint. > L
+  contract: openapi/telesign-engage-callbacks-openapi.yml
+  receiver_path_example: /sms_delivery_reports_endpoint
+- name: EmailCallbacks
+  api: Messaging API
+  summary: Receive email callbacks
+  description: 'This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages
+    from end users sent using its email channel. You can receive notifications from multiple Telesign services '
+  contract: openapi/telesign-engage-callbacks-openapi.yml
+  receiver_path_example: /email_callback_endpoint
+- name: MMSCallbacks
+  api: Messaging API
+  summary: Receive MMS callbacks
+  description: This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages
+    from end users sent using its MMS channel. You can receive notifications from multiple Telesign services at
+  contract: openapi/telesign-engage-callbacks-openapi.yml
+  receiver_path_example: /mms_callback_endpoint
+- name: RCSCallbacks
+  api: Messaging API
+  summary: Receive RCS callbacks
+  description: This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages
+    from end users sent using its RCS channel. You can receive notifications from multiple Telesign services at
+  contract: openapi/telesign-engage-callbacks-openapi.yml
+  receiver_path_example: /rcs_callback_endpoint
+- name: MsgSMSCallbacks
+  api: Messaging API
+  summary: Receive inbound SMS callbacks
+  description: This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages
+    from end users sent using its SMS channel. You can receive notifications from multiple Telesign services at
+  contract: openapi/telesign-engage-callbacks-openapi.yml
+  receiver_path_example: /messaging_sms_callback_endpoint
+- name: ViberCallbacks
+  api: Messaging API
+  summary: Receive Viber callbacks
+  description: 'This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages
+    from end users sent using its Viber channel. You can receive notifications from multiple Telesign services '
+  contract: openapi/telesign-engage-callbacks-openapi.yml
+  receiver_path_example: /viber_callback_endpoint
+- name: WhatsAppCallbacks
+  api: Messaging API
+  summary: Receive WhatsApp callbacks
+  description: This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages
+    from end-users sent using its WhatsApp channel. You can receive notifications from multiple Telesign servic
+  contract: openapi/telesign-engage-callbacks-openapi.yml
+  receiver_path_example: /whatsapp_callback_endpoint
+- name: templatesCallbacks
+  api: Messaging API
+  summary: Receive template management callbacks
+  description: 'This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging for template management requests. You
+    can receive notifications from multiple Telesign services at the same endpoint. ## Status codes | Status code |'
+  contract: openapi/telesign-engage-callbacks-openapi.yml
+  receiver_path_example: /msg_templates_endpoint
+- name: bulkSMSCallbacks
+  api: Messaging API
+  summary: Receive Bulk SMS callbacks
+  description: 'This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Engage for bulk SMS requests. You can receive
+    notifications from multiple Telesign services at the same endpoint. ## Status codes | Status code | Associated te'
+  contract: openapi/telesign-engage-callbacks-openapi.yml
+  receiver_path_example: /bulk_sms_callback_endpoint
+- name: SMSVerifyCallbacks
+  api: SMS Verify API
+  summary: Receive SMS Verify API Delivery Reports
+  description: 'This is a web service created by you, to receive delivery reports (DLRs) from the Telesign SMS Verify API. You can receive callbacks, including DLRs, from multiple Telesign services at the
+    same endpoint. ## Status codes | Status code | Associated text string | Description | |-------------|----------'
+  contract: openapi/telesign-sms-verify-api-callbacks-openapi.yml
+  receiver_path_example: /sms_verify_dlr_endpoint
+- name: unifiedVerifyCallbacks
+  api: Verify API
+  summary: Receive Verify API Delivery Reports
+  description: This is a web service created by you, to receive delivery reports (DLRs) from the Telesign Verify API. You can receive callbacks, including DLRs, from multiple Telesign services at the same
+    endpoint.
+  contract: openapi/telesign-verify-api-callbacks-openapi.yml
+  receiver_path_example: /verify_dlr_endpoint

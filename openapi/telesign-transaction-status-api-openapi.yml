@@ -1,0 +1,911 @@
+openapi: 3.2.0
+info:
+  title: Telesign Transaction Status API
+  version: '1.0'
+  contact:
+    name: Telesign Customer Support Team
+    email: support@telesign.com
+  description: 'Operations tagged Transaction Status across 3 of this provider''s published API definitions: telesign-app-verify-api-openapi.json, telesign-sms-verify-api-openapi.json, telesign-voice-verify-api-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://rest-ww.telesign.com
+security:
+- Basic: []
+tags:
+- name: Transaction Status
+paths:
+  /v1/verify/auto/voice/{reference_id}:
+    parameters:
+    - name: reference_id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      description: 'Use this endpoint to get the status of a Telesign App Verify API request that you initiated.
+
+
+        To add this product to your account, contact a Telesign expert. This product is available for full-service accounts only.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) and Digest
+
+        * **Encoding:** Accepts only UTF-8 encoded unicode characters as inputs
+
+        * **Accepts:** `application/x-www-form-urlencoded`
+
+        * **Required headers:** `Content-Type - application/x-www-form-urlencoded`
+
+        * **Rate limit:** Default rate limits by product'
+      parameters:
+      - in: path
+        name: reference_id
+        required: true
+        description: "The reference identifier that Telesign returned in the response to your request to the initiate endpoint. Use it here to determine the status of your voice call. \n"
+        schema:
+          type: string
+      responses:
+        '200':
+          description: "Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n"
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/get-av-status-response'
+              examples:
+                Response:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    sub_resource: app_verify_api
+                    errors: []
+                    status:
+                      updated_on: '2025-03-28T21:19:42.406000Z'
+                      code: 2401
+                      description: Success
+        '400':
+          description: "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n\n| Error code | Description |\n|------------|-------------|\n| -10001 | Not Allowed Host (indicates that the IP address you are connecting from is not authorized to access the service) -or- Unsupported product name | \n| -50059 | Status not available | \n"
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/400-av-response'
+              examples:
+                Response:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    sub_resource: app_verify_api
+                    errors:
+                    - code: -10001
+                      description: 'Invalid Request: ReferenceID Parameter: 6657DCAEF714045C91D755B4C988A7D'
+                    status:
+                      updated_on: '2025-04-02T18:44:53.217356Z'
+                      code: 500
+                      description: Transaction not attempted
+        '401':
+          description: "Unauthorized, the request requires user authentication. If \nyou want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n\n| Error codes | Description |\n|-------------|-------------|\n| -10009 | Invalid source IP address |\n| -40002 | Not Authorized | \n"
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/401-av-response'
+              examples:
+                Response:
+                  value:
+                    reference_id: C6577A9BD164015C89D6BB4A1BA801E1
+                    sub_resource: app_verify_api
+                    errors:
+                    - code: -20002
+                      description: This product is not enabled for this CustomerID.
+                    status:
+                      updated_on: '2025-03-28T21:27:35.593021Z'
+                      code: 501
+                      description: Not authorized
+        '404':
+          description: 'Not found. The server has not found anything matching the request URI. Code against the Telesign status or error codes from the status.code and errors.code properties in the response payload, rather than the HTTP status code of the response.
+
+
+
+            | Error code | Description |
+
+            |------------|-------------|
+
+            | -10004     | Reference ID expired. |'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-av-response'
+              examples:
+                Response:
+                  value:
+                    reference_id: 665728003420025C91D5CDEF02F89BDF
+                    sub_resource: app_verify_api
+                    errors:
+                    - code: -10004
+                      description: ReferenceID expired.
+                    status:
+                      updated_on: '2025-03-28T21:24:25.016431Z'
+                      code: 599
+                      description: Status not available
+        '429':
+          description: "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n\n| Error code | Description |\n|------------|-------------|\n| -40008 | [Product method] exceed transaction hard cap; Request denied |\n"
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/429-av-response'
+              examples:
+                Response:
+                  value:
+                    reference_id: 6657B9BCB6E4055C91D0EA1E99B839E6
+                    sub_resource: app_verify_api
+                    errors:
+                    - code: -40008
+                      description: AutoVerify API Call exceeded transaction hard cap. Request denied.
+                    status:
+                      updated_on: '2025-03-31T23:02:06.560719Z'
+                      code: 500
+                      description: Transaction not attempted
+        '503':
+          description: "Service Unavailable, system unavailable, try again. Error codes are listed in the `error` parameter in the response. \n\n| Error code | Description |\n|------------|-------------|\n| -90001 | System unavailable; please try again later |\n"
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/503-av-response'
+              examples:
+                Response:
+                  value:
+                    reference_id: null
+                    sub_resource: null
+                    status:
+                      updated_on: '2024-01-17T22:38:49.184280Z'
+                      code: 500
+                      description: Transaction not attempted
+                    errors:
+                    - code: -90001
+                      description: System Unavailable, Please try again later.
+      summary: Get transaction status
+      operationId: getAppVerifyStatus
+      tags:
+      - Transaction Status
+    servers:
+    - url: https://rest-ww.telesign.com
+  /v1/verify/{reference_id}:
+    parameters:
+    - schema:
+        type: string
+      name: reference_id
+      in: path
+      required: true
+    get:
+      summary: Get transaction status
+      responses:
+        '200':
+          description: "Success. Your request was fulfilled and resulted in data being retrieved. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.\n\n | Status code | Associated text string | Description                                      |\n |-------------|------------------------|--------------------------------------------------|\n | 200         | Delivered to handset   | The SMS was delivered to the end user's phone. (Final)   |\n | 201         | Transaction successfully completed, suspicious activity detected   | Telesign's internal anti-fraud mechanisms identified potentially suspicious activity related to the destination phone number.   |\n | 203         | Delivered to gateway   | The SMS was delivered to the gateway. If the gateway responds with further information (including successful delivery to handset or delivery failure), the status is updated.    (Intermediate)  |\n | 207         | Error delivering SMS to handset (reason unknown)  | The SMS could not be delivered to the end user's handset for an unknown reason. (Final) |\n | 210         | Temporary phone error  | The SMS could not be delivered to the handset due to a temporary error with the phone. Examples - phone is turned off, not enough memory to store the message. (Final)   |\n | 211         | Permanent phone error  | The SMS could not be delivered to the handset due to a permanent error with the phone. For example, the phone is incompatible with SMS, or illegally registered on the network. This can happen when a phone number is blacklisted, or is incorrectly provisioned. (Final)    |\n | 220         | Gateway/network cannot route message | The network cannot route the message to the handset. (Final)   |\n | 221         | Message expired before delivery | The message was queued by the mobile provider and timed out before it could be delivered to the handset. (Final)  |\n | 222         | SMS not supported      | SMS is not supported by this phone, carrier, plan, or user.  |\n | 229         | Message blocked by customer request  | Telesign blocked the SMS before it was sent. This is due to your prior submitted request to blocklist this phone number. |\n | 230         | Message blocked by Telesign    | Telesign blocks a message if it is being sent to a phone number that is on a global blocklist.    |\n | 231         | Invalid/unsupported    | Invalid/unsupported message content.      |\n | 233         | Message blocked due to high risk score. | It was determined that the risk score for the destination number is higher than configured Maximum Risk Score. For that reason Telesign did not send the SMS.  |\n | 237         | Message blocked in requested country|You requested that messages in a specific country be blocked, and the message was being sent to this country.|\n | 250         | Final status unknown   | The final status of the SMS cannot be determined.|\n | 251         | Message successfully sent out for delivery, however final confirmation of delivery to handset was not received. | Telesign successfully delivered the message through our gateway and it passed downstream. However, Telesign did not receive a delivery receipt within 12 hours of transmission. We cannot confirm delivery to the handset. The end user most likely did not receive the message. |\n | 290         | Message in progress    | The message is being sent to the SMS gateway.    |\n | 292         | Queued by gateway      | The SMS gateway has queued the message.          |\n | 295         | Status delayed         | The status of the SMS is temporarily unavailable.|\n | 500         | Transaction not attempted   | No SMS request was attempted. |\n | 501         | Not authorized         | No permissions for this resource, or authorization failed.                            |\n | 502         | Campaign error         | This error can be generated if there is a problem with the short code used.                        |\n | 503         | Carrier rejected - temporary problem | This error is generated if there is an error on the carrier or operator side that is temporary and the message can be retried.      |\n | 504         | Carrier rejected - permanent error | This error is generated if there is an error on the carrier or operator side that is permanent and the message should not be retried.      |\n | 505         | Error on gateway - temporary error | This error is generated if there is an error on Telesign's partner side that is considered temporary and the message can be retried.      |\n | 506         | Error on gateway - permanent error    | This error is generated if there is an error on Telesign's partner side that is considered permanent and the message should not be retried. |\n | 507         | Invalid destination address   | There is a problem with the destination address used. Either the format is not valid, or the number is not associated with any carrier, or if MSC is used it does not know about this MSISDN.  |\n | 508         | Invalid source address | The message requires a source address. Verify that one is provided and correct.   |\n | 509         | Parameters problem     | One or more parameters used in the request is not supported.   |\n | 510         | Message blocked by subscriber action or  request   | The end user has blocked receiving SMS with their carrier plan or by request or from the particular short code used.  |\n | 511         | Subscriber low on credit     | The end user exceeded their spending limits and cannot receive SMS.   |\n | 512         | Roaming error          | End user cannot receive SMS because their device that receives the messages is roaming.  |\n | 513         | Mobile number portability error  | SMS failed because ported combinations are unreachable. |\n | 514         | Subscriber absent      | The operator/carrier is temporarily unable to reach the end user.   |\n | 515         | Suspected spam         | This message is considered to be spam by carrier or operator.    |\n | 517         | Selected DLT details for India not supported|The DLT template ID or entity ID in the request cannot be found by the end operator.|\n | 518         | Message blocked due to high risk SIM SWAP indicator|The service determined that the SIM swap risk indicator for the destination number is higher than the maximum value configured for your account. For that reason Telesign did not send the SMS. |\n | 519         | Message not sent - requested SIM SWAP check could not be performed|The service could not perform the SIM swap check. This is because either the number is out of SIM swap coverage or information about the potential SIM swap event is missing. |\n | 520 | Content sent is not allowed|The content in this message is not permitted by the carrier. |\n | 521         | Requested Sender ID is not allowed for destination |The sender ID submitted in request is not allowed in destination country/operator. |\n | 599         | Status not available | The system is unable to provide status at this time.  |\n\n"
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/getStatusResponse'
+                - type: object
+                  properties:
+                    sim_swap:
+                      $ref: '#/components/schemas/SIMSwapResponse'
+              examples:
+                Success:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    sub_resource: sms
+                    errors: []
+                    status:
+                      description: Delivered to handset
+                      updated_on: '2022-31-03T14:51:28.709526Z'
+                      code: 200
+                    verify:
+                      code_state: VALID
+                      code_entered: '45558'
+                    additional_info:
+                      message_part_sequence_number: 1
+                      message_parts_count: 1
+                      message_parts_reference_ids: 35E63E88CB000E049196AD1CFCFFB89C,35E63E88CC7C050491613443467F3F12
+                SIM Swap enabled:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    sub_resource: sms
+                    errors: []
+                    status:
+                      code: 518
+                      description: Message blocked due to high risk SIM SWAP indicator
+                      updated_on: '2022-31-03T14:51:28.709526Z'
+                    verify:
+                      code_state: UNKNOWN
+                      code_entered: ''
+                    sim_swap:
+                      risk_indicator: 4
+                      swap_time: '15:44:31'
+                      status:
+                        code: 2800
+                        description: Request successfully completed
+                      swap_date: '2022-30-03'
+        '400':
+          description: 'Bad request. The request could not be understood by the server due to malformed syntax. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.
+
+
+            | Error Code | Associated text string   |
+
+            |------------|--------------------------|
+
+            | -10001     | Invalid Request: ReferenceID Parameter: <reference_id> |
+
+            | -10001     | Invalid Request: CustomerID Parameter: <customer_id>   |
+
+            | -10001     | Invalid Request: AuthenticationID                      |
+
+            | -10001     | Invalid Request: CustomerID/AuthenticationID Parameter: <customer_id>/<authentication_id> |
+
+            | -10001     | Invalid Request: customer_id Parameter: <customer_id> |
+
+
+            Associated text string for -10001 will change depending on the parameter.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getStatusResponse'
+              examples:
+                Invalid Request:
+                  value:
+                    reference_id: None
+                    sub_resource: ''
+                    errors:
+                    - code: -10001
+                      description: 'Invalid Request: ReferenceID Parameter: None'
+                    status:
+                      code: 500
+                      description: Transaction not attempted
+                      updated_on: '2022-31-03T14:51:28.709526Z'
+        '401':
+          description: 'Unauthorized. The request requires user authentication. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.
+
+
+            | Error Code | Associated text string   |
+
+            |------------|--------------------------|
+
+            | -10001     | Not Allowed Host: Hostname Parameter: \<parameter> |
+
+            | -10001     | Not Allowed Host: IP Parameter: \<parameter> |
+
+            | -10009     | Invalid source IP address. |
+
+            | -20001     | Invalid Request: CustomerID Parameter: <customer_id> |
+
+            | -20002     | This product is not enabled for this Customer ID.  |
+
+            | -30000     | Invalid Customer ID.     |
+
+            | -30001     | Customer ID Account Suspended.                     |
+
+            | -30002     | Customer ID Account Not Activated.                 |
+
+            | -30003     | Customer ID new account limit reached.             |
+
+            | -30004     | Missing required ''Authorization'' header |
+
+            | -30005     | Required ''Authorization'' header is not in the correct format |
+
+            | -30006     | Invalid Signature |
+
+            | -30007     | Missing required ''Date'' or ''x-ts-date'' header    |
+
+            | -30008     | Invalid ''x-ts-auth-method'' header. |
+
+            | -30009     | ''Date'' or ''x-ts-date'' header is not RFC822 compliant |
+
+            | -30010     | ''Date'' or ''x-ts-date'' header is not within tolerable range |
+
+            | -30011     | ''x-ts-nonce'' header value is either too long or too short |
+
+            | -30012     | ''x-ts-nonce'' header value has been used recently |
+
+            | -30015     | Invalid API Key. |
+
+            '
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/getStatusResponse'
+                - type: object
+                  properties:
+                    signature_string:
+                      type: string
+                      description: Returned when request signature is not valid. Signature from failed authorization requests - doesn’t contain all required data (like x-ts-auth-method), or it’s not ordered properly.
+                      example: 'GET\n\nTue, 31 Jan 2024 19:36:42 GMT\nx-ts-auth-method: HMAC-SHA256\n/v1/verify/0123456789ABCDEF0123456789ABCDEF'
+              examples:
+                Unauthorized:
+                  value:
+                    reference_id: null
+                    sub_resource: null
+                    errors:
+                    - code: -30004
+                      description: Missing required 'Authorization' header
+                    status:
+                      code: 501
+                      description: Not authorized
+                      updated_on: '2022-31-03T14:51:28.709526Z'
+        '404':
+          description: 'Not found. The server has not found anything matching the request URI. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.
+
+
+            | Error Code | Associated text string   |
+
+            |------------|--------------------------|
+
+            | -10001     | CustomerID/ReferenceID not found |
+
+            | -10001     | CustomerID/ReferenceID not found: CustomerID/ReferenceID Parameter: \<parameter> |
+
+            | -10004     | Reference ID expired.     |
+
+
+            Associated text string for -10001 will change depending on the parameter.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getStatusResponse'
+              examples:
+                Not found:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    sub_resource: ''
+                    errors:
+                    - code: -10004
+                      description: ReferenceID expired.
+                    status:
+                      code: 599
+                      description: Status not available
+                      updated_on: '2022-31-03T14:51:28.709526Z'
+        '429':
+          description: 'Too many requests. The user sent too many requests in a given amount of time. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.
+
+
+            | Error Code | Associated text string   |
+
+            |------------|--------------------------|
+
+            | -40007     | Rate Limit Exceeded  |
+
+            | -40008     | \<product> exceeded transaction hard cap. Request denied.  |'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getStatusResponse'
+              examples:
+                Rate Limit Exceeded:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    sub_resource: ''
+                    errors:
+                    - code: -40007
+                      description: Rate Limit Exceeded
+                    status:
+                      code: 500
+                      description: Transaction not attempted
+                      updated_on: '2022-31-03T14:51:28.709526Z'
+        '503':
+          description: 'Service unavailable. The system is unavailable, try again. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.
+
+
+            | Error Code | Associated text string   |
+
+            |------------|--------------------------|
+
+            | -90001     | System Unavailable, please try again later.  |
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getStatusResponse'
+              examples:
+                System Unavailable:
+                  value:
+                    reference_id: null
+                    sub_resource: null
+                    errors:
+                    - code: -90001
+                      description: System Unavailable, Please try again later.
+                    status:
+                      code: 500
+                      description: Transaction not attempted
+                      updated_on: '2022-31-03T14:51:28.709526Z'
+      operationId: getSMSVerifyStatus
+      description: 'Get delivery status and other details for a Telesign SMS Verify API transaction that you have created. Use this endpoint also to complete verification, if Telesign generated your code.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/x-www-form-urlencoded`
+
+        * **Required headers:** `Content-Type - application/x-www-form-urlencoded`
+
+        * **Rate limit:** Default rate limits by product'
+      tags:
+      - Transaction Status
+      parameters:
+      - schema:
+          type: string
+          example: '57244'
+        in: query
+        name: verify_code
+        description: 'If Telesign generated the code sent to your end user, include the asserted verification code from your end user here. '
+    servers:
+    - url: https://rest-ww.telesign.com
+components:
+  schemas:
+    400-av-response:
+      title: 400AVResponse
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: A unique, randomly generated hex value that identifies your web service request.
+          example: 0123456789ABCDEF0123456789ABCDEF
+          minLength: 32
+          maxLength: 32
+        sub_resource:
+          type: string
+          description: The name of the subresource accessed.
+        errors:
+          type: array
+          description: Contains an object for each error condition that resulted from the request.
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: A one to five-digit error code (possibly negative) that indicates the type of error that occurred.
+              description:
+                type: string
+                description: A description of the type of error that occurred.
+        status:
+          type: object
+          description: Contains details about the request status.
+          properties:
+            code:
+              type: integer
+              description: A numeric code indicating the processing status of this request.
+            description:
+              type: string
+              description: Text describing the transaction status.
+            updated_on:
+              type: string
+              description: An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp indicating when the transaction status was updated.
+        resource_uri:
+          type: string
+          description: You should disregard this parameter, as it is not currently needed to use the API.
+    401-av-response:
+      title: 401AVResponse
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: A unique, randomly generated hex value that identifies your web service request.
+          minLength: 32
+          maxLength: 32
+        sub_resource:
+          type: string
+          description: The name of the subresource accessed.
+        errors:
+          type: array
+          description: Contains an object for each error condition that resulted from the request.
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: A one to five-digit error code (possibly negative) that indicates the type of error that occurred.
+              description:
+                type: string
+                description: A description of the type of error that occurred.
+        status:
+          type: object
+          description: Contains details about the request status.
+          properties:
+            code:
+              type: integer
+              description: 'A numeric code indicating the processing status of this request.
+
+                '
+            description:
+              type: string
+              description: Text describing the transaction status.
+            updated_on:
+              type: string
+              description: An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp indicating when the transaction status was updated.
+        resource_uri:
+          type: string
+          description: You should disregard this parameter, as it is not currently needed to use the API.
+    503-av-response:
+      title: 503AVResponse
+      type: object
+      properties:
+        reference_id:
+          type:
+          - string
+          - 'null'
+          description: A unique, randomly generated hex value that identifies your web service request.
+          minLength: 32
+          maxLength: 32
+        sub_resource:
+          type:
+          - string
+          - 'null'
+          description: The name of the subresource accessed.
+        errors:
+          type: array
+          description: Contains an object for each error condition that resulted from the request.
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: A one to five-digit error code (possibly negative) that indicates the type of error that occurred.
+              description:
+                type: string
+                description: A description of the type of error that occurred.
+        status:
+          type: object
+          description: Contains details about the request status.
+          properties:
+            code:
+              type: integer
+              description: A numeric code indicating the processing status of this request.
+            description:
+              type: string
+              description: Text describing the transaction status.
+            updated_on:
+              type: string
+              description: An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp indicating when the transaction status was updated.
+    429-av-response:
+      title: 429AVResponse
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: A unique, randomly generated hex value that identifies your web service request.
+          minLength: 32
+          maxLength: 32
+        sub_resource:
+          type: string
+          description: The name of the subresource accessed.
+        errors:
+          type: array
+          description: Contains an object for each error condition that resulted from the request.
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: A one to five-digit error code (possibly negative) that indicates the type of error that occurred.
+              description:
+                type: string
+                description: A description of the type of error that occurred.
+        status:
+          type: object
+          description: Contains details about the request status.
+          properties:
+            code:
+              type: integer
+              description: A numeric code indicating the processing status of this request.
+            description:
+              type: string
+              description: Text describing the transaction status.
+            updated_on:
+              type: string
+              description: An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp indicating when the transaction status was updated.
+        resource_uri:
+          type: string
+          description: You should disregard this parameter, as it is not currently needed to use the API.
+    get-av-status-response:
+      type: object
+      title: GetAVStatusResponse
+      x-examples: {}
+      properties:
+        reference_id:
+          type: string
+          description: A unique, randomly generated hex value that identifies your web service request.
+          minLength: 32
+          maxLength: 32
+          example: 0123456789ABCDEF0123456789ABCDEF
+        sub_resource:
+          type: string
+          description: The name of the subresource accessed.
+          example: app_verify_api
+        errors:
+          type: array
+          description: Contains an object for each error condition that resulted from the request.
+          items:
+            type: object
+            description: Contains properties related to an error that occurred during processing of the request.
+            properties:
+              code:
+                type: integer
+                description: A one to five-digit error code (possibly negative) that indicates the type of error that occurred.
+              description:
+                type: string
+                description: A description of the type of error that occurred.
+        status:
+          type: object
+          description: Contains details about the request status.
+          properties:
+            code:
+              type: integer
+              description: "A numeric code indicating the processing status of this request.\n \n| Value | Description | \n|-------|-------------| \n| 2400 | Pending | \n| 2401 | Success | \n| 2402 | Failure | \n| 2403 | Not Attempted | \n| 2404 | Invalid Phone Number | \n| 2405 | Not Supported | \n| 2407 | CallerID prefix did not match | \n| 2408 | Unsupported phone type | \n| 2409 | Verification call not received |\n| 2410 | Please retry verification |\n| 2411 | Verification call failed |\n| 2429 | Call blocked by customer request | \n| 2430 | Call blocked by Telesign | \n"
+              example: 2401
+            description:
+              type: string
+              description: Text describing the transaction status.
+              example: Success
+            updated_on:
+              type: string
+              description: An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp indicating when the transaction status was updated.
+              example: '2025-03-28T21:19:42.406000Z'
+    404-av-response:
+      title: 404AVResponse
+      type: object
+      properties:
+        reference_id:
+          type:
+          - string
+          - 'null'
+          description: A unique, randomly generated hex value that identifies your web service request.
+          minLength: 32
+          maxLength: 32
+        sub_resource:
+          type:
+          - string
+          - 'null'
+          description: The name of the subresource accessed.
+        errors:
+          type: array
+          description: Contains an object for each error condition that resulted from the request.
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: A one to five-digit error code (possibly negative) that indicates the type of error that occurred.
+              description:
+                type: string
+                description: A description of the type of error that occurred.
+        status:
+          type: object
+          description: Contains details about the request status.
+          properties:
+            code:
+              type: integer
+              description: A numeric code indicating the processing status of this request.
+            description:
+              type: string
+              description: Text describing the transaction status.
+            updated_on:
+              type: string
+              description: An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp indicating when the transaction status was updated.
+    errorObject:
+      type: object
+      title: errorObject
+      description: Contains properties related to an error that occurred during processing of the request.
+      properties:
+        code:
+          type: integer
+          description: A numeric code specifying which error occurred.
+          example: -10001
+        description:
+          type: string
+          description: Text describing the error that occurred.
+          example: 'Invalid Request: PhoneNumber Parameter'
+    getStatusResponse:
+      type: object
+      title: getStatusResponse
+      properties:
+        reference_id:
+          type:
+          - string
+          - 'null'
+          description: A unique, randomly generated hex value that identifies your web service request.
+        sub_resource:
+          type:
+          - string
+          - 'null'
+          description: The subresource accessed for the request. This is always `sms` for the SMS Verify API.
+        errors:
+          type: array
+          description: Contains an object for each error condition that resulted from the request.
+          items:
+            $ref: '#/components/schemas/errorObject'
+        status:
+          type: object
+          description: Contains details about the request status.
+          required:
+          - code
+          - description
+          - updated_on
+          properties:
+            code:
+              type: integer
+              description: A numeric code indicating the processing status of this request.
+            description:
+              type: string
+              description: Text describing the transaction status.
+            updated_on:
+              type: string
+              description: An <a href="http://www.ietf.org/rfc/rfc3339.txt">RFC 3339</a> timestamp indicating when the transaction status was updated.
+        verify:
+          type: object
+          description: Contains properties about the status of the verification attempt by the end user (if any).
+          properties:
+            code_state:
+              type: string
+              description: "Indicates whether the verification code you provided in your request matches that sent by Telesign to the end-user. Possible values are: \n* `VALID` - The codes match. \n* `INVALID` - The codes do not match.\n* `EXPIRED` - The match was attempted after the end of the validity period for the code.\n* `MAX_ATTEMPTS_EXCEEDED` - The match was attempted after the end user already had made the maximum allowed number of attempts for the code.\n* `UNKNOWN` - Any other state."
+              enum:
+              - VALID
+              - INVALID
+              - UNKNOWN
+              - EXPIRED
+              - MAX_ATTEMPTS_EXCEEDED
+              example: VALID
+            code_entered:
+              type: string
+              description: If the end user entered a code, what they entered is provided here.
+              example: '45558'
+        additional_info:
+          $ref: '#/components/schemas/additionalInfo'
+      required:
+      - reference_id
+      - sub_resource
+      - errors
+      - status
+    SIMSwapResponse:
+      type: object
+      title: SIMSwapResponse
+      description: Properties related to the SIM Swap check for this transaction. This is only included if enabled by our [Customer Support Team](mailto:support@telesign.com).
+      properties:
+        swap_date:
+          type: string
+          description: 'The date of the SIM swap, if one is detected. '
+          example: '2018-09-05'
+        swap_time:
+          type: string
+          description: 'The time of the SIM swap, if one is detected. '
+          example: '22:00:00'
+        risk_indicator:
+          type: integer
+          description: "Indicates the likelihood that a SIM swap occured for this number. The response ranges between `1` and `4`.\n* `1` - **(very low)** Swap did not occur or it occurred 15+ days ago. \n* `2` - **(low)** Swap occurred between 3 and 14 days ago. \n* `3` - **(medium)** Swap occurred in the last 72 hours. \n* `4` - **(high)** Swap occurred in the last 24 hours."
+          example: 1
+        status:
+          type: object
+          description: Contains properties related to the status of the SIM Swap check.
+          properties:
+            code:
+              type: integer
+              description: 'A code indicating the status of your request. '
+              example: 2800
+            description:
+              type: string
+              description: Description of the status of your request.
+              example: Request successfully completed
+    additionalInfo:
+      type: object
+      title: additionalInfo
+      description: Contains properties relevant when the message sent with this transaction is one of several parts of a longer message that was split. This object only appears if this feature is enabled for your account. Contact our [Customer Support Team](mailto:support@telesign.com) to request this feature.
+      properties:
+        message_part_sequence_number:
+          type: integer
+          example: 1
+          description: Indicates this message's position in the series of split parts.
+        message_parts_count:
+          type: integer
+          example: 2
+          description: The total number of split parts for the longer message. If the message is not split, this value is `1`.
+        message_parts_reference_ids:
+          type: string
+          example: 35E63E88CB000E049196AD1CFCFFB89C,35E63E88CC7C050491613443467F3F12
+          description: The reference IDs for each part of the longer message, separated by commas.
+    getStatusResponse_2:
+      title: getStatusResponse
+      allOf:
+      - $ref: '#/components/schemas/sharedResSchema'
+      - type: object
+        properties:
+          status:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 100
+              description:
+                type: string
+                example: Call answered
+          verify:
+            type: object
+            properties:
+              code_state:
+                type: string
+                example: VALID
+              code_entered:
+                type: string
+                example: '57244'
+    failState:
+      title: failState
+      allOf:
+      - $ref: '#/components/schemas/sharedResSchema'
+      - type: object
+        properties:
+          status:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 500
+              description:
+                type: string
+                example: Transaction not attempted
+    sharedResSchema:
+      title: sharedResSchema
+      type: object
+      properties:
+        reference_id:
+          type: string
+          example: 0123456789ABCDEF0123456789ABCDEF
+          description: A unique, randomly generated hex value that identifies your web service request.
+        sub_resource:
+          type: string
+          example: call
+          description: The sub-resource in the URI path from your original request to initiate this transaction. Indicates which form of verification you used.
+        errors:
+          type: array
+          description: Contains an object for each error condition that resulted from the request.
+          items:
+            $ref: '#/components/schemas/errorObject'
+        status:
+          $ref: '#/components/schemas/status'
+    status:
+      title: status
+      type: object
+      description: Contains details about the request status.
+      properties:
+        code:
+          type: integer
+          description: A numeric code indicating the processing status of this request.
+          example: 103
+        description:
+          type: string
+          description: A text description of the status code.
+          example: Call in progress
+        updated_on:
+          type: string
+          description: 'An [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) timestamp indicating when the request status was updated. '
+          example: '2024-03-11T21:09:19.378673Z'
+      required:
+      - code
+      - description
+      - updated_on
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: Easiest to implement. See [Basic Authentication](/api-reference/authentication#basic-authentication) for more details.
+    Digest:
+      name: Authorization
+      type: apiKey
+      in: header
+      description: See [Digest Authentication](/api-reference/authentication#digest-authentication) for more details.
+x-refined-from:
+- telesign-app-verify-api-openapi.json
+- telesign-sms-verify-api-openapi.json
+- telesign-voice-verify-api-openapi.json
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

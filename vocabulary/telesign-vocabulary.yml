@@ -1,89 +1,434 @@
+generated: '2026-10-07'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/telesign-accounts-api-openapi.yml
+- openapi/telesign-app-verify-api-openapi.yml
+- openapi/telesign-deactivated-numbers-api-openapi.yml
+- openapi/telesign-detect-api-openapi.yml
+- openapi/telesign-email-intelligence-api-openapi.yml
 vocabulary:
-  provider: Telesign
-  description: >-
-    Core vocabulary for Telesign communications and identity verification APIs,
-    covering SMS messaging, phone intelligence, fraud scoring, and multi-channel
-    verification concepts.
-  tags:
-    - Authentication
-    - Communications
-    - Fraud Prevention
-    - Phone Intelligence
+  name: Telesign Domain Vocabulary
+  description: 'Terms declared by Telesign''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-07'
   terms:
-    - term: OTP (One-Time Password)
-      definition: >-
-        A time-limited, single-use numeric code sent to a user's phone via SMS, voice,
-        or messaging app to verify their identity. Telesign OTPs are used for MFA, account
-        creation, login verification, and password reset flows.
-      tags:
-        - Authentication
-        - Security
-    - term: PhoneID
-      definition: >-
-        Telesign's phone number intelligence service that returns carrier, geographic
-        location, phone type, and subscriber data for any global phone number. Used for
-        fraud prevention and identity risk assessment.
-      tags:
-        - Fraud Prevention
-        - Phone Intelligence
-    - term: Reference ID
-      definition: >-
-        A unique 32-digit hexadecimal identifier returned by Telesign for every transaction.
-        Used to track message delivery status, retrieve verification states, and correlate
-        events across systems.
-      tags:
-        - Transaction Tracking
-    - term: Message Type
-      definition: >-
-        Classification of an SMS message's purpose. Telesign recognizes three types:
-        OTP (one-time passwords for verification), ARN (alerts, reminders, notifications),
-        and MKT (marketing messages subject to opt-out regulations).
-      tags:
-        - Compliance
-        - Messaging
-    - term: Account Lifecycle Event
-      definition: >-
-        Context parameter indicating the stage of a user's account activity when a Telesign
-        API call is made. Values include: create (new account), sign-in, transact (financial
-        action), update (profile change), and delete (account removal).
-      tags:
-        - Fraud Prevention
-        - Risk Assessment
-    - term: Verify API
-      definition: >-
-        Telesign's multi-channel verification service that sends OTPs via SMS, voice,
-        WhatsApp, Viber, RCS, or email, and validates the code submitted by end users.
-        Enables MFA and phone number ownership verification.
-      tags:
-        - Authentication
-        - Verification
-    - term: Score API
-      definition: >-
-        Telesign's fraud risk scoring service that evaluates phone numbers using a combination
-        of phone number intelligence, traffic patterns, machine learning models, and global
-        data consortium signals. Returns a 0-1000 risk score with allow/flag/block recommendation.
-      tags:
-        - Fraud Detection
-        - Risk Scoring
-    - term: Sender ID
-      definition: >-
-        A custom alphanumeric or numeric identifier displayed as the sender of an SMS message.
-        Availability varies by country and carrier. Used to establish brand recognition in
-        mobile messaging.
-      tags:
-        - Messaging
-        - Branding
-    - term: Customer ID
-      definition: >-
-        Telesign's identifier for an enterprise customer account, used as the username in
-        HTTP Basic authentication. Combined with the API key, it authenticates all API requests.
-      tags:
-        - Authentication
-    - term: Risk Level
-      definition: >-
-        Telesign Score API's categorical risk classification for a phone number: low, medium,
-        high, or block. Maps to a recommended action (allow, flag, block) for real-time
-        fraud decision-making.
-      tags:
-        - Fraud Prevention
-        - Risk Assessment
+  - term: UserDetails
+    definition: 'Object declared by the contract with fields: first_name, last_name, phone, email.'
+    tags:
+    - Object
+    source: openapi/telesign-accounts-api-openapi.yml#/components/schemas/UserDetails
+  - term: AccountDetails
+    definition: 'Object declared by the contract with fields: account_name, users.'
+    tags:
+    - Object
+    source: openapi/telesign-accounts-api-openapi.yml#/components/schemas/AccountDetails
+  - term: RestAPIKeyDetails
+    definition: 'Object declared by the contract with fields: last_updated, expiration_date.'
+    tags:
+    - Object
+    source: openapi/telesign-accounts-api-openapi.yml#/components/schemas/RestAPIKeyDetails
+  - term: SharedResponseFields
+    definition: 'Object declared by the contract with fields: reference_id, status.'
+    tags:
+    - Object
+    source: openapi/telesign-accounts-api-openapi.yml#/components/schemas/SharedResponseFields
+  - term: Status
+    definition: Contains properties related to the processing status of the transaction.
+    tags:
+    - Object
+    source: openapi/telesign-accounts-api-openapi.yml#/components/schemas/Status
+  - term: InitiateAVResponse
+    definition: 'Object declared by the contract with fields: reference_id, sub_resource, errors, status, resource_uri, verify_code, prefix.'
+    tags:
+    - Object
+    source: openapi/telesign-app-verify-api-openapi.yml#/components/schemas/initiate-av-response
+  - term: FinalizeAVResponse
+    definition: 'Object declared by the contract with fields: reference_id, sub_resource, errors, status, resource_uri, verify_code.'
+    tags:
+    - Object
+    source: openapi/telesign-app-verify-api-openapi.yml#/components/schemas/finalize-av-response
+  - term: GetAVStatusResponse
+    definition: 'Object declared by the contract with fields: reference_id, sub_resource, errors, status.'
+    tags:
+    - Object
+    source: openapi/telesign-app-verify-api-openapi.yml#/components/schemas/get-av-status-response
+  - term: CallerIDAVResponse
+    definition: 'Object declared by the contract with fields: reference_id, sub_resource, errors, status, resource_uri.'
+    tags:
+    - Object
+    source: openapi/telesign-app-verify-api-openapi.yml#/components/schemas/caller-id-av-response
+  - term: 400AVResponse
+    definition: 'Object declared by the contract with fields: reference_id, sub_resource, errors, status, resource_uri.'
+    tags:
+    - Object
+    source: openapi/telesign-app-verify-api-openapi.yml#/components/schemas/400-av-response
+  - term: 401AVResponse
+    definition: 'Object declared by the contract with fields: reference_id, sub_resource, errors, status, resource_uri.'
+    tags:
+    - Object
+    source: openapi/telesign-app-verify-api-openapi.yml#/components/schemas/401-av-response
+  - term: 404AVResponse
+    definition: 'Object declared by the contract with fields: reference_id, sub_resource, errors, status.'
+    tags:
+    - Object
+    source: openapi/telesign-app-verify-api-openapi.yml#/components/schemas/404-av-response
+  - term: 405AVResponse
+    definition: 'Object declared by the contract with fields: reference_id, sub_resource, errors, status.'
+    tags:
+    - Object
+    source: openapi/telesign-app-verify-api-openapi.yml#/components/schemas/405-av-response
+  - term: 429AVResponse
+    definition: 'Object declared by the contract with fields: reference_id, sub_resource, errors, status, resource_uri.'
+    tags:
+    - Object
+    source: openapi/telesign-app-verify-api-openapi.yml#/components/schemas/429-av-response
+  - term: 503AVResponse
+    definition: 'Object declared by the contract with fields: reference_id, sub_resource, errors, status.'
+    tags:
+    - Object
+    source: openapi/telesign-app-verify-api-openapi.yml#/components/schemas/503-av-response
+  - term: 200-av-response
+    definition: 'Object declared by the contract with fields: reference_id, sub_resource, errors, status, resource_uri.'
+    tags:
+    - Object
+    source: openapi/telesign-app-verify-api-openapi.yml#/components/schemas/200-av-response
+  - term: DeactResFileList
+    definition: 'Object declared by the contract with fields: list_of_files, code, description.'
+    tags:
+    - Object
+    source: openapi/telesign-deactivated-numbers-api-openapi.yml#/components/schemas/DeactResFileList
+  - term: errorObject
+    definition: Contains properties related to an error that occurred during processing of the request.
+    tags:
+    - Object
+    source: openapi/telesign-deactivated-numbers-api-openapi.yml#/components/schemas/errorObject
+  - term: postScoreResponse
+    definition: 'Object declared by the contract with fields: reference_id, external_id, status, location, numbering, phone_type, blocklisting,
+      carrier, risk, risk_insights.'
+    tags:
+    - Object
+    source: openapi/telesign-detect-api-openapi.yml#/components/schemas/postScoreResponse
+  - term: postPhoneIdResponse
+    definition: 'Object declared by the contract with fields: reference_id, phone_type, blocklisting, status, numbering, location, age_verify,
+      active_call_status, breached_number_check, call_forward_detection, carrier, contact. (8 more)'
+    tags:
+    - Object
+    source: openapi/telesign-detect-api-openapi.yml#/components/schemas/postPhoneIdResponse
+  - term: getPhoneIdLiveResponse
+    definition: 'Object declared by the contract with fields: reference_id, sub_resource, errors, phone_type, status, numbering, location, carrier,
+      live.'
+    tags:
+    - Object
+    source: openapi/telesign-detect-api-openapi.yml#/components/schemas/getPhoneIdLiveResponse
+  - term: contactObject
+    definition: 'Contains contact information for this phone number. You will only see this in your response if you used the associated identity
+      attribute (Contact) and Telesign has enabled it for your account. See *[Phone ID - Identity signals: Contact](doc:phone-id-identity-attributes-contact)*
+      for more details.'
+    tags:
+    - Object
+    source: openapi/telesign-detect-api-openapi.yml#/components/schemas/contact-object
+  - term: Numbering
+    definition: Contains properties related to the numbering attributes of the specified phone number.
+    tags:
+    - Object
+    source: openapi/telesign-detect-api-openapi.yml#/components/schemas/Numbering
+  - term: PhoneType
+    definition: 'Object declared by the contract with fields: code, override_reason, description, override_reason_id.'
+    tags:
+    - Object
+    source: openapi/telesign-detect-api-openapi.yml#/components/schemas/PhoneType
+  - term: Risk
+    definition: Contains properties related to the risk recommendation for the specified phone number.
+    tags:
+    - Object
+    source: openapi/telesign-detect-api-openapi.yml#/components/schemas/Risk
+  - term: RiskInsights
+    definition: Contains reason code properties with additional info related to the risk recommendation. *[Intelligence - Insights reason code
+      mappings](/enterprise/docs/intelligence-insights-reason-code-mappings)* provides the meaning of these reason codes.
+    tags:
+    - Object
+    source: openapi/telesign-detect-api-openapi.yml#/components/schemas/RiskInsights
+  - term: reqAgeVerify
+    definition: 'Includes the Age Verify identity attribute in processing your request. Pass an empty object to use the minimum legal age of the
+      country as the age threshold. See [Phone ID - Identity signals: Age Verify](/enterprise/docs/phone-id-identity-attributes-age-verify) for
+      more details on how to use this feature.'
+    tags:
+    - Object
+    source: openapi/telesign-detect-api-openapi.yml#/components/schemas/reqAgeVerify
+  - term: resAgeVerify
+    definition: Contains properties related to the use of the Age Verify identity attribute for this request.
+    tags:
+    - Object
+    source: openapi/telesign-detect-api-openapi.yml#/components/schemas/resAgeVerify
+  - term: resBreachedNumCheck
+    definition: 'Contains properties related to the use of the Breached Data identity attribute for this request. See [Phone ID - Identity attributes:
+      Breached Data](/enterprise/docs/phone-id-identity-attributes-breached-data) for more details on on how to use this feature.'
+    tags:
+    - Object
+    source: openapi/telesign-detect-api-openapi.yml#/components/schemas/resBreachedNumCheck
+  - term: postPhoneIDRequestBody
+    definition: 'Object declared by the contract with fields: account_lifecycle_event, external_id, originating_ip, addons, consent.'
+    tags:
+    - Object
+    source: openapi/telesign-detect-api-openapi.yml#/components/schemas/postPhoneIDRequestBody
+  - term: postEmailIDRequestBody
+    definition: 'Object declared by the contract with fields: account_lifecycle_event, external_id, originating_ip, addons, consent.'
+    tags:
+    - Object
+    source: openapi/telesign-detect-api-openapi.yml#/components/schemas/postEmailIDRequestBody
+  - term: Blocklisting
+    definition: Contains details about whether the number was blocked and who requested the block. Contact our [Customer Support Team](mailto:support@telesign.com)
+      to include this package in your response.
+    tags:
+    - Object
+    source: openapi/telesign-detect-api-openapi.yml#/components/schemas/Blocklisting
+  - term: Carrier
+    definition: Contains details about the company that provides telecommunications services for this phone number. Behavior of this property,
+      including information returned for ported phone numbers, can vary depending on the country of the phone number. See [How does carrier data
+      vary by country?](https://support.telesign.com/s/article/How-does-carrier-data-vary-by-country) for more details.
+    tags:
+    - Object
+    source: openapi/telesign-detect-api-openapi.yml#/components/schemas/Carrier
+  - term: Location
+    definition: Contains geographical location information associated with the rate center of the phone number when the device was activated.
+      Null is returned when data for a field isn't available for a specific market or country.
+    tags:
+    - Object
+    source: openapi/telesign-detect-api-openapi.yml#/components/schemas/Location
+  - term: postEmailIntResponse
+    definition: 'Object declared by the contract with fields: reference_id, external_id, status, email_address_details, intelligence_details.'
+    tags:
+    - Object
+    source: openapi/telesign-email-intelligence-api-openapi.yml#/components/schemas/postEmailIntResponse
+  - term: Original
+    definition: Contains the submitted email address exactly as provided and its initial validity evaluation.
+    tags:
+    - Object
+    source: openapi/telesign-email-intelligence-api-openapi.yml#/components/schemas/Original
+  - term: ExtendedResponse
+    definition: These are additional response fields that can be included when they are enabled for your account. These fields are not returned
+      by default. Contact our [Customer Support Team](mailto:support@telesign.com) to include these properties in your response.
+    tags:
+    - Object
+    source: openapi/telesign-email-intelligence-api-openapi.yml#/components/schemas/ExtendedResponse
+  - term: NumMaskInputs
+    definition: 'Object declared by the contract with fields: phone_number_1, phone_number_2, validity_period.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-number-masking-openapi.yml#/components/schemas/NumMaskInputs
+  - term: NumMaskStatus
+    definition: Contains details related to the processing status of this transaction.
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-number-masking-openapi.yml#/components/schemas/NumMaskStatus
+  - term: NumMaskSessionData
+    definition: Contains properties related to the session created for this request.
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-number-masking-openapi.yml#/components/schemas/NumMaskSessionData
+  - term: NumMaskPhoneNumberDetails
+    definition: 'Object declared by the contract with fields: complete_phone_number, country_name, country_iso3, masked_id, country_iso2, country_code.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-number-masking-openapi.yml#/components/schemas/NumMaskPhoneNumberDetails
+  - term: NumMaskResSchema
+    definition: 'Object declared by the contract with fields: reference_id, external_id, status, session_data, error.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-number-masking-openapi.yml#/components/schemas/NumMaskResSchema
+  - term: OmniReqChannelObj
+    definition: Specifies a potential channel to use when sending this message, and any other details related to use of that channel.
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/OmniReqChannelObj
+  - term: OmniReqDetailsForRCS
+    definition: Contains properties specifying to the service how to construct the message for this channel.
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/OmniReqDetailsForRCS
+  - term: OmniReqDetailsForSMS
+    definition: Contains properties specifying to the service how to construct the message for this channel.
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/OmniReqDetailsForSMS
+  - term: OmniReqDetailsForDefault
+    definition: Contains properties specifying to the service how to construct the message for any channel where the equivalent details under
+      `message` are not provided for it.
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/OmniReqDetailsForDefault
+  - term: OmniReqDetailsForWA
+    definition: Contains properties specifying to the service how to construct the message for this channel.
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/OmniReqDetailsForWA
+  - term: OmniReqDetailsForMMS
+    definition: Contains properties specifying to the service how to construct the message for this channel.
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/OmniReqDetailsForMMS
+  - term: OmniReqDetailsForViber
+    definition: Contains properties specifying to the service how to construct the message for this channel.
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/OmniReqDetailsForViber
+  - term: OmniReqDetailsForEmail
+    definition: Contains properties specifying to the service how to construct the message for this channel.
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/OmniReqDetailsForEmail
+  - term: OmniReqRecipient
+    definition: Contains properties specifying the contact information needed to communicate with a recipient for a particular channel. At least
+      one sub-property must be included. If the `phone_number` parameter is not included in this request, this parameter is required.
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/OmniReqRecipient
+  - term: postBulkSMSResponse
+    definition: 'Object declared by the contract with fields: reference_id, sub_resource, status, errors.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/postBulkSMSResponse
+  - term: BulkSMSStatus
+    definition: Contains properties related to the processing status of the transaction.
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/BulkSMSStatus
+  - term: BulkSMSError
+    definition: 'Object declared by the contract with fields: code, description.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/BulkSMSError
+  - term: putCompletionResponse
+    definition: 'Object declared by the contract with fields: reference_id, subresource, errors, status.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/putCompletionResponse
+  - term: additionalInfo
+    definition: Contains properties relevant when the message sent with this transaction is one of several parts of a longer message that was
+      split. Only appears if message-splitting is enabled for your account. Contact our [Customer Support Team](mailto:support@telesign.com) to
+      request this feature.
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/additionalInfo
+  - term: 401ResponseSchema
+    definition: 'Object declared by the contract with fields: status.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/401ResponseSchema
+  - term: SharedResponseSlim
+    definition: 'Object declared by the contract with fields: reference_id, status.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/SharedResponseSlim
+  - term: SlimStatus
+    definition: 'Object declared by the contract with fields: code, description.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/SlimStatus
+  - term: Template
+    definition: 'Object declared by the contract with fields: name.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/Template
+  - term: TemplateButton
+    definition: Contains properties defining a button included in this template.
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/TemplateButton
+  - term: TemplateSection
+    definition: Contains properties defining a section in a list of options included in this template.
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/TemplateSection
+  - term: TemplateSuggestedAction
+    definition: Contains properties that define a call-to-action element to include in this template. Supported for WhatsApp templates only. [Variables](/enterprise/docs/messaging-create-whatsapp-template#variables)
+      can be included here.
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/TemplateSuggestedAction
+  - term: header
+    definition: 'Object declared by the contract with fields: header.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/header
+  - term: body
+    definition: 'Object declared by the contract with fields: body.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/body
+  - term: footer
+    definition: 'Object declared by the contract with fields: footer.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/footer
+  - term: Suggested action
+    definition: 'Object declared by the contract with fields: suggested_action.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/SuggestedAction
+  - term: Suggested reply
+    definition: 'Object declared by the contract with fields: suggested_reply.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-openapi.yml#/components/schemas/SuggestedReply
+  - term: Action
+    definition: 'Object declared by the contract with fields: method, params.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-voice-openapi.yml#/components/schemas/Action
+  - term: Recording
+    definition: 'Object declared by the contract with fields: reference_id, file_name, status, date.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-voice-openapi.yml#/components/schemas/Recording
+  - term: Transcription
+    definition: Contains additional properties related to the transcript.
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-voice-openapi.yml#/components/schemas/Transcription
+  - term: DeleteFailureDetails
+    definition: 'Object declared by the contract with fields: reference_id, failed_delete, succeed_delete.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-voice-openapi.yml#/components/schemas/DeleteFailureDetails
+  - term: VoiceStatus
+    definition: 'Object declared by the contract with fields: reference_id, status.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-api-voice-openapi.yml#/components/schemas/VoiceStatus
+  - term: Error
+    definition: 'Object declared by the contract with fields: code, description.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-callbacks-openapi.yml#/components/schemas/Error
+  - term: DeliveryStatusNotification
+    definition: 'Object declared by the contract with fields: reference_id, status, submit_timestamp.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-callbacks-openapi.yml#/components/schemas/DeliveryStatusNotification
+  - term: Shared
+    definition: 'Object declared by the contract with fields: reference_id.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-callbacks-openapi.yml#/components/schemas/Shared
+  - term: SharedMsgCallbackDetails
+    definition: 'Object declared by the contract with fields: reference_id, status.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-callbacks-openapi.yml#/components/schemas/SharedMsgCallbackDetails
+  - term: EmailMsgCallbackDetails
+    definition: 'Object declared by the contract with fields: email.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-callbacks-openapi.yml#/components/schemas/EmailMsgCallbackDetails
+  - term: SharedNonEmailDetails
+    definition: 'Object declared by the contract with fields: phone_number.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-callbacks-openapi.yml#/components/schemas/SharedNonEmailDetails
+  - term: WAppMsgCallbackDetails
+    definition: 'Object declared by the contract with fields: waba_phone_number.'
+    tags:
+    - Object
+    source: openapi/telesign-engage-callbacks-openapi.yml#/components/schemas/WAppMsgCallbackDetails

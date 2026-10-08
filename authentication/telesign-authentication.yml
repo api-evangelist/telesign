@@ -1,17 +1,72 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/telesign-phoneid-openapi.yml, openapi/telesign-score-openapi.yml, openapi/telesign-sms-openapi.yml,
-  openapi/telesign-verify-openapi.yml
+generated: '2026-10-07'
+method: searched
+source: https://developer.telesign.com/enterprise/docs/authentication (read as markdown twin 2026-10-07), https://developer.telesign.com/enterprise/docs/authenticate-callbacks, https://developer.telesign.com/enterprise/page/sdks, securitySchemes of the 21 published OpenAPI files under openapi/
+docs: https://developer.telesign.com/enterprise/docs/authentication
 summary:
   types:
   - http
+  - apiKey
+  api_key_in:
+  - header
+  credentials: Customer ID and API Key, issued in the Telesign portal; the SDKs apply Digest where supported and fall back to Basic.
 schemes:
-- name: BasicAuth
+- name: Basic
   type: http
   scheme: basic
-  description: Basic authentication using Customer ID as username and API key as password.
+  description: 'HTTP Basic authentication: the Customer ID as the user name and the API Key as the password, base64-encoded in the Authorization header. The docs call it "easiest to implement" and it is accepted by every published contract except the Flow Builder and Protect Platform APIs.'
+  docs: https://developer.telesign.com/enterprise/docs/authentication#basic-authentication
   sources:
-  - openapi/telesign-phoneid-openapi.yml
-  - openapi/telesign-score-openapi.yml
-  - openapi/telesign-sms-openapi.yml
-  - openapi/telesign-verify-openapi.yml
+  - openapi/telesign-accounts-api-openapi.yml
+  - openapi/telesign-app-verify-api-openapi.yml
+  - openapi/telesign-deactivated-numbers-api-openapi.yml
+  - openapi/telesign-detect-api-openapi.yml
+  - openapi/telesign-email-intelligence-api-openapi.yml
+  - openapi/telesign-email-intelligence-extended-response-openapi.yml
+  - openapi/telesign-engage-api-number-masking-openapi.yml
+  - openapi/telesign-engage-api-openapi.yml
+  - openapi/telesign-engage-api-voice-openapi.yml
+  - openapi/telesign-intelligence-cloud-api-openapi.yml
+  - openapi/telesign-legacy-phone-id-api-openapi.yml
+  - openapi/telesign-silent-verify-api-openapi.yml
+  - openapi/telesign-smart-verify-api-openapi.yml
+  - openapi/telesign-sms-verify-api-openapi.yml
+  - openapi/telesign-verify-api-openapi.yml
+  - openapi/telesign-voice-verify-api-openapi.yml
+- name: Digest
+  type: apiKey
+  in: header
+  header: Authorization
+  description: 'Telesign''s own HMAC request-signing scheme (not RFC 7616): the client builds a string-to-sign from the HTTP method, content type, date (Date or x-ts-date), x-ts-auth-method, x-ts-nonce and the resource path, signs it with the base64-decoded API Key using HMAC-SHA256 (HMAC-SHA1 also accepted), and sends "Authorization: TSA {Customer ID}:{signature}". Recommended for production; the SDKs implement it.'
+  docs: https://developer.telesign.com/enterprise/docs/authentication#digest-authentication
+  headers:
+  - Authorization
+  - x-ts-date
+  - x-ts-auth-method
+  - x-ts-nonce
+  sources:
+  - openapi/telesign-app-verify-api-openapi.yml
+  - openapi/telesign-deactivated-numbers-api-openapi.yml
+  - openapi/telesign-detect-api-openapi.yml
+  - openapi/telesign-email-intelligence-api-openapi.yml
+  - openapi/telesign-email-intelligence-extended-response-openapi.yml
+  - openapi/telesign-engage-api-openapi.yml
+  - openapi/telesign-intelligence-cloud-api-openapi.yml
+  - openapi/telesign-smart-verify-api-openapi.yml
+  - openapi/telesign-sms-verify-api-openapi.yml
+  - openapi/telesign-verify-api-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Bearer access token for the Protect Platform (Flow Builder). The token is obtained from POST /authenticationmanager/v1/authenticate/api on us-east-1.di-platform.telesign.com (operationId initiateAuthentication) and sent as "Bearer YOUR_ACCESS_TOKEN_HERE" to us-east-1.di-hub.telesign.com.
+  docs: https://developer.telesign.com/enterprise/reference/initiateauthentication
+  sources:
+  - openapi/telesign-flow-builder-api-openapi.yml
+  - openapi/telesign-protect-platform-api-openapi.yml
+callback_authentication:
+  description: Telesign signs every callback it sends with HMAC-SHA256 over the request body using the customer's base64-decoded API Key; the signature is sent in both the Authorization header ("TSA {Customer ID}:{signature}") and X-TS-Authorization. Receivers recompute and compare the signature.
+  docs: https://developer.telesign.com/enterprise/docs/authenticate-callbacks
+  headers:
+  - Authorization
+  - X-TS-Authorization
+  algorithm: HMAC-SHA256
+oauth2: false

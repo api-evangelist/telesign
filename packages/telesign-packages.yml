@@ -1,0 +1,138 @@
+generated: '2026-10-07'
+method: searched
+source: https://developer.telesign.com/enterprise/page/sdks (SDK page lists the twelve first-party repos); versions and dates read from each registry's metadata endpoint on 2026-10-07 (registry.npmjs.org,
+  pypi.org/pypi/<pkg>/json, rubygems.org/api/v1/gems, repo.maven.apache.org maven-metadata.xml, api.nuget.org registration, repo.packagist.org/p2, api.github.com releases)
+note: 'Telesign ships two SDK families per language: a Self-service SDK (SMS, SMS Verify, Phone ID) and a Full-service "enterprise" SDK that wraps the Verify, Voice and Intelligence products. The SDKs apply
+  Telesign''s Digest (HMAC) authentication automatically and fall back to Basic where Digest is not supported. No Go, Rust or Swift server package is published; android_sdk_verify and ios_sdk_verify are
+  mobile client SDKs for App Verify distributed from GitHub only. Maven Central carries only the self-service Java SDK (com.telesign:telesign); the Java enterprise SDK is distributed from its GitHub releases.'
+packages:
+- name: telesignsdk
+  registry: npm
+  url: https://www.npmjs.com/package/telesignsdk
+  language: JavaScript
+  official: true
+  version: 5.2.0
+  published: '2026-09-15'
+  repository: https://github.com/TeleSign/node_telesign
+  family: self-service
+  ownership_audit: metadata names telesign.com
+- name: telesignenterprisesdk
+  registry: npm
+  url: https://www.npmjs.com/package/telesignenterprisesdk
+  language: JavaScript
+  official: true
+  version: 7.0.0
+  published: '2026-03-03'
+  repository: https://github.com/TeleSign/node_telesign_enterprise
+  family: full-service
+  ownership_audit: metadata names telesign.com
+- name: telesign
+  registry: pypi
+  url: https://pypi.org/project/telesign/
+  language: Python
+  official: true
+  version: 4.1.1
+  published: '2026-10-01'
+  repository: https://github.com/TeleSign/python_telesign
+  family: self-service
+  ownership_audit: metadata names telesign.com
+- name: telesignenterprise
+  registry: pypi
+  url: https://pypi.org/project/telesignenterprise/
+  language: Python
+  official: true
+  version: 4.1.0
+  published: '2026-07-22'
+  repository: https://github.com/TeleSign/python_telesign_enterprise
+  family: full-service
+  ownership_audit: metadata names telesign.com
+- name: telesign
+  registry: rubygems
+  url: https://rubygems.org/gems/telesign
+  language: Ruby
+  official: false
+  version: 4.1.1
+  published: '2026-09-21'
+  repository: https://github.com/TeleSign/ruby_telesign
+  family: self-service
+  ownership_audit: 'registry metadata names neither the provider''s domain nor its GitHub org: official downgraded (harvest-packages.py --audit)'
+  ownership_evidence: https://github.com/TeleSign/ruby_telesign README (TeleSign GitHub org, linked from https://developer.telesign.com/enterprise/page/sdks) installs this package with "gem install telesign"
+- name: telesignenterprise
+  registry: rubygems
+  url: https://rubygems.org/gems/telesignenterprise
+  language: Ruby
+  official: false
+  version: 6.0.3
+  published: '2026-09-23'
+  repository: https://github.com/TeleSign/ruby_telesign_enterprise
+  family: full-service
+  ownership_audit: 'registry metadata names neither the provider''s domain nor its GitHub org: official downgraded (harvest-packages.py --audit)'
+  ownership_evidence: https://github.com/TeleSign/ruby_telesign_enterprise README (TeleSign GitHub org, linked from https://developer.telesign.com/enterprise/page/sdks) installs this package with "gem install
+    telesignenterprise"
+- name: com.telesign:telesign
+  registry: maven
+  url: https://central.sonatype.com/artifact/com.telesign/telesign
+  language: Java
+  official: true
+  version: 4.1.1
+  published: '2026-05-21'
+  repository: https://github.com/TeleSign/java_telesign
+  family: self-service
+- name: java_telesign_enterprise
+  registry: github
+  url: https://github.com/TeleSign/java_telesign_enterprise/releases
+  language: Java
+  official: true
+  version: v4.2.2
+  published: '2026-08-27'
+  repository: https://github.com/TeleSign/java_telesign_enterprise
+  family: full-service
+  note: Not published to Maven Central (repo.maven.apache.org/maven2/com/telesign/telesignenterprise answered 404 on 2026-10-07); version read from the GitHub release.
+- name: Telesign
+  registry: nuget
+  url: https://www.nuget.org/packages/Telesign
+  language: C#
+  official: false
+  version: 4.1.0
+  published: '2026-06-03'
+  repository: https://github.com/TeleSign/csharp_telesign
+  family: self-service
+  ownership_audit: 'registry metadata names neither the provider''s domain nor its GitHub org: official downgraded (harvest-packages.py --audit)'
+  ownership_evidence: https://github.com/TeleSign/csharp_telesign README (TeleSign GitHub org, linked from https://developer.telesign.com/enterprise/page/sdks) installs this package with "dotnet add package
+    Telesign"
+- name: TelesignEnterprise
+  registry: nuget
+  url: https://www.nuget.org/packages/TelesignEnterprise
+  language: C#
+  official: false
+  version: 3.2.1
+  published: '2026-09-09'
+  repository: https://github.com/TeleSign/csharp_telesign_enterprise
+  family: full-service
+  ownership_audit: 'registry metadata names neither the provider''s domain nor its GitHub org: official downgraded (harvest-packages.py --audit)'
+  ownership_evidence: https://github.com/TeleSign/csharp_telesign_enterprise README (TeleSign GitHub org, linked from https://developer.telesign.com/enterprise/page/sdks) installs this package with "dotnet
+    add package TelesignEnterprise"
+- name: telesign/telesign
+  registry: packagist
+  url: https://packagist.org/packages/telesign/telesign
+  language: PHP
+  official: false
+  version: v5.2.0
+  published: '2026-08-20'
+  repository: https://github.com/TeleSign/php_telesign
+  family: self-service
+  ownership_audit: 'registry metadata names neither the provider''s domain nor its GitHub org: official downgraded (harvest-packages.py --audit)'
+  ownership_evidence: https://github.com/TeleSign/php_telesign README (TeleSign GitHub org, linked from https://developer.telesign.com/enterprise/page/sdks) installs this package with "composer require
+    telesign/telesign"
+- name: telesign/telesignenterprise
+  registry: packagist
+  url: https://packagist.org/packages/telesign/telesignenterprise
+  language: PHP
+  official: false
+  version: v5.3.1
+  published: '2026-09-02'
+  repository: https://github.com/TeleSign/php_telesign_enterprise
+  family: full-service
+  ownership_audit: 'registry metadata names neither the provider''s domain nor its GitHub org: official downgraded (harvest-packages.py --audit)'
+  ownership_evidence: https://github.com/TeleSign/php_telesign_enterprise README (TeleSign GitHub org, linked from https://developer.telesign.com/enterprise/page/sdks) installs this package with "composer
+    require telesign/telesignenterprise"

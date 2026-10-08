@@ -1,0 +1,549 @@
+generated: '2026-10-07'
+method: derived
+generator: derive-data-model.py
+source:
+- openapi/telesign-accounts-api-openapi.yml
+- openapi/telesign-app-verify-api-openapi.yml
+- openapi/telesign-deactivated-numbers-api-openapi.yml
+- openapi/telesign-detect-api-openapi.yml
+- openapi/telesign-email-intelligence-api-openapi.yml
+- openapi/telesign-email-intelligence-extended-response-openapi.yml
+- openapi/telesign-engage-api-number-masking-openapi.yml
+- openapi/telesign-engage-api-openapi.yml
+- openapi/telesign-engage-api-voice-openapi.yml
+- openapi/telesign-engage-callbacks-openapi.yml
+- openapi/telesign-flow-builder-api-openapi.yml
+- openapi/telesign-intelligence-cloud-api-openapi.yml
+notation: has_one = property $ref; has_many = array of $ref; belongs_to = <entity>_id field
+summary:
+  entities: 127
+  entities_in_spec: 127
+  relationships: 51
+entities:
+- name: 200-av-response
+  fields: 5
+- name: 400-av-response
+  fields: 5
+- name: 401-av-response
+  fields: 5
+- name: 401ResponseSchema
+  fields: 1
+- name: 404-av-response
+  fields: 4
+- name: 405-av-response
+  fields: 4
+- name: 429-av-response
+  fields: 5
+- name: 503-av-response
+  fields: 4
+- name: Account
+  fields: 0
+- name: AccountDetails
+  fields: 2
+- name: Action
+  fields: 2
+- name: AdditionalInfo
+  fields: 7
+  description: 'An optional package containing properties with further details about the messaging transaction.
+    The `message_parts_count` and `message_parts_reference_ids` properties only appear if the Message Split '
+- name: Blocklisting
+  fields: 3
+  description: Contains details about whether the number was blocked and who requested the block. Contact our [Customer
+    Support Team](mailto:support@telesign.com) to include this package in your response.
+- name: BulkSMSError
+  fields: 2
+- name: BulkSMSStatus
+  fields: 3
+  description: Contains properties related to the processing status of the transaction.
+- name: Carrier
+  fields: 2
+  description: Contains details about the company that provides telecommunications services for this phone number.
+    Behavior of this property, including information returned for ported phone numbers, can vary dependi
+- name: DeactResFileList
+  fields: 3
+- name: DeleteFailureDetails
+  fields: 3
+- name: DeliveryStatusNotification
+  fields: 3
+- name: EmailMsgCallbackDetails
+  fields: 1
+- name: Error
+  fields: 2
+- name: ExtendedResponse
+  fields: 2
+  description: These are additional response fields that can be included when they are enabled for your account.
+    These fields are not returned by default. Contact our [Customer Support Team](mailto:support@telesign.
+- name: GetVerificationResponse
+  fields: 9
+  description: Succesful response when retrieving a verification process.
+- name: InnerVerificationMethodStatus
+  fields: 6
+  description: Contains properties related to the processing status of the specified inner verification method.
+    One verification process can include multiple inner verification methods.
+- name: Location
+  fields: 8
+  description: Contains geographical location information associated with the rate center of the phone number when
+    the device was activated. Null is returned when data for a field isn't available for a specific mark
+- name: MsgGetStatusRes
+  fields: 0
+- name: MsgStatus
+  fields: 3
+  description: Contains properties related to the processing status of this transaction or send.
+- name: NumMaskInputs
+  fields: 3
+- name: NumMaskPhoneNumberDetails
+  fields: 6
+- name: NumMaskResSchema
+  fields: 5
+- name: NumMaskSessionData
+  fields: 6
+  description: Contains properties related to the session created for this request.
+- name: NumMaskStatus
+  fields: 3
+  description: Contains details related to the processing status of this transaction.
+- name: Numbering
+  fields: 2
+  description: Contains properties related to the numbering attributes of the specified phone number.
+- name: OmniReqChannelObj
+  fields: 2
+  description: Specifies a potential channel to use when sending this message, and any other details related to
+    use of that channel.
+- name: OmniReqDetailsForDefault
+  fields: 2
+  description: Contains properties specifying to the service how to construct the message for any channel where
+    the equivalent details under `message` are not provided for it.
+- name: OmniReqDetailsForEmail
+  fields: 2
+  description: Contains properties specifying to the service how to construct the message for this channel.
+- name: OmniReqDetailsForMMS
+  fields: 2
+  description: Contains properties specifying to the service how to construct the message for this channel.
+- name: OmniReqDetailsForRCS
+  fields: 2
+  description: Contains properties specifying to the service how to construct the message for this channel.
+- name: OmniReqDetailsForSMS
+  fields: 2
+  description: Contains properties specifying to the service how to construct the message for this channel.
+- name: OmniReqDetailsForViber
+  fields: 2
+  description: Contains properties specifying to the service how to construct the message for this channel.
+- name: OmniReqDetailsForWA
+  fields: 2
+  description: Contains properties specifying to the service how to construct the message for this channel.
+- name: OmniReqRecipient
+  fields: 2
+  description: Contains properties specifying the contact information needed to communicate with a recipient for
+    a particular channel. At least one sub-property must be included. If the `phone_number` parameter is n
+- name: Original
+  fields: 2
+  description: Contains the submitted email address exactly as provided and its initial validity evaluation.
+- name: PatchVerificationStateRequest
+  fields: 2
+  description: Payload for request to update a verification process.
+- name: PatchVerificationStateResponse
+  fields: 1
+  description: Succesful response when updating a verification process.
+- name: PhoneType
+  fields: 4
+- name: PostVerificationRequest
+  fields: 7
+  description: Payload for creating a verification process.
+- name: PostVerificationResponse
+  fields: 0
+  description: Succesful response when creating a verification process.
+- name: Recording
+  fields: 4
+- name: RecordingWithDetail
+  fields: 0
+- name: ResponseStatus
+  fields: 0
+- name: RestAPIKey
+  fields: 0
+- name: RestAPIKeyDetails
+  fields: 2
+- name: Risk
+  fields: 3
+  description: Contains properties related to the risk recommendation for the specified phone number.
+- name: RiskInsights
+  fields: 7
+  description: Contains reason code properties with additional info related to the risk recommendation.
+- name: SIMSwapResponse
+  fields: 4
+  description: Properties related to the SIM Swap check for this transaction. This is only included if enabled by
+    our [Customer Support Team](mailto:support@telesign.com).
+- name: SMSVerifySuccessResponse
+  fields: 0
+- name: SVResponse
+  fields: 2
+- name: SVStatus
+  fields: 3
+- name: ScoreNumbering
+  fields: 2
+  description: Contains properties related to the numbering attributes of the specified phone number. This object
+    is only included if enabled by the [Telesign Customer Support Team](mailto:support@telesign.com).
+- name: ScorePhoneType
+  fields: 2
+  description: This object is only included if enabled by the [Telesign Customer Support Team](mailto:support@telesign.com).
+- name: ScoreRisk
+  fields: 3
+  description: Contains properties related to the risk score for the specified phone number. Only returned when
+    this feature has been enabled by the [Telesign Customer Support Team](mailto:support@telesign.com).
+- name: ScoreStatus
+  fields: 7
+  description: Contains the Intelligence package properties that are returned if Verify Plus and `Send risk recommendation
+    details in transaction response` features are enabled.
+- name: Shared
+  fields: 1
+- name: SharedMsgCallbackDetails
+  fields: 2
+- name: SharedNonEmailDetails
+  fields: 1
+- name: SharedResponse
+  fields: 0
+- name: SharedResponseFields
+  fields: 2
+- name: SharedResponseSlim
+  fields: 2
+- name: SlimResponseStatus
+  fields: 2
+- name: SlimStatus
+  fields: 2
+- name: SmartVerifyShared
+  fields: 1
+- name: Status
+  fields: 2
+  description: Contains properties related to the processing status of the transaction.
+- name: SuggestedAction
+  fields: 1
+- name: SuggestedReply
+  fields: 1
+- name: Template
+  fields: 1
+- name: TemplateButton
+  fields: 1
+  description: Contains properties defining a button included in this template.
+- name: TemplateCreationDetails
+  fields: 0
+- name: TemplateDetails
+  fields: 0
+- name: TemplateRecord
+  fields: 0
+- name: TemplateSection
+  fields: 1
+  description: Contains properties defining a section in a list of options included in this template.
+- name: TemplateSpecifyRequest
+  fields: 1
+  description: Contains properties related to the template set up for use with Verify API.
+- name: TemplateSuggestedAction
+  fields: 5
+  description: 'Contains properties that define a call-to-action element to include in this template. Supported
+    for WhatsApp templates only. [Variables](/enterprise/docs/messaging-create-whatsapp-template#variables) '
+- name: Transcription
+  fields: 2
+  description: Contains additional properties related to the transcript.
+- name: UserDetails
+  fields: 4
+- name: VerificationRecipient
+  fields: 3
+  description: Contains properties with the recipient identifier for a [verification process](/enterprise/docs/verify-api-get-started#key-terms).
+- name: Verify
+  fields: 2
+  description: Contains properties related to the status of a verification transaction.
+- name: VerifyPlusResPackages
+  fields: 4
+- name: VoiceStatus
+  fields: 2
+- name: WAppMsgCallbackDetails
+  fields: 1
+- name: additionalInfo
+  fields: 3
+  description: Contains properties relevant when the message sent with this transaction is one of several parts
+    of a longer message that was split. Only appears if message-splitting is enabled for your account. Cont
+- name: body
+  fields: 1
+- name: caller-id-av-response
+  fields: 5
+- name: contact-object
+  fields: 14
+  description: Contains contact information for this phone number. You will only see this in your response if you
+    used the associated identity attribute (Contact) and Telesign has enabled it for your account. See *[
+- name: errorObject
+  fields: 2
+  description: Contains properties related to an error that occurred during processing of the request.
+- name: failState
+  fields: 0
+- name: finalize-av-response
+  fields: 6
+- name: footer
+  fields: 1
+- name: get-av-status-response
+  fields: 4
+- name: getPhoneIdLiveResponse
+  fields: 9
+- name: getPhoneIdNDResponse
+  fields: 5
+- name: getPhoneIdResponse
+  fields: 9
+- name: getStatusResponse
+  fields: 6
+- name: header
+  fields: 1
+- name: initiate-av-response
+  fields: 7
+- name: largerErrorObject
+  fields: 0
+- name: postBulkSMSResponse
+  fields: 4
+- name: postEmailIDRequestBody
+  fields: 5
+- name: postEmailIntResponse
+  fields: 5
+- name: postMessagingResponse
+  fields: 0
+- name: postPhoneIDRequestBody
+  fields: 5
+- name: postPhoneIdResponse
+  fields: 20
+- name: postSMSSuccessResponse
+  fields: 0
+- name: postScoreResponse
+  fields: 10
+- name: putCompletionResponse
+  fields: 4
+- name: reqAgeVerify
+  fields: 1
+  description: 'Includes the Age Verify identity attribute in processing your request. Pass an empty object to use
+    the minimum legal age of the country as the age threshold. See [Phone ID - Identity signals: Age Veri'
+- name: resAgeVerify
+  fields: 1
+  description: Contains properties related to the use of the Age Verify identity attribute for this request.
+- name: resAgeVerifySuccess
+  fields: 0
+- name: resBreachedNumCheck
+  fields: 4
+  description: 'Contains properties related to the use of the Breached Data identity attribute for this request.
+    See [Phone ID - Identity attributes: Breached Data](/enterprise/docs/phone-id-identity-attributes-breac'
+- name: sendVoiceCodeResponse
+  fields: 0
+- name: sharedResSchema
+  fields: 4
+- name: sharedResponseSchema
+  fields: 4
+- name: status
+  fields: 3
+  description: Contains details about the request status.
+- name: statusObject
+  fields: 2
+  description: Contains properties related to the processing status of the transaction.
+- name: tokenResponse
+  fields: 1
+- name: verifyDetails
+  fields: 2
+  description: Contains properties about the status of the verification attempt by the end user (if any).
+- name: voiceDetails
+  fields: 1
+relationships:
+- from: AccountDetails
+  to: UserDetails
+  type: has_many
+  via: users
+- from: Account
+  to: UserDetails
+  type: has_many
+  via: users
+- from: SharedResponseFields
+  to: Status
+  type: has_one
+  via: status
+- from: postScoreResponse
+  to: Location
+  type: has_one
+  via: location
+- from: postScoreResponse
+  to: Numbering
+  type: has_one
+  via: numbering
+- from: postScoreResponse
+  to: PhoneType
+  type: has_one
+  via: phone_type
+- from: postScoreResponse
+  to: Blocklisting
+  type: has_one
+  via: blocklisting
+- from: postScoreResponse
+  to: Carrier
+  type: has_one
+  via: carrier
+- from: postScoreResponse
+  to: Risk
+  type: has_one
+  via: risk
+- from: postScoreResponse
+  to: RiskInsights
+  type: has_one
+  via: risk_insights
+- from: postPhoneIdResponse
+  to: PhoneType
+  type: has_one
+  via: phone_type
+- from: postPhoneIdResponse
+  to: Blocklisting
+  type: has_one
+  via: blocklisting
+- from: postPhoneIdResponse
+  to: Numbering
+  type: has_one
+  via: numbering
+- from: postPhoneIdResponse
+  to: Location
+  type: has_one
+  via: location
+- from: postPhoneIdResponse
+  to: resAgeVerifySuccess
+  type: has_one
+  via: age_verify
+- from: postPhoneIdResponse
+  to: resBreachedNumCheck
+  type: has_one
+  via: breached_number_check
+- from: postPhoneIdResponse
+  to: Carrier
+  type: has_one
+  via: carrier
+- from: postPhoneIdResponse
+  to: contact-object
+  type: has_one
+  via: contact
+- from: postPhoneIdResponse
+  to: contact-object
+  type: has_one
+  via: contact_plus
+- from: ExtendedResponse
+  to: Location
+  type: has_one
+  via: LOCATION
+- from: ExtendedResponse
+  to: PhoneType
+  type: has_one
+  via: PHONETYPE
+- from: NumMaskSessionData
+  to: NumMaskPhoneNumberDetails
+  type: has_one
+  via: phone_number_2
+- from: NumMaskSessionData
+  to: NumMaskPhoneNumberDetails
+  type: has_one
+  via: phone_number_1
+- from: NumMaskResSchema
+  to: NumMaskStatus
+  type: has_one
+  via: status
+- from: NumMaskResSchema
+  to: NumMaskSessionData
+  type: has_one
+  via: session_data
+- from: postBulkSMSResponse
+  to: BulkSMSStatus
+  type: has_one
+  via: status
+- from: postBulkSMSResponse
+  to: BulkSMSError
+  type: has_many
+  via: errors
+- from: putCompletionResponse
+  to: errorObject
+  type: has_many
+  via: errors
+- from: SharedResponseSlim
+  to: SlimStatus
+  type: has_one
+  via: status
+- from: SuggestedAction
+  to: TemplateSuggestedAction
+  type: has_many
+  via: suggested_action
+- from: DeliveryStatusNotification
+  to: Status
+  type: has_one
+  via: status
+- from: SharedMsgCallbackDetails
+  to: MsgStatus
+  type: has_one
+  via: status
+- from: getPhoneIdResponse
+  to: Numbering
+  type: has_one
+  via: numbering
+- from: SVResponse
+  to: SVStatus
+  type: has_one
+  via: status
+- from: sharedResponseSchema
+  to: errorObject
+  type: has_many
+  via: errors
+- from: VerifyPlusResPackages
+  to: ScorePhoneType
+  type: has_one
+  via: phone_type
+- from: VerifyPlusResPackages
+  to: ScoreNumbering
+  type: has_one
+  via: numbering
+- from: VerifyPlusResPackages
+  to: SIMSwapResponse
+  type: has_one
+  via: sim_swap
+- from: VerifyPlusResPackages
+  to: ScoreRisk
+  type: has_one
+  via: risk
+- from: getStatusResponse
+  to: errorObject
+  type: has_many
+  via: errors
+- from: getStatusResponse
+  to: additionalInfo
+  type: has_one
+  via: additional_info
+- from: PostVerificationRequest
+  to: VerificationRecipient
+  type: has_one
+  via: recipient
+- from: PostVerificationRequest
+  to: TemplateSpecifyRequest
+  type: has_one
+  via: message_template
+- from: PostVerificationResponse
+  to: VerificationRecipient
+  type: has_one
+  via: recipient
+- from: GetVerificationResponse
+  to: VerificationRecipient
+  type: has_one
+  via: recipient
+- from: GetVerificationResponse
+  to: InnerVerificationMethodStatus
+  type: has_many
+  via: inner_methods
+- from: PatchVerificationStateResponse
+  to: SlimResponseStatus
+  type: has_one
+  via: status
+- from: sharedResSchema
+  to: errorObject
+  type: has_many
+  via: errors
+- from: sharedResSchema
+  to: status
+  type: has_one
+  via: status
+- from: sendVoiceCodeResponse
+  to: verifyDetails
+  type: has_one
+  via: verify
+- from: sendVoiceCodeResponse
+  to: voiceDetails
+  type: has_one
+  via: voice

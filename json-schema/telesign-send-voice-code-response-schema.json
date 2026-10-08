@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-send-voice-code-response-schema.json",
+  "title": "sendVoiceCodeResponse",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-voice-verify-api-openapi.yml#/components/schemas/sendVoiceCodeResponse",
+  "allOf": [
+    {
+      "$ref": "#/$defs/sharedResSchema"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "verify": {
+          "$ref": "#/$defs/verifyDetails"
+        },
+        "voice": {
+          "$ref": "#/$defs/voiceDetails"
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "errorObject": {
+      "title": "errorObject",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "A numeric code specifying which error occurred."
+        },
+        "description": {
+          "type": "string",
+          "description": "Text describing the error that occurred."
+        }
+      },
+      "description": "Contains properties related to an error that occurred during processing of the request."
+    },
+    "sharedResSchema": {
+      "title": "sharedResSchema",
+      "type": "object",
+      "properties": {
+        "reference_id": {
+          "type": "string",
+          "description": "A unique, randomly generated hex value that identifies your web service request."
+        },
+        "sub_resource": {
+          "type": "string",
+          "description": "The sub-resource in the URI path from your original request to initiate this transaction. Indicates which form of verification you used."
+        },
+        "errors": {
+          "type": "array",
+          "description": "Contains an object for each error condition that resulted from the request.",
+          "items": {
+            "$ref": "#/$defs/errorObject"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        }
+      }
+    },
+    "status": {
+      "title": "status",
+      "type": "object",
+      "description": "Contains details about the request status.",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "A numeric code indicating the processing status of this request."
+        },
+        "description": {
+          "type": "string",
+          "description": "A text description of the status code."
+        },
+        "updated_on": {
+          "type": "string",
+          "description": "An [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) timestamp indicating when the request status was updated. "
+        }
+      },
+      "required": [
+        "code",
+        "description",
+        "updated_on"
+      ]
+    },
+    "verifyDetails": {
+      "title": "verifyDetails",
+      "type": "object",
+      "description": "Contains properties about the status of the verification attempt by the end user (if any).",
+      "properties": {
+        "code_state": {
+          "type": "string",
+          "enum": [
+            "VALID",
+            "INVALID",
+            "UNKNOWN",
+            "EXPIRED",
+            "MAX_ATTEMPTS_EXCEEDED"
+          ],
+          "description": "Indicates whether the verification code you provided in your request matches that sent by Telesign to the end-user. Possible values are: \n* `VALID` - The codes match. \n* `INVALID` - The codes do not match.\n* `EXPIRED` - The match was attempted after the end of the validity period for the code.\n* `MAX_ATTEMPTS_EXCEEDED` - The match was attempted after the end user already had made the maximum allowed number of attempts for the code.\n* `UNKNOWN` - Any other state."
+        },
+        "code_entered": {
+          "type": "string",
+          "description": "If the end user entered a code, what they entered is provided here."
+        }
+      },
+      "required": [
+        "code_state",
+        "code_entered"
+      ]
+    },
+    "voiceDetails": {
+      "title": "voiceDetails",
+      "type": "object",
+      "properties": {
+        "caller_id": {
+          "type": "string",
+          "description": "The [sender ID](https://support.telesign.com/s/article/What-is-a-Sender-ID) used for the call."
+        }
+      }
+    }
+  }
+}

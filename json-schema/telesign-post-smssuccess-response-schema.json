@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-post-smssuccess-response-schema.json",
+  "title": "postSMSSuccessResponse",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-engage-api-openapi.yml#/components/schemas/postSMSSuccessResponse",
+  "allOf": [
+    {
+      "$ref": "#/$defs/SharedResponseSlim"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "phone_number_modified": {
+          "type": "string",
+          "description": "Indicates whether the end user's phone number provided in the request was modified before processing by Telesign to increase message deliverability.\nContact our [Customer Support Team](mailto:support@telesign.com) to enable this feature. Possible values are `\"True\"` and `\"False\"`."
+        },
+        "external_id": {
+          "description": "The customer-generated ID for this transaction that was provided in the request. If the `external_id` parameter was not included in the request, the value here is `null`.",
+          "type": "string"
+        },
+        "cleansed_phone_number": {
+          "type": "string",
+          "description": "The corrected version of the submitted phone number returned in the response after common formatting issues are fixed to improve deliverability. If there are no changes, the original phone number from the request is returned. Contact our [Customer Support Team](support@telesign.com) to enable this feature."
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "SharedResponseSlim": {
+      "title": "SharedResponseSlim",
+      "type": "object",
+      "properties": {
+        "reference_id": {
+          "type": "string",
+          "description": "A unique, randomly generated hex value that identifies your web service request."
+        },
+        "status": {
+          "$ref": "#/$defs/SlimStatus"
+        }
+      },
+      "required": [
+        "reference_id",
+        "status"
+      ]
+    },
+    "SlimStatus": {
+      "title": "SlimStatus",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "A numeric code that indicates the status of your transaction."
+        },
+        "description": {
+          "type": "string",
+          "description": "Text describing the status of your transaction."
+        }
+      },
+      "required": [
+        "code",
+        "description"
+      ]
+    }
+  }
+}

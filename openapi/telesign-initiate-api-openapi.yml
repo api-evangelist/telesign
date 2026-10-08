@@ -1,0 +1,776 @@
+openapi: 3.2.0
+info:
+  title: Telesign Initiate API
+  version: '1.0'
+  contact:
+    name: Telesign Customer Support Team
+    email: support@telesign.com
+  description: 'Operations tagged Initiate across 2 of this provider''s published API definitions: telesign-app-verify-api-openapi.json, telesign-silent-verify-api-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://rest-ww.telesign.com
+- url: https://verify.telesign.com
+security:
+- Basic: []
+tags:
+- name: Initiate
+paths:
+  /v1/verify/auto/voice/initiate:
+    post:
+      description: 'Use this endpont to initiate verification of the specified phone number using the Telesign App Verify API.
+
+
+        To add this product to your account, contact a Telesign expert. This product is available for Full-service accounts only.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) and Digest
+
+        * **Encoding:** Accepts only UTF-8 encoded unicode characters as inputs
+
+        * **Accepts:** `application/x-www-form-urlencoded`
+
+        * **Required headers:** `Content-Type - application/x-www-form-urlencoded`
+
+        * **Rate limit:** Default rate limits by product'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                phone_number:
+                  description: Your end user's phone number, including the country code.
+                  type: string
+                  example: '11234567890'
+                carrier:
+                  type: string
+                  description: 'The name of the company providing communication services for the device. This parameter takes the form of a string that can be up to 32 characters long. '
+                connection_type:
+                  type: string
+                  description: The type of connection the device uses, such as WiFi or cellular. This parameter is an integer up to 3 characters long.
+                device_icc:
+                  type: string
+                  description: The international country code for the carrier for the device. This is an integer that is 3 characters long.
+                device_phone_number:
+                  type: string
+                  description: The phone number associated with the device. This parameter is a string that can be up to 32 characters long.
+                is_roaming:
+                  type: string
+                  description: Whether the device is considered to be roaming in the current network, for Global System for Mobile Communications (GSM) purposes. It is an integer that is 1 character long.
+                is_voice_capable:
+                  type: string
+                  description: 'Whether the device is capable of sending and receiving voice calls and messages. It is an integer that is 1 character long. '
+                network_type:
+                  type: string
+                  description: 'The type of network the device is in. It is an integer that is 3 characters long. '
+                os_version:
+                  type: string
+                  description: The version of the operating system the device uses.
+                  minLength: 8
+                  maxLength: 8
+                platform_version:
+                  type: string
+                  description: The version of Android the device uses.
+                  minLength: 8
+                  maxLength: 8
+                verify_code:
+                  type: string
+                  description: If you choose to specify a code (it should be five digits long), then you would add it to your initiate request as a string as shown in the example. You must have this feature enabled, speak with our Customer Support Team for assistance.
+                  example: '20085'
+                verification_timeout:
+                  description: The time in seconds that the handset is going to wait for the verification call to arrive, from the time it receives a successful initiate response. The call time is limited to 45 seconds.
+                  type: integer
+              required:
+              - phone_number
+      responses:
+        '200':
+          description: "Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/initiate-av-response'
+              examples:
+                Response:
+                  value:
+                    resource_uri: /v1/auto/voice/finalize
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    sub_resource: auto_verify_initiate
+                    errors: []
+                    status:
+                      updated_on: '2025-03-05T21:47:07.962922Z'
+                      code: 2400
+                      description: Pending
+                    prefix: '4478730'
+                    verify_code: '20085'
+        '400':
+          description: "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n\n| Error code | Description |\n|------------|-------------|\n| -10001 | Not Allowed Host (indicates that the IP address you are connecting from is not authorized to access the service) -or- Unsupported product name | \n| -30002 | Account not activated |\n| -30003 | Account limit reached |\n| -30014 | Invalid App Verify API finalize | \n| -40006 | Bad Request | \n| -40007 | Rate limit exceeded | \n| -40022 | App Verify API not supported | \n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400-av-response'
+              examples:
+                Response:
+                  value:
+                    resource_uri: /v1/verify/6656AA192038075C91D2D27C4538A13F
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    sub_resource: auto_verify_initiate
+                    errors:
+                    - code: -10001
+                      description: 'Invalid Request: CountryCode Parameter'
+                    status:
+                      updated_on: '2025-03-18T18:31:21.887826Z'
+                      code: 500
+                      description: Transaction not attempted
+        '401':
+          description: "Unauthorized, the request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n\n| Error codes | Description |\n|-------------|-------------|\n| -10009 | Invalid source IP address |\n| -20002 | This product is not enabled for this customer ID |\n| -20003 | This feature is not enabled for this CustomerID  |\n| -30002 | CustomerID Account Not Activated | \n| -30003 | CustomerID New Account Limit Reached |\n| -40002 | Not Authorized | \n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401-av-response'
+              examples:
+                Response:
+                  value:
+                    resource_uri: /v1/verify/5653CD19B3180E5C91D3EE1513C83A2E
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    sub_resource: auto_verify_initiate
+                    errors:
+                    - code: -20002
+                      description: This product is not enabled for this CustomerID.
+                    status:
+                      updated_on: '2025-02-11T04:31:06.490271Z'
+                      code: 501
+                      description: Not authorized
+        '404':
+          description: "Not Found, the server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n\n| Error codes | Description |\n|-------------|-------------|\n| -40004 | Resource not found | \n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-av-response'
+              examples:
+                Response:
+                  value:
+                    reference_id: null
+                    sub_resource: null
+                    status:
+                      updated_on: '2025-02-10T13:49:36.722550Z'
+                      code: 500
+                      description: Transaction not attempted
+                    errors:
+                    - code: -40004
+                      description: Resource Not Found
+        '405':
+          description: "Indicates that the request method is known by the server but has been disabled and cannot be used. \n\n| Error codes | Description |\n|-------------|-------------|\n| -40005 | Method not allowed |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/405-av-response'
+              examples:
+                Response:
+                  value:
+                    reference_id: null
+                    sub_resource: null
+                    status:
+                      updated_on: '2025-02-10T13:50:03.589088Z'
+                      code: 500
+                      description: Transaction not attempted
+                    errors:
+                    - code: -40005
+                      description: Method Not Allowed
+        '429':
+          description: "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n\n| Error code | Description |\n|------------|-------------|\n| -40008 | [Product method] exceed transaction hard cap; Request denied |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/405-av-response'
+              examples:
+                Response:
+                  value:
+                    resource_uri: /v1/verify/6653CD83E47C075C91D037301978F5CF
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    sub_resource: auto_verify_initiate
+                    errors:
+                    - code: -40008
+                      description: AutoVerify API Call exceeded transaction hard cap. Request denied.
+                    status:
+                      updated_on: '2025-02-11T05:00:06.334800Z'
+                      code: 500
+                      description: Transaction not attempted
+        '503':
+          description: "Service Unavailable, system unavailable, try again. Error codes are listed in the `error` parameter in the response. \n\n| Error Code | Description |\n|-----------|-------------|\n| -90001 | System unavailable; please try again later |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/503-av-response'
+              examples:
+                Response:
+                  value:
+                    reference_id: null
+                    sub_resource: null
+                    status:
+                      updated_on: '2024-01-17T22:38:49.184280Z'
+                      code: 500
+                      description: Transaction not attempted
+                    errors:
+                    - code: -90001
+                      description: System Unavailable, Please try again later.
+      operationId: sendAppVerifyCode
+      summary: Send call with verification code
+      tags:
+      - Initiate
+    servers:
+    - url: https://rest-ww.telesign.com
+  /silent/initiate:
+    parameters: []
+    post:
+      responses:
+        '200':
+          description: '**Success.** Verification flow initiated.
+
+
+            Code|Description
+
+            --|--
+
+            4501|Success'
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    verification:
+                      type: object
+                      description: Contains properties to pass to the client, instructing them on how to make their request directly to the carrier.
+                      properties:
+                        verification_url:
+                          type: string
+                          example: https://verification-url.hei-partner.com
+                          description: A URL for the carrier that you should pass to the client. The client will then hit this URL directly.
+                        method:
+                          type: string
+                          example: POST
+                          description: The HTTP method to pass to the client, for them to use when making their call to the carrier.
+                        expected_response_code:
+                          type: integer
+                          example: 200
+                          description: An HTTP status code to pass to the client, which they should expect in a successful response after making their call to the carrier.
+                        post_body:
+                          type:
+                          - object
+                          - 'null'
+                          description: A schema to pass to the client, for them to use in the request body when they make their call directly to the carrier. If no request body is needed, this value is `null`.
+                        query_string_params:
+                          type:
+                          - object
+                          - 'null'
+                          description: Contains an object to pass to the client, which contains properties and values for each query param that the client should include in the request they make directly to the carrier. If no query parameters are needed, this value is null.
+                          properties:
+                            '{param1_name}':
+                              type: string
+                              example: param1 value
+                              description: 'The first query param and its value. '
+                - $ref: '#/components/schemas/SVResponse'
+              examples:
+                Response:
+                  value:
+                    verification_url: https://verification-url.hei-partner.com
+                    method: POST
+                    expected_response_code: 200
+                    post_body:
+                      phone_number: '15558675309'
+                      external_id: 34g62234
+                    query_string_params:
+                      cache_buster: 53g350
+                    reference_id: 630d7b76-fee1-4036-9c87-411af82af44c
+                    status:
+                      code: 200
+                      description: Success
+                      updated_on: '2020-08-27T17:28:49.559307'
+        '400':
+          description: '**Bad Request**
+
+
+            Code | Description
+
+            --|--
+
+            10004|Bad request
+
+            11000|Invalid value for parameter phone_number
+
+            40003|No end client data found on records
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SVResponse'
+              examples:
+                response:
+                  value:
+                    reference_id: 630d7b76-fee1-4036-9c87-411af82af44c
+                    status:
+                      code: 10001
+                      description: field required
+                      updated_on: '2020-08-27T17:28:49.559307Z'
+        '401':
+          description: '**Unauthorized**
+
+
+            Code | Description
+
+            --|--
+
+            40002|Not authorized'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SVResponse'
+              examples:
+                response:
+                  value:
+                    reference_id: 630d7b76-fee1-4036-9c87-411af82af44c
+                    status:
+                      code: 40002
+                      description: Not authorized
+                      updated_on: '2020-08-27T17:28:49.559307Z'
+        '408':
+          description: '**Request Timeout**
+
+
+            Code | Description
+
+            --|--
+
+            40001 | Request timeout'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SVResponse'
+              examples:
+                response:
+                  value:
+                    reference_id: 630d7b76-fee1-4036-9c87-411af82af44c
+                    status:
+                      code: 10010
+                      description: Request timeout
+                      updated_on: '2020-08-27T17:28:49.559307Z'
+        '429':
+          description: '**Too Many Requests**
+
+
+            Code | Description
+
+            --|--
+
+            10019|Rate limit exceeded
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SVResponse'
+              examples:
+                response:
+                  value:
+                    reference_id: 630d7b76-fee1-4036-9c87-411af82af44c
+                    status:
+                      code: 10019
+                      description: Rate limit exceeded
+                      updated_on: '2020-08-27T17:28:49.559307Z'
+        '500':
+          description: "**Internal Server Error**\n\nCode | Description\n--|--\n10039\t|Internal Server Error\n45010   |Provider not found to route the request. This is a permanent error probably due to configuration issues. \n"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                response:
+                  value:
+                    reference_id: 630d7b76-fee1-4036-9c87-411af82af44c
+                    status:
+                      code: 10039
+                      description: Internal Server Error
+                      updated_on: '2020-08-27T17:28:49.559307Z'
+        '503':
+          description: '**Service Unavailable**
+
+
+            Code | Description
+
+            --|--
+
+            10000 | System unavailable, please try again later
+
+            45005 |Error on gateway - temporary error
+
+            45006 |Error on gateway - permanent error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SVResponse'
+              examples:
+                response:
+                  value:
+                    reference_id: 630d7b76-fee1-4036-9c87-411af82af44c
+                    status:
+                      code: 4505
+                      description: Error on gateway - temporary error
+                      updated_on: '2020-08-27T17:28:49.559307Z'
+      operationId: createSilentVerifyRequest
+      summary: Create verification request
+      parameters:
+      - in: header
+        name: Content-Type - json
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone_number:
+                  type: string
+                  example: '15558675309'
+                  description: The phone number for the user you want to verify, as digits without spaces or special characters, beginning with the country dialing code.
+                external_id:
+                  type: string
+                  description: Your unique identifier for this request. The response simply echoes the value provided for this parameter.
+                  example: 34g62234
+              required:
+              - phone_number
+        x-examples:
+          application/json:
+            phone_number: '15558675309'
+            external_id: 34g62234
+      description: 'Use this action to initiate silent verification of a user via the Telesign Silent Verify API.
+
+
+        **Note:** Before using the sample code on this page, contact the Telesign Customer Support Team. We will walk you through the necessary onboarding steps before you use the service. This product is for full-service accounts only. **Your request must come from a device with a mobile carrier connection.**
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/json`
+
+        * **Responds with:** `application/json`
+
+        * **Rate limit:** Default rate limits by product'
+      tags:
+      - Initiate
+    servers:
+    - url: https://verify.telesign.com
+components:
+  schemas:
+    400-av-response:
+      title: 400AVResponse
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: A unique, randomly generated hex value that identifies your web service request.
+          example: 0123456789ABCDEF0123456789ABCDEF
+          minLength: 32
+          maxLength: 32
+        sub_resource:
+          type: string
+          description: The name of the subresource accessed.
+        errors:
+          type: array
+          description: Contains an object for each error condition that resulted from the request.
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: A one to five-digit error code (possibly negative) that indicates the type of error that occurred.
+              description:
+                type: string
+                description: A description of the type of error that occurred.
+        status:
+          type: object
+          description: Contains details about the request status.
+          properties:
+            code:
+              type: integer
+              description: A numeric code indicating the processing status of this request.
+            description:
+              type: string
+              description: Text describing the transaction status.
+            updated_on:
+              type: string
+              description: An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp indicating when the transaction status was updated.
+        resource_uri:
+          type: string
+          description: You should disregard this parameter, as it is not currently needed to use the API.
+    405-av-response:
+      title: 405AVResponse
+      type: object
+      properties:
+        reference_id:
+          type:
+          - string
+          - 'null'
+          description: A unique, randomly generated hex value that identifies your web service request.
+          minLength: 32
+          maxLength: 32
+        sub_resource:
+          type:
+          - string
+          - 'null'
+          description: The name of the subresource accessed.
+        errors:
+          type: array
+          description: Contains an object for each error condition that resulted from the request.
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: A one to five-digit error code (possibly negative) that indicates the type of error that occurred.
+              description:
+                type: string
+                description: A description of the type of error that occurred.
+        status:
+          type: object
+          description: Contains details about the request status.
+          properties:
+            code:
+              type: integer
+              description: A numeric code indicating the processing status of this request.
+            description:
+              type: string
+              description: Text describing the transaction status.
+            updated_on:
+              type: string
+              description: An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp indicating when the transaction status was updated.
+    401-av-response:
+      title: 401AVResponse
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: A unique, randomly generated hex value that identifies your web service request.
+          minLength: 32
+          maxLength: 32
+        sub_resource:
+          type: string
+          description: The name of the subresource accessed.
+        errors:
+          type: array
+          description: Contains an object for each error condition that resulted from the request.
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: A one to five-digit error code (possibly negative) that indicates the type of error that occurred.
+              description:
+                type: string
+                description: A description of the type of error that occurred.
+        status:
+          type: object
+          description: Contains details about the request status.
+          properties:
+            code:
+              type: integer
+              description: 'A numeric code indicating the processing status of this request.
+
+                '
+            description:
+              type: string
+              description: Text describing the transaction status.
+            updated_on:
+              type: string
+              description: An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp indicating when the transaction status was updated.
+        resource_uri:
+          type: string
+          description: You should disregard this parameter, as it is not currently needed to use the API.
+    503-av-response:
+      title: 503AVResponse
+      type: object
+      properties:
+        reference_id:
+          type:
+          - string
+          - 'null'
+          description: A unique, randomly generated hex value that identifies your web service request.
+          minLength: 32
+          maxLength: 32
+        sub_resource:
+          type:
+          - string
+          - 'null'
+          description: The name of the subresource accessed.
+        errors:
+          type: array
+          description: Contains an object for each error condition that resulted from the request.
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: A one to five-digit error code (possibly negative) that indicates the type of error that occurred.
+              description:
+                type: string
+                description: A description of the type of error that occurred.
+        status:
+          type: object
+          description: Contains details about the request status.
+          properties:
+            code:
+              type: integer
+              description: A numeric code indicating the processing status of this request.
+            description:
+              type: string
+              description: Text describing the transaction status.
+            updated_on:
+              type: string
+              description: An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp indicating when the transaction status was updated.
+    initiate-av-response:
+      type: object
+      title: InitiateAVResponse
+      properties:
+        reference_id:
+          type: string
+          description: A unique, randomly generated hex value that identifies your web service request.
+          minLength: 32
+          maxLength: 32
+          example: 0123456789ABCDEF0123456789ABCDEF
+        sub_resource:
+          type: string
+          description: The name of the subresource accessed.
+          example: auto_verify_initiate
+        errors:
+          type: array
+          description: Contains an object for each error condition that resulted from the request.
+          items:
+            type: object
+            description: Contains properties related to an error that occurred during processing of the request.
+            properties:
+              code:
+                type: integer
+                description: A one to five-digit error code (possibly negative) that indicates the type of error that occurred.
+              description:
+                type: string
+                description: A description of the type of error that occurred.
+        status:
+          type: object
+          description: Contains details about the request status.
+          properties:
+            code:
+              type: integer
+              description: "A numeric code indicating the processing status of this request.\n \n| Value | Description | \n|-------|-------------| \n| 2400 | Pending | \n| 2401 | Success | \n| 2402 | Failure | \n| 2403 | Not Attempted | \n| 2404 | Invalid Phone Number | \n| 2405 | Not Supported | \n| 2407 | CallerID prefix did not match | \n| 2408 | Unsupported phone type | \n| 2409 | Verification call not received |\n| 2410 | Please retry verification |\n| 2411 | Verification call failed |\n| 2429 | Call blocked by customer request | \n| 2430 | Call blocked by Telesign | \n"
+              example: 2400
+            description:
+              type: string
+              description: Text describing the transaction status.
+              example: Pending
+            updated_on:
+              type: string
+              description: An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp indicating when the transaction status was updated.
+              example: '2025-03-05T21:47:07.962922Z'
+        resource_uri:
+          type: string
+          description: You should disregard this parameter, as it is not currently needed to use the API.
+        verify_code:
+          type: string
+          description: 'The code you sent us for verification. Obtained from the last five digits of the caller ID.
+
+
+            '
+          example: '20085'
+        prefix:
+          type: string
+          description: The first digits included in the caller ID returned by Telesign. Remove these from the beginning of the caller ID to get the verify code.
+          example: '4478730'
+    404-av-response:
+      title: 404AVResponse
+      type: object
+      properties:
+        reference_id:
+          type:
+          - string
+          - 'null'
+          description: A unique, randomly generated hex value that identifies your web service request.
+          minLength: 32
+          maxLength: 32
+        sub_resource:
+          type:
+          - string
+          - 'null'
+          description: The name of the subresource accessed.
+        errors:
+          type: array
+          description: Contains an object for each error condition that resulted from the request.
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: A one to five-digit error code (possibly negative) that indicates the type of error that occurred.
+              description:
+                type: string
+                description: A description of the type of error that occurred.
+        status:
+          type: object
+          description: Contains details about the request status.
+          properties:
+            code:
+              type: integer
+              description: A numeric code indicating the processing status of this request.
+            description:
+              type: string
+              description: Text describing the transaction status.
+            updated_on:
+              type: string
+              description: An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp indicating when the transaction status was updated.
+    SVStatus:
+      type: object
+      title: SVStatus
+      properties:
+        code:
+          type: integer
+          description: A numeric code that indicates the status of your transaction.
+        description:
+          type: string
+          description: Text describing the status of your transaction.
+        updated_on:
+          type: string
+          description: A timestamp showing when your transaction status was updated last.
+          example: '2020-08-27T17:28:49.559307Z'
+    SVResponse:
+      title: SVResponse
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: A unique, randomly generated hex value that identifies your web service request.
+          example: 0123456789ABCDEF0123456789ABCDEF
+        status:
+          $ref: '#/components/schemas/SVStatus'
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: Easiest to implement. See [Basic Authentication](/api-reference/authentication#basic-authentication) for more details.
+    Digest:
+      name: Authorization
+      type: apiKey
+      in: header
+      description: See [Digest Authentication](/api-reference/authentication#digest-authentication) for more details.
+x-refined-from:
+- telesign-app-verify-api-openapi.json
+- telesign-silent-verify-api-openapi.json
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

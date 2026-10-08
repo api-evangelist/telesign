@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-post-verification-request-schema.json",
+  "title": "POST Verification request",
+  "description": "Payload for creating a verification process.",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-verify-api-openapi.yml#/components/schemas/PostVerificationRequest",
+  "type": "object",
+  "properties": {
+    "recipient": {
+      "$ref": "#/$defs/VerificationRecipient"
+    },
+    "security_factor": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 10,
+      "description": "A one-time passcode (OTP) to use for this verification process, for all OTP methods. By default, Telesign randomly generates a six-digit numeric OTP for you and inserts it into messages to your end users. You can override the default behavior by including your own OTP here. Only numeric characters are supported. Contact [Telesign Customer Support](mailto:support@telesign.com) to change the required OTP length configured for your account."
+    },
+    "verification_policy": {
+      "$ref": "#/$defs/VerificationPolicy"
+    },
+    "device_registration": {
+      "title": "Does this verification represent a push registration?",
+      "type": "string",
+      "description": "This verification process is for the purpose of registering a device for Push Verify. See [Verify API - Register a new device with Push Verify](/enterprise/docs/verify-api-register-a-new-device-with-push-verify) for further context on when to use this. When used with Push Verify, the value of this parameter is `stamp`."
+    },
+    "external_id": {
+      "type": "string",
+      "description": "A customer-generated ID for this transaction. The response simply echoes the value provided for this parameter.",
+      "maxLength": 100
+    },
+    "message_template": {
+      "$ref": "#/$defs/TemplateSpecifyRequest"
+    },
+    "voice_lang": {
+      "type": "string",
+      "description": "A [supported language code](/enterprise/docs/voice-supported-languages-for-text-to-speech) specifying the language the service will use when delivering the OTP message. If a code isn't provided, the default language, English (`en-US`), is used to deliver the OTP message."
+    }
+  },
+  "required": [
+    "recipient"
+  ],
+  "$defs": {
+    "TemplateSpecifyRequest": {
+      "title": "Specify template request",
+      "type": "object",
+      "description": "Contains properties related to the template set up for use with Verify API.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of this template. Use only lowercase alpha characters and underscores. If you do not declare a template, Verify API will use Verify API will use a default template. The same template name must be used for each active channel when utilizing fallback channels because the template name is declared once and then it is available on all of the active channels for the entire verification process."
+        }
+      }
+    },
+    "VerificationMethod": {
+      "title": "Verification Method",
+      "description": "One of the [verification methods](/enterprise/docs/verify-api-get-started#supported-verification-methods) included in a verification policy. Each method employs a Telesign service, such as Silent Verify or Push Verify.",
+      "type": "string",
+      "enum": [
+        "silent",
+        "sms",
+        "push",
+        "rcs",
+        "whatsapp",
+        "email",
+        "voice"
+      ]
+    },
+    "VerificationPolicy": {
+      "title": "Verification Policy",
+      "description": "An ordered set of verification methods and their fallback times that the Verify API uses for this verification process. See [verification policy](/enterprise/docs/verify-api-verification-policy-and-fallback-time) for more details.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "$ref": "#/$defs/VerificationMethod"
+          },
+          "fallback_time": {
+            "type": "integer",
+            "description": "The time window in seconds that the service waits before abandoning the current verification method and then initiating verification using the next method specified in the active [verification policy](/enterprise/docs/verify-api-verification-policy-and-fallback-time). It is possible for the failover to happen earlier if certain failure conditions occur.",
+            "minimum": 30
+          }
+        }
+      }
+    },
+    "VerificationRecipient": {
+      "title": "Verification Recipient",
+      "description": "Contains properties with the recipient identifier for a [verification process](/enterprise/docs/verify-api-get-started#key-terms).",
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "phone_number": {
+          "type": "string",
+          "description": "The recipient's phone number, as digits without spaces or special characters, beginning with the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes)."
+        },
+        "push_app_token": {
+          "type": "string",
+          "description": "Identifies the instance of your mobile application installed on the user's mobile device. This is also called a \"registration token\" in Firebase Cloud Messaging or a \"device token\" in iOS. This is required when using the Push Verify verification method."
+        },
+        "email": {
+          "type": "string",
+          "description": "The recipient's email address."
+        }
+      }
+    }
+  }
+}

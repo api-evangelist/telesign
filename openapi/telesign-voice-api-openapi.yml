@@ -1,0 +1,235 @@
+openapi: 3.2.0
+info:
+  title: Telesign Voice API
+  version: '2.0'
+  contact:
+    name: Telesign Customer Support Team
+    email: support@telesign.com
+  description: 'Operations tagged Voice across 2 of this provider''s published API definitions: telesign-engage-api-voice-openapi.json, telesign-engage-api-voice-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://rest-ww.telesign.com/v2
+security:
+- Basic: []
+tags:
+- name: Voice
+paths:
+  /voice:
+    post:
+      summary: Send an action
+      operationId: sendVoiceAction
+      responses:
+        '200':
+          $ref: '#/components/responses/resVoice200'
+        '202':
+          $ref: '#/components/responses/resVoice202'
+        '400':
+          $ref: '#/components/responses/resVoice400'
+        '401':
+          $ref: '#/components/responses/resVoice401'
+        '429':
+          $ref: '#/components/responses/resVoice429'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Action'
+            examples:
+              Example:
+                value:
+                  method: dial
+                  params:
+                    to: '15555551212'
+                    caller_id_number: '15554441313'
+                    send_dtmf: '6458'
+                    external_id: 4142b474-d65d-4265-a5fa-a581b1fe6101
+                    is_primary: true
+      description: 'Send an action to Telesign Voice. For more details on the object structure of each specific action type, see the *Voice - Actions* page.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Protocols:** HTTPS
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/json` (use JSON-RPC format)
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:** `Content-Type - application/json`
+
+        * **Rate limit:** Default rate limits by product'
+      tags:
+      - Voice
+    servers:
+    - url: https://rest-ww.telesign.com/v2
+components:
+  schemas:
+    VoiceStatus:
+      title: VoiceStatus
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: A Telesign ID that uniquely identifies this Voice session.
+          example: 0123456789ABCDEF0123456789ABCDEF
+        status:
+          type: string
+          description: The current state of the session, after processing the action from your request.
+    Action:
+      title: Action
+      type: object
+      properties:
+        method:
+          type: string
+          description: The type of the action included in this request.
+          example: dial
+        params:
+          type: object
+          description: Contains sub-properties associated with this action type. For more details on the object structure of each specific action type, see the *[Voice - Actions](/enterprise/reference/voice-actions)* page.
+  responses:
+    resVoice200:
+      description: 'The request was successfully processed, but the service could not complete the action.
+
+
+        |Error string | Description|
+
+        |--|--|
+
+        | `premium_to_number_rejected` | Phone number (`to`) in the request has the unsupported number type \"premium\". Action rejected. |
+
+        | `to_number_blocked_by_country` | Phone number (`to`) in the request is blocked based on its country of origin. Blocked countries can be specified either by you in the customer portal, or by Telesign. Action rejected. |
+
+        | `to_number_blocked_by_customer` | Phone number (`to`) in the request is on the blocked list in the customer portal. Action rejected.|
+
+        | `to_number_blocked_by_telesign` | Phone number (`to`) in the request is blocked by Telesign for all requests. Action rejected. |'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/VoiceStatus'
+            - type: object
+              properties:
+                status:
+                  type: string
+                  example: premium_to_number_rejected
+          examples:
+            Example:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status: premium_to_number_rejected
+    resVoice429:
+      description: '|Error string|Description|
+
+        |--|--|
+
+        | `rate_limit_exceeded` | Account has exceeded rate limit for either outbound or inbound requests. Action rejected. |'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/VoiceStatus'
+            - type: object
+              properties:
+                status:
+                  type: string
+                  example: rate_limit_exceeded
+          examples:
+            Example 1:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status: rate_limit_exceeded
+    resVoice400:
+      description: '|Error string|Description|
+
+        |--|--|
+
+        | `caller_id_number_not_owned` | Virtual number (`caller_id_number`) in the request is not owned by you. Action rejected. |
+
+        | `caller_id_number_not_provided` | Request does not include a virtual number (`caller_id_number`). Action rejected. |
+
+        | `invalid_phone_number` | Phone number (`to`) in the request is invalid. Action rejected. |
+
+        | `to_number_not_provided` | Request does not include a phone number (`to`). Action rejected. |
+
+        | `unsupported_call_state` | Action in the request is not supported for current call state, or not supported at all for this event. Action rejected. | '
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/VoiceStatus'
+            - type: object
+              properties:
+                status:
+                  type: string
+                  example: caller_id_number_not_owned
+          examples:
+            Example:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status: caller_id_number_not_owned
+    resVoice401:
+      description: '|Error string|Description|
+
+        |--|--|
+
+        | `credentials_not_provided` | Customer ID and/or API key missing from the authorization header of the request. Action rejected.|
+
+        | `not_authorized` | Could not authenticate with the Customer ID and API key in the authorization header of the request. Action rejected. |'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/VoiceStatus'
+            - type: object
+              properties:
+                status:
+                  type: string
+                  example: credentials_not_provided
+          examples:
+            Example:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status: credentials_not_provided
+    resVoice202:
+      description: '**Success.** The request was successfully processed and the action was successfully taken.
+
+
+        Status string|Description
+
+        --|--
+
+        `dial_accepted`|The dial action was completed successfully and the end user answered the call.'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/VoiceStatus'
+            - type: object
+              properties:
+                status:
+                  type: string
+                  example: dial_accepted
+                external_id:
+                  type: string
+                  example: 4142b474-d65d-4265-a5fa-a581b1fe6101
+                  description: An identifier generated by you and included in this request. If you did not include an external ID in the request, this property is not included.
+          examples:
+            Example:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status: dial_accepted
+                external_id: 4142b474-d65d-4265-a5fa-a581b1fe6101
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+x-refined-from:
+- telesign-engage-api-voice-openapi.json
+- telesign-engage-api-voice-openapi.yml
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

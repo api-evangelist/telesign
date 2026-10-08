@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-post-verification-response-schema.json",
+  "title": "POST Verification Response",
+  "description": "Succesful response when creating a verification process.",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-verify-api-openapi.yml#/components/schemas/PostVerificationResponse",
+  "allOf": [
+    {
+      "$ref": "#/$defs/SharedResponseSlim"
+    },
+    {
+      "title": "Verification Response",
+      "description": "Successful response when creation of a new verification process is requested.",
+      "type": "object",
+      "properties": {
+        "reference_id": {
+          "type": "string",
+          "description": "A unique, randomly generated hex value that identifies this verification process.",
+          "minLength": 32,
+          "maxLength": 32
+        },
+        "mobile_app_token": {
+          "type": "string",
+          "description": "An access token that the Telesign Android SDK must include to interact with this verification process via Telesign REST API. Your mobile app sends this token to your instance of the Telesign Android SDK. The token expires after five minutes."
+        },
+        "recipient": {
+          "$ref": "#/$defs/VerificationRecipient"
+        },
+        "state": {
+          "type": "string",
+          "description": "The current state of this verification process.",
+          "enum": [
+            "CREATED",
+            "ONGOING",
+            "REJECTED",
+            "FAILED",
+            "VERIFIED",
+            "CANCELED"
+          ]
+        },
+        "verification_policy": {
+          "$ref": "#/$defs/VerificationPolicy"
+        },
+        "device_registration": {
+          "description": "This verification process is for the purpose of registering a device for Push Verify. See [Verify API - Register a new device with Push Verify](/enterprise/docs/verify-api-register-a-new-device-with-push-verify) for further context on when to use this. When used with Push Verify, the value of this parameter is `stamp`.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reference_id",
+        "recipient",
+        "state"
+      ]
+    }
+  ],
+  "$defs": {
+    "SharedResponseSlim": {
+      "title": "Shared Response Slim",
+      "type": "object",
+      "properties": {
+        "reference_id": {
+          "type": "string",
+          "description": "A unique, randomly generated hex value that identifies this web service request."
+        },
+        "status": {
+          "$ref": "#/$defs/SlimResponseStatus"
+        }
+      },
+      "required": [
+        "reference_id",
+        "status"
+      ]
+    },
+    "SlimResponseStatus": {
+      "title": "Slim Response Status",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "A numeric code that indicates the status of your transaction."
+        },
+        "description": {
+          "type": "string",
+          "description": "Text describing the status of your transaction."
+        }
+      },
+      "required": [
+        "code",
+        "description"
+      ]
+    },
+    "VerificationMethod": {
+      "title": "Verification Method",
+      "description": "One of the [verification methods](/enterprise/docs/verify-api-get-started#supported-verification-methods) included in a verification policy. Each method employs a Telesign service, such as Silent Verify or Push Verify.",
+      "type": "string",
+      "enum": [
+        "silent",
+        "sms",
+        "push",
+        "rcs",
+        "whatsapp",
+        "email",
+        "voice"
+      ]
+    },
+    "VerificationPolicy": {
+      "title": "Verification Policy",
+      "description": "An ordered set of verification methods and their fallback times that the Verify API uses for this verification process. See [verification policy](/enterprise/docs/verify-api-verification-policy-and-fallback-time) for more details.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "$ref": "#/$defs/VerificationMethod"
+          },
+          "fallback_time": {
+            "type": "integer",
+            "description": "The time window in seconds that the service waits before abandoning the current verification method and then initiating verification using the next method specified in the active [verification policy](/enterprise/docs/verify-api-verification-policy-and-fallback-time). It is possible for the failover to happen earlier if certain failure conditions occur.",
+            "minimum": 30
+          }
+        }
+      }
+    },
+    "VerificationRecipient": {
+      "title": "Verification Recipient",
+      "description": "Contains properties with the recipient identifier for a [verification process](/enterprise/docs/verify-api-get-started#key-terms).",
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "phone_number": {
+          "type": "string",
+          "description": "The recipient's phone number, as digits without spaces or special characters, beginning with the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes)."
+        },
+        "push_app_token": {
+          "type": "string",
+          "description": "Identifies the instance of your mobile application installed on the user's mobile device. This is also called a \"registration token\" in Firebase Cloud Messaging or a \"device token\" in iOS. This is required when using the Push Verify verification method."
+        },
+        "email": {
+          "type": "string",
+          "description": "The recipient's email address."
+        }
+      }
+    }
+  }
+}

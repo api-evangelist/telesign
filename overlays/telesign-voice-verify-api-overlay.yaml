@@ -1,0 +1,17 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Voice Verify API
+  version: 1.0.0
+  x-generated: '2026-10-07'
+  x-method: generated
+extends: ../openapi/_original/telesign-voice-verify-api-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist:
+      provider: telesign
+      harvested: '2026-10-07'
+      source: https://developer.telesign.com/enterprise/openapi/voice-verify-api.json
+      catalog: https://developer.telesign.com/enterprise/.well-known/api-catalog
+      normalized: OpenAPI 3.0.0 -> 3.2.0 (oas32.py), content otherwise verbatim
+      method: searched

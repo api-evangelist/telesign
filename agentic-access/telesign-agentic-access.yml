@@ -1,37 +1,21 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/telesign-phoneid-openapi.yml, openapi/telesign-score-openapi.yml, openapi/telesign-sms-openapi.yml,
-  openapi/telesign-verify-openapi.yml
+source: openapi/telesign-fraud-scoring-api-openapi.yml, openapi/telesign-messaging-api-openapi.yml,
+  openapi/telesign-phone-intelligence-api-openapi.yml, openapi/telesign-verification-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 7
   by_action_class:
-    acting: 5
-    connected: 2
+    acting: 4
+    connected: 3
   by_consequence:
-    write: 4
+    write: 3
     physical: 1
-    read: 2
+    read: 3
   human_in_the_loop_required: 0
 operations:
-- path: /phoneid/{complete_phone_number}
-  method: post
-  operationId: lookupPhoneId
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /score/{complete_phone_number}
   method: post
   operationId: scorePhoneNumber
@@ -69,6 +53,16 @@ operations:
 - path: /messaging/{reference_id}
   method: get
   operationId: getSmsStatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /phoneid/{complete_phone_number}
+  method: post
+  operationId: lookupPhoneId
   x-agentic-access:
     action-class: connected
     consequence: read

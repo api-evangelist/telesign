@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-post-phone-idrequest-body-schema.json",
+  "title": "postPhoneIDRequestBody",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-detect-api-openapi.yml#/components/schemas/postPhoneIDRequestBody",
+  "type": "object",
+  "properties": {
+    "account_lifecycle_event": {
+      "type": "string",
+      "description": "Indicates what stage an end user is in when you make this request. Acceptable values for this parameter are:\n* `create` - For the creation of a new account.\n* `sign-in` - For when an end user signs in to their account.\n* `transact` - For when an end user completes a transaction within their account.\n* `update` - For when an update is performed, such as an update of account information.\n* `delete` - For when an account is deleted."
+    },
+    "external_id": {
+      "type": "string",
+      "description": "A customer-generated ID for this transaction. The response simply echoes the value provided for this parameter."
+    },
+    "originating_ip": {
+      "type": "string",
+      "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2)."
+    },
+    "addons": {
+      "type": "object",
+      "description": "Indicates which identity attributes you want to use with this request and contains any other inputs for use with those identity attributes.",
+      "properties": {
+        "age_verify": {
+          "$ref": "#/$defs/reqAgeVerify"
+        },
+        "active_call_status": {
+          "type": "object",
+          "description": "Includes the Active Call Status identity attribute in processing your request. The value should always be an empty object. See [Phone ID - Identity attributes: Active Call Status](/enterprise/docs/phone-id-identity-attributes-active-call-status) for more details on how to use this feature."
+        },
+        "breached_number_check": {
+          "type": "object",
+          "description": "Includes the Breached Data identity attribute in processing your request. See [Phone ID - Identity attributes: Breached Data](/enterprise/docs/phone-id-identity-attributes-breached-data) for more details on on how to use this feature."
+        },
+        "call_forward_detection": {
+          "type": "object",
+          "description": "Includes the Call Forwarding identity attribute in processing your request. The value should always be an empty object.  See [Phone ID - Identity attributes: Call Forwarding](/enterprise/docs/phone-id-identity-attributes-call-forwarding) for more details on how to use this feature."
+        },
+        "contact": {
+          "type": "object",
+          "description": "Includes the Contact identity attribute in processing your request. See [Phone ID - Identity attributes: Contact](/enterprise/docs/phone-id-identity-attributes-contact) for more details on how to use this feature."
+        },
+        "contact_match": {
+          "type": "object",
+          "description": "Includes the Contact Match identity attribute in processing your request. See [Phone ID - Identity attributes: Contact Match](/enterprise/docs/phone-id-identity-attributes-contact-match) for more details on how to use this feature.",
+          "properties": {
+            "first_name": {
+              "type": "string",
+              "description": "The first name of the contact you want a match for."
+            },
+            "last_name": {
+              "type": "string",
+              "description": "The last name of the contact you want a match for."
+            },
+            "address": {
+              "type": "string",
+              "description": "The first line of the address you want to match for. By first line, the line containing the street is meant."
+            },
+            "city": {
+              "type": "string",
+              "description": "The city for the address you want a match for."
+            },
+            "postal_code": {
+              "type": "string",
+              "description": "The postal/zip code for the address you want a match for. The first five digits only."
+            },
+            "state": {
+              "type": "string",
+              "description": "The state for the address you want a match for."
+            },
+            "country": {
+              "type": "string",
+              "description": "The country for the address you want a match for."
+            }
+          }
+        },
+        "contact_plus": {
+          "type": "object",
+          "description": "Includes the Contact Plus identity attribute in processing your request.\n\n>❗️ **WARNING**: This product is deprecated.",
+          "properties": {
+            "billing_postal_code": {
+              "type": "string",
+              "description": "The postal code for the billing address of the contact you want information for."
+            }
+          }
+        },
+        "number_deactivation": {
+          "type": "object",
+          "description": "Includes the Number Deactivation identity attribute in processing your request. See [Phone ID - Identity signals: Number Deactivation](/enterprise/docs/phone-id-identity-attributes-number-deactivation) for more details on how to use this feature.",
+          "properties": {
+            "carrier_name": {
+              "type": "string",
+              "description": "The name of the current carrier for the phone."
+            },
+            "last_deactivated": {
+              "type": "string",
+              "description": "When the phone was last deactivated (if it was)."
+            },
+            "tracking_since": {
+              "type": "string",
+              "description": "When the phone number first started being tracked for deactivation status."
+            },
+            "status": {
+              "type": "object",
+              "description": "Contains details about the delivery status of this package.",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "description": "A status or error code describing what happened after your request."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "A brief description of what the error or status code means."
+                }
+              }
+            },
+            "recycled_since_last_verification": {
+              "type": "string",
+              "enum": [
+                "recycled",
+                "not_recycled",
+                "cannot_be_determined"
+              ],
+              "description": "Whether or not the phone number has been recycled since the time and date you provided. Only appears if you included a `last_verified` value in your request."
+            }
+          }
+        },
+        "subscriber_status": {
+          "type": "object",
+          "description": "Includes the Subscriber Status identity attribute in processing your request. The value should always be an empty object. See [Phone ID - Identity signals: Subscriber Status](/enterprise/docs/phone-id-identity-attributes-subscriber-status) for more details on how to use this feature."
+        },
+        "porting_history": {
+          "type": "object",
+          "description": "Includes the Porting History add-on in processing your request. The value should always be an empty object. See [Phone ID - Identity signals: Porting History](/enterprise/docs/phone-id-identity-attributes-porting-history) for more details on how to use this feature.",
+          "properties": {
+            "past_x_days": {
+              "type": "integer",
+              "description": "How many days back the service will go to check for whether the phone number was ported."
+            }
+          }
+        },
+        "porting_status": {
+          "type": "object",
+          "description": "Includes the Porting Status identity attribute in processing your request. The value should always be an empty object. See [Phone ID - Identity signals: Porting Status](/enterprise/docs/phone-id-identity-attributes-porting-status) for more details on how to use this feature."
+        },
+        "sim_swap": {
+          "type": "object",
+          "description": "Includes the SIM Swap identity attribute in processing your request. The value should always be an empty object. See [Phone ID - Identity signals: SIM Swap](/enterprise/docs/phone-id-identity-attributes-sim-swap) for more details on how to use this feature."
+        }
+      }
+    },
+    "consent": {
+      "type": "object",
+      "description": "A record of how and when you obtained consent to query this phone number. This is required for some add-ons.",
+      "properties": {
+        "method": {
+          "type": "integer",
+          "default": 1,
+          "enum": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "description": "A numeric code indicating how you collected consent to query this phone number. If you do not include this property, the default value recorded is `1`. \n*  `1` = Terms and conditions (TCO)\n*  `2` = Mobile app (MA)\n*  `3` = SMS\n*  `4` = OTHER"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "A timestamp indicating the date and time when you collected consent to query this phone number."
+        }
+      }
+    }
+  },
+  "$defs": {
+    "reqAgeVerify": {
+      "title": "reqAgeVerify",
+      "type": "object",
+      "description": "Includes the Age Verify identity attribute in processing your request. Pass an empty object to use the minimum legal age of the country as the age threshold. See [Phone ID - Identity signals: Age Verify](/enterprise/docs/phone-id-identity-attributes-age-verify) for more details on how to use this feature.",
+      "properties": {
+        "age_threshold": {
+          "type": "integer",
+          "description": "Sets a custom age threshold. If the age of the subscriber of the phone number is equal to or greater than this value, the service returns true. WARNING: Do not use this feature without first confirming with the [Telesign Customer Support Team](mailto:support@telesign.com) that the countries you intend to use it with are supported! If you use this parameter for a country that is not supported, you may get incorrect results."
+        }
+      }
+    }
+  }
+}

@@ -1,44 +1,151 @@
-specification: API Commons Rate Limits
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+name: Telesign default rate limits
+generated: '2026-10-07'
+method: searched
+source: https://support.telesign.com/s/article/do-you-have-any-rate-limits
+docs:
+- https://support.telesign.com/s/article/do-you-have-any-rate-limits
+- https://developer.telesign.com/enterprise/docs/all-status-and-error-codes
 provider: Telesign
 providerId: telesign
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: false
-tags:
-  - Rate Limiting
-  - Communications
-  - SMS
-  - Phone Intelligence
-  - Verification
 description: >-
-  Telesign does not publish a single canonical rate-limits page on its public developer portal; throttling
-  and per-account TPS are typically established at account provisioning and adjusted by Telesign support.
-  Reconciliation pending — production limits should be confirmed with the account team or via the customer
-  portal before any consumer relies on specific numbers.
-sources:
-  - https://developer.telesign.com/
-  - https://www.telesign.com/contact-sales
-responseCodes:
-  throttled: 429
-  serviceUnavailable: 503
+  Telesign publishes default per-product rate limits in a support article ("Yes, our products have rate
+  limits. The default rate limits that are enabled vary by product but can be adjusted."). Full-service
+  (enterprise) and Self-service accounts have different defaults, and every API reference page links to
+  this article as "Default rate limits by product". Limits are per customer account per product; higher
+  limits are requested through Customer Support. Exhaustion is signalled with HTTP 429 and a product-specific
+  Telesign error code in the JSON body rather than a RateLimit-* header.
+note: >-
+  The support article is a Salesforce Experience Cloud page that renders client-side; it was read through a
+  headless browser on 2026-10-07. Row limit_text values are the product name and value as the rendered table
+  shows them, with the table footnote recorded in footnote.
+footnote: 'Listed values are transactions per second except for Bulk SMS which is requests per minute.'
+limit_count: 16
 limits:
-  - name: Account TPS
-    scope: account
-    metric: varies
-    limit: see Telesign account team / portal
-    notes: >-
-      Steady-state TPS is provisioned per Telesign customer account; not published as a fixed default.
+- name: Bulk SMS (Full-service)
+  limit_text: Bulk SMS 1
+  max: 1
+  window: 1 minute
+  scope: per-account
+  plan: Full-service accounts
+  endpoint: sendBulkSMS
+  note: requests per minute, not per second
+- name: Deactivated Numbers API (Full-service)
+  limit_text: Deactivated Numbers API 10
+  max: 10
+  window: 1 second
+  scope: per-account
+  plan: Full-service accounts
+- name: Inbound SMS (Full-service)
+  limit_text: Inbound SMS 50
+  max: 50
+  window: 1 second
+  scope: per-account
+  plan: Full-service accounts
+- name: Intelligence (Full-service)
+  limit_text: Intelligence 150
+  max: 150
+  window: 1 second
+  scope: per-account
+  plan: Full-service accounts
+  endpoint: submitPhoneNumberForIntelligenceCloud
+- name: Messaging (Full-service)
+  limit_text: Messaging 10
+  max: 10
+  window: 1 second
+  scope: per-account
+  plan: Full-service accounts
+  endpoint: sendAdvancedMessage
+- name: Number Masking (Full-service)
+  limit_text: Number Masking 50
+  max: 50
+  window: 1 second
+  scope: per-account
+  plan: Full-service accounts
+- name: Phone ID (Full-service)
+  limit_text: Phone ID 150
+  max: 150
+  window: 1 second
+  scope: per-account
+  plan: Full-service accounts
+  endpoint: submitPhoneNumberForIdentity
+- name: Silent Verify (Full-service)
+  limit_text: Silent Verify 10
+  max: 10
+  window: 1 second
+  scope: per-account
+  plan: Full-service accounts
+  endpoint: createSilentVerifyRequest
+- name: SMS (Full-service)
+  limit_text: SMS 50
+  max: 50
+  window: 1 second
+  scope: per-account
+  plan: Full-service accounts
+  endpoint: sendSMS
+- name: SMS Verify API (Full-service)
+  limit_text: SMS Verify API 50
+  max: 50
+  window: 1 second
+  scope: per-account
+  plan: Full-service accounts
+  endpoint: sendSMSVerifyCode
+- name: Template Management (Full-service)
+  limit_text: Template Management 1
+  max: 1
+  window: 1 second
+  scope: per-account
+  plan: Full-service accounts
+  endpoint: createMsgTemplate
+- name: Verify API (Full-service)
+  limit_text: Verify API 10
+  max: 10
+  window: 1 second
+  scope: per-account
+  plan: Full-service accounts
+  endpoint: createVerificationProcess
+- name: Voice (Full-service)
+  limit_text: Voice 50
+  max: 50
+  window: 1 second
+  scope: per-account
+  plan: Full-service accounts
+  endpoint: sendVoiceAction
+- name: Voice Verify API (Full-service)
+  limit_text: Voice Verify API 50
+  max: 50
+  window: 1 second
+  scope: per-account
+  plan: Full-service accounts
+  endpoint: sendVoiceVerifyCode
+- name: SMS (Self-service)
+  limit_text: SMS 1
+  max: 1
+  window: 1 second
+  scope: per-account
+  plan: Self-service accounts
+  endpoint: sendSMS
+- name: SMS Verify API (Self-service)
+  limit_text: SMS Verify API 1
+  max: 1
+  window: 1 second
+  scope: per-account
+  plan: Self-service accounts
+  endpoint: sendSMSVerifyCode
+headers: []
+headers_note: No RateLimit-*, X-RateLimit-* or Retry-After response headers are documented; the API reference documents a 429 response whose JSON body carries the Telesign status/error code.
+exhaustion:
+  http_status: 429
+  error_codes:
+  - code: -40007
+    description: Rate Limit Exceeded
+    products: SMS Verify API, Voice Verify API, Number Deactivation, Smart Verify API, Bulk SMS
+  - code: 3204
+    description: Rate limit exceeded (Omnichannel / Messaging API)
+  - code: 5204
+    description: Rate limit exceeded (Accounts API)
+  - code: 10019
+    description: Rate Limit Exceeded (SMS, Phone ID, Intelligence, Silent Verify)
+  source: https://developer.telesign.com/enterprise/docs/all-status-and-error-codes
 policies:
-  - name: Backoff
-    description: Clients should implement exponential backoff with jitter on 429/503 responses and avoid
-      tight retry loops.
-  - name: Capacity Adjustments
-    description: Higher TPS or burst is requested through Telesign customer support / account management.
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- name: Capacity adjustments
+  description: Higher rate limits are requested from the Customer Support Team with account type, paid or trial status, use case, traffic destinations, products and estimated monthly volume.

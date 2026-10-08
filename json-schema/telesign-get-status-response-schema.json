@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-get-status-response-schema.json",
+  "title": "getStatusResponse",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-sms-verify-api-openapi.yml#/components/schemas/getStatusResponse",
+  "type": "object",
+  "properties": {
+    "reference_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "A unique, randomly generated hex value that identifies your web service request."
+    },
+    "sub_resource": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The subresource accessed for the request. This is always `sms` for the SMS Verify API."
+    },
+    "errors": {
+      "type": "array",
+      "description": "Contains an object for each error condition that resulted from the request.",
+      "items": {
+        "$ref": "#/$defs/errorObject"
+      }
+    },
+    "status": {
+      "type": "object",
+      "description": "Contains details about the request status.",
+      "required": [
+        "code",
+        "description",
+        "updated_on"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "A numeric code indicating the processing status of this request."
+        },
+        "description": {
+          "type": "string",
+          "description": "Text describing the transaction status."
+        },
+        "updated_on": {
+          "type": "string",
+          "description": "An <a href=\"http://www.ietf.org/rfc/rfc3339.txt\">RFC 3339</a> timestamp indicating when the transaction status was updated."
+        }
+      }
+    },
+    "verify": {
+      "type": "object",
+      "description": "Contains properties about the status of the verification attempt by the end user (if any).",
+      "properties": {
+        "code_state": {
+          "type": "string",
+          "description": "Indicates whether the verification code you provided in your request matches that sent by Telesign to the end-user. Possible values are: \n* `VALID` - The codes match. \n* `INVALID` - The codes do not match.\n* `EXPIRED` - The match was attempted after the end of the validity period for the code.\n* `MAX_ATTEMPTS_EXCEEDED` - The match was attempted after the end user already had made the maximum allowed number of attempts for the code.\n* `UNKNOWN` - Any other state.",
+          "enum": [
+            "VALID",
+            "INVALID",
+            "UNKNOWN",
+            "EXPIRED",
+            "MAX_ATTEMPTS_EXCEEDED"
+          ]
+        },
+        "code_entered": {
+          "type": "string",
+          "description": "If the end user entered a code, what they entered is provided here."
+        }
+      }
+    },
+    "additional_info": {
+      "$ref": "#/$defs/additionalInfo"
+    }
+  },
+  "required": [
+    "reference_id",
+    "sub_resource",
+    "errors",
+    "status"
+  ],
+  "$defs": {
+    "additionalInfo": {
+      "type": "object",
+      "title": "additionalInfo",
+      "description": "Contains properties relevant when the message sent with this transaction is one of several parts of a longer message that was split. This object only appears if this feature is enabled for your account. Contact our [Customer Support Team](mailto:support@telesign.com) to request this feature.",
+      "properties": {
+        "message_part_sequence_number": {
+          "type": "integer",
+          "description": "Indicates this message's position in the series of split parts."
+        },
+        "message_parts_count": {
+          "type": "integer",
+          "description": "The total number of split parts for the longer message. If the message is not split, this value is `1`."
+        },
+        "message_parts_reference_ids": {
+          "type": "string",
+          "description": "The reference IDs for each part of the longer message, separated by commas."
+        }
+      }
+    },
+    "errorObject": {
+      "type": "object",
+      "title": "errorObject",
+      "description": "Contains properties related to an error that occurred during processing of the request.",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "A numeric code specifying which error occurred."
+        },
+        "description": {
+          "type": "string",
+          "description": "Text describing the error that occurred."
+        }
+      }
+    }
+  }
+}

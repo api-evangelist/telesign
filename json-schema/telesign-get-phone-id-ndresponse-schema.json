@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-get-phone-id-ndresponse-schema.json",
+  "title": "getPhoneIdNDResponse",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-legacy-phone-id-api-openapi.yml#/components/schemas/getPhoneIdNDResponse",
+  "type": "object",
+  "properties": {
+    "reference_id": {
+      "type": "string",
+      "description": "A unique, randomly generated hex value that identifies your web service request."
+    },
+    "sub_resource": {
+      "type": "string",
+      "description": "The subresource accessed by your request. It is set to `number_deactivation`.",
+      "enum": [
+        "number_deactivation"
+      ]
+    },
+    "number_deactivation": {
+      "type": "object",
+      "description": "Contains properties related to number deactivation for the specified phone number.",
+      "properties": {
+        "number": {
+          "type": "string",
+          "description": "The number for which the deactivation check is being performed."
+        },
+        "tracking_since": {
+          "type": "string",
+          "description": "A timestamp indicating when number deactication began storing records for the carreier. "
+        },
+        "last_deactivated": {
+          "type": "string",
+          "description": "A timestamp indicating when the phone number was seen and/or reported as deactivated from the data stream provider."
+        },
+        "mcc": {
+          "type": "integer",
+          "description": "The Mobile Country Code, consisting of three decimal digits. Mobile Country Code (MCC) is used in wireless telephone networks (for example GSM, CDMA, UMTS) in order to identify the country which a mobile subscriber belongs to. "
+        },
+        "mnc": {
+          "type": "integer",
+          "description": "The Mobile Network Code, consisting of two or three decimal digits. The Mobile Country Code (MCC) is used in combination with the Mobile Network Code (MNC) to uniquely identify a mobile network operator (carrier) who deactivated a phone number. One operator (carrier) can own more than one MNC and in that case, a list of MNCs is provided in the response, separated by a semicolon. The table contains carrier county and carrier name with corresponding MCC and MNC for carriers in coverage of Phone ID Number Deactivation. \n\n| MCC | MNC | Carrier's country | Carrier's name |\n|--|--|--|--|\n| 310 | 030;070;080;150;170;410;670;680;950 | United States of America | AT&T |\n| 310 | 004;005;006;010;012;013;590;820;890;910 | United States of America | Verizon |\n| 310 | 024;025;026;160;200;210;220;230;240;250;260;270;310;490;660;800 | United States of America | T-Mobile |\n| 310 | 053;120;830;991 | United States of America | Sprint | \n| 310 | 220 | United States of America | US Cellular |\n| 310 | 120 | United States of America | Boost |\n| 310 | 150 | United States of America | Tracfone |\n| 228 | 01 | Switzerland | Swisscom |\n| 515 | 02 | Philippines | Globe Telecom |\n| 240 | 07;44 | Sweden | Tele2 |\n"
+        }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "description": "Contains an object for each error that resulted from the request.",
+      "items": {
+        "type": "object",
+        "description": "Contains properties describing this error.",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "A numeric code indicating the processing status for this transaction."
+          },
+          "description": {
+            "type": "string",
+            "description": "Text describing the type of error that occurred."
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "description": "Contains details about the processing status of this request.",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "A numeric code indicating the processing status for this transaction."
+        },
+        "description": {
+          "type": "string",
+          "description": "Text describing the transaction status."
+        },
+        "updated_on": {
+          "type": "string",
+          "description": "An [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) timestamp indicating when the transaction status was updated."
+        }
+      }
+    }
+  }
+}

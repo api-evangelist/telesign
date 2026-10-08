@@ -1,0 +1,656 @@
+openapi: 3.2.0
+info:
+  version: '1.0'
+  title: Engage SMS API
+  description: This spec contains details about the Telesign Engage API.
+  contact:
+    name: Telesign Customer Support Team
+    email: support@telesign.com
+servers:
+- url: https://rest-ww.telesign.com
+security:
+- Basic: []
+tags:
+- name: SMS
+paths:
+  /v1/messaging:
+    post:
+      summary: Send an SMS message
+      description: 'Send an SMS message. Use request parameters to specify the type of message, what phase of the account lifecycle the message is being sent in, and additional details about the transaction.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/x-www-form-urlencoded`
+
+        * **Required headers:** `Content-Type - application/x-www-form-urlencoded`
+
+        * **Rate limit:** Default rate limits by product'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                phone_number:
+                  description: The end user's phone number with country code included. Avoid use of special characters and spaces.
+                  type: string
+                  example: '15558675309'
+                message:
+                  description: Text of the message to be sent to the end user. You are limited to 1600 characters. If you send a very long message, Telesign splits your message into separate parts. Telesign recommends against sending messages that require multiple SMSes when possible.
+                  type: string
+                message_type:
+                  description: 'This parameter specifies the traffic type being sent in the message. You can provide one of the following values -
+
+                    * OTP (One time passwords)
+
+                    * ARN (Alerts, reminders, and notifications)
+
+                    * MKT (Marketing traffic)
+
+                    '
+                  type: string
+                account_lifecycle_event:
+                  description: "This parameter allows you to indicate what phase of the lifecycle you are in when you send a transaction. The options for this parameter are - \n* create - For the creation of a new account)\n* sign-in For when an end user signs in to their account.\n* transact - For when an end user completes a transaction within their account\n* update - For when an update is performed, such as an update of account information or similar. \n* delete - For when an account is deleted.\n"
+                  type: string
+                sender_id:
+                  description: This parameter allows you to set a specific sender ID to be used on an SMS message sent to the end user. In order to use a specific sender ID, Telesign must whitelist your selected sender ID values. Be aware that 100% preservation of a sender ID value is not guaranteed. Telesign may override the sender ID value that your end user will receive in order to improve delivery quality or follow SMS regulations in particular countries. In order to use this feature, you must contact Telesign Support and have them enable it for you. We recommend limiting values to 0-9 and A-Z, as support for other ASCII characters varies by carrier.
+                  type: string
+                  maxLength: 20
+                external_id:
+                  description: A customer-generated ID for this transaction. The response simply echoes the value provided for this parameter.
+                  type: string
+                originating_ip:
+                  type: string
+                  description: Your end user's IP address (do not send your own IP address). This is used to help Telesign improve our services. IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).
+                callback_url:
+                  description: A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you’ve previously set. The override only lasts for this request.
+                  type: string
+                is_primary:
+                  description: Whether you are using this service as your primary provider to send this message (`”true”`) or as a backup after your primary provider failed (`”false”`). We use this data to optimize message routing.
+                  type: string
+                  default: 'true'
+                dlt_template_id:
+                  description: '**(India-local traffic only)**. The ID of the DLT template used for this message. See *[India DLT Update](https://support.telesign.com/s/article/India-DLT-Update)* for more details on the relevant regulations.'
+                  type: string
+                  maxLength: 40
+                dlt_entity_id:
+                  description: '**(India-local traffic only)**. The ID of the entity sending this message. See *[India DLT Update](https://support.telesign.com/s/article/India-DLT-Update)* for more details on the relevant regulations. '
+                  type: string
+                  maxLength: 40
+              required:
+              - phone_number
+              - message
+              - message_type
+      responses:
+        '200':
+          description: "**Success.** Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status code and use that rather than the HTTP status response. \n \n| Status code | Associated text string | Description |\n|-------------|------------------------|-------------|\n| 290         | Message in progress    | The message is being sent to the SMS gateway.    |"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/postSMSSuccessResponse'
+              examples:
+                Example:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 290
+                      description: Message in progress
+                      updated_on: '2022-31-03T14:51:28.709526Z'
+        '400':
+          $ref: '#/components/responses/StandardMSG400ErrorResponse'
+        '401':
+          description: "Unauthorized, the request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n  Status code | Associated Text String \n -------------|------------------------\n 10002 | 'x-ts-nonce' header value has been used recently\n 10003 | 'x-ts-nonce' header value is either too long or too short\n 10004 | 'Date' or 'x-ts-date' header is not within tolerable range\n 10005 | 'Date' or 'x-ts-date' header is not RFC822 compliant\n 10006 | Invalid 'x-ts-auth-method' header.\n 10007 | Missing required 'Date' or 'x-ts-date' header\n 10008 | Invalid Signature.\n 10009 | Missing required 'Authorization' header\n 10010 | CustomerID Account Suspended\n 10011 | This product is not enabled for this CustomerID.\n 10014 | Invalid source IP address.\n 10015 | Invalid Customer ID.\n 10022 | Invalid API Key.\n 10028 | Required 'Authorization' header is not in the correct format\n 10031 | Not Allowed Host\n 10033 | {phone_number} has not been verified for this trial account.\n 10035 | The requested API host is not allowed for this CustomerID."
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/SharedResponse'
+                - $ref: '#/components/schemas/401ResponseSchema'
+                - type: object
+                  properties:
+                    signature_string:
+                      type: string
+                      description: Returned when request signature is not valid. Signature from failed authorization requests - doesn’t contain all required data (like x-ts-auth-method), or it’s not ordered properly.
+                      example: 'POST\napplication/x-www-form-urlencoded\n\nx-ts-auth-method: HMAC-SHA256\nx-ts-date:Tue, 31 Jan 2024 11:36:42 GMT\nx-ts-nonce:ab$CDef/gh123+II4jk\nphone_number=11234567890&message=Your message here.&message_type=MKT\n/v1/messaging'
+              examples:
+                Example:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 10022
+                      description: Invalid API key
+                      updated_on: '2022-31-03T14:51:28.709526Z'
+                    external_id: CustomExternalID7349
+        '429':
+          description: "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n Status code | Associated text string \n-------------|-----------------------\n 10019       | Rate Limit Exceeded    \n 10020       | Generic messaging exceeded transaction hard cap. Request denied.        \n"
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/SharedResponse'
+                - type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 10019
+                        description:
+                          type: string
+                          example: Rate Limit Exceeded
+              examples:
+                Example:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 10019
+                      description: Rate Limit Exceeded
+                      updated_on: '2022-31-03T14:51:28.709526Z'
+        '500':
+          $ref: '#/components/responses/StandardMSG500ErrorResponse'
+      tags:
+      - SMS
+      operationId: sendSMS
+  /v1/messaging/{reference_id}:
+    parameters:
+    - name: reference_id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Get transaction status
+      description: 'Get delivery status and other details for an SMS transaction that you have created.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/x-www-form-urlencoded`
+
+        * **Required headers:** `Content-Type - application/x-www-form-urlencoded`
+
+        * **Rate limit:** Default rate limits by product'
+      parameters:
+      - in: path
+        name: reference_id
+        required: true
+        description: A unique identifier you can use to query the Messaging API and find out the status of your transaction.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: "Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n\n | Status Code | Associated Text String | Description                                      |\n |-------------|------------------------|--------------------------------------------------|\n | 200         | Delivered to handset   | The SMS was delivered to the end user's phone. (Final)                                          |\n | 201         | Transaction successfully completed, suspicious activity detected   | Telesign's internal anti-fraud mechanisms identified potentially suspicious activity related to the destination phone number.   |\n | 203         | Delivered to gateway   | The SMS was delivered to the gateway. If the gateway responds with further information (including successful delivery to handset or delivery failure), the status is updated. (Intermediate)                                   |\n | 207         | Error delivering SMS to handset (reason unknown)   | The SMS could not be delivered to the end user's handset for an unknown reason. (Final)           |\n | 210         | Temporary phone error  | The SMS could not be delivered to the handset due to a temporary error with the phone. Examples - phone is turned off, not enough memory to store the message. (Final)                             |\n | 211         | Permanent phone error  | The SMS could not be delivered to the handset due to a permanent error with the phone. For example, the phone is incompatible with SMS, or illegally registered on the network. This can happen when a phone number is blacklisted, or is incorrectly provisioned. (Final)                             |\n | 220         | Gateway/network cannot route message | The network cannot route the message to the handset. (Final)                                 |\n | 221         | Message expired before delivery | The message was queued by the mobile provider and timed out before it could be delivered to the handset. (Final)                             |\n | 222         | SMS not supported      | SMS is not supported by this phone, carrier,    plan, or user.                                   |\n | 231         | Invalid/unsupported    | Invalid/unsupported message content  |\n | 237         | Message blocked in requested country    | You requested that messages in a specific country be blocked, and the message was being sent to this country                                    |\n | 238         | Destination blocked by prefix | You requested that phone numbers with a   particular prefix be blocked.                    |\n | 250         | Final status unknown   | The final status of the SMS cannot be determined.|\n | 251         | Message successfully sent out for delivery, however final confirmation of delivery to handset was not received. | Telesign successfully delivered the message through our gateway and it passed downstream. However, Telesign did not receive a delivery receipt within 12 hours of transmission. We cannot confirm delivery to the handset. The end user most likely did not receive the message. |\n | 290         | Message in progress    | The message is being sent to the SMS gateway.    |\n | 292         | Queued by gateway      | The SMS gateway has queued the message.          |\n | 295         | Status delayed         | The status of the SMS is temporarily unavailable.|\n | 502         | Campaign error         | This error can be generated if there is a problem with the short code used.                        |\n | 503         | Carrier rejected - temporary problem    | This error is generated if there is an error on the carrier or operator side that is temporary and the message can be retried.                  |\n | 504         | Carrier rejected - permanent error    | This error is generated if there is an error on the carrier or operator side that is permanent and the message should not be retried.           |\n | 505         | Error on gateway - temporary error   | This error is generated if there is an error on Telesign's partner side that is considered temporary and the message can be retried.        |\n | 506         | Error on gateway - permanent error    | This error is generated if there is an error on Telesign's partner side that is considered permanent and the message should not be retried. |\n | 507         | Invalid destination address   | There is a problem with the destination address used. Either the format is not valid, or the number is not associated with any carrier, or if MSC is used it does not know about this MSISDN.  |\n | 508         | Invalid source address | The message requires a source address. Verify    that one is provided and correct.                |\n | 509         | Parameters problem | One or more parameters used in the request is not supported.|\n | 510         | Message blocked by subscriber action or  request     | The end user has blocked receiving SMS with their carrier plan or by request or from the particular short code used.                                 |\n | 511         | Subscriber low on credit    | The end user exceeded their spending limits and cannot receive SMS.                              |\n | 512         | Roaming error          | End user cannot receive SMS because their device that receives the messages is roaming.           |\n | 513         | Mobile number portability error         | SMS failed because ported combinations are unreachable.                                     |\n | 514         | Subscriber absent      | The operator/carrier is temporarily unable to reach the end user.       |\n | 515         | Suspected spam         | This message is considered to be spam by carrier or operator.                                     |\n | 517         | Selected DLT details for India not supported | The DLT template ID or entity ID in the request cannot be found by the end operator.|\n | 520         | Content sent is not allowed | The content in this message is not permitted by the carrier.|\n | 521         | Requested Sender ID is not allowed for destination  | The sender ID submitted in request is not allowed in destination country/operator. |\n \n"
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/SharedResponse'
+                - type: object
+                  properties:
+                    additional_info:
+                      $ref: '#/components/schemas/additionalInfo'
+              examples:
+                Success:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 290
+                      description: Message in progress
+                      updated_on: '2022-31-03T14:51:28.709526Z'
+                    additional_info:
+                      message_part_sequence_number: 1
+                      message_parts_count: 2
+                      message_parts_reference_ids: 35E63E88CB000E049196AD1CFCFFB89C,35E63E88CC7C050491613443467F3F12
+        '400':
+          description: "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n | Status Code | Associated Text String | \n |-------------|------------------------|\n | 11011       | Invalid value for parameter reference_id | \n"
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/postMessagingResponse'
+        '401':
+          description: "Unauthorized, the request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n  Status code | Associated Text String \n -------------|------------------------\n 10002 | 'x-ts-nonce' header value has been used recently\n 10003 |'x-ts-nonce' header value is either too long or too short\n 10004 | 'Date' or 'x-ts-date' header is not within tolerable range\n 10005 | Date' or 'x-ts-date' header is not RFC822 compliant\n 10006 | Invalid 'x-ts-auth-method' header.\n 10007 | Missing required 'Date' or 'x-ts-date' header\n 10008 | Invalid Signature.\n 10009 | Missing required 'Authorization' header\n 10010 | CustomerID Account Suspended.\n 10011 | This product is not enabled for this CustomerID.\n 10013 | CustomerID Account Not Found\n 10014 | Invalid source IP address.\n 10015 | Invalid Customer ID.\n 10022 | Invalid API Key.\n 10028 | Required 'Authorization' header is not in the correct format\n 10031 | Not Allowed Host\n 10035 | The requested API host is not allowed for this CustomerID.\n\n"
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/SharedResponse'
+                - $ref: '#/components/schemas/401ResponseSchema'
+                - type: object
+                  properties:
+                    signature_string:
+                      type: string
+                      description: Returned when request signature is not valid. Signature from failed authorization requests - doesn’t contain all required data (like x-ts-auth-method), or it’s not ordered properly.
+                      example: 'GET\n\nTue, 31 Jan 2024 19:36:42 GMT\nx-ts-auth-method: HMAC-SHA256\n/v1/messaging/0123456789ABCDEF0123456789ABCDEF'
+              examples:
+                Unauthorized:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 10022
+                      description: Invalid API key
+                      updated_on: '2022-31-03T14:51:28.709526Z'
+                    external_id: CustomExternalID7349
+                Invalid signature string:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 10008
+                      description: Invalid Signature.
+                      updated_on: '2022-31-03T14:51:28.709526Z'
+                    external_id: CustomExternalID7349
+                    signature_string: 'GET\n\nTue, 31 Jan 2024 19:36:42 GMT\nx-ts-auth-method: HMAC-SHA256\n/v1/messaging/0123456789ABCDEF0123456789ABCDEF'
+        '404':
+          $ref: '#/components/responses/StandardMSG404ErrorResponse'
+        '429':
+          description: "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n Status code | Associated text string \n-------------|-----------------------\n 10019       | Rate Limit Exceeded "
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/SharedResponse'
+                - type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 10019
+                        description:
+                          type: string
+                          example: Rate Limit Exceeded
+              examples:
+                Rate limit exceeded:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 10019
+                      description: Rate Limit Exceeded
+                      updated_on: '2022-31-03T14:51:28.709526Z'
+        '503':
+          $ref: '#/components/responses/StandardMSG503ErrorResponse'
+      tags:
+      - SMS
+      operationId: getSMSStatus
+  /v1/verify/completion/{reference_id}:
+    parameters:
+    - name: reference_id
+      in: path
+      required: true
+      schema:
+        type: string
+    put:
+      description: 'Use this action to notify Telesign that an end-user has received your SMS.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Responds with:** `application/json`
+
+        * **Rate limit:** Default rate limits by product'
+      parameters:
+      - in: path
+        name: reference_id
+        required: true
+        description: 'The reference ID for the transaction you want to provide completion data about.
+
+          '
+        schema:
+          type: string
+      responses:
+        '200':
+          description: "Success. Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n           \n| Status code | Description                                      |\n|-------------|--------------------------------------------------|\n| 1900        | Verify completion successfully recorded  |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/putCompletionResponse'
+        '400':
+          description: 'Bad request. The request could not be understood by the server due to malformed syntax. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.
+
+
+            | Status Code | Associated text string |
+
+            |--|--|
+
+            | -10001 | Invalid parameter passed |
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+        '401':
+          description: "Unauthorized. The request requires user authentication. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.\n\n | Status Code | Associated text string | \n |-------------|------------------------|\n | -30000 | Invalid customer ID |\n | -30001 | Account suspended | \n | -30002 | Account not activated |\n | -30003 | Account limit reached | \n | -30004 | Missing required Authorization header |\n | -30005 | Required Authorization header is not in the correct format | \n | -30006 | Invalid signature | \n | -30007 | Missing required Date or X-TS-Date header | \n | -30008 | Invalid X-TS-Auth-Method header | \n | -30009 | Date or X-TS-Date header is not [RFC822 compliant](https://www.w3.org/Protocols/rfc822/) | \n | -30010 | Date or X-TS-Date header is not within tolerable range |\n | -30011 | X-TS-Nonce header value is either too long or too short | \n | -30012 | X-TS-Nonce header value has been used recently |\n | -30013 | Invalid ReferenceID for Verify Completion |\n \n"
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/errorObject'
+                - type: object
+                  properties:
+                    signature_string:
+                      type: string
+                      description: Returned when request signature is not valid. Signature from failed authorization requests - doesn’t contain all required data (like x-ts-auth-method), or it’s not ordered properly.
+                      example: 'PUT\n\nTue, 31 Jan 2024 19:36:42 GMT\nx-ts-auth-method: HMAC-SHA256\n/v1/verify/completion/0123456789ABCDEF0123456789ABCDEF'
+        '404':
+          description: "Not found. The server has not found anything matching the request URI. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.\n\n| Status Code | Associated text string | \n|-------------|------------------------|\n| -10001       | Customer ID / Reference ID not found           |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+        '503':
+          description: 'Service unavailable. The system is unavailable, try again. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+              examples:
+                System Unavailable:
+                  value:
+                    code: 500
+                    description: Transaction not attempted
+      summary: Report completion
+      tags:
+      - SMS
+      operationId: reportSMSCompletion
+components:
+  responses:
+    StandardMSG400ErrorResponse:
+      description: "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n Status code | Associated text string \n ------------|------------------------\n 11000 | Invalid value for parameter phone_number.\n 11001 | Invalid country code for parameter phone_number.\n 11003 | Invalid value for parameter account_lifecycle_event\n 11004 | Invalid value for parameter callback_url\n 11009 | Invalid value for parameter message.\n 11010 | Invalid value for parameter originating_ip.\n 11013 | Invalid value for parameter sender_id.\n 11016 | Invalid value for parameter external_id\n 11017 | Invalid value for parameter message_type.\n 11027 | Invalid value for parameter integration_name.\n 11034 | Invalid value for parameter dlt_template_id\n 11035 | Invalid value for parameter dlt_entity_id\n 12000 | Missing Required Parameter phone_number\n 12009 | Missing Required Parameter message\n 12017 | Missing Required Parameter message_type"
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/SharedResponse'
+            - type: object
+              properties:
+                external_id:
+                  type: string
+                  example: CustomExternalID7349
+                  description: 'A customer-generated ID for this transaction that was included in the request. '
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 12000
+                    description:
+                      type: string
+                      example: Missing Required Parameter phone_number
+                signature_string:
+                  type: string
+                  description: Returned when request signature is not valid. Signature from failed authorization requests - doesn’t contain all required data (like x-ts-auth-method), or it’s not ordered properly.
+                  example: 'POST\napplication/x-www-form-urlencoded\n\nx-ts-auth-method: HMAC-SHA256\nx-ts-date:Tue, 31 Jan 2024 11:36:42 GMT\nx-ts-nonce:ab$CDef/gh123+II4jk\nphone_number=11234567890&message=Your message here.&message_type=MKT\n/v1/messaging'
+          examples:
+            Missing required parameter:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status:
+                  code: 12000
+                  description: Missing Required Parameter phone_number
+                  updated_on: '2022-31-03T14:51:28.709526Z'
+                external_id: CustomExternalID7349
+    StandardMSG500ErrorResponse:
+      description: "**Service unavailable.** The system is unavailable, try again. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.\n\n| Status code | Associated text string | \n|-------------|------------------------|\n| 10000       |  System Unavailable, Please try again later. |"
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/SharedResponse'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 10000
+                    description:
+                      type: string
+                      example: System Unavailable, Please try again later.
+                signature_string:
+                  type: string
+                  example: 'POST\napplication/x-www-form-urlencoded\n\nx-ts-auth-method: HMAC-SHA256\nx-ts-date:Tue, 31 Jan 2024 11:36:42 GMT\nx-ts-nonce:ab$CDef/gh123+II4jk\nphone_number=11234567890&message=Your message here.&message_type=MKT\n/v1/messaging'
+                  description: Returned when request signature is not valid. Signature from failed authorization requests - doesn’t contain all required data (like x-ts-auth-method), or it’s not ordered properly.
+          examples:
+            System unavailable:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status:
+                  code: 10000
+                  description: System Unavailable, Please try again later.
+                  updated_on: '2022-31-03T14:51:28.709526Z'
+    StandardMSG503ErrorResponse:
+      description: "**Service unavailable.** The system is unavailable, try again. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.\n\n| Status code | Associated text string | \n|-------------|------------------------|\n| 10000       |  System Unavailable, Please try again later. |\n"
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/SharedResponse'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 10000
+                    description:
+                      type: string
+                      example: System Unavailable, Please try again later.
+          examples:
+            System unavailable:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status:
+                  code: 10000
+                  description: System Unavailable, Please try again later.
+                  updated_on: '2022-31-03T14:51:28.709526Z'
+    StandardMSG404ErrorResponse:
+      description: " Not Found, the server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status code | Description | \n|-------------|------------------------|\n| 10017       | Customer ID / Reference ID not found           | \n| 10036       |\tReference ID expired |"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties: {}
+          examples: {}
+  schemas:
+    postMessagingResponse:
+      allOf:
+      - $ref: '#/components/schemas/SharedResponse'
+      - type: object
+        properties:
+          external_id:
+            type: string
+            description: 'A customer-generated ID for this transaction that was included in the request. '
+            example: 4142b474-d65d-4265-a5fa-a581b1fe6101
+          phone_number_modified:
+            type: string
+            description: Indicates whether Telesign modified the recipient phone number to help with deliverability. Only included if you have this optional feature enabled. Contact our [Customer Support Team](mailto:support@telesign.com) to request this feature.
+            example: '15558675309'
+      x-examples:
+        Example:
+          status:
+            updated_on: '2017-31-03T14:51:28.709526Z'
+            code: 290
+            description: Message in progress
+          reference_id: 0123456789ABCDEF0123456789ABCDEF
+          external_id: 4142b474-d65d-4265-a5fa-a581b1fe6101
+          phone_number_modified: '15558675309'
+    SharedResponse:
+      allOf:
+      - $ref: '#/components/schemas/SharedResponseSlim'
+      - type: object
+        properties:
+          status:
+            type: object
+            properties:
+              updated_on:
+                type: string
+                description: A timestamp showing when your transaction status was updated last.
+                example: '2022-31-03T14:51:28.709526Z'
+    additionalInfo:
+      type: object
+      title: additionalInfo
+      description: Contains properties relevant when the message sent with this transaction is one of several parts of a longer message that was split. Only appears if message-splitting is enabled for your account. Contact our [Customer Support Team](mailto:support@telesign.com) to request this feature.
+      properties:
+        message_part_sequence_number:
+          type: integer
+          example: 1
+          description: Indicates this message's position in the series of split parts.
+        message_parts_count:
+          type: integer
+          example: 2
+          description: The total number of split parts for the longer message. If the message is not split, this value is `1`.
+        message_parts_reference_ids:
+          type: string
+          example: 35E63E88CB000E049196AD1CFCFFB89C,35E63E88CC7C050491613443467F3F12
+          description: The reference IDs for each part of the longer message, separated by commas.
+    putCompletionResponse:
+      type: object
+      title: putCompletionResponse
+      description: ''
+      properties:
+        reference_id:
+          type: string
+          description: 'A 32-digit hex value used to identify the web service request. The value is unique to each web service request, is randomly generated by Telesign, and is returned in the response message immediately following the web service request.
+
+            '
+        subresource:
+          type: string
+          description: The subresource in the URI path from your original request to initiate this transaction. Indicates which form of verification you used.
+          example: sms
+        errors:
+          type: array
+          description: Contains an object for each error that resulted from the request.
+          items:
+            $ref: '#/components/schemas/errorObject'
+        status:
+          type: object
+          properties:
+            code:
+              type: string
+              description: 'A numeric code describing the processing status of your transaction. See [All status and error codes](/enterprise/docs/all-status-and-error-codes)
+
+                '
+            description:
+              type: string
+              description: A text description of the status code.
+            updated_on:
+              type: string
+              description: This is a timestamp showing when your transaction status was updated last.
+          required:
+          - code
+          - description
+          - updated_on
+    401ResponseSchema:
+      title: 401ResponseSchema
+      type: object
+      properties:
+        status:
+          type: object
+          properties:
+            code:
+              type: integer
+              example: 10022
+            description:
+              type: string
+              example: Invalid API key
+    errorObject:
+      type: object
+      title: errorObject
+      description: Contains properties related to an error that occurred during processing of the request.
+      properties:
+        code:
+          type: integer
+          description: A numeric code specifying which error occurred.
+          example: -10001
+        description:
+          type: string
+          description: Text describing the error that occurred.
+          example: 'Invalid Request: PhoneNumber Parameter'
+    SharedResponseSlim:
+      title: SharedResponseSlim
+      type: object
+      properties:
+        reference_id:
+          type: string
+          example: 0123456789ABCDEF0123456789ABCDEF
+          description: A unique, randomly generated hex value that identifies your web service request.
+        status:
+          $ref: '#/components/schemas/SlimStatus'
+      required:
+      - reference_id
+      - status
+    SlimStatus:
+      title: SlimStatus
+      type: object
+      properties:
+        code:
+          type: integer
+          description: A numeric code that indicates the status of your transaction.
+          example: 290
+        description:
+          type: string
+          description: Text describing the status of your transaction.
+          example: Message in progress
+      required:
+      - code
+      - description
+    postSMSSuccessResponse:
+      allOf:
+      - $ref: '#/components/schemas/SharedResponseSlim'
+      - type: object
+        properties:
+          phone_number_modified:
+            type: string
+            description: 'Indicates whether the end user''s phone number provided in the request was modified before processing by Telesign to increase message deliverability.
+
+              Contact our [Customer Support Team](mailto:support@telesign.com) to enable this feature. Possible values are `"True"` and `"False"`.'
+          external_id:
+            description: The customer-generated ID for this transaction that was provided in the request. If the `external_id` parameter was not included in the request, the value here is `null`.
+            example: CustomExternalID7349
+            type: string
+          cleansed_phone_number:
+            type: string
+            description: The corrected version of the submitted phone number returned in the response after common formatting issues are fixed to improve deliverability. If there are no changes, the original phone number from the request is returned. Contact our [Customer Support Team](support@telesign.com) to enable this feature.
+      x-examples:
+        Example:
+          reference_id: 0123456789ABCDEF0123456789ABCDEF
+          status:
+            code: 290
+            description: Message in progress
+            updated_on: '2022-31-03T14:51:28.709526Z'
+          external_id: CustomExternalID7349
+  securitySchemes:
+    Basic:
+      type: http
+      description: Easiest to implement. See [Basic Authentication](/enterprise/docs/authentication#basic-authentication) for more details.
+      scheme: basic
+    Digest:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: See [Digest Authentication](/enterprise/docs/authentication#basic-authentication) for more details.
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

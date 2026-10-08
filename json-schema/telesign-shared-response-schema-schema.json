@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-shared-response-schema-schema.json",
+  "title": "sharedResponseSchema",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-smart-verify-api-openapi.yml#/components/schemas/sharedResponseSchema",
+  "type": "object",
+  "properties": {
+    "reference_id": {
+      "type": "string",
+      "description": "A unique, randomly generated hex value that identifies your web service request.",
+      "minLength": 32,
+      "maxLength": 32
+    },
+    "sub_resource": {
+      "type": "string",
+      "description": "The subresource in the URL accessed by this request."
+    },
+    "errors": {
+      "type": "array",
+      "description": "Contains an object specifying each error that occurred. If no errors occurred, the array is empty.",
+      "items": {
+        "$ref": "#/$defs/errorObject"
+      }
+    },
+    "status": {
+      "type": "object",
+      "description": "Contains properties describing the preliminary delivery status of the SMS you sent.",
+      "properties": {
+        "updated_on": {
+          "type": "string",
+          "description": "An RFC 3339 timestamp indicating when the delivery status was last updated. "
+        },
+        "code": {
+          "type": "integer",
+          "description": "A numeric code indicating the transaction status."
+        },
+        "description": {
+          "type": "string",
+          "description": "Text describing the transaction status."
+        }
+      },
+      "required": [
+        "updated_on",
+        "code",
+        "description"
+      ]
+    }
+  },
+  "$defs": {
+    "errorObject": {
+      "type": "object",
+      "title": "errorObject",
+      "description": "Contains properties related to an error that occurred during processing of the request.",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "A numeric code specifying which error occurred."
+        },
+        "description": {
+          "type": "string",
+          "description": "Text describing the error that occurred."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,391 @@
+openapi: 3.2.0
+info:
+  title: Accounts API
+  version: '2.0'
+  description: Use this API to programmatically manage your Telesign accounts and their configurations.
+  contact:
+    email: support@telesign.com
+    name: Telesign Customer Support Team
+servers:
+- url: accounts.telesign.com
+security:
+- Basic: []
+tags:
+- name: Accounts
+paths:
+  /accounts/{source_account_id}:
+    parameters:
+    - schema:
+        type: string
+      name: source_account_id
+      in: path
+      required: true
+      description: Identifies the source account to clone.
+    post:
+      summary: Clone account
+      operationId: cloneAccount
+      responses:
+        '201':
+          description: '**Success.** The new account was successfully created.
+
+
+
+            Status code | Associated text string
+
+            --|--
+
+            5005|New account was successfully created.'
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/SharedResponseFields'
+                - type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 5005
+                        description:
+                          type: string
+                          example: New account was successfully created.
+                    data:
+                      $ref: '#/components/schemas/Account'
+              examples:
+                Success:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 5005
+                      description: New account was successfully created.
+                    data:
+                      account_id: ABC1DE23-A12B-1234-56AB-AB1234567890
+                      users:
+                      - first_name: Jane
+                        last_name: Smith
+                        phone: '11234567890'
+                        email: jsmith@vero-finto.com
+                      account_name: Vero-Finto
+        '400':
+          description: "**Bad Request.**\n\n\nStatus code | Associated text string \n--|-- \n5101|Invalid value for body parameter {param name}.\n5103|Invalid value for path parameter {param name} \n5110|Request payload is improperly formatted.\n5112|Missing required parameter {param_name}. \n5114|Resource not found\n\n"
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 5103
+                      description: Invalid value for path parameter source_account_id
+                properties:
+                  reference_id:
+                    type: string
+                    description: A unique, randomly generated hex value that identifies your web service request.
+                    example: 0123456789ABCDEF0123456789ABCDEF
+                  status:
+                    type: object
+                    description: Contains properties related to the processing status of the transaction.
+                    properties:
+                      code:
+                        type: integer
+                        example: 5103
+                        description: A numeric code that indicates the status of your transaction.
+                      description:
+                        type: string
+                        example: Invalid value for path parameter source_account_id
+                        description: Text describing the status of your transaction.
+              examples:
+                Invalid value for path parameter:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 5103
+                      description: Invalid value for path parameter source_account_id
+        '401':
+          $ref: '#/components/responses/AccountsShared401'
+        '403':
+          $ref: '#/components/responses/AccountsShared403'
+        '429':
+          $ref: '#/components/responses/AccountsShared429'
+        '503':
+          $ref: '#/components/responses/AccountsShared503'
+      description: '> 📘 NOTE:
+
+        >
+
+        > Accounts API is currently available on a limited basis. Contact our Customer Support Team if you’d like to explore using this API.
+
+
+        Use this endpoint to clone an account. The account corresponding to the account ID in the path of your request is used as the source account. Configuration properties of the source account are applied to the new account.
+
+
+        You may include contact details for an initial user in the request. Telesign uses those details to send an invitation to sign in to that user, so it''s important to ensure that info is valid. You can manually create additional users in your account.
+
+
+        Users and permissions are not copied from the source account.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/json`
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:** `Content-Type - application/json`'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccountDetails'
+              - type: object
+                properties:
+                  users:
+                    type: array
+                    minItems: 0
+                    maxItems: 1
+                    description: All new users to be created and given access to this account. Do not include existing users from your organization.
+                    items:
+                      type: object
+            examples:
+              Request Payload:
+                value:
+                  account_name: Vero-Finto
+                  users:
+                  - first_name: Jane
+                    last_name: Smith
+                    phone: '11234567890'
+                    email: jsmith@vero-finto.com
+        description: ''
+      parameters: []
+      tags:
+      - Accounts
+components:
+  responses:
+    AccountsShared401:
+      description: '**Unauthorized.**
+
+
+        Status code | Associated text string
+
+        -- | --
+
+        5400 | Authentication failed.'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/SharedResponseFields'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 5400
+                    description:
+                      type: string
+                      example: Authentication failed.
+          examples:
+            Authentication failed:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status:
+                  code: 5400
+                  description: Authentication failed.
+    AccountsShared503:
+      description: '**Service unavailable.**
+
+
+        Status code | Associated text string
+
+        -- | --
+
+        5500 | System unavailable. Please try again later.'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/SharedResponseFields'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 5500
+                    description:
+                      type: string
+                      example: System unavailable. Please try again later.
+          examples:
+            System unavailable:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status:
+                  code: 5500
+                  description: System unavailable. Please try again later.
+    AccountsShared429:
+      description: '**Rate limit exceeded.**
+
+
+        Status code | Associated text string
+
+        -- | --
+
+        5204 | Rate limit exceeded.
+
+        '
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/SharedResponseFields'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 5204
+                    description:
+                      type: string
+                      example: Rate limit exceeded.
+          examples:
+            Rate limit error:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status:
+                  code: 5204
+                  description: Rate limit exceeded.
+    AccountsShared403:
+      description: '**Forbidden.**
+
+
+        Status code | Associated text string
+
+        -- | --
+
+        5401 | No permissions for this resource.'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/SharedResponseFields'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 5401
+                    description:
+                      type: string
+                      example: No permissions for this resource.
+          examples:
+            Resource forbidden:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status:
+                  code: 5401
+                  description: No permissions for this resource.
+  schemas:
+    Account:
+      title: Account
+      allOf:
+      - type: object
+        properties:
+          account_id:
+            type: string
+            description: A unique identifier for this account.
+            example: ABC1DE23-A12B-1234-56AB-AB1234567890
+          users:
+            type: array
+            uniqueItems: true
+            items:
+              $ref: '#/components/schemas/UserDetails'
+        required:
+        - account_id
+        - users
+      - $ref: '#/components/schemas/AccountDetails'
+    UserDetails:
+      title: UserDetails
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: The user's given name.
+          example: Jane
+        last_name:
+          type: string
+          description: The user's surname.
+          example: Smith
+        phone:
+          type: string
+          description: The contact phone number associated with this user. This is used for MFA when the user signs in. Include the country code. Do not include special characters or spaces.
+          example: '11234567890'
+        email:
+          type: string
+          description: The contact email address for this user.
+          example: jsmith@vero-finto.com
+      required:
+      - first_name
+      - last_name
+      - phone
+      - email
+    SharedResponseFields:
+      title: SharedResponseFields
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: A unique, randomly generated hex value that identifies your web service request.
+          example: 0123456789ABCDEF0123456789ABCDEF
+        status:
+          $ref: '#/components/schemas/Status'
+    AccountDetails:
+      title: AccountDetails
+      type: object
+      properties:
+        account_name:
+          type: string
+          description: The name of this account. This must be unique within your organization.
+          example: Vero-Finto
+        users:
+          type: array
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/UserDetails'
+      required:
+      - account_name
+      - users
+    Status:
+      title: Status
+      type: object
+      description: Contains properties related to the processing status of the transaction.
+      properties:
+        code:
+          type: integer
+          description: A numeric code that indicates the status of your transaction.
+        description:
+          type: string
+          description: Text describing the status of your transaction.
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: Easiest to implement. See [Basic Authentication](/enterprise/docs/authentication#basic-authentication) for more details.
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

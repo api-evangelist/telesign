@@ -1,0 +1,188 @@
+# x-archived-from: telesign-verify-api-callbacks-openapi.yml
+# x-archived-on: 2026-10-07
+openapi: 3.2.0
+info:
+  title: Verify API Callbacks
+  version: '1.0'
+  description: This is a web service created by you, to receive notifications from the Telesign Verify API. You can receive notifications from multiple Telesign services at the same endpoint.
+  contact:
+    name: Telesign Customer Support Team
+    email: support@telesign.com
+servers:
+- url: https://your-callback-url.com
+paths:
+  /verify_dlr_endpoint:
+    post:
+      summary: Receive Verify API Delivery Reports
+      operationId: unifiedVerifyCallbacks
+      responses:
+        '200':
+          description: OK
+      description: This is a web service created by you, to receive delivery reports (DLRs) from the Telesign Verify API. You can receive callbacks, including DLRs, from multiple Telesign services at the same endpoint.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeliveryStatusNotification'
+            examples:
+              Example:
+                value:
+                  created_on: '2022-31-03T14:51:28.709526Z'
+                  inner_methods:
+                  - method: whatsapp
+                    state: FAILED
+                    err_code: 3209
+                    err_msg: Unknown status
+                    tried_on: '2022-31-03T14:51:28.709526Z'
+                    updated_on: '2022-31-03T14:51:28.709526Z'
+                  - err_code: 3900
+                    err_msg: Verified
+                    expires_on: '2022-31-03T14:51:28.709526Z'
+                    method: sms
+                    state: VERIFIED
+                    tried_on: '2022-31-03T14:51:28.709526Z'
+                    updated_on: '2022-31-03T14:51:28.709526Z'
+                  recipient:
+                    phone_number: '11234567890'
+                  reference_id: 0123456789ABCDEF0123456789ABCDEF
+                  state: VERIFIED
+                  updated_on: '2022-31-03T14:51:28.709526Z'
+                  verification_policy:
+                  - method: whatsapp
+                    fallback_time: 30
+                  - method: sms
+                    fallback_time: 30
+        description: ''
+      tags:
+      - Delivery Reports
+components:
+  schemas:
+    DeliveryStatusNotification:
+      title: DeliveryStatusNotification
+      type: object
+      properties:
+        created_on:
+          type: string
+          example: '2022-31-03T14:51:28.709526Z'
+          description: A timestamp that indicates when Telesign created this verification process.
+        inner_methods:
+          type: array
+          items:
+            $ref: '#/components/schemas/InnerVerificationMethodStatus'
+        recipient:
+          $ref: '#/components/schemas/VerificationRecipient'
+        reference_id:
+          type: string
+          description: A unique, randomly generated hex value that identifies this verification process.
+          minLength: 32
+          maxLength: 32
+          example: 0123456789ABCDEF0123456789ABCDEF
+        state:
+          type: string
+          description: The current state of this verification process.
+          enum:
+          - CREATED
+          - ONGOING
+          - REJECTED
+          - FAILED
+          - VERIFIED
+          - CANCELED
+          example: ONGOING
+        updated_on:
+          type: string
+          description: 'An [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339) timestamp indicating when the status of this verification process was last updated. '
+          example: '2022-31-03T14:51:28.709526Z'
+        verification_policy:
+          $ref: '#/components/schemas/VerificationPolicy'
+      required:
+      - state
+    VerificationMethod:
+      title: Verification Method
+      description: One of the [verification methods](/enterprise/docs/verify-api-get-started#supported-verification-methods) included in a verification policy. Each method employs a Telesign service, such as Silent Verify or Push Verify.
+      type: string
+      enum:
+      - silent
+      - sms
+      - push
+      - rcs
+      - whatsapp
+      - email
+      example: sms
+    InnerVerificationMethodStatus:
+      title: Status of inner verification method
+      description: Contains properties related to the processing status of the specified inner verification method. One verification process can include multiple inner verification methods.
+      type: object
+      properties:
+        method:
+          $ref: '#/components/schemas/VerificationMethod'
+        state:
+          type: string
+          description: Text describing the processing status of the specified verification method. This is not the same as the overall status of the verification process.
+          enum:
+          - CREATED
+          - ONGOING
+          - SKIPPED
+          - REJECTED
+          - FAILED
+          - VERIFIED
+          - CANCELED
+          example: ONGOING
+        err_code:
+          type: integer
+          description: A numeric code indicating which error occured while attempting to use this verification method.
+          example: 2
+        err_msg:
+          type: string
+          description: Text describing the error that occured while attempting to use this verification method.
+          example: MSG_NOT_DELIVERED
+        tried_on:
+          type: string
+          description: A timestamp that indicates when this verification method was attempted.
+          example: '2022-31-03T14:51:28.709526Z'
+        updated_on:
+          type: string
+          description: An [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339) timestamp that indicates when the state of attempting verification with this method was last updated.
+          example: '2022-31-03T14:51:28.709526Z'
+      required:
+      - method
+    VerificationRecipient:
+      title: Verification Recipient
+      description: Contains properties with the recipient identifier for a [verification process](/enterprise/docs/verify-api-get-started#key-terms).
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      properties:
+        phone_number:
+          type: string
+          description: The recipient's phone number, as digits without spaces or special characters, beginning with the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes).
+          example: '11234567890'
+        push_app_token:
+          type: string
+          example: 23324n2b42i:fbo234cu2435n53ng_f4i2bdf2o4i6n53bh_234ol5436b735v462g3c42gc34b24j6b345
+          description: Identifies the instance of your mobile application installed on the user's mobile device. This is also called a "registration token" in Firebase Cloud Messaging or a "device token" in iOS. This is required when using the Push Verify verification method.
+        email:
+          type: string
+          description: The recipient's email address.
+          example: ncarolina@vero-finto.com
+    VerificationPolicy:
+      title: Verification Policy
+      description: An ordered set of verification methods and their fallback times that the Verify API uses for this verification process. See [verification policy](/enterprise/docs/verify-api-verification-policy-and-fallback-time) for more details.
+      type: array
+      minItems: 1
+      example:
+      - method: silent
+        fallback_time: 15
+      - method: sms
+        fallback_time: 15
+      items:
+        type: object
+        properties:
+          method:
+            $ref: '#/components/schemas/VerificationMethod'
+          fallback_time:
+            type: integer
+            description: The time window in seconds that the service waits before abandoning the current verification method and then initiating verification using the next method specified in the active [verification policy](/enterprise/docs/verify-api-verification-policy-and-fallback-time). It is possible for the failover to happen earlier if certain failure conditions occur.
+            example: 10
+tags:
+- name: Delivery Reports
+x-original-source: https://developer.telesign.com/enterprise/openapi/verify-api-callbacks.json

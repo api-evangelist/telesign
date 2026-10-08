@@ -1,0 +1,61 @@
+generated: '2026-10-07'
+method: searched
+source: https://developer.telesign.com/enterprise/changelog, https://developer.telesign.com/enterprise/openapi/ (deprecated flags in detect-api.json, legacy-phone-id-api.json, smart-verify-api.json), https://status.telesign.com/api/v2/status.json
+versioning:
+  scheme: path
+  description: Each product carries its own major version in the URL path or server (rest-ww.telesign.com/v1 for SMS, SMS Verify, Voice Verify, Phone ID and Messaging; rest-ww.telesign.com/v2 for the Voice
+    API; verify.telesign.com for the Verify and Silent Verify APIs; detect.telesign.com for Intelligence Cloud and Email Intelligence). OpenAPI info.version values range from 1.0 to 2.0 per product; there
+    is no date-based or header-based API version.
+  current:
+    sms-verify-api: '1.0'
+    verify-api: 1.1.0
+    engage-api: '1.0'
+    engage-api-voice: '2.0'
+    accounts-api: '2.0'
+    flow-builder-api: '2.0'
+  docs: https://developer.telesign.com/enterprise/changelog
+deprecation:
+  policy_url: null
+  policy: 'No standalone deprecation or sunset policy page is published. Deprecations are announced on the changelog and marked deprecated: true in the published OpenAPI files with a migration note in the
+    operation description (on-prem Intelligence -> Intelligence Cloud API; Legacy Phone ID Contact and Number Deactivation -> Phone ID identity signals; Smart Verify -> Verify API). No Sunset or Deprecation
+    response headers are documented.'
+  headers: []
+  announcements:
+  - title: Intelligence Cloud API launched; details about migration for Intelligence customers
+    url: https://developer.telesign.com/enterprise/changelog/intelligence-cloud-api-launched-details-about-migration-for-intelligence-customers
+  - title: TLS certificate lifecycle change and certificate pinning guidance
+    url: https://developer.telesign.com/enterprise/changelog/tls-certificate-lifecycle-change-and-certificate-pinning-guidance
+    note: TLS certificates will have a maximum validity of 47 days, requiring significantly more frequent renewal and rotation; customers pinning certificates must change practice.
+deprecated_operations:
+- operationId: submitPhoneNumberForIntelligence
+  spec: openapi/telesign-detect-api-openapi.yml
+  path: POST /score/{complete_phone_number}
+  successor: submitPhoneNumberForIntelligenceCloud (openapi/telesign-intelligence-cloud-api-openapi.yml)
+  note: This page is for the on-prem version of Intelligence which is deprecated. Please complete your migration to the Intelligence Cloud API.
+- operationId: getPhoneNumberDeactStatus
+  spec: openapi/telesign-legacy-phone-id-api-openapi.yml
+  path: GET /phoneid/number_deactivation/{complete_phone_number}
+  successor: submitPhoneNumberForIdentity (Phone ID identity signals)
+- operationId: getContactDetailsForPhoneNumber
+  spec: openapi/telesign-legacy-phone-id-api-openapi.yml
+  path: GET /phoneid/contact/{complete_phone_number}
+  successor: submitPhoneNumberForIdentity (Phone ID identity signals)
+- operationId: sendSmartVerifyCode
+  spec: openapi/telesign-smart-verify-api-openapi.yml
+  path: POST /v1/verify/smart
+  successor: createVerificationProcess (openapi/telesign-verify-api-openapi.yml)
+deprecated_products:
+- name: Legacy Phone ID API
+  note: whole contract marked deprecated
+  spec: openapi/telesign-legacy-phone-id-api-openapi.yml
+- name: Smart Verify API
+  note: whole contract marked deprecated
+  spec: openapi/telesign-smart-verify-api-openapi.yml
+- name: Intelligence (on-prem)
+  note: score endpoint in the Phone ID and Intelligence API deprecated in favour of the Intelligence Cloud API
+  spec: openapi/telesign-detect-api-openapi.yml
+sla: null
+sla_note: No public uptime SLA is published; the security whitepaper states each data center is designed to carry 100 percent of forecasted traffic but states no availability commitment.
+status_page: https://status.telesign.com/
+status_page_api: https://status.telesign.com/api/v2/status.json
+status_page_platform: Atlassian Statuspage (page id jsq5q2wyrrsg, "Telesign System")

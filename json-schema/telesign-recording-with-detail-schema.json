@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-recording-with-detail-schema.json",
+  "title": "RecordingWithDetail",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-engage-api-voice-openapi.yml#/components/schemas/RecordingWithDetail",
+  "allOf": [
+    {
+      "$ref": "#/$defs/Recording"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "A full URL you can use to download the call recording. If the recording is still in progress, this property does not appear."
+        },
+        "transcribe": {
+          "type": "object",
+          "description": "Contains properties related to the transcript for this recording. This package is only present if a transcript was made.",
+          "properties": {
+            "language_code": {
+              "type": "string",
+              "description": "A code indicating the language you set for the transcription."
+            },
+            "transcription": {
+              "type": "array",
+              "description": "Contains additional properties related to the transcript.",
+              "items": {
+                "$ref": "#/$defs/Transcription"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "Recording": {
+      "title": "Recording",
+      "type": "object",
+      "properties": {
+        "reference_id": {
+          "type": "string",
+          "description": "Specifies the Telesign Voice call for which you want to retrieve or delete recordings."
+        },
+        "file_name": {
+          "type": "string",
+          "description": "The name of this call record file. If the recording is still in progress, this property does not appear."
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the recording. Possible values are:<br/>* `recording` - The call recording is still in progress. It is not yet available for retrieval.<br/>* `available` - The call recording is complete and available for retrieval.<br/>* `deleted` - The call recording has been deleted and is not available for retrieval."
+        },
+        "date": {
+          "type": "string",
+          "description": "The UTC+0 date when the recording was created. It follows this format: {YYYY}-{MM}-{DD}T{hh}:{mm}:{ss}."
+        }
+      }
+    },
+    "Transcription": {
+      "title": "Transcription",
+      "type": "object",
+      "description": "Contains additional properties related to the transcript.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "The status of generating the transcript. Note that there is a delay of up to a few seconds between completion of the call recording and completion of the transcript."
+        },
+        "result": {
+          "type": "string",
+          "description": "The text transcript of this call recording. If the recording has been deleted, this property is not returned."
+        }
+      }
+    }
+  }
+}

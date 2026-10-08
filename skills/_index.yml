@@ -1,0 +1,31 @@
+generated: '2026-10-07'
+method: generated
+source: Packaged Agent Skills generated from the 21 OpenAPI contracts Telesign publishes at developer.telesign.com/enterprise/openapi/ and the SMS Verify, Silent Verify, Phone ID and Messaging get-started
+  docs. Every operationId is verified verbatim in openapi/*.yml; rules cite conventions/, errors/, authentication/, rate-limits/ and lifecycle/.
+skills:
+- file: telesign-send-sms-otp.md
+  name: Send and complete an SMS one-time passcode
+  api: openapi/telesign-sms-verify-api-openapi.yml
+  operations:
+  - sendSMSVerifyCode
+  - getSMSVerifyStatus
+  - reportSMSVerifyCompletion
+- file: telesign-silent-verify.md
+  name: Verify a phone silently over the mobile network
+  api: openapi/telesign-silent-verify-api-openapi.yml
+  operations:
+  - createSilentVerifyRequest
+  - getSilentVerifyStatus
+- file: telesign-phone-risk-check.md
+  name: Check a phone number before onboarding
+  api: openapi/telesign-detect-api-openapi.yml
+  operations:
+  - submitPhoneNumberForIdentity
+  - submitPhoneNumberForIntelligenceCloud
+- file: telesign-send-sms-message.md
+  name: Send an SMS notification and track delivery
+  api: openapi/telesign-engage-api-openapi.yml
+  operations:
+  - sendSMS
+  - getSMSStatus
+  - reportSMSCompletion

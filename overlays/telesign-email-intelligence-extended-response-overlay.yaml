@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Email Intelligence - Extended response
+  version: 1.0.0
+  x-generated: '2026-10-07'
+  x-method: generated
+extends: ../openapi/_original/telesign-email-intelligence-extended-response-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist:
+      provider: telesign
+      harvested: '2026-10-07'
+      source: https://developer.telesign.com/enterprise/openapi/email-intelligence-extended-response.json
+      catalog: https://developer.telesign.com/enterprise/.well-known/api-catalog
+      normalized: OpenAPI 3.0.0 -> 3.2.0 (oas32.py), content otherwise verbatim
+      method: searched
+- target: $.servers[0]
+  update:
+    x-apievangelist-note: Provider publishes the server as "detect.telesign.com" without a scheme; the production base is https://detect.telesign.com.

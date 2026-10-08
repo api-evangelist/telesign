@@ -1,0 +1,461 @@
+# x-archived-from: telesign-sms-verify-api-callbacks-openapi.yml
+# x-archived-on: 2026-10-07
+openapi: 3.2.0
+info:
+  title: SMS Verify API Callbacks
+  version: '1.0'
+  contact:
+    name: Telesign Customer Support Team
+    email: support@telesign.com
+  description: This is a web service created by you, to receive notifications from the Telesign SMS Verify API. You can receive notifications from multiple Telesign services at the same endpoint.
+servers:
+- url: https://your-callback-url.com
+paths:
+  /sms_verify_dlr_endpoint:
+    post:
+      summary: Receive SMS Verify API Delivery Reports
+      operationId: SMSVerifyCallbacks
+      responses:
+        '200':
+          description: OK
+      description: "This is a web service created by you, to receive delivery reports (DLRs) from the Telesign SMS Verify API. You can receive callbacks, including DLRs, from multiple Telesign services at the same endpoint.\n\n\n## Status codes\n\n | Status code | Associated text string | Description                                      |\n |-------------|------------------------|--------------------------------------------------|\n | 200         | Delivered to handset   | The SMS was delivered to the end user's phone. (Final)     |\n | 201         | Transaction successfully completed, suspicious activity detected   | Telesign's internal anti-fraud mechanisms identified potentially suspicious activity related to the destination phone number.   |\n | 203         | Delivered to gateway   | The SMS was delivered to the gateway. If the gateway responds with further information (including successful delivery to handset or delivery failure), the status is updated.    (Intermediate)           \
+        \                        |\n | 207         | Error delivering SMS to handset (reason unknown)  | The SMS could not be delivered to the end user's  handset for an unknown reason. (Final) |\n | 210         | Temporary phone error  | The SMS could not be delivered to the handset due to a temporary error with the phone. Examples - phone is turned off, not enough memory to store the message. (Final)                             |\n | 211         | Permanent phone error  | The SMS could not be delivered to the handset due to a permanent error with the phone. For example, the phone is incompatible with SMS, or illegally registered on the network. This can happen when a phone number is blacklisted, or is incorrectly provisioned. (Final)                             |\n | 220         | Gateway/network cannot route message | The network cannot route the message to the handset. (Final)                                 |\n | 221         | Message expired before delivery | The message was queued\
+        \ by the mobile provider and timed out before it could be delivered to the handset. (Final)                             |\n | 222         | SMS not supported      | SMS is not supported by this phone, carrier, plan, or user.                                   |\n | 229         | Message blocked by customer request   | Telesign blocked the SMS before it was sent. This is due to your prior submitted request to blocklist this phone number. *Not returned here for customers pinned to the [old version](/enterprise/changelog/sms-verify-new-version-includes-intelligence) of SMS Verify.*  |\n | 230         | Message blocked by Telesign    | Telesign blocks a message if it is being sent to a phone number that is on a global blocklist. *Not returned here for customers pinned to the [old version](/enterprise/changelog/sms-verify-new-version-includes-intelligence) of the SMS Verify API.*  |\n  | 231         | Invalid/unsupported    | The content of the message is not supported.      |\n | 233\
+        \         | Message blocked due to high risk score. | It was determined that the risk recommendation for the destination number is higher than the configured maximum risk recommendation. For that reason Telesign did not send the SMS. *Not returned here for customers pinned to the [old version](/enterprise/changelog/sms-verify-new-version-includes-intelligence) of the SMS Verify API.* |\n | 237         | Message blocked in requested country   | You requested that messages in a specific country be blocked, and the message was being sent to this country.         |\n | 250         | Final status unknown   | The final status of the SMS cannot be determined.|\n | 251         | Message successfully sent out for delivery, however final confirmation of delivery to handset was not received. | Telesign successfully delivered the message through our gateway and it passed downstream. However, Telesign did not receive a delivery receipt within 12 hours of transmission. We cannot confirm delivery\
+        \ to the handset. The end user most likely did not receive the message. |\n | 292         | Queued by gateway      | The SMS gateway has queued the message.          |\n | 295         | Status delayed         | The status of the SMS is temporarily unavailable.|\n | 500 | Transaction not attempted. | No SMS request was attempted. |\n | 501         | Not authorized         | No permissions for this resource, or authorization failed.                            |\n | 502         | Campaign error         | This error can be generated if there is a problem with the short code used.                        |\n | 503 | System Unavailable, Please try again later. | Internal system error|\n | 504         | Carrier rejected - permanent error     | This error is generated if there is an error on the carrier or operator side that is permanent and the message should not be retried.           |\n | 505         | Error on gateway - temporary error         | This error is generated if there is an\
+        \ error on Telesign's partner side that is considered temporary and the message can be retried.        |\n | 506         | Error on gateway - permanent error    | This error is generated if there is an error on Telesign's partner side that is considered permanent and the message should not be retried. |\n | 507         | Invalid destination address   | There is a problem with the destination address used. Either the format is not valid, or the number is not associated with any carrier, or if MSC is used it does not know about this MSISDN.  |\n | 508         | Invalid source address | The message requires a source address. Verify that one is provided and correct.                |\n | 509         | Parameters problem     | One or more parameters used in the request is not supported.                                       |\n | 510         | Message blocked by subscriber action or  request   | The end user has blocked receiving SMS with their carrier plan or by request or from the particular\
+        \ short code used.                                 |\n | 511         | Subscriber low on credit     | The end user exceeded their spending limits and cannot receive SMS.                              |\n | 512         | Roaming error          | End user cannot receive SMS because their device that receives the messages is roaming.           |\n | 513         | Mobile number portability error         | SMS failed because ported combinations are unreachable.      |\n | 514         | Subscriber absent      | The operator/carrier is temporarily unable to reach the end user.       |\n | 515         | Suspected spam         | This message is considered to be spam by carrier or operator.   |\n | 517         | Selected DLT details for India not supported   | The DLT template ID or entity ID in the request cannot be found by the end operator.|\n  | 518         | Message blocked due to high risk SIM swap indicator. |The service determined that the SIM swap risk indicator for the destination\
+        \ number is higher than the maximum value configured for your account. For that reason Telesign did not send the SMS.| \n | 519         | Message not sent - requested SIM swap check could not be performed. |The service could not perform the SIM swap check. This is because either the number is out of SIM swap coverage or information about the potential SIM swap event is missing. |\n  | 520         | Content sent is not allowed   | The content in this message is not permitted by the carrier. |  \n  | 521  | Requested Sender ID is not allowed for destination  | The Sender ID included in this request cannot be used to send messages to this destination phone number. The Sender ID may either be blocklisted for this country or needs to be added to a whitelist for this country. |\n  | 599 | Status not available | The system is unable to provide status at this time.|\n  \n## Error codes\n\n | Error code | Associated text string | Description \n |-|-|-|\n  | -10030 | Insufficient funds in\
+        \ prepaid wallet. | A top-up of prepaid wallet is needed.|\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/DeliveryStatusNotification'
+              - type: object
+                properties:
+                  sim_swap:
+                    $ref: '#/components/schemas/SIMSwapResponse'
+            examples:
+              Example:
+                value:
+                  status:
+                    code: 200
+                    description: Delivered to handset
+                    updated_on: '2016-10-21T14:05:36.181346Z'
+                  submit_timestamp: '2016-01-01T01:01:01.010101Z'
+                  errors: []
+                  reference_id: B56259E45884010488343BAA15FB0002
+                  verify:
+                    code_state: UNKNOWN
+                    code_entered: null
+                  sub_resource: sms
+                  additional_info:
+                    message_parts_count: 1
+                    price: '0.5112'
+                    mnc: '004'
+                    mcc: '310'
+                    currency: USD
+                    message_parts_reference_ids: 35E63E88CB000E049196AD1CFCFFB89C,35E63E88CC7C050491613443467F3F12
+                    'sender_id ': '15558675310'
+                  score_status:
+                    phone_type:
+                      code: '2'
+                      description: MOBILE
+                    risk:
+                      recommendation: allow
+                      score: 80
+                      level: low
+                    risk_insights:
+                      status: 800
+                      category:
+                      - 10010
+                      a2p:
+                      - 22103
+                      p2p:
+                      - 30201
+                      number_type:
+                      - 0
+                      ip:
+                      - 0
+                      email:
+                      - 0
+                    numbering:
+                      phone_number: '1234567890'
+                      min_length: 10
+                      max_length: 10
+                      country_code: '1'
+                    location:
+                      city: Los Angeles
+                      county: Los Angeles County
+                      state: CA
+                      zip: '90066'
+                      country:
+                        iso2: US
+                        iso3: USA
+                        name: United States
+                      time_zone:
+                        name: America/Los_Angeles
+                        utc_offset_max: '-8'
+                        utc_offset_min: '-8'
+                      coordinates:
+                        latitude: 33.99791
+                        longitude: -118.42302
+                      metro_code: '4480'
+                    blocklisting:
+                      block_code: 0
+                      block_description: Not blocked
+                      blocked: false
+                    carrier:
+                      carrier_id: 309
+                      name: AT&T Wireless
+                  sim_swap:
+                    swap_date: '2018-09-05'
+                    swap_time: '22:00:00'
+                    risk_indicator: '1'
+                    status:
+                      code: 2800
+                      description: Request successfully completed
+      tags:
+      - Delivery Reports
+    parameters: []
+components:
+  schemas:
+    Status:
+      title: Status
+      type: object
+      description: Contains properties related to the processing status of this transaction or send.
+      properties:
+        code:
+          type: integer
+          example: 200
+          description: Numeric code that indicates the processing status of this transaction or send.
+        description:
+          type: string
+          example: Delivered to handset
+          description: Text that describes the processing status of this transaction or send.
+        updated_on:
+          type: string
+          example: '2016-10-21T14:05:36.181346Z'
+          description: Timestamp that indicates when the status of this transaction or send was last updated.
+      required:
+      - code
+      - description
+      - updated_on
+    Error:
+      title: Error
+      type: object
+      properties:
+        code:
+          type: integer
+          example: -90001
+          description: Numeric code that indicates which error occurred.
+        description:
+          type: string
+          example: System Unavailable, Please try again later.
+          description: Text that describes this error.
+    DeliveryStatusNotification:
+      title: DeliveryStatusNotification
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        submit_timestamp:
+          type: string
+          description: An ISO 8601 UTC timestamp indicating when the request was received.
+          example: '2016-01-01T01:01:01.010101Z'
+        errors:
+          type: array
+          description: Contains an object for each error that occurred.
+          items:
+            $ref: '#/components/schemas/Error'
+        reference_id:
+          type: string
+          example: B56259E45884010488343BAA15FB0002
+          description: The service's unique identifier for the original transaction this notification is related to.
+          minLength: 32
+          maxLength: 32
+        verify:
+          $ref: '#/components/schemas/Verify'
+        sub_resource:
+          type: string
+          example: sms
+          description: Indicates which Telesign service processed the original transaction.
+        additional_info:
+          $ref: '#/components/schemas/AdditionalInfo'
+        score_status:
+          $ref: '#/components/schemas/ScoreStatus'
+      required:
+      - status
+      - sub_resource
+    Verify:
+      title: Verify
+      type: object
+      description: Contains properties related to the status of a verification transaction.
+      properties:
+        code_state:
+          type: string
+          description: Indicates whether the verification code you provided in your request matches that sent by Telesign to the end-user.
+          example: UNKNOWN
+        code_entered:
+          description: In some cases, this is the code entered by the end user. Usually the end user's code is not returned, and the value is empty string or `null`.
+          type:
+          - string
+          - 'null'
+    AdditionalInfo:
+      title: AdditionalInfo
+      type: object
+      description: An optional package containing properties with further details about the messaging transaction. The `message_parts_count` and `message_parts_reference_ids` properties only appear if the Message Split feature is enabled for your account. Contact our [Customer Support Team](mailto:support@telesign.com) to request this feature.
+      properties:
+        message_parts_count:
+          type: integer
+          example: 2
+          description: The total number of split parts for the longer message. If the message is not split, this value is `1`.
+        price:
+          type: string
+          description: The price from the operator for this transaction.
+          example: '0.5112'
+        mnc:
+          type: string
+          description: The mobile network code of the destination operator. See https://en.wikipedia.org/wiki/Mobile_country_code.
+          example: '004'
+        mcc:
+          type: string
+          description: The mobile country code of the destination operator. See https://en.wikipedia.org/wiki/Mobile_country_code.
+          example: '310'
+        currency:
+          type: string
+          description: The currency type that applies to `price`.
+          example: USD
+        message_parts_reference_ids:
+          type: string
+          description: The reference IDs for each part of the longer message, separated by commas.
+          example: 35E63E88CB000E049196AD1CFCFFB89C,35E63E88CC7C050491613443467F3F12
+        'sender_id ':
+          type: string
+          description: The [sender ID](https://support.telesign.com/s/article/What-is-a-Sender-ID) that Telesign used while sending the message. To receive this parameter, ask our [Customer Support Team](mailto:support@telesign.com) to turn on the appropriate feature.
+          example: '15558675310'
+    ScoreStatus:
+      title: ScoreStatus
+      type: object
+      description: Contains the Intelligence package properties that are returned if Verify Plus and `Send risk recommendation details in transaction response` features are enabled.
+      properties:
+        phone_type:
+          type: object
+          description: Contains properties related to phone type.
+          properties:
+            code:
+              type: string
+              description: One of the [phone type codes](/enterprise/docs/codes-languages-and-time-zones#phone-type-codes).
+              example: '2'
+            description:
+              type: string
+              description: Text describing the phone type.
+              example: MOBILE
+        risk:
+          type: object
+          description: Contains properties related to the risk recommendation for the specified phone number.
+          properties:
+            recommendation:
+              type: string
+              description: The action that Telesign recommends that you take based on the risk recommendation. Risk Recommendation Scales provides a [table](/enterprise/docs/intelligence-get-started#risk-recommendation-scales) with risk levels.
+              example: allow
+            score:
+              type: integer
+              example: 80
+              description: The risk recommendation for the current transaction. The risk recommendation will be between 1 and 1000.
+            level:
+              type: string
+              description: The severity of the risk. Risk Recommendation Scales provides a [table](/enterprise/docs/intelligence-get-started#risk-recommendation-scales) with risk levels.
+              example: low
+        risk_insights:
+          type: object
+          description: Contains reason code properties with additional information related to the risk recommendation.
+          properties:
+            status:
+              type: integer
+              description: The processing status of the risk insights package for the request.
+              example: 800
+            category:
+              type: array
+              description: Reason codes related to the category of the phone number, as described in [Intelligence - Insights reason code mappings](/enterprise/docs/intelligence-insights-reason-code-mappings).
+              items:
+                type: integer
+                example: 10010
+            a2p:
+              type: array
+              description: Reason codes specific to application-to-person communication (A2P), as described in [Intelligence - Insights reason code mappings](/enterprise/docs/intelligence-insights-reason-code-mappings). These are automated communications sent to a human, like verification codes, appointment reminders, etc.
+              items:
+                type: integer
+                example: 22103
+            p2p:
+              type: array
+              description: Reason codes specific to person-to-person communication (P2P), as described in [Intelligence - Insights reason code mappings](/enterprise/docs/intelligence-insights-reason-code-mappings). This is two-way communication between two humans, like one friend texting another.
+              items:
+                type: integer
+                example: 30201
+            number_type:
+              type: array
+              description: Reason codes related to the phone number’s type, as described in [Intelligence - Insights reason code mappings](/enterprise/docs/intelligence-insights-reason-code-mappings).
+              items:
+                type: integer
+            ip:
+              type: array
+              description: Reason codes related to activity of the IP you provided for the phone number, as described in [Intelligence - Insights reason code mappings](/enterprise/docs/intelligence-insights-reason-code-mappings).
+              items:
+                type: integer
+            email:
+              type: array
+              description: Reason codes related to activity of the email address you provided for the phone number, as described in [Intelligence - Insights reason code mappings](/enterprise/docs/intelligence-insights-reason-code-mappings).
+              items:
+                type: integer
+        numbering:
+          type: object
+          description: Contains properties related to the numbering attributes of the specified phone number.
+          properties:
+            phone_number:
+              type: string
+              description: The base phone number. This is the phone number without the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes).
+              example: '1234567890'
+            min_length:
+              type: integer
+              description: The minimum number of digits allowed for phone numbers with this country dialing code.
+              example: 10
+            max_length:
+              type: integer
+              description: The maximum number of digits allowed for phone numbers with this country dialing code.
+              example: 10
+            country_code:
+              type: string
+              description: A 1, 2, or 3-digit number representing the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes). For example, the country dialing code for both the U.S.A. and Canada is `1`, and the country dialing code for United Kingdom is `44`.
+              example: '1'
+        location:
+          type: object
+          description: Contains geographical location information associated with the rate center of the phone number when the device was activated. Null is returned when data for a field isn't available for a specific market or country.
+          properties:
+            city:
+              type: string
+              description: The city associated with the rate center of the phone number when the device was activated.
+              example: Los Angeles
+            county:
+              type: string
+              description: The county (or parish) associated with the rate center of the phone number when the device was activated (U.S. only).
+              example: Los Angeles County
+            state:
+              type: string
+              description: The two-letter [state abbreviation code](http://pe.usps.com/text/pub28/28apb.htm) of the state (province, district, or territory) associated with the rate center of the phone number when the device was activated (North America only).
+              example: CA
+            zip:
+              type: string
+              description: The five-digit United States Postal Service [ZIP Code](https://www.usps.com/nationalpremieraccounts/findzipcodes.htm) associated with the rate center of the phone number when the device was activated (U.S. only).
+              example: '90066'
+            country:
+              type: object
+              description: Contains properties related to the country associated with the rate center of the phone number when the device was activated.
+              properties:
+                iso2:
+                  type: string
+                  description: The ISO 3166-1 2-letter [country code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes) associated with the rate center of the phone number when the device was activated.
+                  example: US
+                iso3:
+                  type: string
+                  description: ' The ISO 3166-1 3-letter country code associated with the rate center of the phone number when the device was activated.'
+                  example: USA
+                name:
+                  type: string
+                  description: The [country name](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes) associated with the rate center of the phone number when the device was activated.
+                  example: United States
+            timezone:
+              type: object
+              description: Contains properties related to the time zone associated with the rate center of the phone number when the device was activated. For maximum and minimum UTC offsets, they are specified in units of hours, and range from -12 to +14. For positive numbers, the plus sign (+) may not be returned. Additional offsets due to Daylight Savings Time or Summer Time are not considered. For example, Russia, which spans 11 time zones, has a minimum UTC offset of +2, and a maximum of +12.
+              properties:
+                name:
+                  type: string
+                  description: The time zone associated with the rate center of the phone number when the device was activated (U.S. only).
+                  example: America/Los Angeles
+                utc_offset_max:
+                  type: string
+                  description: ' For international phone numbers, this parameter returns the maximum UTC offset for the country associated with the rate center of the phone number when the device was activated. For U.S. phone numbers, this parameter returns the same result as utc_offset_min.'
+                  example: '-8'
+                utc_offset_min:
+                  type: string
+                  description: For international phone numbers, this parameter returns the minimum UTC offset for the country associated with the rate center of the phone number when the device was activated. For U.S. phone numbers, this parameter returns the UTC offset associated with the rate center of the phone number when the device was activated.
+                  example: '-8'
+            coordinates:
+              type: object
+              description: Contains properties with details about the geographical coordinates of the location where the phone number is registered.
+              properties:
+                latitude:
+                  type: number
+                  format: float
+                  description: Latitude specifies the North-South position of a point on the Earth’s surface. It is an angular measurement that ranges from 0° at the Equator, to 90° at the North Pole (and -90° at the South Pole). It is returned here as a value indicating the number of degrees of latitude of the location associated with the phone number, expressed in seven decimal digits, with five decimal places.
+                  example: 33.99791
+                longitude:
+                  type: number
+                  format: float
+                  description: Longitude specifies the East-West position of a point on the Earth’s surface. It is an angle measured East or West from the [prime meridian](https://en.wikipedia.org/wiki/Prime_meridian) —ranging from 0° at the prime meridian, to +180° Eastward and -180° Westward. It is returned here as a value indicating the number of degrees of longitude of the location associated with the phone number, expressed in eight decimal digits, with five decimal places.
+                  example: -118.42302
+            metro_code:
+              type: string
+              description: A 4-digit string indicating the Primary Metropolitan Statistical Area (PMSA) code for the location associated with the rate center of the phone number when the device was activated (U.S. only). PMSA Codes are governed by the [US Census Bureau](http://www.census.gov/). This information is useful for large metropolitan areas that comprise several smaller cities. For example, the PMSA for Long Beach, California is Los Angeles County, which gives Long Beach the PMSA Code 4480.
+              example: '4480'
+        blocklisting:
+          type: object
+          description: Contains details about whether the number was blocked and who requested the block.
+          properties:
+            block_code:
+              type: integer
+              description: A code indicating whether the number is blocked, and who blocked it. `0` for not blocked, `1` for blocked by TeleSign, `2` for block requested by your organization, `3` for block requested by your account or set by TeleSign on behalf of your account, and `4` if the block state is unknown.
+              example: 0
+            block_description:
+              type: string
+              description: Text explaining the block status.
+              example: Not blocked
+            blocked:
+              type: boolean
+              description: If `true`, this number is blocked. If `false`, this number is not blocked.
+        carrier:
+          type: object
+          description: Contains details about the company that provides telecommunications services for this phone number. Behavior of this property, including information returned for ported phone numbers, can vary depending on the country of the phone number. See [How does carrier data vary by country?](https://support.telesign.com/s/article/How-does-carrier-data-vary-by-country) for more details.
+          properties:
+            carrier_id:
+              type: integer
+              description: An ID specifying this carrier.
+              example: 309
+            name:
+              type: string
+              description: The name of this carrier.
+              example: AT&T Wireless
+    SIMSwapResponse:
+      title: SIMSwapResponse
+      type: object
+      description: Properties related to the SIM Swap check for this transaction. This is only included if enabled by our [Customer Support Team](mailto:support@telesign.com).
+      properties:
+        swap_date:
+          type: string
+          description: 'The date of the SIM swap, if one is detected. '
+          example: '2018-09-05'
+        swap_time:
+          type: string
+          example: '22:00:00'
+          description: 'The time of the SIM swap, if one is detected. '
+        risk_indicator:
+          type: string
+          example: '1'
+          description: "Indicates the likelihood that a SIM swap occured for this number. The response ranges between `1` and `4`.\n* `1` - **(very low)** Swap did not occur or it occurred 15+ days ago. \n* `2` - **(low)** Swap occurred between 3 and 14 days ago. \n* `3` - **(medium)** Swap occurred in the last 72 hours. \n* `4` - **(high)** Swap occurred in the last 24 hours."
+        status:
+          type: object
+          description: Contains properties related to the status of the SIM Swap check.
+          properties:
+            code:
+              type: integer
+              example: 2800
+              description: A numeric code indicating the processing status for the SIM Swap check.
+            description:
+              type: string
+              description: A short description of the processing status for the SIM Swap check.
+              example: Request successfully completed
+tags:
+- name: Delivery Reports
+x-original-source: https://developer.telesign.com/enterprise/openapi/sms-verify-api-callbacks.json

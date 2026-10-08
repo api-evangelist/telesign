@@ -1,0 +1,84 @@
+generated: '2026-10-07'
+method: probed
+source: pre-flight dossier (docs platform, portal detections) + CNAME chains and response headers of the hosts apis.yml names
+registry: all/0-working/vendors.yml
+areas_vocabulary:
+- documentation
+- developer-portal
+- api-gateway
+- cdn
+- hosting
+- sdk-generation
+- api-collections
+- status-page
+- support
+- community
+- identity
+- mcp-hosting
+vendors:
+- vendor: akamai
+  name: Akamai
+  area: cdn
+  host: rest-ww.telesign.com
+  evidence: cname:akamaiedge.net
+  signal: cname
+  confidence: high
+  kin_score: []
+- vendor: cloudflare
+  name: Cloudflare
+  area: cdn
+  host: www.telesign.com
+  evidence: header:cf-ray
+  signal: header
+  confidence: high
+  kin_score:
+  - https_enforced
+  - hsts
+- vendor: readme
+  name: ReadMe
+  area: documentation
+  host: developer.telesign.com
+  evidence: cname:readmessl.com
+  signal: docs-platform
+  confidence: high
+  kin_score:
+  - openapi_published
+  - changelog_present
+  - llms_txt
+  - api_explorer
+- vendor: wpengine
+  name: WP Engine
+  area: hosting
+  host: www.telesign.com
+  evidence: header:x-powered-by:wp engine
+  signal: header
+  confidence: high
+  kin_score: []
+reliance:
+  areas_vendor_served:
+  - cdn
+  - documentation
+  - hosting
+  vendor_count: 4
+  areas_observed: 12
+  share_of_observable_areas: 0.25
+  note: areas where a third party was DETECTED serving this provider; an area absent here was either self-run or not observed, and this script
+    cannot tell those apart
+checked:
+- 'docs-platform: readme'
+- www.telesign.com (Website)
+- developer.telesign.com (DeveloperPortal)
+- status.telesign.com (StatusPage)
+- developer.telesign.com (Documentation)
+- developer.telesign.com (APIReference)
+- developer.telesign.com (GettingStarted)
+- support.telesign.com (Support)
+- my.telesign.com (Login)
+- accounts.telesign.com (baseURL)
+- rest-ww.telesign.com (baseURL)
+- deact-api.telesign.com (baseURL)
+- detect.telesign.com (baseURL)
+- us-east-1.di-hub.telesign.com (baseURL)
+- us-east-1.di-platform.telesign.com (baseURL)
+- verify.telesign.com (baseURL)
+- developer.telesign.com (mcp)

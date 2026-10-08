@@ -1,0 +1,872 @@
+# x-archived-from: telesign-engage-callbacks-openapi.yml
+# x-archived-on: 2026-10-07
+openapi: 3.2.0
+info:
+  title: Engage Callbacks
+  version: '1.0'
+  description: This is a web service created by you, to receive notifications from Telesign. You can receive notifications from multiple Telesign services at the same endpoint.
+  contact:
+    name: Telesign Customer Support Team
+    email: support@telesign.com
+servers:
+- url: https://your-callback-url.com
+paths:
+  /sms_delivery_reports_endpoint:
+    post:
+      summary: Receive SMS delivery reports
+      operationId: SMSDeliveryReports
+      responses:
+        '200':
+          description: OK
+      description: "This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Engage for delivery reports for SMS requests (excluding bulk requests). You can receive notifications from multiple Telesign services at the same endpoint.\n\n> Looking for the high-level guide page to learn how to set up and use a Transaction Callback Service? Go to [Transaction Callback Service](/enterprise/docs/transaction-callback-service). See [Authenticate Callbacks](/enterprise/docs/authenticate-callbacks) to learn more about the version of authentication used for callbacks.\n\n\n## Status codes\n\n| Status code | Associated text string | Description |\n|-------------|------------------------|-------------|\n| 200| Delivered to handset   | The SMS was delivered to the end user's phone. (Final) |\n| 201         | Transaction successfully completed, suspicious activity detected   | Telesign's internal anti-fraud mechanisms identified\
+        \ potentially suspicious activity related to the destination phone number.   |\n| 203| Delivered to gateway   | The SMS was delivered to the gateway. If the gateway responds with further information (including successful delivery to handset or delivery failure), the status is updated. (Intermediate)  |\n| 207| Error delivering SMS to handset (reason unknown)   | The SMS could not be delivered to the end user's handset for an unknown reason. (Final)           |\n| 210 | Temporary phone error  | The SMS could not be delivered to the handset due to a temporary error with the phone. Examples - phone is turned off, not enough memory to store the message. (Final)                             |\n| 211 | Permanent phone error  | The SMS could not be delivered to the handset due to a permanent error with the phone. For example, the phone is incompatible with SMS, or illegally registered on the network. This can happen when a phone number is blacklisted, or is incorrectly provisioned. (Final)\
+        \                             |\n| 220 | Gateway/network cannot route message   | The network cannot route the message to the handset. (Final)                                 |\n | 221 | Message expired before delivery | The message was queued by the mobile provider and timed out before it could be delivered tothe handset. (Final) |\n| 222 | SMS not supported      | SMS is not supported by this phone, carrier, plan, or user.                                   |\n| 231         | Invalid/unsupported    | The content of the message is not supported.     |\n| 233         | Message blocked due to high risk score.\t|It was determined that the risk recommendation for the destination number is higher than the configured maximum risk recommendation. For that reason Telesign did not send the SMS.\t|\n| 237         | Message blocked in requested country  | You requested that messages in a specific country be blocked, and the message was being sent to this country.                           \
+        \         |\n| 238         | Destination blocked by prefix  | You requested that phone numbers with a particular prefix be blocked.                    |\n| 250         | Final status unknown   | The final status of the SMS cannot be determined.|\n| 251         | Message successfully sent out for delivery, however final confirmation of delivery to handset was not received. | Telesign successfully delivered the message through our gateway and it passed downstream. However, Telesign did not receive a delivery receipt within 12 hours of transmission. We cannot confirm delivery to the handset. The end user most likely did not receive the message.|\n| 292         | Queued by gateway | The SMS gateway has queued the message.          |\n| 295         | Status delayed | The status of the SMS is temporarily unavailable.|\n|500|Transaction not attempted|No SMS request was attempted.|\n|501|Not authorized|No permissions for this resource, or authorization failed.|\n|502|Campaign error|This\
+        \ error can be generated if there is a problem with the short code used.|\n|503|Carrier rejected - temporary problem|This error is generated if there is an error on the carrier or operator side that is temporary and the message can be retried.|\n|504|Carrier rejected - permanent error|This error is generated if there is an error on the carrier or operator side that is permanent and the message should not be retried.|\n|505|Error on gateway - temporary error|This error is generated if there is an error on Telesign's partner side that is considered temporary and the message can be retried.|\n|506|Error on gateway - permanent error|This error is generated if there is an error on Telesign's partner side that is considered permanent and the message should not be retried.|\n|508|Invalid source address|The message requires a source address. Verify that one is provided and correct.|\n|509|Parameters problem|One or more parameters used in the request is not supported.|\n|510|Message blocked\
+        \ by subscriber action or request|The end user has blocked receiving SMS with their carrier plan or by request or from the particular short code used.|\n|511|Subscriber low on credit|The end user exceeded their spending limits and cannot receive SMS.|\n|512|Roaming error|The end user cannot receive SMS because their device that receives the messages is roaming.|\n|513|Mobile number portability error|SMS failed because ported combinations are unreachable.||\n|514|Subscriber absent|The operator/carrier is temporarily unable to reach the end user.|\n|515|Suspected spam|This message is considered to be spam by carrier or operator.|\n|517|Selected DLT details for India not supported|The DLT template ID or entity ID in the request cannot be found by the end operator.|\n|518|Message blocked due to high risk SIM SWAP indicator|The service determined that the SIM swap risk indicator for the destination number is higher than the maximum value configured for your account. For that reason Telesign\
+        \ did not send the SMS.|\n|519|Message not sent - requested SIM SWAP check could not be performed|The service could not perform the SIM swap check. This is because either the number is out of SIM swap coverage or information about the potential SIM swap event is missing.|\n|520|Content sent is not allowed|The content in this message is not permitted by the carrier.|\n|521| Requested Sender ID is not allowed for destination  | The sender ID included in this request cannot be used to send messages to this destination phone number. The sender ID may either be blocklisted for this country or needs to be added to a whitelist for this country. |\n|599| Status not available | The system is unable to provide status at this time. |\n|10000|System Unavailable, Please try again later.|Internal system error|\n|10030|Insufficient funds in prepaid wallet.|A top-up of prepaid wallet is needed.|\n|10031|Message blocked by customer request |This code can happen because you requested a block or because\
+        \ Telesign blocked on your behalf. The block is custom, meaning it applies to you and not others.|\n|10032|Message blocked by Telesign |Telesign blocks a message if it is being sent to a phone number that is on a global blocklist.|\n|11000|Invalid value for parameter phone_number.|There is a problem with the destination address used. Either the format is not valid, or the number is not associated with any carrier, or if MSC is used it does not know about this MSISDN.| "
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/DeliveryStatusNotification'
+              - type: object
+                properties:
+                  additional_info:
+                    type: object
+                    description: Contains properties related to optional product features. Only included if at least one of those features is enabled.
+                    properties:
+                      mcc:
+                        type: string
+                        description: Mobile country code (MCC) of the destination number. Only included if this feature is enabled.
+                        example: '310'
+                      mnc:
+                        type: string
+                        description: Mobile network code (MNC) of the destination number. Only included if this feature is enabled.
+                        example: '004'
+                      price:
+                        type: string
+                        description: The price of the message sent.
+                        example: '0.01'
+                      currency:
+                        type: string
+                        description: The currency of the price of the message sent.
+                        example: USD
+                      message_parts_count:
+                        type: integer
+                        description: The total number of split parts for the longer message. If the message is not split, this value is `1`.
+                        example: 2
+                      message_parts_reference_ids:
+                        type: string
+                        description: The reference IDs for each part of the longer message, separated by commas.
+                        example: 35E63E88CB000E049196AD1CFCFFB89C,35E63E88CC7C050491613443467F3F12
+                      sender_id:
+                        type: string
+                        description: The [sender ID](https://support.telesign.com/s/article/What-is-a-Sender-ID) that Telesign used while sending the message. To receive this parameter, ask our [Customer Support Team](mailto:support@telesign.com) to turn on the appropriate feature.
+                        example: '15558675310'
+                      cleansed_phone_number:
+                        type: string
+                        description: The corrected version of the submitted phone number returned in the callback after common formatting issues are fixed to improve deliverability. If there are no changes, the original phone number from the SMS API request is returned. Contact our [Customer Support Team](mailto:support@telesign.com) to enable this feature.
+                  external_id:
+                    type: string
+                    description: "The customer-generated ID for this transaction that was provided in the original request. If the `external_id` parameter was not included in the request, the value here is `null`.\t"
+                    example: CustomExternalID7349
+            examples:
+              Example:
+                value:
+                  reference_id: B56259E45884010488343BAA15FB0002
+                  status:
+                    code: 200
+                    description: Delivered to handset
+                    updated_on: '2016-10-21T14:05:36.181346Z'
+                  additional_info:
+                    mcc: '310'
+                    mnc: '004'
+                    price: '0.01'
+                    currency: USD
+                    message_parts_count: 2
+                    message_parts_reference_ids: 35E63E88CB000E049196AD1CFCFFB89C,35E63E88CC7C050491613443467F3F12
+                  external_id: CustomExternalID7349
+      tags:
+      - SMS Callbacks
+    parameters: []
+  /email_callback_endpoint:
+    parameters: []
+    post:
+      summary: Receive email callbacks
+      operationId: EmailCallbacks
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SharedMsgCallbackDetails'
+              - $ref: '#/components/schemas/EmailMsgCallbackDetails'
+              - type: object
+                properties:
+                  content:
+                    type: object
+                    description: The content of the MO message sent by the end user.
+                    properties:
+                      end_user_action:
+                        type: object
+                        description: An end user action that is a response to an MT (mobile terminated) message. It could be a quick reply or call to action event.
+                        properties:
+                          template:
+                            type: string
+                            description: The template name of the MT message.
+                            example: text
+                          event:
+                            type: string
+                            description: The type of MO event sent by the end user, such as unsubscribe or complaint.
+                            example: unsubscribe
+                        required:
+                        - template
+                        - event
+                  sub_resource:
+                    type: string
+                    example: mo_email
+                    description: Returns value identifying the inbound channel used by the end user. Helpful when multiple channels are used with the same Mobile Originated (MO) Callback URL.
+                required:
+                - sub_resource
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+      description: "This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages from end users sent using its email channel. You can receive notifications from multiple Telesign services at the same endpoint. Confirm with our [Customer Support Team](mailto:support@telesign.com) that the channels you want to use for receiving inbound messages from end-users have been enabled.\n\n> Looking for the high-level guide page with examples related to this action? Go to [Messaging - Receive inbound messages](/enterprise/docs/messaging-receive-inbound-messages). \n\n\n## Status codes\n\n| Status code | Associated text string | Description       |\n|-------------|------------------------|-------------------|\n| 1500        | Delivered              | Delivered to you. |"
+      tags:
+      - Messaging Callbacks
+  /mms_callback_endpoint:
+    post:
+      summary: Receive MMS callbacks
+      operationId: MMSCallbacks
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SharedMsgCallbackDetails'
+              - $ref: '#/components/schemas/SharedNonEmailDetails'
+              - type: object
+                properties:
+                  content:
+                    type: object
+                    description: The content of the MO message sent by the end user.
+                    properties:
+                      text_1:
+                        type: string
+                        example: customer support agent
+                        description: 'The text message provided by end user. If Telesign splits the message into multiple parts, there may also be a `text_2`, `text_3`, etc. '
+                      subject:
+                        type: string
+                        description: The subject line that appears on the end user's handset.
+                      url_image_1:
+                        type: string
+                        description: 'An image URL provided by end user. If more than one image files are sent at once, they are marked as `url_image_1`, `url_image_2`, etc. <br/>
+
+                          **Required for:** MMS when the content is an image.'
+                      url_video_1:
+                        type: string
+                        description: 'A video URL provided by the end user. If more than one video files are sent at once, they are marked as `url_video_1`, `url_video_2`, etc. <br/>
+
+                          **Required for:** MMS when the content is a video.'
+                      url_audio_1:
+                        type: string
+                        description: 'A audio URL provided by the end user. If more than one audio files are sent at once, they are marked as `url_audio_1`, `url_audio_2`, etc. <br/>
+
+                          **Required for:** MMS when the content is an audio file. '
+                  sub_resource:
+                    type: string
+                    example: mo_mms
+                    description: Returns value identifying the inbound channel used by the end user. Helpful when multiple channels are used with the same Mobile Originated (MO) Callback URL.
+                required:
+                - sub_resource
+      description: "This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages from end users sent using its MMS channel. You can receive notifications from multiple Telesign services at the same endpoint. Confirm with our [Customer Support Team](mailto:support@telesign.com) that the channels you want to use for receiving inbound messages from end-users have been enabled. \n\n> Looking for the high-level guide page with examples related to this action? Go to [Messaging - Receive inbound messages](/enterprise/docs/messaging-receive-inbound-messages). \n\n\n## Status codes\n\n| Status code | Associated text string | Description       |\n|-------------|------------------------|-------------------|\n| 1500        | Delivered              | Delivered to you. |"
+      tags:
+      - Messaging Callbacks
+  /rcs_callback_endpoint:
+    post:
+      summary: Receive RCS callbacks
+      operationId: RCSCallbacks
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SharedMsgCallbackDetails'
+              - $ref: '#/components/schemas/SharedNonEmailDetails'
+              - type: object
+                properties:
+                  rcs_sender_id:
+                    type: string
+                    description: A [sender ID](https://support.telesign.com/s/article/What-is-a-Sender-ID) associated with the Rich Communication Services (RCS) agent used to send the message to the end user. In most cases, the callback parameter `rcs_sender_id` matches the `sender_id` provided in the request. However, Telesign may override the provided `sender_id` in order to improve delivery quality or follow SMS regulations in particular countries.
+                  content:
+                    type: object
+                    description: The content of the MO message sent by the end user.
+                    properties:
+                      text:
+                        type: string
+                        description: The text message or url provided by the end user.
+                      end_user_action:
+                        type: object
+                        description: An end user action that is a response to an MT (mobile terminated) message. It could be a quick reply or call to action event.
+                        properties:
+                          postback_data:
+                            type: string
+                            description: The data associated to the reply in a MT message.
+                            example: abcd1234
+                          original_reference_id:
+                            type: string
+                            description: 'The reference ID of the original MT message. '
+                            example: 0123456789ABCDEF0123456789ABCDEF
+                          text:
+                            type: string
+                            example: stop
+                            description: For suggested reply/action cases, this is the text specified on the button. When using the MO keyword handling feature, this is the text provided by end-user.
+                          iso_country_code:
+                            type: string
+                            example: US
+                            description: A two letter country code representing the country the phone number is associated with. You can see a complete list in [Country Codes and Dialing Codes](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes). Required if the MO keyword handling feature is enabled.
+                          action:
+                            type: string
+                            example: STOP
+                            description: The action that was triggered in response to specific keywords in a MO message. Some keywords will trigger automatic responses. Can be "START", "STOP", "HELP", or "GENERIC". Required if the MO keyword handling feature is enabled.
+                            enum:
+                            - START
+                            - STOP
+                            - HELP
+                            - GENERIC
+                          keyword:
+                            type: string
+                            example: stop
+                            description: 'Specific words in an MO message from an end-user (`content.end_user_action.text` parameter) that triggers certain actions. Each keyword can have different response template so the keyword "STOP" can use a response template that''s in English while the keyword "ARREST" can use a response template that''s in French. One action can be linked with different keywords, e.g. "STOP" action is linked with keywords: "end", "cancel", "unsubscribe", "quit", "stop", "arret". For "GENERIC" action, the keyword is empty. Required if the MO keyword handling feature is enabled.'
+                        required:
+                        - postback_data
+                        - original_reference_id
+                        - text
+                      location:
+                        type: object
+                        description: The location sent by the end user.
+                        required:
+                        - latitude
+                        - longitude
+                        properties:
+                          latitude:
+                            type: number
+                            description: The latitude coordinate of the location as a positive or negative.
+                            example: 44.8237574
+                          longitude:
+                            type: number
+                            example: 20.4177198
+                            description: The longitude coordinate of the location as a positive or negative number.
+                      file:
+                        type: object
+                        description: 'Includes details about the image, video, audio, file, sticker or GIF sent by the end user.<br/>
+
+                          **Required for:** RCS when an image, video, audio, file, sticker or GIF is sent.'
+                        properties:
+                          payload:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                description: The name of the file.
+                                example: 62018.mp4
+                              mime_type:
+                                type: string
+                                description: The media type.
+                                example: video/mp4
+                              uri:
+                                type: string
+                                description: The URI of the file.
+                              size_bytes:
+                                type: integer
+                                description: The size of file (in bytes).
+                                example: 8173352
+                            required:
+                            - name
+                            - mime_type
+                            - uri
+                            - size_bytes
+                    required:
+                    - text
+                    - location
+                  sub_resource:
+                    type: string
+                    example: mo_rcs
+                    description: Returns value identifying the inbound channel used by the end user. Helpful when multiple channels are used with the same Mobile Originated (MO) Callback URL.
+                required:
+                - sub_resource
+      description: "This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages from end users sent using its RCS channel. You can receive notifications from multiple Telesign services at the same endpoint. Confirm with our [Customer Support Team](mailto:support@telesign.com) that the channels you want to use for receiving inbound messages from end-users have been enabled. MO keyword handling feature is available for RCS, WhatsApp, and SMS channels, please contact our [Customer Support Team](mailto:support@telesign.com) to enable it for you.\n\n> Looking for the high-level guide page with examples related to this action? Go to [Messaging - Receive inbound messages](/enterprise/docs/messaging-receive-inbound-messages). \n\n\n## Status codes\n\n| Status code | Associated text string | Description       |\n|-------------|------------------------|-------------------|\n\
+        | 1500        | Delivered              | Delivered to you. |"
+      tags:
+      - Messaging Callbacks
+  /messaging_sms_callback_endpoint:
+    parameters: []
+    post:
+      summary: Receive inbound SMS callbacks
+      operationId: MsgSMSCallbacks
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SharedMsgCallbackDetails'
+              - type: object
+                properties:
+                  user_response:
+                    type: object
+                    properties:
+                      sender_id:
+                        type: string
+                        description: Short or long code over which an end user response was received. This is the short or long code to which the end user is sending their MO message.
+                        example: '4442'
+                      iso_country_code:
+                        type: string
+                        example: US
+                        description: A two letter country code representing the country the phone number is associated with. You can see a complete list in [Country Codes and Dialing Codes](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes).
+                      action:
+                        type: string
+                        description: The action that was triggered in response to specific keywords in a MO message. Some keywords will trigger automatic responses. Can be "start", "stop", "help", or generic. Refer to [Inbound SMS - Action-to-keyword mapping](/enterprise/docs/inbound-sms-action-to-keyword-mapping) for a complete list of actions and the associated keywords.
+                        example: start
+                        enum:
+                        - start
+                        - stop
+                        - help
+                        - generic
+                      keyword:
+                        type: string
+                        description: Specific words in an MO message from an end user that triggers certain actions. Each keyword can have different response template so the keyword "STOP" can use a response template that's in English while the keyword "ARREST" can use a response template that's in French.
+                        example: start
+                      phone_number:
+                        type: string
+                        example: '11234567890'
+                        description: The end user's phone number, including the country code.
+                      mo_message:
+                        type: string
+                        description: Content of the message sent by end user.
+                        example: Start
+                      price:
+                        type: string
+                        description: Returns the price of the MO message you sent. This feature must be enabled by our [Customer Support Team](mailto:support@telesign.com).
+                    required:
+                    - sender_id
+                    - iso_country_code
+                    - action
+                    - keyword
+                    - phone_number
+                    - mo_message
+                    - price
+                  sub_resource:
+                    type: string
+                    example: mo_sms
+                    description: Returns value identifying the inbound channel used by the end user. Helpful when multiple channels are used with the same Mobile Originated (MO) Callback URL.
+                  errors:
+                    type: object
+                    description: A JSON object that contains information on error conditions that might have happened. For now, this field will always be empty. If you receive a callback, there is no error.
+                    additionalProperties: false
+                  submit_timestamp:
+                    type: string
+                    example: '2023-10-31T14:47:10.154000Z'
+                    description: An ISO 8601 UTC timestamp indicating when the request was received.
+                required:
+                - sub_resource
+                - errors
+                - submit_timestamp
+      description: "This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages from end users sent using its SMS channel. You can receive notifications from multiple Telesign services at the same endpoint. Reference details for delivery status callbacks are located in [Receive SMS delivery reports](/reference/smsdeliveryreports). \n\nConfirm with our [Customer Support Team](mailto:support@telesign.com) that the channels you want to use for receiving inbound messages from end-users have been enabled. MO keyword handling feature is available for RCS, WhatsApp, and SMS channels, please contact our [Customer Support Team](mailto:support@telesign.com) to enable it for you.\n\n\n> Looking for the high-level guide page with examples related to this action? Go to [Messaging - Receive inbound messages](/enterprise/docs/messaging-receive-inbound-messages). \n\n\n##\
+        \ Status codes\n\n| Status code | Associated text string | Description       |\n|-------------|------------------------|-------------------|\n| 1500        | Delivered              | Delivered to you. |\n\n"
+      tags:
+      - Messaging Callbacks
+  /viber_callback_endpoint:
+    post:
+      summary: Receive Viber callbacks
+      operationId: ViberCallbacks
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SharedMsgCallbackDetails'
+              - $ref: '#/components/schemas/SharedNonEmailDetails'
+              - type: object
+                properties:
+                  content:
+                    type: object
+                    description: The content of the MO message sent by the end user.
+                    properties:
+                      original_reference_id:
+                        type: string
+                        description: The reference ID of the original MT message, in case of two-way communication.
+                        example: 0123456789ABCDEF0123456789ABCDEF
+                      text:
+                        type: string
+                        description: The text message or url provided by the end user.
+                        example: Hello
+                      tracking_data:
+                        type: string
+                        description: The data associated to the reply in a MT message. In the case of two-way communication, it used with the `reply_id` attribute.
+                        example: reply_2fa
+                      media:
+                        type: string
+                        description: The file URL sent by the end user for images, video, or files. Each file sent by end user will be stored on Viber’s server for up to 7 days, after which it will no longer be available to download.
+                      file_name:
+                        type: string
+                        description: The name of the file sent by the end user for images, video, or files.
+                        example: 1695641912869284.jpg
+                    required:
+                    - original_reference_id
+                    - text
+                    - tracking_data
+                    - media
+                    - file_name
+      description: "This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages from end users sent using its Viber channel. You can receive notifications from multiple Telesign services at the same endpoint. Confirm with our [Customer Support Team](mailto:support@telesign.com) that the channels you want to use for receiving inbound messages from end-users have been enabled. \n\n> Looking for the high-level guide page with examples related to this action? Go to [Messaging - Receive inbound messages](/enterprise/docs/messaging-receive-inbound-messages). \n\n\n## Status codes\n\n| Status code | Associated text string | Description       |\n|-------------|------------------------|-------------------|\n| 1500        | Delivered              | Delivered to you. |"
+      tags:
+      - Messaging Callbacks
+  /whatsapp_callback_endpoint:
+    post:
+      summary: Receive WhatsApp callbacks
+      operationId: WhatsAppCallbacks
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SharedMsgCallbackDetails'
+              - $ref: '#/components/schemas/SharedNonEmailDetails'
+              - $ref: '#/components/schemas/WAppMsgCallbackDetails'
+              - type: object
+                properties:
+                  content:
+                    type: object
+                    description: The content of the MO message sent by the end user.
+                    properties:
+                      type:
+                        type: string
+                        description: Type of message.
+                        enum:
+                        - text
+                        - location
+                        - image
+                        - audio
+                        - video
+                        - document
+                        - sticker
+                        - unsupported
+                      content:
+                        type: object
+                        description: The content of the MO message.
+                        properties:
+                          body:
+                            type: string
+                            description: Text message. Included when `content.type` is `text`.
+                            example: Hello
+                          longitude:
+                            type: number
+                            example: 20.505544662476
+                            description: The longitude coordinate of the location as a positive or negative. Included when `content.type` is `location`.
+                          latitude:
+                            type: number
+                            example: 44.816028594971
+                            description: The latitude coordinate of the location as a positive or negative. Included when `content.type` is `location`.
+                          url:
+                            type: string
+                            description: URL of the file. Included when `content.type` is `location`, `image`, `audio`, `video`, `document`, or `sticker`.
+                          name:
+                            type: string
+                            description: The name of the searched location. Included when `content.type` is `location`. <br/> **Required for:** Searched location in WhatsApp.
+                          address:
+                            type: string
+                            description: '
+
+                              The full address of the searched location. Included when `content.type` is `location`. <br/> **Required for:** Searched location in WhatsApp.'
+                            example: 100 Main Street, Anywhere, State, US 01234
+                          sha256:
+                            type: string
+                            description: 'SHA256 (Secure Hash Algorithm 256-bit) hash.
+
+                              Included when `content.type` is `image`, `audio`, `video`, `document`, or `sticker`.'
+                            example: 4+xruQdYHSw9CeCZeOUb/ZH4DUslQPaJjQSlhbGBWKU=
+                          mime_type:
+                            type: string
+                            description: The media type. Included when `content.type` is `image`, `audio`, `video`, `document`, or `sticker`.
+                            example: image/jpeg
+                          voice:
+                            type: boolean
+                            description: '`true` if end user sent a recorded audio message otherwise `false` (such as when .mp3 file is sent). Included when `content.type` is `audio`. '
+                          filename:
+                            type: string
+                            description: The file name of the document. Included when `content.type` is `document`.
+                            example: test.pdf
+                          animated:
+                            type: boolean
+                            description: '`true` if an animated sticker; `false` if a static sticker. Included when `content.type` is `sticker`.'
+                        required:
+                        - body
+                        - longitude
+                        - latitude
+                        - url
+                        - sha256
+                        - mime_type
+                        - voice
+                        - filename
+                        - animated
+                      end_user_action:
+                        type: object
+                        description: An end user action that is a response to an MT (mobile terminated) message. It a could be quick reply or call to action event.
+                        properties:
+                          "postback_data\t":
+                            type: string
+                            description: The data associated to the reply in a MT message.
+                            example: '1233'
+                          original_reference_id:
+                            type: string
+                            description: The reference ID of the original MT message.
+                            example: 0123456789ABCDEF0123456789ABCDEF
+                          text:
+                            type: string
+                            example: stop
+                            description: For suggested reply/action cases, this is the text specified on the button. When using the MO keyword handling feature, this is the text provided by end-user.
+                          iso_country_code:
+                            type: string
+                            example: US
+                            description: A two letter country code representing the country the phone number is associated with. You can see a complete list in [Country Codes and Dialing Codes](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes). Required if the MO keyword handling feature is enabled.
+                          action:
+                            type: string
+                            example: STOP
+                            description: 'The action that was triggered in response to specific keywords in a MO message. Some keywords will trigger automatic responses. Can be "START", "STOP", "HELP", or "GENERIC". Required if the MO keyword handling feature is enabled.
+
+                              '
+                            enum:
+                            - START
+                            - STOP
+                            - HELP
+                            - GENERIC
+                          keyword:
+                            type: string
+                            example: stop
+                            description: 'Specific words in an MO message from an end-user (`content.end_user_action.text` parameter) that triggers certain actions. Each keyword can have different response template so the keyword "STOP" can use a response template that''s in English while the keyword "ARREST" can use a response template that''s in French. One action can be linked with different keywords. For example, "STOP" action is linked with keywords: "end", "cancel", "unsubscribe", "quit", "stop", "arret". For "GENERIC" action, the keyword is empty. Required if the MO keyword handling feature is enabled.'
+                        required:
+                        - "postback_data\t"
+                        - original_reference_id
+                        - text
+                    required:
+                    - type
+      description: "This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages from end-users sent using its WhatsApp channel. You can receive notifications from multiple Telesign services at the same endpoint. Confirm with our [Customer Support Team](mailto:support@telesign.com) that the channels you want to use for receiving inbound messages from end-users have been enabled. MO keyword handling feature is available for RCS, WhatsApp, and SMS channels, please contact our [Customer Support Team](mailto:support@telesign.com) to enable it for you.\n\n> Looking for the high-level guide page with examples related to this action? Go to [Messaging - Receive inbound messages](/enterprise/docs/messaging-receive-inbound-messages). \n\n\n## Status codes\n\n| Status code | Associated text string | Description       |\n|-------------|------------------------|-------------------|\n\
+        | 1500        | Delivered              | Delivered to you. |"
+      tags:
+      - Messaging Callbacks
+  /msg_templates_endpoint:
+    post:
+      summary: Receive template management callbacks
+      operationId: templatesCallbacks
+      responses:
+        '200':
+          description: OK
+      description: 'This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging for template management requests. You can receive notifications from multiple Telesign services at the same endpoint.
+
+
+        ## Status codes
+
+
+        | Status code | Text string | Description |
+
+        |-------------|------------------------|-------------|
+
+        |3850|Template successfully created|This template has been successfully created and is ready for use.|
+
+        |3851|Template approved by provider|This template has been successfully created by Telesign and approved by the channel provider and is ready for use.|
+
+        |3852|Template rejected by provider|This template has been rejected by the channel provider.|
+
+        |3853|Template successfully removed|This template has been successfully removed.|
+
+        |3854|Template flagged by provider|This template has been flagged by the channel provider due to misuse.|
+
+        |3855|Template disabled by provider|This template has been disabled by the channel provider.|
+
+        |3857|Removal unsuccessful - provider temporary problem|The template removal has been rejected by the channel provider.|'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/Shared'
+              - type: object
+                properties:
+                  name:
+                    type: string
+                    description: The name of this template. This serves as a unique identifier per channel per customer.
+                    example: WAMarketingTemplate1
+                  channel:
+                    type: string
+                    description: The channel that messages using this template are sent on.
+                    example: whatsapp
+                    enum:
+                    - whatsapp
+                    - sms
+                  language:
+                    type: array
+                    description: Abbreviations that specify the languages used in the text in your template. Required for WhatsApp templates. Not used for templates on other channels. See [Supported Languages](https://developers.facebook.com/docs/whatsapp/api/messages/message-templates#supported-languages) in Facebook's documentation for a complete list of valid abbreviations.
+                    example:
+                    - en_US
+                    items:
+                      type: string
+                  status:
+                    allOf:
+                    - $ref: '#/components/schemas/Status'
+                    - type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 3850
+                        description:
+                          type: string
+                          example: Template successfully created
+                required:
+                - name
+                - channel
+                - status
+            examples:
+              Example:
+                value:
+                  reference_id: B56259E45884010488343BAA15FB0002
+                  name: WAMarketingTemplate1
+                  channel: whatsapp
+                  language:
+                  - en_US
+                  status:
+                    code: 3850
+                    description: Template successfully created
+                    updated_on: '2022-09-21T14:05:36.181346Z'
+        description: ''
+      tags:
+      - Templates Callbacks
+    parameters: []
+  /bulk_sms_callback_endpoint:
+    post:
+      summary: Receive Bulk SMS callbacks
+      operationId: bulkSMSCallbacks
+      responses:
+        '200':
+          description: OK
+      description: "This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Engage for bulk SMS requests. You can receive notifications from multiple Telesign services at the same endpoint.\n\n## Status codes\n\n| Status code | Associated text string | Description |\n|-------------|------------------------|-------------|\n| 200         | Delivered to handset   | The SMS was delivered to the end user's phone. (Final) |\n| 203         | Delivered to gateway   | The SMS was delivered to the gateway. If the gateway responds with further information (including successful delivery to handset or delivery failure), the status is updated. (Intermediate)  |\n| 207         | Error delivering SMS to handset (reason unknown)   | The SMS could not be delivered to the end user's handset for an unknown reason. (Final)           |\n| 210         | Temporary phone error  | The SMS could not be delivered to the handset due\
+        \ to a temporary error with the phone. Examples - phone is turned off, not enough memory to store the message. (Final)                             |\n| 211         | Permanent phone error  | The SMS could not be delivered to the handset due to a permanent error with the phone. For example, the phone is incompatible with SMS, or illegally registered on the network. This can happen when a phone number is blacklisted, or is incorrectly provisioned. (Final)                             |\n| 220         | Gateway/network cannot route message   | The network cannot route the message to the handset. (Final)                                 |\n | 221         | Message expired before delivery | The message was queued by the mobile provider and timed out before it could be delivered tothe handset. (Final)                             |\n| 222         | SMS not supported      | SMS is not supported by this phone, carrier, plan, or user.                                   |\n| 230         | Message\
+        \ blocked by Telesign      | Telesign blocks a message if it is being sent to a phone number that is on a global blocklist.    |\n| 231         | Invalid/unsupported    | The content of the message is not supported.     |\n| 237         | Message blocked in requested country  | You requested that messages in a specific country be blocked, and the message was being sent to this country.                                    |\n| 238         | Destination blocked by prefix  | You requested that phone numbers with a particular prefix be blocked.                    |\n| 250         | Final status unknown   | The final status of the SMS cannot be determined.|\n| 251         | Message successfully sent out for delivery, however final confirmation of delivery to handset was not received.        | Message successfully sent out for delivery, however final confirmation of delivery to handset was not received. | This message was successfully delivered to the gateway, but Telesign cannot confirm\
+        \ delivery to the handset because Telesign does not receive the final handset DLR in this region.  NOTE: There is a high probability that this message was successfully delivered to the handset.       |\n| 286         | Transaction not attempted         | The SMS is blocked from being sent due to the phone type not being one of the following - mobile, prepaid, personal, or pager.             |\n| 290         | Message in progress    | The message is being sent to the SMS gateway.    |\n | 292         | Queued by gateway      | The SMS gateway has queued the message.          |\n| 295         | Status delayed         | The status of the SMS is temporarily unavailable.|\n| 500         | Transaction not attempted       | No SMS request was attempted.                    |\n| 502         | Campaign error         | This error can be generated if there is a problem with the short code used.                        |\n | 503         | Carrier rejected - temporary problem     | This error is\
+        \ generated if there is an error on the carrier or operator side that is temporary and the message can be retried.                  |\n| 504         | Carrier rejected - permanent error      | This error is generated if there is an error on  the carrier or operator side that is permanent and the message should not be retried.           |\n| 505         | Error on gateway - temporary error    | This error is generated if there is an error on Telesign's partner side that is considered temporary and the message can be retried.        |\n| 506         | Error on gateway - permanent error    | This error is generated if there is an error on  Telesign's partner side that is considered permanent and the message should not be retried. |\n| 507         | Invalid destination address   | There is a problem with the destination address used. Either the format is not valid, or the number is not associated with any carrier, or if MSC is used it does not know about this MSISDN.  |\n| 508      \
+        \   | Invalid source address | The message requires a source address. Verify that one is provided and correct.                |\n| 510         | Message blocked by subscriber action or request     | The end user has blocked receiving SMS with their carrier plan or by request or from the particular short code used.                                 |\n| 511         | Subscriber low on credit      | The end user exceeded their spending limits and cannot receive SMS.                              |\n| 512         | Roaming error          | End user cannot receive SMS because their device that receives the messages is roaming.           |\n | 513         | Mobile number portability error         | SMS failed because ported  combinations are unreachable.                                     |\n| 514         | Subscriber absent      | The operator/carrier is temporarily unable to reach the end user.       |\n| 515         | Suspected spam         | This message is considered to be spam by\
+        \ carrier or operator.                                     |\n| 521  | Requested Sender ID is not allowed for destination  | The Sender ID included in this request cannot be used to send messages to this destination phone number. The Sender ID may either be blocklisted for this country or needs to be added to a whitelist for this country. | \n| 599         | Status not available   | The system is unable to provide status at this time.                                            |"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/DeliveryStatusNotification'
+              - type: object
+                properties:
+                  session_id:
+                    type: string
+                    example: 255E3E34382C0E049046BF14FF7F3435
+                    description: 'Your unique identifier for the message recipient this notification relates to. '
+                    maxLength: 64
+                  errors:
+                    type: array
+                    description: Contains an object for each error that occurred.
+                    items:
+                      $ref: '#/components/schemas/Error'
+                  sub_resource:
+                    type: string
+                    example: sms
+                    description: Indicates which Telesign service processed the original transaction.
+            examples:
+              'Example 1: Success':
+                value:
+                  reference_id: 0123456789ABCDEF0123456789ABCDEF
+                  status:
+                    code: 200
+                    description: Delivered to handset
+                    updated_on: '2016-10-21T14:05:36.181346Z'
+                  errors: []
+                  sub_resource: bulk_sms
+                  session_id: 255E3E34382C0E049046BF14FF7F3435
+              'Example 2: Fail':
+                value:
+                  reference_id: 0123456789ABCDEF0123456789ABCDEF
+                  status:
+                    code: 500
+                    description: Transaction not attempted
+                    updated_on: '2016-10-25T12:33:45.420798Z'
+                  errors:
+                  - code: -90001
+                    description: System Unavailable, Please try again later.
+                  sub_resource: bulk_sms
+        description: ''
+      tags:
+      - Bulk SMS Callbacks
+    parameters: []
+components:
+  schemas:
+    Status:
+      title: Status
+      type: object
+      description: Contains properties related to the processing status of this transaction or send.
+      properties:
+        code:
+          type: integer
+          example: 200
+          description: Numeric code that indicates the processing status of this transaction or send.
+        description:
+          type: string
+          example: Delivered to handset
+          description: Text that describes the processing status of this transaction or send.
+        updated_on:
+          type: string
+          example: '2016-10-21T14:05:36.181346Z'
+          description: Timestamp that indicates when the status of this transaction or send was last updated.
+      required:
+      - code
+      - description
+      - updated_on
+    Error:
+      title: Error
+      type: object
+      properties:
+        code:
+          type: integer
+          example: -90001
+          description: Numeric code that indicates which error occurred.
+        description:
+          type: string
+          example: System Unavailable, Please try again later.
+          description: Text that describes this error.
+      required:
+      - code
+      - description
+    DeliveryStatusNotification:
+      title: DeliveryStatusNotification
+      type: object
+      properties:
+        reference_id:
+          type: string
+          example: B56259E45884010488343BAA15FB0002
+          description: The service's unique identifier for the original transaction this notification is related to.
+          minLength: 32
+          maxLength: 32
+        status:
+          $ref: '#/components/schemas/Status'
+        submit_timestamp:
+          type: string
+          description: An ISO 8601 UTC timestamp indicating when the request was received.
+          example: '2016-01-01T01:01:01.010101Z'
+      required:
+      - status
+    Shared:
+      title: Shared
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: The service's unique identifier for the original transaction this notification is related to.
+          minLength: 32
+          maxLength: 32
+          example: B56259E45884010488343BAA15FB0002
+      required:
+      - reference_id
+    SharedMsgCallbackDetails:
+      title: SharedMsgCallbackDetails
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: The service's unique identifier for the original transaction this notification is related to.
+          example: 0123456789ABCDEF0123456789ABCDEF
+        status:
+          $ref: '#/components/schemas/MsgStatus'
+      required:
+      - reference_id
+    EmailMsgCallbackDetails:
+      title: EmailMsgCallbackDetails
+      type: object
+      properties:
+        email:
+          type: string
+          description: 'End user''s email address used for sending the inbound message. '
+          example: name@vero-finto.com
+      required:
+      - email
+    SharedNonEmailDetails:
+      title: SharedNonEmailDetails
+      type: object
+      properties:
+        phone_number:
+          type: string
+          example: '11234567890'
+          description: 'The end user''s phone number with country code included. '
+      required:
+      - phone_number
+    WAppMsgCallbackDetails:
+      title: WAppMsgCallbackDetails
+      type: object
+      properties:
+        waba_phone_number:
+          type: string
+          description: The phone number of your business account that triggered the notification.
+          example: '11234567890'
+      required:
+      - waba_phone_number
+    MsgStatus:
+      title: MsgStatus
+      type: object
+      description: Contains properties related to the processing status of this transaction or send.
+      properties:
+        updated_on:
+          type: string
+          description: Timestamp indicating when the status was last updated.
+          example: '2023-10-31T14:47:10.490130Z'
+        description:
+          type: string
+          example: Delivered to customer
+          description: The description of the specific status code.
+        code:
+          type: integer
+          example: 1500
+          description: The 4-digit status code associated with the mobile originated (MO) message.
+      required:
+      - updated_on
+      - description
+      - code
+tags:
+- name: SMS Callbacks
+- name: Messaging Callbacks
+- name: Templates Callbacks
+- name: Bulk SMS Callbacks
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  samples-enabled: false
+x-original-source: https://developer.telesign.com/enterprise/openapi/engage-callbacks.json

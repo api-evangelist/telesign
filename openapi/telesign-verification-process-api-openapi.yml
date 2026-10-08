@@ -1,0 +1,838 @@
+openapi: 3.2.0
+info:
+  title: Verify Verification Process API
+  version: 1.1.0
+  description: Use the Telesign Verify API to deliver phone-based verification using multiple channels and methods.
+  contact:
+    name: Telesign Customer Support Team
+    email: support@telesign.com
+servers:
+- url: https://verify.telesign.com
+security:
+- Basic: []
+tags:
+- name: Verification Process
+paths:
+  /verification:
+    parameters: []
+    post:
+      summary: Create a verification process
+      operationId: createVerificationProcess
+      description: '> 🚧 CAUTION:
+
+        >
+
+        > As part of our ongoing platform improvements and the migration to a new supporting platform, **the Push Verify functionality is temporarily unavailable**. This notice will be removed once Push Verify becomes available again.
+
+        >
+
+        >
+
+        > Other Verify API SDK capabilities, including QR Verify and Silent Verify, are not impacted.
+
+
+        Use this action to create a verification process for the specified phone number.
+
+
+        > 📘 NOTE:
+
+        >
+
+        > Updating a verification process using the procedure explained in each channel''s **Complete verification and get delivery status** section on its Get Started page is a mandatory step when using Verify API. This step allows Telesign to know the real state of your verification as well as control all the features related to a verification process such as fallback, callback, and pricing. If your end user has verified themselves but the verification process is not updated, these features might not work as intended which can lead to extra costs or incorrect billing.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/json`
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:** `Content-Type - application/json`
+
+        * **Rate limit:** Default rate limits by product'
+      tags:
+      - Verification Process
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostVerificationRequest'
+            examples:
+              SMS OTP:
+                value:
+                  recipient:
+                    phone_number: '11234567890'
+                  verification_policy:
+                  - method: sms
+              Silent Verify:
+                value:
+                  recipient:
+                    phone_number: '11234567890'
+                  verification_policy:
+                  - method: silent
+                    fallback_time: 30
+                  - method: sms
+              Push Verify:
+                value:
+                  recipient:
+                    phone_number: '11234567890'
+                    push_app_token: 23324n2b42i:fbo234cu2435n53ng_f4i2bdf2o4i6n53bh_234ol5436b735v462g3c42gc34b24j6b345
+                  verification_policy:
+                  - method: silent
+                    fallback_time: 30
+                  - method: sms
+                  push_registration: true
+              Specify template:
+                value:
+                  recipient:
+                    phone_number: '11234567890'
+                  message_template:
+                    name: verification_template
+                  security_factor: '123456'
+                  verification_policy:
+                  - method: rcs
+                    fallback_time: 30
+                  - method: sms
+                    fallback_time: 60
+              Voice:
+                value:
+                  recipient:
+                    phone_number: '447975777666'
+                  verification_policy:
+                  - method: voice
+                  voice_lang: en-GB
+        description: ''
+      responses:
+        '200':
+          description: "**Success.** Your verification request has been accepted and the verification process with this end user has been created accordingly.\n\n Status.code | Status.Description  | Additional details\n ------------|---------------------|------------------------------\n 3901 | Request in progress | Telesign has created this verification process and it is ready to use. (Intermediate)"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostVerificationResponse'
+              examples:
+                Silent Verify:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    mobile_app_token: 1555GFRWG7E9Q67D7FFEHQQWERKWJPFWRFRWF867530943565
+                    recipient:
+                      phone_number: '11234567890'
+                    state: CREATED
+                    verification_policy:
+                    - method: silent
+                      fallback_time: 30
+                    - method: sms
+                    status:
+                      code: 3901
+                      description: Request in progress
+                Push Verify:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    status:
+                      code: 3901
+                      description: Request in progress
+                    mobile_app_token: 1555GFRWG7E9Q67D7FFEHQQWERKWJPFWRFRWF867530943565
+                    push_app_token: 23324n2b42i:fbo234cu2435n53ng_f4i2bdf2o4i6n53bh_234ol5436b735v462g3c42gc34b24j6b345
+                    recipient:
+                      phone_number: '11234567890'
+                      push_app_token: 23324n2b42i:fbo234cu2435n53ng_f4i2bdf2o4i6n53bh_234ol5436b735v462g3c42gc34b24j6b345
+                    state: CREATED
+                    verification_policy:
+                    - method: push
+                      fallback_time: 30
+                    - method: sms
+                    device_registration: stamp
+                SMS OTP:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    recipient:
+                      phone_number: '11234567890'
+                    state: ONGOING
+                    verification_policy:
+                    - method: sms
+                    status:
+                      code: 3901
+                      description: Request in progress
+                Voice:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    recipient:
+                      phone_number: '447975777666'
+                    state: ONGOING
+                    verification_policy:
+                    - method: voice
+                      fallback_time: 300
+                    status:
+                      code: 3901
+                      description: Request in progress
+        '400':
+          $ref: '#/components/responses/StandardMSG400ErrorResponse'
+        '401':
+          $ref: '#/components/responses/StandardMSG401ErrorResponse'
+        '413':
+          $ref: '#/components/responses/StandardMSG413ErrorResponse'
+        '429':
+          $ref: '#/components/responses/StandardMSG429ErrorResponse'
+        '503':
+          $ref: '#/components/responses/StandardMSG503ErrorResponse'
+  /verification/{reference_id}:
+    summary: This resource represents a verification. Each verification is identified by reference_id.
+    parameters:
+    - in: path
+      name: reference_id
+      description: The identifier of the verification process you wish to retrieve. This was returned to you in the response when you initiated verification.
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getVerificationProcess
+      summary: Retrieve a verification process
+      description: 'Use this action to retrieve details about the specified verification process in progress.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/json`
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:** `Content-Type - application/json`
+
+        * **Rate limit:** Default rate limits by product'
+      responses:
+        '200':
+          description: '**Success.** Your verification request has been accepted and the current status of the verification process is included in this response.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetVerificationResponse'
+              examples:
+                Silent Verify:
+                  value:
+                    created_on: '2025-05-28T14:32:27.563000Z'
+                    inner_methods:
+                    - err_code: 3901
+                      err_msg: Request in progress
+                      expires_on: '2025-05-28T14:33:28.906000Z'
+                      method: silent
+                      state: ONGOING
+                      tried_on: '2025-05-28T14:32:28.906000Z'
+                      updated_on: '2025-05-28T14:32:28.906000Z'
+                    - method: sms
+                      state: CREATED
+                    recipient:
+                      phone_number: '11234567890'
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    state: ONGOING
+                    updated_on: '2025-05-28T14:32:28.906000Z'
+                    verification_policy:
+                    - fallback_time: 60
+                      method: silent
+                    - fallback_time: 240
+                      method: sms
+                Push Verify:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    created_on: '2025-05-28T14:36:35.052000Z'
+                    recipient:
+                      phone_number: '11234567890'
+                      push_app_token: GSIb3DQEBAQUAA4GNADCBiQKBgQDHwWF6dkd5
+                    state: ONGOING
+                    updated_on: '2025-05-28T14:36:35.064000Z'
+                    verification_policy:
+                    - fallback_time: 60
+                      method: push
+                    - fallback_time: 240
+                      method: sms
+                    device_registration: stamp
+                    inner_methods:
+                    - err_code: 3901
+                      err_msg: Request in progress
+                      method: push
+                      state: ONGOING
+                      tried_on: '2025-05-28T14:36:35.064000Z'
+                      updated_on: '2025-05-28T14:36:35.064000Z'
+                    - method: sms
+                      state: CREATED
+                SMS OTP:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    recipient:
+                      phone_number: '11234567890'
+                    state: VERIFIED
+                    verification_policy:
+                    - method: sms
+                    updated_on: '2022-31-03T14:51:28.709526Z'
+                    created_on: '2022-31-03T14:51:28.709526Z'
+                Voice:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    created_on: '2025-04-15T07:59:29.185000Z'
+                    inner_methods:
+                    - err_code: 3000
+                      err_msg: Delivered
+                      method: voice
+                      state: ONGOING
+                      tried_on: '2025-04-15T07:59:29.209000Z'
+                      updated_on: '2025-04-15T07:59:30.161000Z'
+                    recipient:
+                      phone_number: '447975777666'
+                    state: ONGOING
+                    updated_on: '2025-04-15T07:59:30.161000Z'
+                    verification_policy:
+                    - fallback_time: 300
+                      method: voice
+                    voice_lang: en-GB
+        '400':
+          $ref: '#/components/responses/StandardMSG400ErrorResponse'
+        '401':
+          $ref: '#/components/responses/StandardMSG401ErrorResponse'
+        '429':
+          $ref: '#/components/responses/StandardMSG429ErrorResponse'
+        '503':
+          $ref: '#/components/responses/StandardMSG503ErrorResponse'
+      tags:
+      - Verification Process
+  /verification/{reference_id}/state:
+    summary: Use this action to alter verification state for an end-user with Telesign
+    parameters:
+    - in: path
+      name: reference_id
+      description: Identifier of the verification to be altered. The value has been returned upon requesting verification via POST method.
+      required: true
+      schema:
+        type: string
+    patch:
+      operationId: updateVerificationProcess
+      summary: Update a verification process
+      description: 'Use this action to change the state of an active verification process. This is typically used to finalize a verification process managed solely via interactions with this REST API.
+
+
+        > 📘 NOTE:
+
+        >
+
+        > Updating a verification process using the procedure explained in each channel''s **Complete verification and get delivery status** section on its Get Started page is a mandatory step when using Verify API. This step allows Telesign to know the real state of your verification as well as control all the features related to a verification process such as fallback, callback, and pricing. If your end user has verified themselves but the verification process is not updated, these features might not work as intended which can lead to extra costs or incorrect billing.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/json`
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:** `Content-Type - application/json`
+
+        * **Rate limit:** Default rate limits by product'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchVerificationStateRequest'
+            examples:
+              Finalize with OTP:
+                value:
+                  action: finalize
+                  security_factor: '5724433'
+      responses:
+        '200':
+          description: '**Success.** Your update request has been accepted and the current status of the verification process is included in this response.
+
+
+            Status code | Associated text string | Description
+
+            --|--|--
+
+            3900|Verified|The asserted OTP and the OTP generated by Telesign match. Verification process completed successfully.
+
+            3904|Verification Failed|The asserted OTP and the OTP generated by Telesign do not match. Verification process continues if retries are still available.
+
+            3909|Invalid code entered|The asserted OTP and the OTP generated by Telesign do not match, and also did not match in two previous attempts. Verification process completed unsuccessfully.
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatchVerificationStateResponse'
+              examples:
+                Verification Succesful:
+                  value:
+                    status:
+                      code: 3900
+                      description: Verified
+        '400':
+          $ref: '#/components/responses/StandardMSG400ErrorResponse'
+        '401':
+          $ref: '#/components/responses/StandardMSG401ErrorResponse'
+        '413':
+          $ref: '#/components/responses/StandardMSG413ErrorResponse'
+        '429':
+          $ref: '#/components/responses/StandardMSG429ErrorResponse'
+        '503':
+          $ref: '#/components/responses/StandardMSG503ErrorResponse'
+      tags:
+      - Verification Process
+components:
+  schemas:
+    ResponseStatus:
+      title: Response Status
+      allOf:
+      - $ref: '#/components/schemas/SlimResponseStatus'
+      - properties:
+          updated_on:
+            type: string
+            description: A timestamp showing when your transaction status was updated last.
+            example: '2022-31-03T14:51:28.709526Z'
+    SharedResponse:
+      title: Shared Response
+      type: object
+      properties:
+        reference_id:
+          type: string
+          example: 0123456789ABCDEF0123456789ABCDEF
+          description: A unique, randomly generated hex value that identifies your web service request.
+        status:
+          $ref: '#/components/schemas/ResponseStatus'
+      required:
+      - reference_id
+      - status
+    TemplateSpecifyRequest:
+      title: Specify template request
+      type: object
+      description: Contains properties related to the template set up for use with Verify API.
+      properties:
+        name:
+          type: string
+          description: The name of this template. Use only lowercase alpha characters and underscores. If you do not declare a template, Verify API will use Verify API will use a default template. The same template name must be used for each active channel when utilizing fallback channels because the template name is declared once and then it is available on all of the active channels for the entire verification process.
+          example: verification_template
+    PostVerificationResponse:
+      title: POST Verification Response
+      allOf:
+      - $ref: '#/components/schemas/SharedResponseSlim'
+      - title: Verification Response
+        description: Successful response when creation of a new verification process is requested.
+        type: object
+        properties:
+          reference_id:
+            type: string
+            description: A unique, randomly generated hex value that identifies this verification process.
+            minLength: 32
+            maxLength: 32
+            example: 0123456789ABCDEF0123456789ABCDEF
+          mobile_app_token:
+            type: string
+            description: An access token that the Telesign Android SDK must include to interact with this verification process via Telesign REST API. Your mobile app sends this token to your instance of the Telesign Android SDK. The token expires after five minutes.
+            example: 1555GFRWG7E9Q67D7FFEHQQWERKWJPFWRFRWF867530943565
+          recipient:
+            $ref: '#/components/schemas/VerificationRecipient'
+          state:
+            type: string
+            description: The current state of this verification process.
+            enum:
+            - CREATED
+            - ONGOING
+            - REJECTED
+            - FAILED
+            - VERIFIED
+            - CANCELED
+            example: ONGOING
+          verification_policy:
+            $ref: '#/components/schemas/VerificationPolicy'
+          device_registration:
+            description: This verification process is for the purpose of registering a device for Push Verify. See [Verify API - Register a new device with Push Verify](/enterprise/docs/verify-api-register-a-new-device-with-push-verify) for further context on when to use this. When used with Push Verify, the value of this parameter is `stamp`.
+            type: string
+            example: stamp
+        required:
+        - reference_id
+        - recipient
+        - state
+      description: Succesful response when creating a verification process.
+    VerificationMethod:
+      title: Verification Method
+      description: One of the [verification methods](/enterprise/docs/verify-api-get-started#supported-verification-methods) included in a verification policy. Each method employs a Telesign service, such as Silent Verify or Push Verify.
+      type: string
+      enum:
+      - silent
+      - sms
+      - push
+      - rcs
+      - whatsapp
+      - email
+      - voice
+      example: sms
+    PatchVerificationStateRequest:
+      title: PATCH Verification State Change Request
+      description: Payload for request to update a verification process.
+      type: object
+      x-examples: {}
+      properties:
+        action:
+          type: string
+          description: 'Specifies how you want to change the verification state for this verification process. Use one of these values:
+
+            * "finalize" - Finalize this verification process. Telesign either verifies or rejects at this stage.'
+          example: finalize
+        security_factor:
+          type: string
+          description: If Telesign has sent a one-time passcode (OTP) to your end user as part of this verification process, include the asserted OTP from your end user here. If Telesign generated the code, this is necessary to determine if the OTPs match. If you generated the code, this is necessary to end the verification process and avoid added costs due to additional sends to the end user.
+          minLength: 3
+          maxLength: 10
+          example: '5724433'
+      required:
+      - action
+      - security_factor
+    VerificationRecipient:
+      title: Verification Recipient
+      description: Contains properties with the recipient identifier for a [verification process](/enterprise/docs/verify-api-get-started#key-terms).
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      properties:
+        phone_number:
+          type: string
+          description: The recipient's phone number, as digits without spaces or special characters, beginning with the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes).
+          example: '11234567890'
+        push_app_token:
+          type: string
+          example: 23324n2b42i:fbo234cu2435n53ng_f4i2bdf2o4i6n53bh_234ol5436b735v462g3c42gc34b24j6b345
+          description: Identifies the instance of your mobile application installed on the user's mobile device. This is also called a "registration token" in Firebase Cloud Messaging or a "device token" in iOS. This is required when using the Push Verify verification method.
+        email:
+          type: string
+          description: The recipient's email address.
+          example: ncarolina@vero-finto.com
+    SlimResponseStatus:
+      title: Slim Response Status
+      type: object
+      properties:
+        code:
+          type: integer
+          description: A numeric code that indicates the status of your transaction.
+          example: 3901
+        description:
+          type: string
+          description: Text describing the status of your transaction.
+          example: Request in progress
+      required:
+      - code
+      - description
+    InnerVerificationMethodStatus:
+      title: Status of inner verification method
+      description: Contains properties related to the processing status of the specified inner verification method. One verification process can include multiple inner verification methods.
+      type: object
+      properties:
+        method:
+          $ref: '#/components/schemas/VerificationMethod'
+        state:
+          type: string
+          description: Text describing the processing status of the specified verification method. This is not the same as the overall status of the verification process.
+          enum:
+          - CREATED
+          - ONGOING
+          - SKIPPED
+          - REJECTED
+          - FAILED
+          - VERIFIED
+          - CANCELED
+          example: ONGOING
+        err_code:
+          type: integer
+          description: A numeric code indicating which error occured while attempting to use this verification method.
+          example: 3000
+        err_msg:
+          type: string
+          description: Text describing the error that occurred while attempting to use this verification method.
+          example: Delivered
+        tried_on:
+          type: string
+          description: A timestamp that indicates when this verification method was attempted.
+          example: '2022-31-03T14:51:28.709526Z'
+        updated_on:
+          type: string
+          description: An [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339) timestamp that indicates when the state of attempting verification with this method was last updated.
+          example: '2022-31-03T14:51:28.709526Z'
+    GetVerificationResponse:
+      title: GET Verification Response
+      description: Succesful response when retrieving a verification process.
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: A unique, randomly generated hex value that identifies your verification service request.
+          minLength: 32
+          maxLength: 32
+          example: 0123456789ABCDEF0123456789ABCDEF
+        recipient:
+          $ref: '#/components/schemas/VerificationRecipient'
+        state:
+          type: string
+          description: The current state of this verification process.
+          enum:
+          - CREATED
+          - ONGOING
+          - REJECTED
+          - FAILED
+          - VERIFIED
+          - CANCELED
+          example: ONGOING
+        verification_policy:
+          $ref: '#/components/schemas/VerificationPolicy'
+        inner_methods:
+          type: array
+          items:
+            $ref: '#/components/schemas/InnerVerificationMethodStatus'
+        device_registration:
+          type: string
+          description: This verification process is for the purpose of registering a device for Push Verify. See [Verify API - Register a new device with Push Verify](/enterprise/docs/verify-api-register-a-new-device-with-push-verify) for further context on when to use this. When used with Push Verify, the value of this parameter is `stamp`.
+          example: stamp
+        external_id:
+          type: string
+          description: A customer-generated ID for this transaction. The response simply echoes the value provided for this parameter.
+        updated_on:
+          type: string
+          description: 'An [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339) timestamp indicating when the status of this verification process was last updated. '
+          example: '2022-31-03T14:51:28.709526Z'
+        created_on:
+          type: string
+          example: '2022-31-03T14:51:28.709526Z'
+          description: A timestamp that indicates when Telesign created this verification process.
+      required:
+      - reference_id
+      - recipient
+      - state
+      - verification_policy
+      - updated_on
+      - created_on
+    SharedResponseSlim:
+      title: Shared Response Slim
+      type: object
+      properties:
+        reference_id:
+          type: string
+          example: 0123456789ABCDEF0123456789ABCDEF
+          description: A unique, randomly generated hex value that identifies this web service request.
+        status:
+          $ref: '#/components/schemas/SlimResponseStatus'
+      required:
+      - reference_id
+      - status
+    VerificationPolicy:
+      title: Verification Policy
+      description: An ordered set of verification methods and their fallback times that the Verify API uses for this verification process. See [verification policy](/enterprise/docs/verify-api-verification-policy-and-fallback-time) for more details.
+      type: array
+      minItems: 1
+      example:
+      - method: silent
+        fallback_time: 30
+      - method: sms
+        fallback_time: 30
+      items:
+        type: object
+        properties:
+          method:
+            $ref: '#/components/schemas/VerificationMethod'
+          fallback_time:
+            type: integer
+            description: The time window in seconds that the service waits before abandoning the current verification method and then initiating verification using the next method specified in the active [verification policy](/enterprise/docs/verify-api-verification-policy-and-fallback-time). It is possible for the failover to happen earlier if certain failure conditions occur.
+            example: 30
+            minimum: 30
+    PostVerificationRequest:
+      title: POST Verification request
+      description: Payload for creating a verification process.
+      type: object
+      properties:
+        recipient:
+          $ref: '#/components/schemas/VerificationRecipient'
+        security_factor:
+          type: string
+          minLength: 3
+          maxLength: 10
+          example: '5724433'
+          description: A one-time passcode (OTP) to use for this verification process, for all OTP methods. By default, Telesign randomly generates a six-digit numeric OTP for you and inserts it into messages to your end users. You can override the default behavior by including your own OTP here. Only numeric characters are supported. Contact [Telesign Customer Support](mailto:support@telesign.com) to change the required OTP length configured for your account.
+        verification_policy:
+          $ref: '#/components/schemas/VerificationPolicy'
+        device_registration:
+          title: Does this verification represent a push registration?
+          type: string
+          example: stamp
+          description: This verification process is for the purpose of registering a device for Push Verify. See [Verify API - Register a new device with Push Verify](/enterprise/docs/verify-api-register-a-new-device-with-push-verify) for further context on when to use this. When used with Push Verify, the value of this parameter is `stamp`.
+        external_id:
+          type: string
+          description: A customer-generated ID for this transaction. The response simply echoes the value provided for this parameter.
+          maxLength: 100
+        message_template:
+          $ref: '#/components/schemas/TemplateSpecifyRequest'
+        voice_lang:
+          type: string
+          example: en-GB
+          description: A [supported language code](/enterprise/docs/voice-supported-languages-for-text-to-speech) specifying the language the service will use when delivering the OTP message. If a code isn't provided, the default language, English (`en-US`), is used to deliver the OTP message.
+      required:
+      - recipient
+    PatchVerificationStateResponse:
+      type: object
+      properties:
+        status:
+          allOf:
+          - $ref: '#/components/schemas/SlimResponseStatus'
+          - type: object
+            properties:
+              code:
+                type: integer
+                example: 3900
+              description:
+                type: string
+                example: Verified
+      description: Succesful response when updating a verification process.
+  responses:
+    StandardMSG400ErrorResponse:
+      description: "**Bad request.** The request could not be understood by the server due to malformed syntax. Code against the Telesign status code in the response payload rather than the HTTP status of the response. \n\n Status.code | Status.Description  | Additional details\n ------------|---------------------|------------------------------\n 3101   | Invalid value for parameter phone_number: {phone_number} | Phone number is too long, too short, or contains non-digit values.\n 3103   |   Unsupported value for parameter external_id |   External ID is longer than 100 characters or contains non-ASCII characters.\n 3110   |   Invalid request |   The API request or its JSON payload is improperly formatted.\n 3302   |   Missing parameter phone_number  |   The API request does not contain the mandatory parameter `phone_number`."
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                allOf:
+                - $ref: '#/components/schemas/SlimResponseStatus'
+                - type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 3302
+                    description:
+                      type: string
+                      example: Missing parameter phone_number
+          examples:
+            Example:
+              value:
+                status:
+                  code: 3302
+                  description: Missing parameter phone_number
+    StandardMSG503ErrorResponse:
+      description: " **Service unavailable.** The system is unavailable, try again. Code against the Telesign status code in the response payload rather than the HTTP status of the response.\n \n Status.code | Status.Description  | Additional details\n ------------|---------------------|------------------------------\n 3500   |   System Unavailable  |   The system is currently unavailable. You should resubmit this request."
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/SharedResponse'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 3500
+                    description:
+                      type: string
+                      example: System Unavailable
+          examples:
+            Example:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status:
+                  code: 3500
+                  description: System Unavailable
+                  updated_on: '2022-31-03T14:51:28.709526Z'
+    StandardMSG429ErrorResponse:
+      description: " **Too Many Requests.** Your account has sent too many requests in a given amount of time. Code against the Telesign status code in the response payload rather than the HTTP status of the response.\n\n Status.code | Status.Description  | Additional details\n-------------|-----------------------\n 3204       | Rate Limit Exceeded   |   You have exceeded the allowed number of requests per second on this API."
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/SharedResponse'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 3204
+                    description:
+                      type: string
+                      example: Rate Limit Exceeded
+          examples:
+            Example:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status:
+                  code: 3204
+                  description: Rate Limit Exceeded
+                  updated_on: '2022-31-03T14:51:28.709526Z'
+    StandardMSG413ErrorResponse:
+      description: "**Content too large.** Your request failed because the payload is too large. Code against the Telesign status code in the response payload rather than the HTTP status of the response. \n\n Status.code | Status.Description  | Additional details\n ------------|---------------------|------------------------------\n 3116   |   Payload limit size exceeded |   The payload of this request exceeds the 10KB limit."
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/SharedResponse'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 3116
+                    description:
+                      type: string
+                      example: Payload limit size exceeded
+          examples:
+            Example:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status:
+                  code: 3116
+                  description: Payload limit size exceeded
+                  updated_on: '2022-31-03T14:51:28.709526Z'
+    StandardMSG401ErrorResponse:
+      description: "**Unauthorized.** You are not permitted to perform this action. Code against the Telesign status code in the response payload rather than the HTTP status of the response. \n\n Status.code | Status.Description  | Additional details\n ------------|---------------------|------------------------------\n 3203\t|\tCallback URL parameter not enabled for Customer ID\t|\tUsing callback_url in the API request is not allowed for this account.\n 3400\t|\tNot authorized\t|\tNo permissions for this resource or authorization failed.\n 3906\t|\tUnified Verification Product not enabled for Customer ID\t|\tThis product is not enabled for this account."
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/SharedResponse'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 3400
+                    description:
+                      type: string
+                      example: Not authorized
+          examples:
+            Example:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                status:
+                  code: 3400
+                  description: Not authorized
+                  updated_on: '2022-31-03T14:51:28.709526Z'
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: Easiest to implement. See [Basic Authentication](/api-reference/authentication#basic-authentication) for more details.
+    Digest:
+      name: Authorization
+      type: apiKey
+      in: header
+      description: See [Digest Authentication](/api-reference/authentication#digest-authentication) for more details.
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

@@ -1,0 +1,80 @@
+generated: '2026-10-07'
+method: searched
+source: https://developer.telesign.com/enterprise/changelog (ReadMe changelog; entry bodies read as markdown twins on 2026-10-07)
+url: https://developer.telesign.com/enterprise/changelog
+docs: https://developer.telesign.com/enterprise/changelog
+scheme: product changelog; entries are titled announcements with "Who is affected" and "Products affected" headings, not numbered API versions
+current_version: null
+note: The ReadMe changelog does not expose a publication date in the markdown twin of each entry; dates below are recorded only where the entry body states one.
+entries:
+- version: null
+  date: null
+  title: TLS certificate lifecycle change and certificate pinning guidance
+  url: https://developer.telesign.com/enterprise/changelog/tls-certificate-lifecycle-change-and-certificate-pinning-guidance
+  breaking: true
+  highlights:
+  - TLS certificates will have a maximum validity of 47 days, requiring significantly more frequent renewal and rotation.
+  - Customers whose systems perform certificate pinning for Telesign TLS certificates must change their practice.
+- version: null
+  date: '2026-02-10'
+  title: Intelligence Cloud support in SDKs
+  url: https://developer.telesign.com/enterprise/changelog/intelligence-cloud-support-in-sdks
+  breaking: false
+  highlights:
+  - New versions of all supported SDKs (Java, C#, PHP, Ruby, Python, Node.js) add Intelligence Cloud support; SDKs release date February 10, 2026.
+- version: null
+  date: null
+  title: Build adaptive fraud protection workflows using low-code/no-code Flow Builder
+  url: https://developer.telesign.com/enterprise/changelog/build-adaptive-fraud-protection-workflows-using-low-codeno-code-flow-builder
+  breaking: false
+  highlights:
+  - Flow Builder feature launched on the Protect Platform for risk-based decisioning with Phone ID and Intelligence plus third-party data sources.
+- version: null
+  date: '2025-10-01'
+  title: Intelligence Cloud API launched; details about migration for Intelligence customers
+  url: https://developer.telesign.com/enterprise/changelog/intelligence-cloud-api-launched-details-about-migration-for-intelligence-customers
+  breaking: true
+  highlights:
+  - Intelligence Cloud API replaces the on-prem Intelligence platform; migration for Intelligence customers starting on Oct 1st 2025.
+- version: null
+  date: null
+  title: Integrate with PingOne using Telesign's telephony solution
+  url: https://developer.telesign.com/enterprise/changelog/integrate-with-pingone-using-telesigns-telephony-solutions
+  breaking: false
+  highlights:
+  - Telesign telephony available as a PingOne MFA integration.
+- version: null
+  date: null
+  title: New send video to Viber templates added to Messaging
+  url: https://developer.telesign.com/enterprise/changelog/new-send-video-to-viber-templates-added-to-messaging
+  breaking: false
+  highlights:
+  - Viber video message templates added to the Messaging API.
+- version: null
+  date: null
+  title: New version of the Telesign SMS for Dynamics 365 app released
+  url: https://developer.telesign.com/enterprise/changelog/new-version-of-the-telesign-sms-for-dynamics-365-app-released
+  breaking: false
+  highlights:
+  - Updated Dynamics 365 SMS app.
+- version: null
+  date: null
+  title: Active Call Status identity attribute added to Phone ID
+  url: https://developer.telesign.com/enterprise/changelog/active-call-status-identity-attribute-added-to-phone-id
+  breaking: false
+  highlights:
+  - New Active Call Status identity attribute in Phone ID responses.
+- version: null
+  date: null
+  title: 'Limited release: QR Verify feature added to Verify API'
+  url: https://developer.telesign.com/enterprise/changelog/limited-release-qr-verify-feature-added-to-verify-api
+  breaking: false
+  highlights:
+  - QR Verify channel added to the Verify API in limited release.
+- version: null
+  date: null
+  title: Push Verify callbacks added to Verify API
+  url: https://developer.telesign.com/enterprise/changelog/push-verify-callbacks-added-to-verify-api
+  breaking: false
+  highlights:
+  - Push Verify delivery callbacks added to the Verify API.

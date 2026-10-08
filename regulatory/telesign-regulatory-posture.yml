@@ -1,0 +1,68 @@
+generated: '2026-10-07'
+method: searched
+source: https://www.telesign.com/ footer legal links (privacy-notice, privacy-requests, responsible-ai-policy, dpa), https://www.telesign.com/security; conventional paths /accessibility, /legal/subprocessors,
+  /subprocessors, /legal/dpa, /privacy-request, /transparency all answered 404 on 2026-10-07
+signals:
+  global_privacy_control:
+    url: https://www.telesign.com/privacy-notice
+    section: Universal Opt-out Mechanisms
+    honored: true
+    evidence:
+    - source: https://www.telesign.com/privacy-notice
+      http_status: 200
+      fetched: '2026-10-07'
+      quote: The Websites recognize the Global Privacy Control ("GPC") signal. If you are using a browser setting or plug-in that sends an opt-out preference signal to each website you visit, we will treat
+        that as a valid request to opt out.
+    note: Stated commitment on the privacy notice (last updated July 2026); not tested by sending a Sec-GPC header. Scope is the marketing websites, not the API.
+  data_subject_request:
+    url: https://www.telesign.com/privacy-requests
+    section: Privacy Request
+    evidence:
+    - source: https://www.telesign.com/privacy-requests
+      http_status: 200
+      fetched: '2026-10-07'
+      quote: You have rights about the personal data we process about you, which may include the right to access a copy of your personal data, to request deletion or rectification of your personal data,
+        and to object to further processing of your personal data.
+    note: The request page routes website opt-outs through the cookie-consent control and names the rights; the privacy notice carries the CCPA request section. The privacy notice also carries a "CCPA Consumer
+      Rights Requests" section.
+  ai_transparency:
+    url: https://www.telesign.com/responsible-ai-policy
+    section: Telesign's Responsible AI Policy (November 2023)
+    evidence:
+    - source: https://www.telesign.com/responsible-ai-policy
+      http_status: 200
+      fetched: '2026-10-07'
+      quote: Transparency - We are committed to being transparent about our use of AI systems, including our technology practices, data usage, and third-party vendors.
+    - source: https://www.telesign.com/responsible-ai-policy
+      http_status: 200
+      fetched: '2026-10-07'
+      quote: Our machine learning models are adept at uncovering hidden insights, predicting risk, and enabling customers to stay ahead of sophisticated attacks.
+    note: A published responsible-AI policy with principles (fairness, transparency, accountability, robustness) covering the risk-scoring models; it is a policy statement, not a per-model transparency
+      note or training-data summary.
+  incident_notification:
+    url: https://www.telesign.com/dpa
+    section: Data Processing Agreement, version date August 24, 2026 (DORA / ICT incident terms)
+    stated_sla: within 72 hours of becoming aware of such incidents
+    evidence:
+    - source: https://www.telesign.com/dpa
+      http_status: 200
+      fetched: '2026-10-07'
+      quote: Contractor shall classify and report major ICT-related incidents to the relevant authorities and impacted parties within 72 hours of becoming aware of such incidents, based on severity and
+        applicable regulatory thresholds.
+    - source: https://www.telesign.com/security
+      http_status: 200
+      fetched: '2026-10-07'
+      quote: Telesign is contractually obligated to report security incidents involving customer data to the affected customers, as well as to relevant authorities to comply with legal and regulatory requirements,
+        in the earliest possible timeframe.
+absent:
+  subprocessors: The DPA names the countries where sub-processors operate (United States, United Kingdom, Serbia, Singapore, Colombia, China and the European Economic Area) but no dated sub-processor list
+    is published; /legal/subprocessors and /subprocessors answered 404.
+  accessibility_conformance: /accessibility answered 404 and no VPAT or conformance report was found.
+  sbom: not published.
+  data_residency: the security whitepaper says data centers are in the US and EU, but no customer-selectable residency documentation was found in the developer docs.
+  transparency_report: not published.
+  support_lifetime: no support period is stated for API versions.
+  training_data_summary: not published.
+  age_assurance: not applicable to the documented surface; nothing published.
+  notice_and_action: nothing published.
+  exit_assistance: nothing published.

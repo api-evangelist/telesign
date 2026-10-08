@@ -1,0 +1,498 @@
+openapi: 3.2.0
+info:
+  title: Email Intelligence API
+  version: '1.0'
+  description: This spec contains details about the Telesign Email Intelligence API.
+  contact:
+    name: TeleSign Customer Support Team
+    email: support@telesign.com
+servers:
+- url: detect.telesign.com
+security:
+- Basic: []
+- Digest: []
+tags:
+- name: Email Intelligence
+paths:
+  /intelligence/email:
+    parameters: []
+    post:
+      summary: Email Intelligence - Submit an email address to evaluate
+      operationId: submitEmailAddressForEmailIntelligence
+      responses:
+        '200':
+          description: "**Success.** Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status code property in the response object and use that, rather than the HTTP status code. Individual packages within the response may have their own status codes as well.\n           \n| Status Code | Associated Text String | Description                                |\n|-------------|------------------------|--------|\n| 300         | Transaction successfully completed           | The system was able to obtain all of the requested data.                      |\n| 301         | Transaction partially completed | The system was able to obtain some of the data, but not all of it.                  |"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/postEmailIntResponse'
+              examples:
+                Success:
+                  value:
+                    reference_id: CFMJ6FTL09O22UE1KC5NBD7ZMWKTMJB8
+                    external_id: CustomExternalID7349
+                    status:
+                      code: 300
+                      description: Transaction successfully completed
+                      updated_on: '2024-10-06T21:25:03.420503Z'
+                    email_address_details:
+                      original:
+                        'email_address ': u.s.e.rr1+telesign@gmail.comm!
+                        is_valid: true
+                      cleansed:
+                        email_address: userr1@gmail.com
+                        is_valid: true
+                        username: userr1
+                        domain: gmail.com
+                      cleansing_details:
+                        is_modified: true
+                        gibberish_probability: 0.29
+                        tag: telesign
+                      domain_details:
+                        general_info:
+                          registered_domain: gmail.com
+                          tld: com
+                          tld_type: general
+                          is_disposable: true
+                    intelligence_details:
+                      risk:
+                        level: high
+                        recommendation: block
+                        score: 959
+                      insights:
+                        category:
+                        - 10031
+                        phone_number:
+                          activity:
+                          - 20003
+                          static:
+                          - 40005
+                        ip_address:
+                          activity:
+                          - 50005
+                          static:
+                          - 50015
+                        email_address:
+                          activity:
+                          - 60005
+                          static:
+                          - 60011
+                          domain:
+                          - 60101
+        '400':
+          description: "**Bad request.** The request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n  | Status Code | Associated Text String | \n  |-------------|------------------------|\n  | 10032       | Request blocked due to this number appearing on a TeleSign blocklist.  | \n  | 10033       | Unverified phone_number requested for trial account. | \n  | 10041       | Blocked due to legal compliance | \n  | 11000       | Invalid value for parameter phone_number | \n  | 11001       | Invalid country code for parameter phone_number           | \n  | 11002       | Invalid value for parameter account_id   |\n  | 11003       | Invalid value for parameter account_lifecycle_event | \n  | 11005       | Invalid value for parameter customer_id  | \n  | 11006       | Invalid value for parameter device_id    |\n  | 11007       | Invalid value for email_address          |\n  | 11010       | Invalid value for parameter originating_ip         | \n  | 11011       | Invalid value for parameter reference_id | \n  | 12000       | Missing required parameter phone_number |\n  | 12003       | Missing required parameter account_lifecycle_event |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+              examples:
+                Invalid Request:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    external_id: CustomExternalID7349
+                    status:
+                      updated_on: '2024-02-01T00:33:34.860418Z'
+                      code: 10032
+                      description: Request blocked due to this number appearing on a TeleSign blacklist.
+        '401':
+          description: "**Unauthorized.** The request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n | Status Code | Associated Text String | \n |-------------|------------------------|\n | 10008       | Invalid signature      | \n | 10009       | Invalid value for parameter message      | \n | 10010       | Invalid value for parameter originating_ip         | \n | 10011       | Invalid value for parameter reference_id | \n | 10012       | This feature is not enabled for this CustomerID             |\n | 10013       | Invalid Request. CustomerID Account Not Found              |\n | 10014       | Invalid source IP address                |\n | 10015       | Invalid customer ID    |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+              examples:
+                Unauthorized:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    external_id: CustomExternalID7349
+                    status:
+                      updated_on: '2024-02-01T00:33:34.860418Z'
+                      code: 10008
+                      description: Invalid signature
+        '402':
+          description: "**Payment Required.** If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | \n|-------------|------------------------|\n| 10030       | Insufficient funds in prepaid wallet         |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+              examples:
+                Payment Required:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    external_id: CustomExternalID7349
+                    status:
+                      updated_on: '2024-02-01T00:33:34.860418Z'
+                      code: 10030
+                      description: Insufficient funds in prepaid wallet
+        '404':
+          description: "**Not Found.** The server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | \n|-------------|------------------------|\n| 10017       | Customer ID / Reference ID not found           |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+              examples:
+                Not Found:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    external_id: CustomExternalID7349
+                    status:
+                      updated_on: '2024-02-01T00:33:34.860418Z'
+                      code: 10017
+                      description: Customer ID / Reference ID not found
+        '429':
+          description: "**Too Many Requests.** The user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | \n|-------------|------------------------|\n| 10019       | Rate Limit Exceeded    |\n| 10020       | PhoneId Standard exceeded transaction hard cap. Request denied.                |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+              examples:
+                Too Many Requests:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    external_id: CustomExternalID7349
+                    status:
+                      updated_on: '2024-02-01T00:33:34.860418Z'
+                      code: 10019
+                      description: Rate Limit Exceeded
+        '500':
+          description: '**Invalid Transaction.** Transaction not attempted.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+              examples:
+                Invalid Transaction:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    external_id: CustomExternalID7349
+                    status:
+                      updated_on: '2024-02-01T00:33:34.860418Z'
+                      code: -90001
+                      description: Transaction not attempted
+        '503':
+          description: '**Service Unavailable.** System unavailable, try again.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+              examples:
+                System Unavailable:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    external_id: CustomExternalID7349
+                    status:
+                      updated_on: '2024-02-01T00:33:34.860418Z'
+                      code: -10000
+                      description: System unavailable. Please try again later.
+      description: 'Obtain a risk recommendation for this email address, as well as other relevant information using Email Intelligence API.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/x-www-form-urlencoded`
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:** `Content-Type - application/x-www-form-urlencoded`
+
+        * **Rate limit:** Default rate limits by product'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email_address:
+                  type: string
+                  description: Your end user's email address. This value is case sensitive.
+                account_lifecycle_event:
+                  type: string
+                  enum:
+                  - create
+                  - sign-in
+                  - transact
+                  - update
+                  - delete
+                  description: 'The attempted action associated with this email address for which you want to evaluate the risk. Acceptable values for this parameter are -
+
+
+                    * create - For the creation of a new account.
+
+                    * sign-in - For when an end user signs in to their account.
+
+                    * transact - For when an end user completes a transaction within their account.
+
+                    * update - For when an update is performed, such as an update of account information or similar.
+
+                    * delete - For when an account is deleted.'
+                account_id:
+                  type: string
+                  description: Your end user's account ID. This value is case sensitive.
+                phone_number:
+                  type: string
+                  description: Your end user's phone number.
+                device_id:
+                  type: string
+                  description: Your end user's device ID. This value is case sensitive.
+                external_id:
+                  type: string
+                  example: CustomExternalID7349
+                  description: Any ID passed from you that can uniquely identify this transaction in your system. The response simply echoes the value provided for this parameter.
+                originating_ip:
+                  type: string
+                  description: Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).
+              required:
+              - email_address
+              - account_lifecycle_event
+        description: ''
+      tags:
+      - Email Intelligence
+      security:
+      - Basic: []
+components:
+  schemas:
+    Risk:
+      title: Risk
+      type: object
+      description: Contains properties related to the risk recommendation for the specified email address.
+      properties:
+        level:
+          type: string
+          example: high
+          description: 'The severity of the risk. '
+        recommendation:
+          type: string
+          example: block
+          enum:
+          - allow
+          - flag
+          - block
+          description: The action that Telesign recommends that you take based on the risk recommendation.
+        score:
+          type: integer
+          example: 959
+          description: A measure of transaction risk, ranging from zero to 1000, with a higher value indicating a higher risk.
+    postEmailIntResponse:
+      title: postEmailIntResponse
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: A 32-digit hex value used to identify the web service request. The value is unique to each web service request, is randomly-generated by Telesign, and is returned in the response message immediately following the web service request.
+          example: CFMJ6FTL09O22UE1KC5NBD7ZMWKTMJB8
+        external_id:
+          type:
+          - string
+          - 'null'
+          description: The customer-generated ID for this transaction that was provided in the request. If the `external_id` parameter was not included in the request, the value here is `null`.
+          example: CustomExternalID7349
+        status:
+          type: object
+          description: 'An object containing details about the request status. '
+          properties:
+            code:
+              type: integer
+              example: 300
+              description: "Transaction status code. Successful transactions can be assigned one of the following values: <br/>\n\t•\t300 - successful transaction<br/>\n\t•\t301 - partially successful transaction"
+            description:
+              type: string
+              description: Text describing the transaction status.
+              example: Transaction successfully completed
+            updated_on:
+              type: string
+              description: An [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) timestamp indicating when the transaction status was updated.
+              example: '2024-10-06T21:25:03.420503Z'
+        email_address_details:
+          type: object
+          description: Contains cleansing and intelligence details about the submitted email address.
+          properties:
+            original:
+              $ref: '#/components/schemas/Original'
+            cleansed:
+              type: object
+              description: Provides the normalized version of the email address along with the extracted username and domain components.
+              properties:
+                email_address:
+                  type: string
+                  description: The cleansed email address after correcting common formatting issues.
+                  example: userr1@gmail.com
+                is_valid:
+                  type: boolean
+                  description: Indicates whether the cleansed email address is syntactically valid.
+                username:
+                  type: string
+                  description: The local-part (username) extracted from the cleansed email address
+                  example: userr1
+                domain:
+                  type: string
+                  description: The domain portion extracted from the cleansed email address.
+                  example: gmail.com
+            cleansing_details:
+              type: object
+              description: Describes modifications applied during cleansing and includes indicators such as gibberish probability and tagging.
+              properties:
+                is_modified:
+                  type: boolean
+                  description: Indicates whether the submitted email address was modified during cleansing.
+                gibberish_probability:
+                  type: number
+                  example: 0.29
+                  description: A probability score indicating how likely the email username appears algorithmically generated or nonsensical.
+                tag:
+                  type: string
+                  description: A tag extracted from the email address, such as a plustag, if applicable.
+                  example: telesign
+            domain_details:
+              type: object
+              description: Provides structured information about the domain associated with the email address.
+              properties:
+                general_info:
+                  type: object
+                  properties:
+                    registered_domain:
+                      type: string
+                      description: The registered/base domain associated with the email address.
+                      example: gmail.com
+                    tld:
+                      type: string
+                      description: The toplevel domain extracted from the email address.
+                      example: com
+                    tld_type:
+                      type: string
+                      description: The classification of the toplevel domain, such as general or countrycode.
+                      example: general
+                    is_disposable:
+                      type: boolean
+                      description: Indicates whether the email domain is known to be disposable.
+        intelligence_details:
+          type: object
+          description: Contains properties related to the risk recommendation and supporting insights.
+          properties:
+            risk:
+              $ref: '#/components/schemas/Risk'
+            insights:
+              $ref: '#/components/schemas/RiskInsights'
+    RiskInsights:
+      title: RiskInsights
+      type: object
+      description: Contains reason code properties with additional info related to the risk recommendation.
+      properties:
+        category:
+          type: array
+          description: Reason codes related to the risk category.
+          items:
+            type: integer
+            example: 10031
+        phone_number:
+          type: object
+          description: Provides activity‑based and static reason codes related to the phone number linked to the email address.
+          properties:
+            activity:
+              type: array
+              description: Reason codes related to activity associated with the phone number linked to this email address.
+              items:
+                type: integer
+                example: 20003
+            static:
+              type: array
+              description: Reason codes related to static attributes of the phone number linked to this email address.
+              items:
+                type: integer
+                example: 40005
+        ip_address:
+          type: object
+          description: Contains activity‑based and static reason codes associated with the IP address linked to the email address.
+          properties:
+            activity:
+              type: array
+              description: Reason codes related to activity associated with the IP address linked to this email address.
+              items:
+                type: integer
+                example: 50005
+            static:
+              type: array
+              description: Reason codes related to static attributes of the IP address linked to this email address.
+              items:
+                type: integer
+                example: 50015
+        email_address:
+          type: object
+          description: Provides activity, static, and domain‑related reason codes associated directly with the email address itself.
+          properties:
+            activity:
+              type: array
+              description: Reason codes related to activity associated with the email address.
+              items:
+                type: integer
+                example: 60005
+            static:
+              type: array
+              description: Reason codes related to static attributes of the email address.
+              items:
+                type: integer
+                example: 60011
+            domain:
+              type: array
+              description: Reason codes related to domain based attributes of the email address.
+              items:
+                type: integer
+                example: 60101
+    Original:
+      type: object
+      properties:
+        'email_address ':
+          type: string
+          description: The email address value exactly as provided in the request.
+          example: u.s.e.rr1+telesign@gmail.comm!
+        is_valid:
+          type: boolean
+          description: Indicates whether the original email address is syntactically valid.
+      description: Contains the submitted email address exactly as provided and its initial validity evaluation.
+    errorObject:
+      title: errorObject
+      type: object
+      properties:
+        reference_id:
+          type:
+          - string
+          - 'null'
+          example: 0123456789ABCDEF0123456789ABCDEF
+          description: A unique identifier assigned by Telesign for this transaction.
+        external_id:
+          type:
+          - string
+          - 'null'
+          description: A customer-generated ID for this transaction. The response simply echoes the value provided for this parameter.
+          example: CustomExternalID7349
+        status:
+          type: object
+          description: Contains properties related to the processing status of this request.
+          properties:
+            updated_on:
+              type: string
+              description: The date-time when the processing status of this transaction was last updated.
+              example: '2024-02-01T00:33:34.860418Z'
+            code:
+              type: integer
+              description: A numeric code indicating the processing status of this transaction.
+            description:
+              type: string
+              description: Text explaining the meaning of the status code returned.
+  securitySchemes:
+    Basic:
+      type: http
+      description: Easiest to implement. See [Basic Authentication](/enterprise/docs/authentication#basic-authentication) for more details.
+      scheme: basic
+    Digest:
+      name: Authorization
+      type: apiKey
+      in: header
+      description: See [Digest Authentication](/enterprise/docs/authentication#basic-authentication) for more details.
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

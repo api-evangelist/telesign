@@ -1,0 +1,1949 @@
+openapi: 3.2.0
+info:
+  title: Detect Phone ID API
+  version: '1.0'
+  description: This spec contains details about the Telesign Detect API.
+  contact:
+    name: TeleSign Customer Support Team
+    email: support@telesign.com
+servers:
+- url: https://rest-ww.telesign.com/v1
+security:
+- Basic: []
+- Digest: []
+tags:
+- name: Phone ID
+paths:
+  /phoneid/{complete_phone_number}:
+    parameters:
+    - schema:
+        type: string
+        example: '11234567890'
+      name: complete_phone_number
+      in: path
+      required: true
+      description: The phone number you want to collect information about. Provide the entire phone number, including the country code, with no spaces or special characters.
+    post:
+      summary: Request info about a phone number in path
+      operationId: submitPhoneNumberForIdentity
+      responses:
+        '200':
+          $ref: '#/components/responses/PID200'
+        '400':
+          $ref: '#/components/responses/PID400'
+        '401':
+          $ref: '#/components/responses/PID401'
+        '402':
+          $ref: '#/components/responses/PID402'
+        '404':
+          $ref: '#/components/responses/PID404'
+        '429':
+          $ref: '#/components/responses/PID429'
+        '500':
+          $ref: '#/components/responses/PID500'
+        '503':
+          $ref: '#/components/responses/PID503'
+      description: 'Enter a phone number with country code to receive detailed information about carrier, location, and other details.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/json`
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:** `Content-Type - application/json`
+
+        * **Rate limit:** Default rate limits by product'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postPhoneIDRequestBody'
+      security:
+      - Basic: []
+      tags:
+      - Phone ID
+  /phoneid/live/{complete_phone_number}:
+    parameters:
+    - schema:
+        type: string
+      name: complete_phone_number
+      in: path
+      required: true
+      description: The phone number you want to collect information about. Provide the entire phone number, including the country code, with no spaces or special characters.
+    get:
+      summary: Get Live Status info
+      operationId: submitPhoneNumberForLiveStatus
+      responses:
+        '200':
+          description: "Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n           \n| Status Code | Associated Text String | Description                                      |\n|-------------|------------------------|--------------------------------------------------|\n| 300         | Transaction successfully completed           | The system was able to obtain all of the       requested data for PhoneID.                      |\n| 301         | Transaction partially completed   | The system was able to obtain some of the data for PhoneID, but not all of it.                  |\n\n| Error Code | Associated Text String | Description |\n|-------|-----|--------|\n| -60001 | PhoneID Live Data Not Found | Unable to return data for this phone number, for this request. |\n "
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getPhoneIdLiveResponse'
+              examples:
+                Success:
+                  value:
+                    reference_id: 0123456789ABCDEF0123456789ABCDEF
+                    sub_resource: live
+                    errors: []
+                    phone_type:
+                      code: '2'
+                      description: MOBILE
+                    status:
+                      code: 300
+                      description: Transaction successfully completed
+                      updated_on: '2024-10-03T21:51:28.709526Z'
+                    numbering:
+                      original:
+                        phone_number: '1234567890'
+                        complete_phone_number: '11234567890'
+                        country_code: '1'
+                      cleansing:
+                        call:
+                          cleansed_code: 100
+                          country_code: '1'
+                          max_length: 10
+                          min_length: 1
+                          phone_number: '1234567890'
+                        sms:
+                          cleansed_code: 100
+                          country_code: '1'
+                          max_length: 10
+                          min_length: 10
+                          phone_number: '1234567890'
+                    location:
+                      city: Marina del Rey
+                      county: Los Angeles County
+                      state: CA
+                      zip: '90292'
+                      country:
+                        iso2: US
+                        iso3: USA
+                        name: United States
+                      time_zone:
+                        name: America/Los_Angeles
+                        utc_offset_max: '-8'
+                        utc_offset_min: '-8'
+                      coordinates:
+                        latitude: '34.18264'
+                        longitude: '-118.30840'
+                      metro_code: ''
+                    carrier:
+                      name: Verizon
+                    live:
+                      subscriber_status: ACTIVE
+                      device_status: REACHABLE
+                      roaming: 'NO'
+                      roaming_country: 'null'
+        '400':
+          description: "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n\n| Error Code | Description |\n|------------|-------------|\n| 10041 | Blocked due to legal compliance | \n| -10001 | Not Allowed Host (indicates that the IP address you are connecting from is not authorized to access the service) -or- Unsupported product name | \n| -40007 | Rate limit exceeded | \n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/largerErrorObject'
+              examples: {}
+        '401':
+          description: "Unauthorized, the request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n\n  | Error Codes | Description |\n  |-------------|-------------|   \n  | -10009 | Invalid source IP address |\n  | -20002 | This product is not enabled for this customer ID |\n  | -20003 | This feature is not enabled for this CustomerID  |\n  | -30002 | CustomerID Account Not Activated | \n  | -30003 | CustomerID New Account Limit Reached |\n  | -40002 | Not Authorized | "
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/largerErrorObject'
+        '402':
+          description: Payment Required. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/largerErrorObject'
+        '404':
+          description: "Not Found, the server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n\n  | Error Codes | Description |\n  |-------------|-------------|\n  | -40001 | Status unavailable |\n  | -40004 | Resource not found | \n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/largerErrorObject'
+        '405':
+          description: '| Error Codes | Description |
+
+            |-------------|-------------|
+
+            | -40005 | Method not allowed |'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/largerErrorObject'
+        '429':
+          description: "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n\n| Error Code | Description |\n|------------|-------------|\n| -40008 | [Product method] exceed transaction hard cap; Request denied |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/largerErrorObject'
+        '500':
+          description: 'Invalid Transaction, transaction not attempted. Error codes are listed in the `error` parameter in the response. '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/largerErrorObject'
+        '503':
+          description: "Service unavailable, try again. Error codes are listed in the `error` parameter in the response. \n\n| Error Code | Description |\n|------------|-------------|\n| -90001 | System unavailable; please try again later |"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/largerErrorObject'
+      description: 'Use this action to get insights about a phone number such as whether it is active or disconnected, whether its associated device is reachable or unreachable, and its associated device''s roaming status.
+
+
+        To add this product to your account, contact a Telesign expert. This product is available for full-service accounts only.
+
+
+        ## General requirements
+
+        * **Protocols:** `https`
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/x-www-form-urlencoded`
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:** `Content-Type - application/x-www-form-urlencoded`
+
+        * **Rate limit:** Default rate limits by product
+
+
+        ## Frequency of same number requests
+
+        Sending too many request to the API for the same phone number within a short period of time may result in an error, even if data is available for that number. If you receive a -60001 error in the response after making consecutive requests for the same phone number, consider limiting your request rate.'
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: ucid
+        description: "A string that specifies one of the use case codes. \n\n| Use Case | Description |\n|----------|-------------|\n| ATCK | For use in a 2FA situation like updating an account, or trying to log in. |\n| BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. |\n| BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. |\n| CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. |\n| CLDR | Calendar Event | \n| LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. |\n| OTHR | Other - if you have a situation not addressed by the other tags. |\n| PWRT | For use in a situation where a password reset is required. |\n| RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. |\n| RXPF | For use in situations where you are trying to prevent prescription fraud. |\n| SHIP | For use in situations where you are sending a shipping notification. | \n| THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. |\n| TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | \n| UNKN | This is the same as OTHR. | \n"
+      tags:
+      - Phone ID
+      security:
+      - Basic: []
+  /phoneid:
+    post:
+      summary: Request info about a phone number
+      operationId: submitPhoneNumberForIdentityAlt
+      responses:
+        '200':
+          $ref: '#/components/responses/PID200'
+        '400':
+          $ref: '#/components/responses/PID400'
+        '401':
+          $ref: '#/components/responses/PID401'
+        '402':
+          $ref: '#/components/responses/PID402'
+        '404':
+          $ref: '#/components/responses/PID404'
+        '429':
+          $ref: '#/components/responses/PID429'
+        '500':
+          $ref: '#/components/responses/PID500'
+        '503':
+          $ref: '#/components/responses/PID503'
+      description: 'Enter a phone number with country code to receive detailed information about carrier, location, and other details.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/json`
+
+        * **Responds with:** `application/json`
+
+        * **Required headers:** `Content-Type - application/json`
+
+        * **Rate limit:** Default rate limits by product'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - type: object
+                properties:
+                  phone_number:
+                    type: string
+                    description: The phone number you want to collect information about. Provide the entire phone number, including the country code, with no spaces or special characters.
+                    example: '11234567890'
+                required:
+                - phone_number
+              - $ref: '#/components/schemas/postEmailIDRequestBody'
+      x-internal: false
+      security:
+      - Basic: []
+      tags:
+      - Phone ID
+components:
+  schemas:
+    Location:
+      title: Location
+      type: object
+      description: Contains geographical location information associated with the rate center of the phone number when the device was activated. Null is returned when data for a field isn't available for a specific market or country.
+      properties:
+        city:
+          type: string
+          example: Odessa
+          description: The city associated with the rate center of the phone number when the device was activated.
+        county:
+          type: string
+          example: Ector
+          description: The county (or parish) associated with the rate center of the phone number when the device was activated (U.S. only).
+        state:
+          type: string
+          description: The two-letter [state abbreviation code](http://pe.usps.com/text/pub28/28apb.htm) of the state (province, district, or territory) associated with the rate center of the phone number when the device was activated (North America only).
+          example: TX
+        zip:
+          type: string
+          example: '79758'
+          description: The five-digit United States Postal Service [ZIP Code](https://www.usps.com/nationalpremieraccounts/findzipcodes.htm) associated with the rate center of the phone number when the device was activated (U.S. only).
+        country:
+          type: object
+          description: Contains properties related to the country associated with the rate center of the phone number when the device was activated.
+          properties:
+            iso2:
+              type: string
+              example: US
+              description: The ISO 3166-1 2-letter [country code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes) associated with the rate center of the phone number when the device was activated.
+            iso3:
+              type: string
+              example: USA
+              description: ' The ISO 3166-1 3-letter country code associated with the rate center of the phone number when the device was activated.'
+            name:
+              type: string
+              example: United States
+              description: The [country name](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes) associated with the rate center of the phone number when the device was activated.
+        time_zone:
+          type: object
+          description: Contains properties related to the time zone associated with the rate center of the phone number when the device was activated. For maximum and minimum UTC offsets, they are specified in units of hours, and range from -12 to +14. For positive numbers, the plus sign (+) may not be returned. Additional offsets due to Daylight Savings Time or Summer Time are not considered. For example, Russia, which spans 11 time zones, has a minimum UTC offset of +2, and a maximum of +12.
+          properties:
+            name:
+              type: string
+              example: America/Chicago
+              description: The time zone associated with the rate center of the phone number when the device was activated (U.S. only).
+            utc_offset_max:
+              type: string
+              example: '-6'
+              description: ' For international phone numbers, this parameter returns the maximum UTC offset for the country associated with the rate center of the phone number when the device was activated. For U.S. phone numbers, this parameter returns the same result as utc_offset_min.'
+            utc_offset_min:
+              type: string
+              example: '-6'
+              description: 'For international phone numbers, this parameter returns the minimum UTC offset for the country associated with the rate center of the phone number when the device was activated. For U.S. phone numbers, this parameter returns the UTC offset associated with the rate center of the phone number when the device was activated. '
+        coordinates:
+          type: object
+          description: Contains properties with details about the geographical coordinates of the location where the phone number is registered.
+          properties:
+            latitude:
+              type: number
+              description: Latitude specifies the North-South position of a point on the Earth’s surface. It is an angular measurement that ranges from 0° at the Equator, to 90° at the North Pole (and -90° at the South Pole). It is returned here as a value indicating the number of degrees of latitude of the location associated with the phone number, expressed in seven decimal digits, with five decimal places.
+              example: 31.8466
+              format: float
+            longitude:
+              type: number
+              example: -102.36778
+              description: Longitude specifies the East-West position of a point on the Earth’s surface. It is an angle measured East or West from the [prime meridian](https://en.wikipedia.org/wiki/Prime_meridian) —ranging from 0° at the prime meridian, to +180° Eastward and -180° Westward. It is returned here as a value indicating the number of degrees of longitude of the location associated with the phone number, expressed in eight decimal digits, with five decimal places.
+              format: float
+        metro_code:
+          type: string
+          example: '36220'
+          description: A 4-digit string indicating the Primary Metropolitan Statistical Area (PMSA) code for the location associated with the rate center of the phone number when the device was activated (U.S. only). PMSA Codes are governed by the [US Census Bureau](http://www.census.gov/). This information is useful for large metropolitan areas that comprise several smaller cities. For example, the PMSA for Long Beach, California is Los Angeles County, which gives Long Beach the PMSA Code 4480.
+    Numbering:
+      title: Numbering
+      type: object
+      description: Contains properties related to the numbering attributes of the specified phone number.
+      properties:
+        original:
+          type: object
+          description: Contains details about the original phone number included in the request.
+          properties:
+            phone_number:
+              type: string
+              description: The base phone number without the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes).
+              example: '1234567890'
+            complete_phone_number:
+              type: string
+              description: The base phone number prefixed with the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes).
+              example: '11234567890'
+            country_code:
+              type: string
+              description: The 1, 2, or 3-digit [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes). For example, the country dialing code for both the U.S.A. and Canada is `1`, and the country dialing code for the United Kingdom is `44`.
+              example: '1'
+        cleansing:
+          type: object
+          description: Contains details about how the phone number was cleansed. Phone cleansing corrects common formatting issues in submitted phone numbers.
+          properties:
+            call:
+              type: object
+              description: Contains cleansing details for the phone number if it is enabled to receive voice calls.
+              properties:
+                cleansed_code:
+                  type: integer
+                  description: One of the [phone number cleansing codes](/enterprise/docs/codes-languages-and-time-zones#phone-number-cleansing-codes) specifying the cleansing operation performed on the phone number.
+                  example: 100
+                country_code:
+                  type: string
+                  description: The 1, 2, or 3-digit [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes). For example, the country dialing code for both the U.S.A. and Canada is `1`, and the country dialing code for United Kingdom is `44`.
+                  example: '1'
+                max_length:
+                  type: integer
+                  description: The maximum number of digits allowed for phone numbers with this country dialing code.
+                  example: 10
+                min_length:
+                  type: integer
+                  description: The minimum number of digits allowed for phone numbers with this country dialing code.
+                  example: 10
+                phone_number:
+                  type: string
+                  description: The base phone number without the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes).
+                  example: '1234567890'
+            sms:
+              type: object
+              description: Contains cleansing details for the phone number if it is enabled to receive SMS.
+              properties:
+                cleansed_code:
+                  type: integer
+                  description: One of the [phone number cleansing codes](/enterprise/docs/codes-languages-and-time-zones#phone-number-cleansing-codes) specifying the cleansing operation performed on the phone number.
+                  example: 100
+                country_code:
+                  type: string
+                  description: The 1, 2, or 3-digit [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes). For example, the country dialing code for both the U.S.A. and Canada is `1`, and the country dialing code for United Kingdom is `44`.
+                  example: '1'
+                max_length:
+                  type: integer
+                  description: The maximum number of digits allowed for phone numbers with this country dialing code.
+                  example: 10
+                min_length:
+                  type: integer
+                  description: The minimum number of digits allowed for phone numbers with this country dialing code.
+                  example: 10
+                phone_number:
+                  type: string
+                  description: The base phone number without the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes).
+                  example: '1234567890'
+    Carrier:
+      title: Carrier
+      type: object
+      description: Contains details about the company that provides telecommunications services for this phone number. Behavior of this property, including information returned for ported phone numbers, can vary depending on the country of the phone number. See [How does carrier data vary by country?](https://support.telesign.com/s/article/How-does-carrier-data-vary-by-country) for more details.
+      properties:
+        carrier_id:
+          type: integer
+          description: An ID specifying this carrier. Contact our [Customer Support Team](mailto:support@telesign.com) to include this property in your response.
+          example: 309
+        name:
+          type: string
+          description: The name of this carrier.
+          example: AT&T Wireless
+    postEmailIDRequestBody:
+      title: postEmailIDRequestBody
+      type: object
+      properties:
+        account_lifecycle_event:
+          type: string
+          example: create
+          description: 'Indicates what stage an end user is in when you make this request. Acceptable values for this parameter are:
+
+            * `create` - For the creation of a new account.
+
+            * `sign-in` - For when an end user signs in to their account.
+
+            * `transact` - For when an end user completes a transaction within their account.
+
+            * `update` - For when an update is performed, such as an update of account information.
+
+            * `delete` - For when an account is deleted.'
+        external_id:
+          type: string
+          description: A customer-generated ID for this transaction. The response simply echoes the value provided for this parameter.
+          example: CustomExternalID7349
+        originating_ip:
+          type: string
+          example: 203.0.113.45
+          description: Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).
+        addons:
+          type: object
+          description: Indicates which identity attributes you want to use with this request and contains any other inputs for use with those identity attributes.
+          properties:
+            age_verify:
+              $ref: '#/components/schemas/reqAgeVerify'
+            active_call_status:
+              type: object
+              description: 'Includes the Active Call Status identity attribute in processing your request. The value should always be an empty object. See [Phone ID - Identity attributes: Active Call Status](/enterprise/docs/phone-id-identity-attributes-active-call-status) for more details on how to use this feature.'
+            breached_number_check:
+              type: object
+              description: 'Includes the Breached Data identity attribute in processing your request. See [Phone ID - Identity attributes: Breached Data](/enterprise/docs/phone-id-identity-attributes-breached-data#breached-data-types) for more details on how to use this feature.'
+            call_forward_detection:
+              type: object
+              description: 'Includes the Call Forwarding identity attribute in processing your request. The value should always be an empty object.  See [Phone ID - Identity attributes: Call Forwarding](/enterprise/docs/phone-id-identity-attributes-call-forwarding) for more details on how to use this feature.'
+            contact:
+              type: object
+              description: 'Includes the Contact identity attribute in processing your request. See [Phone ID - Identity attributes: Contact](/enterprise/docs/phone-id-identity-attributes-contact) for more details on how to use this feature.'
+              properties:
+                email:
+                  type: string
+                  example: jsmith@vero-finto.com
+                  description: 'The email address you want the Email ID feature to use in processing your request. This is only available when Email ID is enabled. See [Phone ID - Identity attributes: Contact](/enterprise/docs/phone-id-identity-attributes-contact) and Contact our [Customer Support Team](mailto:support@telesign.com) for more information.'
+            contact_match:
+              type: object
+              description: 'Includes the Contact Match identity attribute in processing your request. See [Phone ID - Identity attributes: Contact Match](/enterprise/docs/phone-id-identity-attributes-contact-match) for more details on how to use this feature.'
+              properties:
+                first_name:
+                  type: string
+                  description: The first name of the contact you want a match for.
+                last_name:
+                  type: string
+                  description: The last name of the contact you want a match for.
+                address:
+                  type: string
+                  description: The first line of the address you want to match for. By first line, the line containing the street is meant.
+                city:
+                  type: string
+                  description: The city for the address you want a match for.
+                postal_code:
+                  type: string
+                  description: The postal/zip code for the address you want a match for. The first five digits only.
+                state:
+                  type: string
+                  description: The state for the address you want a match for.
+                country:
+                  type: string
+                  description: The country for the address you want a match for.
+                input_used:
+                  type: string
+                  description: Lists whether the information retrieved is based on only a phone number or only an email or both a phone number and email. This is only returned for Contact when Email ID is enabled. Contact our [Customer Support Team](mailto:support@telesign.com) to enable Email ID for your account and obtain the latest information on supported markets.
+                  enum:
+                  - phone_number
+                  - email
+                  - phone_number and email
+                  example: email
+            contact_plus:
+              type: object
+              description: 'Includes the Contact Plus identity attribute in processing your request.
+
+
+                >❗️ **WARNING**: This product is deprecated.'
+              properties:
+                billing_postal_code:
+                  type: string
+                  description: The postal code for the billing address of the contact you want information for.
+                  example: '95110'
+            number_deactivation:
+              type: object
+              description: 'Includes the Number Deactivation identity attribute in processing your request. See [Phone ID - Identity signals: Number Deactivation](/enterprise/docs/phone-id-identity-attributes-number-deactivation) for more details on how to use this feature.'
+              properties:
+                carrier_name:
+                  type: string
+                  description: The name of the current carrier for the phone.
+                  example: Verizon
+                last_deactivated:
+                  type: string
+                  description: When the phone was last deactivated (if it was).
+                  example: '2016-04-05T00:00:00Z'
+                tracking_since:
+                  type: string
+                  description: When the phone number first started being tracked for deactivation status.
+                  example: '2014-10-06T00:00:00Z'
+                status:
+                  type: object
+                  description: Contains details about the delivery status of this package.
+                  properties:
+                    code:
+                      type: integer
+                      description: A status or error code describing what happened after your request.
+                      example: 2800
+                    description:
+                      type: string
+                      description: A brief description of what the error or status code means.
+                      example: Request successfully completed
+                recycled_since_last_verification:
+                  type: string
+                  enum:
+                  - recycled
+                  - not_recycled
+                  - cannot_be_determined
+                  description: Whether or not the phone number has been recycled since the time and date you provided. Only appears if you included a `last_verified` value in your request.
+                  example: not_recycled
+            subscriber_status:
+              type: object
+              description: 'Includes the Subscriber Status identity attribute in processing your request. The value should always be an empty object. See [Phone ID - Identity signals: Subscriber Status](/enterprise/docs/phone-id-identity-attributes-subscriber-status) for more details on how to use this feature.'
+            porting_history:
+              type: object
+              description: 'Includes the Porting History add-on in processing your request. The value should always be an empty object. See [Phone ID - Identity signals: Porting History](/enterprise/docs/phone-id-identity-attributes-porting-history) for more details on how to use this feature.'
+              properties:
+                past_x_days:
+                  type: integer
+                  description: How many days back the service will go to check for whether the phone number was ported.
+                  example: 10
+            porting_status:
+              type: object
+              description: 'Includes the Porting Status identity attribute in processing your request. The value should always be an empty object. See [Phone ID - Identity signals: Porting Status](/enterprise/docs/phone-id-identity-attributes-porting-status) for more details on how to use this feature.'
+            sim_swap:
+              type: object
+              description: 'Includes the SIM Swap identity attribute in processing your request. The value should always be an empty object. See [Phone ID - Identity signals: SIM Swap](/enterprise/docs/phone-id-identity-attributes-sim-swap) for more details on how to use this feature.'
+        consent:
+          type: object
+          description: A record of how and when you obtained consent to query this phone number. This is required for some add-ons.
+          properties:
+            method:
+              type: integer
+              default: 1
+              enum:
+              - 1
+              - 2
+              - 3
+              - 4
+              description: "A numeric code indicating how you collected consent to query this phone number. If you do not include this property, the default value recorded is `1`. \n*  `1` = Terms and conditions (TCO)\n*  `2` = Mobile app (MA)\n*  `3` = SMS\n*  `4` = OTHER"
+            timestamp:
+              type: string
+              description: A timestamp indicating the date and time when you collected consent to query this phone number.
+              example: '2018-05-05T00:00:00Z'
+    resBreachedNumCheck:
+      type: object
+      description: 'Contains properties related to the use of the Breached Data identity attribute for this request. See [Phone ID - Identity attributes: Breached Data](/enterprise/docs/phone-id-identity-attributes-breached-data) for more details on on how to use this feature.'
+      properties:
+        phone_number_breached:
+          type: boolean
+          description: Returns `true` if the phone number was breached and `false` if the phone number wasn't breached.
+        breach_date:
+          type: string
+          example: '2024-05-25T00:00:00Z'
+          description: The date when the breach occurred; this is returned by the data provider. Returns `null` if a breach isn't found.
+        breached_data:
+          type: array
+          description: Lists each [data type that was breached](/enterprise/docs/phone-id-identity-attributes-breached-data#breached-data-types). Returns `null` if a breach isn't found.
+          items:
+            type: string
+            example: password
+        status:
+          type: object
+          description: Contains details about the delivery status of this package.
+          properties:
+            code:
+              type: integer
+              description: A status or error code describing what happened after your request.
+              example: 2800
+            description:
+              type: string
+              description: A brief description of what the error or status code means.
+              example: Request successfully completed.
+    getPhoneIdLiveResponse:
+      title: getPhoneIdLiveResponse
+      type: object
+      description: ''
+      properties:
+        reference_id:
+          type: string
+          description: 'A 32-digit hex value used to identify the web service requests. The value is unique to each web service request, is randomly generated by Telesign, and is returned in the response message immediately following the web service request. '
+          example: 0123456789ABCDEF0123456789ABCDEF
+        sub_resource:
+          type: string
+          description: 'The subresource in the URL accessed by this request.
+
+            '
+          example: live
+        errors:
+          type: array
+          description: An array of objects, one for each error that resulted from the request.
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: A one to five-digit error code (possibly negative) that indicates the type of error that occurred.
+              description:
+                type: string
+                description: A text description of this error.
+        phone_type:
+          type: object
+          description: 'Contains properties with details about the phone type. '
+          properties:
+            code:
+              type: string
+              description: One of the [phone type codes](/enterprise/docs/codes-languages-and-time-zones#phone-type-codes).
+              example: '2'
+            description:
+              type: string
+              description: 'Text describing the phone type. '
+              example: MOBILE
+        status:
+          type: object
+          description: 'Contains properties with details about the request status. '
+          properties:
+            code:
+              type: integer
+              description: A numeric code indicating the processing status of this request.
+              example: 300
+            description:
+              type: string
+              description: Text describing the transaction status.
+              example: Transaction successfully completed
+            updated_on:
+              type: string
+              description: An [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) timestamp indicating when the transaction status was updated.
+              example: '2024-10-03T21:51:28.709526Z'
+        numbering:
+          type: object
+          description: 'Contains properties related to the numbering attributes of the specified phone number. '
+          properties:
+            original:
+              type: object
+              description: Contains details of the phone number specified in the original request.
+              properties:
+                phone_number:
+                  type: string
+                  description: The base phone number. This is the phone number without the country dialing code.
+                  example: '1234567890'
+                complete_phone_number:
+                  type: string
+                  description: The base phone number prefixed with the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes).
+                  example: '11234567890'
+                country_code:
+                  type: string
+                  description: A 1, 2, or 3-digit number representing the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes). For example, the country dialing code for both the U.S.A. and Canada is 1, and the country dialing code for the United Kingdom is 44.
+                  example: '1'
+            cleansing:
+              type: object
+              description: Contains details about how the phone number was cleansed. Phone cleansing corrects common formatting issues in submitted phone numbers.
+              properties:
+                call:
+                  type: object
+                  description: 'Contains cleansing details about the phone number if it is enabled for receiving voice calls. '
+                  properties:
+                    cleansed_code:
+                      type: integer
+                      description: One of the [phone number cleansing codes](/enterprise/docs/codes-languages-and-time-zones#phone-number-cleansing-codes) describing the cleansing operation TeleSign performed on the phose number. The default value is 100 (no changes were made to the phone number).
+                      example: 100
+                    country_code:
+                      type: string
+                      description: A 1, 2, or 3-digit number representing the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#phone-number-cleansing-codes). For example, the country dialing code for both the U.S.A. and Canada is 1, and the country dialing code for United Kingdom is 44.
+                      example: '1'
+                    max_length:
+                      type: integer
+                      description: The maximum number of digits allowed for phone numbers with this particular country dialing code.
+                      example: 10
+                    min_length:
+                      type: integer
+                      description: The minimum number of digits allowed for phone numbers with this particular country dialing code.
+                      example: 1
+                    phone_number:
+                      type: string
+                      description: The base phone number. This is simply the phone number without the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#phone-number-cleansing-codes).
+                      example: '1234567890'
+                sms:
+                  type: object
+                  description: Contains cleansing details about a phone number enabled for receiving text messages.
+                  properties:
+                    cleansed_code:
+                      type: integer
+                      description: One of the [phone number cleansing codes](/enterprise/docs/codes-languages-and-time-zones#phone-number-cleansing-codes) describing the cleansing operation TeleSign performed on the phose number. The default value is 100 (no changes were made to the phone number).
+                      example: 100
+                    country_code:
+                      type: string
+                      description: A 1, 2, or 3-digit number representing the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#phone-number-cleansing-codes). For example, the country dialing code for both the U.S.A. and Canada is 1, and the country dialing code for United Kingdom is 44.
+                      example: '1'
+                    max_length:
+                      type: integer
+                      description: The maximum number of digits allowed for phone numbers with this particular country dialing code.
+                      example: 10
+                    min_length:
+                      type: integer
+                      description: The minimum number of digits allowed for phone numbers with this particular country dialing code.
+                      example: 10
+                    phone_number:
+                      type: string
+                      description: The base phone number. This is simply the phone number without the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#phone-number-cleansing-codes).
+                      example: '1234567890'
+        location:
+          type: object
+          description: Contains geographical location information associated with the rate center of the phone number when the device was activated. Null is returned when data for a field isn't available for a specific market or country.
+          properties:
+            city:
+              type: string
+              example: Odessa
+              description: The city associated with the rate center of the phone number when the device was activated.
+            county:
+              type: string
+              example: Ector
+              description: The county (or parish) associated with the rate center of the phone number when the device was activated (U.S. only).
+            state:
+              type: string
+              description: The two-letter [state abbreviation code](http://pe.usps.com/text/pub28/28apb.htm) of the state (province, district, or territory) associated with the rate center of the phone number when the device was activated (North America only).
+              example: TX
+            zip:
+              type: string
+              example: '79758'
+              description: The five-digit United States Postal Service [ZIP Code](https://www.usps.com/nationalpremieraccounts/findzipcodes.htm) associated with the rate center of the phone number when the device was activated (U.S. only).
+            country:
+              type: object
+              description: Contains properties related to the country associated with the rate center of the phone number when the device was activated.
+              properties:
+                iso2:
+                  type: string
+                  example: US
+                  description: The ISO 3166-1 2-letter [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes) associated with the rate center of the phone number when the device was activated.
+                iso3:
+                  type: string
+                  example: USA
+                  description: The ISO 3166-1 3-letter country code associated with the rate center of the phone number when the device was activated.
+                name:
+                  type: string
+                  example: United States
+                  description: The [country name](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes) associated with the rate center of the phone number when the device was activated.
+            time_zone:
+              type: object
+              description: Contains properties related to the time zone associated with the rate center of the phone number when the device was activated. For maximum and minimum UTC offsets, they are specified in units of hours, and range from -12 to +14. For positive numbers, the plus sign (+) may not be returned. Additional offsets due to Daylight Savings Time or Summer Time are not considered. For example, Russia, which spans 11 time zones, has a minimum UTC offset of +2, and a maximum of +12.
+              properties:
+                name:
+                  type: string
+                  example: America/Chicago
+                  description: The time zone associated with the rate center of the phone number when the device was activated (U.S. only).
+                utc_offset_max:
+                  type: string
+                  example: '-6'
+                  description: For international phone numbers, this parameter returns the maximum UTC offset for the country associated with the rate center of the phone number when the device was activated. For U.S. phone numbers, this parameter returns the same result as utc_offset_min.
+                utc_offset_min:
+                  type: string
+                  example: '-6'
+                  description: 'For international phone numbers, this parameter returns the minimum UTC offset for the country associated with the rate center of the phone number when the device was activated. For U.S. phone numbers, this parameter returns the UTC offset associated with the rate center of the phone number when the device was activated. '
+            coordinates:
+              type: object
+              description: Contains details about the geographical coordinates of the location where the phone number is registered.
+              properties:
+                latitude:
+                  type: string
+                  description: Latitude specifies the North-South position of a point on the Earth’s surface. It is an angular measurement that ranges from 0° at the Equator, to 90° at the North Pole (and -90° at the South Pole). It is returned here as a value indicating the number of degrees of latitude of the location associated with the phone number, expressed in seven decimal digits, with five decimal places.
+                  example: '31.8466'
+                longitude:
+                  type: string
+                  description: Longitude specifies the East-West position of a point on the Earth’s surface. It is an angle measured East or West from the [prime meridian](https://en.wikipedia.org/wiki/Prime_meridian) —ranging from 0° at the prime meridian, to +180° Eastward and -180° Westward. It is returned here as a value indicating the number of degrees of longitude of the location associated with the phone number, expressed in eight decimal digits, with five decimal places.
+                  example: '-102.36778'
+            metro_code:
+              type: string
+              example: '36220'
+              description: A 4-digit string indicating the Primary Metropolitan Statistical Area (PMSA) code for the location associated with the rate center of the phone number when the device was activated (U.S. only). PMSA Codes are governed by the [US Census Bureau](http://www.census.gov/). This information is useful for large metropolitan areas that comprise several smaller cities. For example, the PMSA for Long Beach, California is Los Angeles County, which gives Long Beach the PMSA Code 4480.
+        carrier:
+          type: object
+          description: Contains information about the company that provides telecommunications services for the phone number.
+          properties:
+            name:
+              type: string
+              description: The name of the carrier associated with this number.
+              example: Verizon
+        live:
+          type: object
+          description: 'Contains details about a subscriber and subscriber''s device. '
+          properties:
+            subscriber_status:
+              type: string
+              description: 'The current status of the subscriber’s phone number.
+
+
+                | Value | Description |
+
+                |-------|-------------|
+
+                | ACTIVE | The phone number is in service. |
+
+                | DISCONNECTED | The phone number is not in service. |'
+              example: ACTIVE
+            device_status:
+              type: string
+              description: 'The current status of the device associated with this number.
+
+
+                | Value | Description |
+
+                |-------|-------------|
+
+                | REACHABLE | The device is on-line, and is ready to initiate/receive calls. Note that subscriber_status=ACTIVE. |
+
+                | UNAVAILABLE | The device status is not available for this phone number. |
+
+                | UNREACHABLE | The device is either turned off, or it is out of the coverage area. |'
+              example: REACHABLE
+            roaming:
+              type: string
+              description: 'Whether the mobile device is currently roaming outside of the contracted service coverage area.
+
+
+                | Value | Description |
+
+                |-------|-------------|
+
+                | NO | The mobile device is not currently roaming. |
+
+                | UNAVAILABLE | The service is unable to make a determination at this time. |
+
+                | YES | The mobile device is currently roaming. |'
+              example: 'NO'
+            roaming_country:
+              type:
+              - string
+              - 'null'
+              description: 'The country in which the mobile device is roaming.
+
+
+                | Value | Description |
+
+                |-------|-------------|
+
+                | A string naming the country | The name of the country (in mixed-case). |
+
+                | null | The service is unable to make a determination at this time.'
+              example: 'null'
+            roaming_country_iso2:
+              type:
+              - string
+              - 'null'
+              description: A two-character abbreviation for the country in which the mobile device is roaming.
+              example: US
+    contact-object:
+      title: contactObject
+      type: object
+      description: 'Contains contact information for this phone number. You will only see this in your response if you used the associated identity attribute (Contact) and Telesign has enabled it for your account. See *[Phone ID - Identity signals: Contact](doc:phone-id-identity-attributes-contact)* for more details.'
+      properties:
+        address1:
+          type: string
+          description: The name of the street in the address of the subscriber.
+          example: 2432 CHIMNEY POINT LN
+        address2:
+          type: string
+          description: Unit or suite number in the address of the subscriber.
+        address3:
+          type: string
+          description: Town, city, or state in the address of the subscriber.
+        address4:
+          type: string
+          description: Postal code in the address of the subscriber.
+        city:
+          type: string
+          description: The city in the address of the subscriber.
+          example: LEXINGTON
+        country:
+          type: string
+          description: The country in the address of the subscriber.
+          example: US
+        date_of_birth:
+          type: string
+          description: The date of birth of the subscriber, in a <a href="http://www.ietf.org/rfc/rfc3339.txt">RFC 3339</a> format. This property is not returned by default; to request addition of this property contact our [Customer Support Team](mailto:support@telesign.com).
+          example: '1954-01-06T00:00:00Z'
+        email_address:
+          type: string
+          description: Email address of the owner of the phone number.
+          example: jsmith@vero-finto.com
+        first_name:
+          type: string
+          description: The first name of the subscriber.
+          example: MYLA
+        id:
+          type: string
+          example: '300206845'
+          description: The unique government-issued ID for this subscriber. This property is not returned by default and is only available in limited markets. Contact our [Customer Support Team](mailto:support@telesign.com) to obtain the latest information on supported markets and to add this property to your account.
+        last_name:
+          type: string
+          description: The last name of the subscriber.
+          example: JONES
+        state_province:
+          type: string
+          description: State or province in the address of the subscriber.
+          example: KY
+        zip_postal_code:
+          type: string
+          description: Postal code in the address of the subscriber.
+          example: '40509'
+        status:
+          type: object
+          description: Contains properties related to the processing status for this identity attribute.
+          properties:
+            code:
+              type: integer
+              description: A numeric code indicating the processing status for this identity attribute.
+              example: 2800
+            description:
+              type: string
+              description: "A brief description telling you what the code means.\n\n  2800 - Request successfully completed.\n\n 2801 - Invalid Request addons parameter {parameter_name} \n\n 2802 - number_deactivation add-on temporarily unavailable\n\n   2803 - Phone number out of number_deactivation add-on coverage. \n\n  2804 - Phone number not applicable in number_deactivation add-on. \n\n  2805 - No number_deactivation add-on information for phone_number. \n\n  2806 - number_deactivation add-on is not enabled. \n\n  2807 - Some parameters submitted in the request are not valid."
+              example: Request successfully completed
+    Blocklisting:
+      title: Blocklisting
+      type: object
+      description: 'Contains details about whether the number was blocked and who requested the block. Contact our [Customer Support Team](mailto:support@telesign.com) to include this package in your response.
+
+        '
+      properties:
+        block_code:
+          type: integer
+          description: A code indicating whether the number is blocked, and who blocked it. `0` for not blocked, `1` for blocked by TeleSign, `2` for block requested by your organization, `3` for block requested by your account or set by TeleSign on behalf of your account, and `4` if the block state is unknown.
+          example: 0
+        block_description:
+          type: string
+          example: Not blocked
+          description: Text explaining the block status.
+        blocked:
+          type: boolean
+          description: If `true`, this number is blocked. If `false`, this number is not blocked.
+    reqAgeVerify:
+      title: reqAgeVerify
+      type: object
+      description: 'Includes the Age Verify identity attribute in processing your request. Pass an empty object to use the minimum legal age of the country as the age threshold. See [Phone ID - Identity signals: Age Verify](/enterprise/docs/phone-id-identity-attributes-age-verify) for more details on how to use this feature.'
+      properties:
+        age_threshold:
+          type: integer
+          example: 21
+          description: 'Sets a custom age threshold. If the age of the subscriber of the phone number is equal to or greater than this value, the service returns true. WARNING: Do not use this feature without first confirming with the [Telesign Customer Support Team](mailto:support@telesign.com) that the countries you intend to use it with are supported! If you use this parameter for a country that is not supported, you may get incorrect results.'
+    resAgeVerify:
+      title: resAgeVerify
+      type: object
+      description: Contains properties related to the use of the Age Verify identity attribute for this request.
+      properties:
+        status:
+          type: object
+          description: Contains properties related to this identity attribute's processing status for this request.
+          properties:
+            code:
+              type: integer
+              description: A numeric code indicating this identity attribute's processing status for this request. Go to the Status Codes section on [Phone ID - Get started with identity attributes](/enterprise/docs/phone-id-get-started-with-identity-attributes)
+              example: 2800
+            description:
+              type: string
+              description: Text describing this add-on's status for processing this request. Go to the Status Codes section on [Phone ID - Get started with identity attributes](/enterprise/docs/phone-id-get-started-with-identity-attributes) for a full list of possible values.
+              example: Request successfully completed
+    PhoneType:
+      title: PhoneType
+      type: object
+      properties:
+        code:
+          type: string
+          description: One of the [phone type codes](/enterprise/docs/codes-languages-and-time-zones#phone-type-codes).
+          example: '1'
+        override_reason:
+          type: string
+          example: Non SMS-enabled Phone Number
+          description: Text describing the [phone type override](/enterprise/docs/codes-languages-and-time-zones#phone-type-override-reason-codes) status of this phone number. Contact our [Customer Support Team](mailto:support@telesign.com) to include this property in your response.
+        description:
+          type: string
+          description: Text describing the phone type.
+          example: FIXED_LINE
+        override_reason_id:
+          type: integer
+          example: 11
+          description: A numeric code specifying the [phone type override](/enterprise/docs/codes-languages-and-time-zones#phone-type-override-reason-codes) status of this phone number. Contact our [Customer Support Team](mailto:support@telesign.com) to include this property in your response.
+    postPhoneIDRequestBody:
+      title: postPhoneIDRequestBody
+      type: object
+      properties:
+        account_lifecycle_event:
+          type: string
+          example: create
+          description: 'Indicates what stage an end user is in when you make this request. Acceptable values for this parameter are:
+
+            * `create` - For the creation of a new account.
+
+            * `sign-in` - For when an end user signs in to their account.
+
+            * `transact` - For when an end user completes a transaction within their account.
+
+            * `update` - For when an update is performed, such as an update of account information.
+
+            * `delete` - For when an account is deleted.'
+        external_id:
+          type: string
+          description: A customer-generated ID for this transaction. The response simply echoes the value provided for this parameter.
+          example: CustomExternalID7349
+        originating_ip:
+          type: string
+          example: 203.0.113.45
+          description: Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).
+        addons:
+          type: object
+          description: Indicates which identity attributes you want to use with this request and contains any other inputs for use with those identity attributes.
+          properties:
+            age_verify:
+              $ref: '#/components/schemas/reqAgeVerify'
+            active_call_status:
+              type: object
+              description: 'Includes the Active Call Status identity attribute in processing your request. The value should always be an empty object. See [Phone ID - Identity attributes: Active Call Status](/enterprise/docs/phone-id-identity-attributes-active-call-status) for more details on how to use this feature.'
+            breached_number_check:
+              type: object
+              description: 'Includes the Breached Data identity attribute in processing your request. See [Phone ID - Identity attributes: Breached Data](/enterprise/docs/phone-id-identity-attributes-breached-data) for more details on on how to use this feature.'
+            call_forward_detection:
+              type: object
+              description: 'Includes the Call Forwarding identity attribute in processing your request. The value should always be an empty object.  See [Phone ID - Identity attributes: Call Forwarding](/enterprise/docs/phone-id-identity-attributes-call-forwarding) for more details on how to use this feature.'
+            contact:
+              type: object
+              description: 'Includes the Contact identity attribute in processing your request. See [Phone ID - Identity attributes: Contact](/enterprise/docs/phone-id-identity-attributes-contact) for more details on how to use this feature.'
+            contact_match:
+              type: object
+              description: 'Includes the Contact Match identity attribute in processing your request. See [Phone ID - Identity attributes: Contact Match](/enterprise/docs/phone-id-identity-attributes-contact-match) for more details on how to use this feature.'
+              properties:
+                first_name:
+                  type: string
+                  description: The first name of the contact you want a match for.
+                last_name:
+                  type: string
+                  description: The last name of the contact you want a match for.
+                address:
+                  type: string
+                  description: The first line of the address you want to match for. By first line, the line containing the street is meant.
+                city:
+                  type: string
+                  description: The city for the address you want a match for.
+                postal_code:
+                  type: string
+                  description: The postal/zip code for the address you want a match for. The first five digits only.
+                state:
+                  type: string
+                  description: The state for the address you want a match for.
+                country:
+                  type: string
+                  description: The country for the address you want a match for.
+            contact_plus:
+              type: object
+              description: 'Includes the Contact Plus identity attribute in processing your request.
+
+
+                >❗️ **WARNING**: This product is deprecated.'
+              properties:
+                billing_postal_code:
+                  type: string
+                  description: The postal code for the billing address of the contact you want information for.
+                  example: '95110'
+            number_deactivation:
+              type: object
+              description: 'Includes the Number Deactivation identity attribute in processing your request. See [Phone ID - Identity signals: Number Deactivation](/enterprise/docs/phone-id-identity-attributes-number-deactivation) for more details on how to use this feature.'
+              properties:
+                carrier_name:
+                  type: string
+                  description: The name of the current carrier for the phone.
+                  example: Verizon
+                last_deactivated:
+                  type: string
+                  description: When the phone was last deactivated (if it was).
+                  example: '2016-04-05T00:00:00Z'
+                tracking_since:
+                  type: string
+                  description: When the phone number first started being tracked for deactivation status.
+                  example: '2014-10-06T00:00:00Z'
+                status:
+                  type: object
+                  description: Contains details about the delivery status of this package.
+                  properties:
+                    code:
+                      type: integer
+                      description: A status or error code describing what happened after your request.
+                      example: 2800
+                    description:
+                      type: string
+                      description: A brief description of what the error or status code means.
+                      example: Request successfully completed
+                recycled_since_last_verification:
+                  type: string
+                  enum:
+                  - recycled
+                  - not_recycled
+                  - cannot_be_determined
+                  description: Whether or not the phone number has been recycled since the time and date you provided. Only appears if you included a `last_verified` value in your request.
+                  example: not_recycled
+            subscriber_status:
+              type: object
+              description: 'Includes the Subscriber Status identity attribute in processing your request. The value should always be an empty object. See [Phone ID - Identity signals: Subscriber Status](/enterprise/docs/phone-id-identity-attributes-subscriber-status) for more details on how to use this feature.'
+            porting_history:
+              type: object
+              description: 'Includes the Porting History add-on in processing your request. The value should always be an empty object. See [Phone ID - Identity signals: Porting History](/enterprise/docs/phone-id-identity-attributes-porting-history) for more details on how to use this feature.'
+              properties:
+                past_x_days:
+                  type: integer
+                  description: How many days back the service will go to check for whether the phone number was ported.
+                  example: 10
+            porting_status:
+              type: object
+              description: 'Includes the Porting Status identity attribute in processing your request. The value should always be an empty object. See [Phone ID - Identity signals: Porting Status](/enterprise/docs/phone-id-identity-attributes-porting-status) for more details on how to use this feature.'
+            sim_swap:
+              type: object
+              description: 'Includes the SIM Swap identity attribute in processing your request. The value should always be an empty object. See [Phone ID - Identity signals: SIM Swap](/enterprise/docs/phone-id-identity-attributes-sim-swap) for more details on how to use this feature.'
+        consent:
+          type: object
+          description: A record of how and when you obtained consent to query this phone number. This is required for some add-ons.
+          properties:
+            method:
+              type: integer
+              default: 1
+              enum:
+              - 1
+              - 2
+              - 3
+              - 4
+              description: "A numeric code indicating how you collected consent to query this phone number. If you do not include this property, the default value recorded is `1`. \n*  `1` = Terms and conditions (TCO)\n*  `2` = Mobile app (MA)\n*  `3` = SMS\n*  `4` = OTHER"
+            timestamp:
+              type: string
+              description: A timestamp indicating the date and time when you collected consent to query this phone number.
+              example: '2018-05-05T00:00:00Z'
+    postPhoneIdResponse:
+      title: postPhoneIdResponse
+      type: object
+      properties:
+        reference_id:
+          type: string
+          description: 'A 32-digit hex value used to identify the web service requests. The value is unique to each web service request, is randomly generated by Telesign, and is returned in the response message immediately following the web service request. '
+          example: F0123456789ABCDEF0123456789ABCDE
+        phone_type:
+          $ref: '#/components/schemas/PhoneType'
+        blocklisting:
+          $ref: '#/components/schemas/Blocklisting'
+        status:
+          type: object
+          description: Contains details about the status of your request.
+          properties:
+            code:
+              type: integer
+              description: A numeric code indicating the processing status of the transaction.
+              example: 300
+            description:
+              type: string
+              description: Text describing the transaction status.
+              example: Transaction successfully completed
+            updated_on:
+              type: string
+              description: 'An <a href="http://www.ietf.org/rfc/rfc3339.txt">RFC 3339</a> timestamp indicating when the transaction status was updated. '
+              example: '2024-10-03T14:51:28.709526Z'
+        numbering:
+          $ref: '#/components/schemas/Numbering'
+        location:
+          $ref: '#/components/schemas/Location'
+        age_verify:
+          $ref: '#/components/schemas/resAgeVerifySuccess'
+        active_call_status:
+          type: object
+          description: Contains properties related to the Active Call Status identity attribute.
+          properties:
+            is_call_active:
+              type: boolean
+              description: Indicates whether the end user is engaged in an ongoing call. Returns `True` if the call is active and `False` if the call is inactive.
+            call_duration:
+              type: integer
+              example: 120
+              description: The duration of an ongoing call in seconds. The parameter is `None` if the call is inactive.
+            call_direction:
+              type: string
+              example: called
+              description: If the call is active, returns either `called` or `calling`, depending on who initiated the call. The parameter is `None` if the call is inactive.
+            status:
+              type: object
+              description: Contains properties related to the processing status for this identity attribute.
+              properties:
+                code:
+                  type: integer
+                  example: 2800
+                  description: A numeric code indicating the processing status for this identity attribute.
+                description:
+                  type: string
+                  description: "A brief description telling you what the code means.\n\n2800 - Request successfully completed.\n\n2801 - Invalid request add-on parameter: {parameter_name}. \n\n2802 - active_call_status add-on temporarily unavailable.\n\n2803 - Phone number out of active_call_status add-on coverage. \n\n2804 - Phone number not applicable in active_call_status add-on. \n\n2805 - No active_call_status add-on information for phone_number. \n\n2806 - active_call_status add-on is not enabled. \n\n2807 - Some parameters submitted in the request are not valid. \n\n2810 - Request process failed during data collection.\n\n2811 - Request processing timeout.\n"
+                  example: Request successfully completed.
+        breached_number_check:
+          $ref: '#/components/schemas/resBreachedNumCheck'
+        call_forward_detection:
+          type: object
+          description: Contains call forwarding status details for this phone number. Only present if you included the flag for the Call Forward Detection add-on in your request and Telesign has enabled this add-on for your account.
+          properties:
+            call_forward_enabled:
+              type: string
+              description: 'Whether this phone number has call forwarding enabled.
+
+                * `"true"` = It is enabled.
+
+                * `"false"` = It is not enabled.'
+            call_forward_type:
+              type: string
+              description: The type of call forwarding enabled for this phone number. Conditional forwarding causes incoming calls to go to another phone line only when the initial destination phone number cannot be reached.
+              example: conditional
+              enum:
+              - conditional
+              - None
+              - unconditional
+            call_forward_condition:
+              type: string
+              description: The conditions under which calls will be forwarded for this number. If the phone number uses unconditional call forwarding or has no call forwarding at all, the value will be `"None"`.
+              example: busy
+              enum:
+              - busy
+              - unanswered
+              - unreachable
+              - None
+            status:
+              type: object
+              properties:
+                code:
+                  type: integer
+                  description: A numeric code indicating the processing status for this identity attribute.
+                  example: 2800
+                description:
+                  type: string
+                  description: A short description of the processing status for this identity attribute.
+                  example: Request successfully completed.
+        carrier:
+          allOf:
+          - $ref: '#/components/schemas/Carrier'
+          - type: object
+            properties:
+              mcc:
+                type: string
+                example: '724'
+                description: Mobile country code (MCC) associated with the specified phone number. Contact our [Customer Support Team](mailto:support@telesign.com) to include this property in your response.
+              mnc:
+                type: string
+                example: '05'
+                description: Mobile network code (MNC) associated with the specified phone number. Contact our [Customer Support Team](mailto:support@telesign.com) to include this property in your response.
+        contact:
+          $ref: '#/components/schemas/contact-object'
+        contact_match:
+          type: object
+          description: Contains contact match information for this phone number. Only present if you included the flag for Contact Match in your request and Telesign has enabled this identity attribute for your account.
+          properties:
+            address_score:
+              type: integer
+              example: 100
+              description: A score from 0-100 showing you how close a match the address information you sent is to what is on file. It is recommended that scores greater than or equal to 80 be considered a 'pass' meaning it is enough of a match for validation. If you receive a score of -1 it means the match was not available.
+            first_name_score:
+              type: integer
+              example: 100
+              description: A score from 0-100 showing you how close a match the first name information you sent is to what is on file. It is recommended that scores greater than or equal to 80 be considered a 'pass' meaning it is enough of a match for validation. If you receive a score of -1 it means the match was not available.
+            last_name_score:
+              type: integer
+              example: 100
+              description: 'A score from 0-100 showing you how close a match the last name information you sent is to what is on file. It is recommended that scores greater than or equal to 80 be considered a ''pass'' meaning it is enough of a match for validation. If you receive a score of -1 it means the match was not available. '
+            status:
+              type: object
+              description: Contains properties related to the processing status for this identity attribute.
+              properties:
+                code:
+                  type: integer
+                  description: A numeric code indicating the processing status for this identity attribute.
+                  example: 2800
+                description:
+                  type: string
+                  description: "A brief description telling you what the code means.\n\n  2800 - Request successfully completed.\n\n 2801 - Invalid Request addons parameter {parameter_name} \n\n 2802 - number_deactivation add-on temporarily unavailable\n\n   2803 - Phone number out of number_deactivation add-on coverage. \n\n  2804 - Phone number not applicable in number_deactivation add-on. \n\n  2805 - No number_deactivation add-on information for phone_number. \n\n  2806 - number_deactivation add-on is not enabled. \n\n  2807 - Some parameters submitted in the request are not valid. "
+                  example: Request successfully completed.
+        contact_plus:
+          $ref: '#/components/schemas/contact-object'
+        number_deactivation:
+          type: object
+          description: 'Contains properties related to the Number Deactivation identity attribute. '
+          properties:
+            carrier_name:
+              type: string
+              description: The name of the carrier most recently associated with the number.
+              example: Verizon
+            last_deactivated:
+              type: string
+              description: If the number was deactivated, this displays the date that it was last deactivated.
+              example: '2018-04-06T00:00:00Z'
+            status:
+              type: object
+              description: Contains properties related to the processing status for this identity attribute.
+              properties:
+                code:
+                  type: integer
+                  description: A numeric code indicating the processing status for this identity attribute.
+                  example: 2800
+                description:
+                  type: string
+                  description: "A brief description telling you what the code means.\n\n  2800 - Request successfully completed.\n\n 2801 - Invalid Request addons parameter {parameter_name} \n\n 2802 - number_deactivation add-on temporarily unavailable\n\n   2803 - Phone number out of number_deactivation add-on coverage. \n\n  2804 - Phone number not applicable in number_deactivation add-on. \n\n  2805 - No number_deactivation add-on information for phone_number. \n\n  2806 - number_deactivation add-on is not enabled. \n\n  2807 - Some parameters submitted in the request are not valid. "
+                  example: Request successfully completed
+            tracking_since:
+              type: string
+              example: '2014-10-06T00:00:00Z'
+            recycled_since_last_verification:
+              type: string
+              enum:
+              - recycled
+              - not_recycled
+              - cannot_be_determined
+        subscriber_status:
+          type: object
+          description: 'Contains properties related to the Subscriber Status identity attribute. '
+          properties:
+            account_activation_date:
+              type: string
+              description: The date the account first became active.
+              example: '2024-05-08'
+            account_type:
+              type: string
+              example: individual
+            account_tenure_max:
+              type: integer
+              example: 6
+              description: The maximum amount of time in months the subscriber may have had their account. Coverage - All phone types. Available in limited markets. Contact our [Customer Support Team](mailto:support@telesign.com) for additional information.
+            account_tenure_min:
+              type: integer
+              description: The minimum amount of time in months the subscriber may have had their account.
+              example: 3
+            primary_account_holder:
+              type: boolean
+              description: Whether the phone number is the primary phone number of the account. Coverage - Mobile phones. Available in limited markets. Contact our [Customer Support Team](mailto:support@telesign.com) for additional information.
+            account_status:
+              type: string
+              example: active
+              description: A string indicating whether an account is 'active' or 'suspended' or 'deactivated'. Coverage - All phone types. Available in limited markets. Contact our [Customer Support Team](mailto:support@telesign.com) for additional information.
+            contract_type:
+              type: string
+              example: postpaid
+              description: Indicates whether an account is 'postpaid' (an account where service is provided by prior arrangement with a mobile network operator, and the subscriber pays at the end of each month) or 'prepaid' (an account where the subscriber pays for the service up front). Coverage - All phone types. Available in limited markets. Contact our [Customer Support Team](mailto:support@telesign.com) for additional information.
+            status:
+              type: object
+              description: Contains properties related to the processing status for this identity attribute.
+              properties:
+                code:
+                  type: integer
+                  description: A numeric code indicating the processing status for this identity attribute.
+                description:
+                  type: string
+                  description: "A brief description telling you what the code means.\n\n2800 - Request successfully completed.\n\n2801 - Invalid request add-on parameter: {parameter_name}. \n\n2802 - subscriber_status add-on temporarily unavailable.\n\n2803 - Phone number out of subscriber_status add-on coverage. \n\n2804 - Phone number not applicable in subscriber_status add-on. \n\n2805 - No subscriber_status add-on information for phone_number. \n\n2806 - subscriber_status add-on is not enabled. \n\n2807 - Some parameters submitted in the request are not valid. "
+        porting_history:
+          type: object
+          description: Contains porting history information for this phone number. Only present if you included the flag for the Porting History identity attribute in your request and Telesign has enabled this add-on for your account.
+          properties:
+            carrier_current:
+              type: string
+              description: The name of the current carrier for the phone number you provided.
+              example: Sprint Spectrum, L.P.
+            carrier_previous:
+              type: string
+              description: The name of the carrier before the phone number was ported to the new carrier.
+              example: US Cellular Corp.
+            mcc_carrier_current:
+              type: string
+              description: The mobile country code for the current carrier. This field can include multiple values for MCC.
+              example: '310'
+            mcc_carrier_previous:
+              type: string
+              description: The mobile country code for the previous carrier. This field can include multiple values for MCC.
+              example: '310'
+            mnc_carrier_current:
+              type: string
+              description: The mobile network code for the current carrier. This field can include multiple values for MNC.
+              example: '120'
+            mnc_carrier_previous:
+              type: string
+              description: The mobile network code for the previous carrier. This field can include multiple values for MNC.
+              example: '160'
+            phone_type_current:
+              type: string
+              description: The phone type currently associated with the phone number.
+              example: MOBILE
+            phone_type_previous:
+              type: string
+              description: The phone type previously associated with the phone number.
+              example: MOBILE
+            port_date:
+              type: string
+              description: The date the phone number was ported to a new carrier.
+              example: '2018-08-26T16:33:19Z'
+            number_of_portings:
+              type: string
+              description: The number of times the phone number was ported during the time window you specified with `past_x_days` in your request.
+              example: '1'
+            status:
+              type: object
+              description: Contains properties related to the processing status for this identity attribute.
+              properties:
+                code:
+                  type: integer
+                  description: A numeric code indicating the processing status for this identity attribute.
+                  example: 2800
+                description:
+                  type: string
+                  description: A short description of the processing status for this identity attribute.
+                  example: Request successfully completed
+        porting_status:
+          type: object
+          description: Contains porting status information for this phone number. Only present if you included the flag for the Porting Status identity attribute in your request and Telesign has enabled this add-on for your account.
+          properties:
+            mcc_current:
+              type: string
+              description: The mobile country code (MCC) for the current carrier associated with the device. The MNC is used in conjunction with the MCC to uniquely identify a carrier.
+              example: '310'
+            mnc_current:
+              type: string
+              description: The mobile network code (MNC) for the current carrier associated with the device. The MNC is used in conjunction with the MCC to uniquely identify a carrier.
+              example: '01'
+            ported:
+              type: boolean
+              description: 'Indicates whether the number was ported. '
+            status:
+              type: object
+              description: Contains properties related to the processing status for this identity attribute.
+              properties:
+                code:
+                  type: integer
+                  description: A numeric code indicating the processing status for this identity attribute.
+                  example: 2800
+                description:
+                  type: string
+                  description: A short description of the processing status for this identity attribute.
+                  example: Request successfully completed
+        sim_swap:
+          type: object
+          description: Contains SIM swap information for this phone number. Only present if you included the flag for the SIM Swap identity attribute in your request and Telesign has enabled this add-on for your account.
+          properties:
+            swap_date:
+              type: string
+              description: 'If the number has been sim swapped, the date and time of the swap appears here. '
+              example: '2018-09-05T00:00:00Z'
+            swap_time:
+              type: string
+              description: If the number has been sim swapped, this field indicates at what time the swap occurred.
+              example: 00:00:00
+            risk_indicator:
+              type: string
+              description: Telesign's assessment for how likely it is that a swap was carried out for a fraudulent purpose. The response is a number 1-4. 1 - (very low) swap did not occur or it occurred in the last 15+ days. 2 - (low) swap occurred some time between the last 3 and 14 days. 3 - (medium) swap occurred in the last 72 hours. 4 - (high) swap occurred same day.
+              example: '1'
+            status:
+              type: object
+              description: Contains properties related to the processing status for this identity attribute.
+              properties:
+                code:
+                  type: integer
+                  description: A numeric code indicating the processing status for this identity attribute.
+                  example: 2800
+                description:
+                  type: string
+                  description: A short description of the processing status for this identity attribute.
+                  example: Request successfully completed
+        external_id:
+          type:
+          - string
+          - 'null'
+          description: The customer-generated ID for this transaction that was provided in the request. If the `external_id` parameter was not included in the request, the value here is `null`.
+          example: CustomExternalID7349
+    errorObject:
+      title: errorObject
+      type: object
+      properties:
+        reference_id:
+          type:
+          - string
+          - 'null'
+          example: 0123456789ABCDEF0123456789ABCDEF
+          description: A unique identifier assigned by Telesign for this transaction.
+        external_id:
+          type:
+          - string
+          - 'null'
+          description: A customer-generated ID for this transaction. The response simply echoes the value provided for this parameter.
+          example: CustomExternalID7349
+        status:
+          type: object
+          description: Contains properties related to the processing status of this request.
+          properties:
+            updated_on:
+              type: string
+              description: The date-time when the processing status of this transaction was last updated.
+              example: '2024-02-01T00:33:34.860418Z'
+            code:
+              type: integer
+              description: A numeric code indicating the processing status of this transaction.
+            description:
+              type: string
+              description: Text explaining the meaning of the status code returned.
+    largerErrorObject:
+      title: largerErrorObject
+      allOf:
+      - $ref: '#/components/schemas/errorObject'
+      - type: object
+        properties:
+          errors:
+            type: array
+            description: Each element contains an object describing an error that occurred during processing.
+            items:
+              type: object
+              description: Contains properties describing one error that occurred during processing.
+              properties:
+                code:
+                  type: integer
+                  description: A numeric code indicating which error occurred.
+                  example: -30015
+                description:
+                  type: string
+                  description: Text explaining the meaning of the error code returned.
+                  example: Invalid API Key.
+    resAgeVerifySuccess:
+      title: resAgeVerifySuccess
+      allOf:
+      - type: object
+        properties:
+          age_verified:
+            type: boolean
+            default: true
+            description: If `true`, the subscriber's age is equal to or greater than the threshold used for this request. This property only appears if this identity attribute processed successfully.
+      - $ref: '#/components/schemas/resAgeVerify'
+  responses:
+    PID200:
+      description: "Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n           \n| Status Code | Associated Text String | Description                                      |\n|-------------|------------------------|--------------------------------------------------|\n| 300         | Transaction successfully completed            | The system was able to obtain all of the requested data for Phone ID.                      | \n| 301         | Transaction partially completed | The system was able to obtain some of the data for Phone ID, but not all of it.                  |"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/postPhoneIdResponse'
+          examples:
+            Success:
+              value:
+                reference_id: F0123456789ABCDEF0123456789ABCDE
+                phone_type:
+                  code: '1'
+                  override_reason: Non SMS-enabled Phone Number
+                  description: FIXED_LINE
+                  override_reason_id: 11
+                blocklisting:
+                  block_code: 0
+                  block_description: Not blocked
+                  blocked: true
+                status:
+                  code: 300
+                  description: Transaction successfully completed
+                  updated_on: '2015-10-03T14:51:28.709526Z'
+                numbering:
+                  original:
+                    phone_number: '1234567890'
+                    complete_phone_number: '11234567890'
+                    country_code: '1'
+                  cleansing:
+                    call:
+                      cleansed_code: 100
+                      country_code: '1'
+                      max_length: 10
+                      min_length: 10
+                      phone_number: '1234567890'
+                    sms:
+                      cleansed_code: 100
+                      country_code: '1'
+                      max_length: 10
+                      min_length: 10
+                      phone_number: '1234567890'
+                location:
+                  city: Odessa
+                  county: Ector
+                  state: TX
+                  zip: '79758'
+                  country:
+                    iso2: US
+                    iso3: USA
+                    name: United States
+                  time_zone:
+                    name: America/Chicago
+                    utc_offset_max: '-6'
+                    utc_offset_min: '-6'
+                  coordinates:
+                    latitude: 31.8466
+                    longitude: -102.36778
+                  metro_code: '36220'
+                carrier:
+                  carrier_id: 0
+                  name: Verizon
+                  mcc: '724'
+                  mnc: '05'
+                age_verify:
+                  age_verified: true
+                  status:
+                    code: 2800
+                    description: Request successfully completed
+                active_call_status:
+                  is_call_active: true
+                  call_duration: 120
+                  call_direction: called
+                  status:
+                    code: 2800
+                    description: Request successfully completed.
+                breached_number_check:
+                  phone_number_breached: true
+                  breach_date: '2017-05-25T00:00:00Z'
+                  breached_data:
+                  - username
+                  - password
+                  - email
+                  status:
+                    code: 2800
+                    description: Request successfully completed.
+                call_forward_detection:
+                  call_forward_enabled: 'true'
+                  call_forward_type: conditional
+                  call_forward_condition: busy
+                  status:
+                    code: 2800
+                    description: Request successfully completed.
+                contact:
+                  address1: 2432 CHIMNEY POINT LN
+                  address2: string
+                  address3: string
+                  address4: string
+                  city: LEXINGTON
+                  country: US
+                  date_of_birth: '1958-01-01T00:00:00Z'
+                  email_address: jsmith@vero-finto.com
+                  first_name: MYLA
+                  id: '300206845'
+                  last_name: JONES
+                  state_province: KY
+                  zip_postal_code: '40509'
+                  status:
+                    code: 2800
+                    description: Request successfully completed
+                contact_match:
+                  address_score: 100
+                  first_name_score: 100
+                  last_name_score: 100
+                  status:
+                    code: 2800
+                    description: Request successfully completed.
+                contact_plus:
+                  address1: 2432 CHIMNEY POINT LN
+                  address2: string
+                  address3: string
+                  address4: string
+                  city: LEXINGTON
+                  country: US
+                  date_of_birth: '1958-01-01T00:00:00Z'
+                  email_address: jsmith@vero-finto.com
+                  first_name: MYLA
+                  id: '300206845'
+                  last_name: JONES
+                  state_province: KY
+                  zip_postal_code: '40509'
+                  status:
+                    code: 2800
+                    description: Request successfully completed
+                number_deactivation:
+                  carrier_name: Verizon
+                  last_deactivated: '2018-04-06T00:00:00Z'
+                  status:
+                    code: 2800
+                    description: Request successfully completed
+                  tracking_since: '2014-10-06T00:00:00Z'
+                  recycled_since_last_verification: recycled
+                subscriber_status:
+                  status:
+                    code: 2800
+                    description: Request successfully completed
+                  account_activation_date: '2017-05-08T00:00:00Z'
+                  account_type: individual
+                  account_tenure_max: 6
+                  account_tenure_min: 3
+                  primary_account_holder: true
+                  account_status: active
+                  contract_type: postpaid
+                porting_history:
+                  carrier_current: Sprint Spectrum, L.P.
+                  carrier_previous: US Cellular Corp.
+                  mcc_carrier_current: '310'
+                  mcc_carrier_previous: '310'
+                  mnc_carrier_current: '120'
+                  mnc_carrier_previous: '160'
+                  phone_type_current: MOBILE
+                  phone_type_previous: MOBILE
+                  port_date: '2018-08-26T16:33:19Z'
+                  number_of_portings: '1'
+                  status:
+                    code: 2800
+                    description: Request successfully completed
+                porting_status:
+                  mcc_current: '310'
+                  mnc_current: '01'
+                  ported: true
+                  status:
+                    code: 2800
+                    description: Request successfully completed
+                sim_swap:
+                  swap_date: '2018-09-05T00:00:00Z'
+                  swap_time: 00:00:00
+                  risk_indicator: '1'
+                  status:
+                    code: 2800
+                    description: Request successfully completed
+                external_id: CustomExternalID7349
+    PID404:
+      description: "Not Found, the server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | \n|-------------|------------------------|\n| 10017       | Customer ID / Reference ID not found           |\n"
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/errorObject'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 10017
+                    description:
+                      type: string
+                      example: Customer ID / Reference ID not found
+          examples:
+            Not Found:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                external_id: CustomExternalID7349
+                status:
+                  updated_on: '2024-02-01T00:33:34.860418Z'
+                  code: 10017
+                  description: Customer ID / Reference ID not found
+    PID402:
+      description: "Payment Required. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | \n|-------------|------------------------|\n| 10030       | Insufficient funds in prepaid wallet         |\n"
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/errorObject'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 10030
+                    description:
+                      type: string
+                      example: Insufficient funds in prepaid wallet
+          examples:
+            Payment Required:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                external_id: CustomExternalID7349
+                status:
+                  updated_on: '2024-02-01T00:33:34.860418Z'
+                  code: 10030
+                  description: Insufficient funds in prepaid wallet
+    PID500:
+      description: Invalid Transaction, transaction not attempted.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorObject'
+          examples:
+            Invalid Transaction:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                external_id: CustomExternalID7349
+                status:
+                  updated_on: '2024-02-01T00:33:34.860418Z'
+                  code: -90001
+                  description: Transaction not attempted
+    PID503:
+      description: Service Unavailable, system unavailable, try again.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorObject'
+          examples:
+            System Unavailable:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                external_id: CustomExternalID7349
+                status:
+                  updated_on: '2024-02-01T00:33:34.860418Z'
+                  code: -10000
+                  description: System unavailable. Please try again later.
+    PID401:
+      description: "Unauthorized, the request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n | Status Code | Associated Text String | \n |-------------|------------------------|\n | 10008       | Invalid signature      | \n | 10009       | Invalid value for parameter message      | \n | 10010       | Invalid value for parameter originating_ip         | \n | 10011       | Invalid value for parameter reference_id | \n | 10012       | This feature is not enabled for this CustomerID             |\n | 10013       | Invalid Request. CustomerID Account Not Found              |\n | 10014       | Invalid source IP address                |\n | 10015       | Invalid customer ID    |\n"
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/errorObject'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 10008
+                    description:
+                      type: string
+                      example: Invalid signature
+          examples:
+            Unauthorized:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                external_id: CustomExternalID7349
+                status:
+                  updated_on: '2024-02-01T00:33:34.860418Z'
+                  code: 10008
+                  description: Invalid signature
+    PID429:
+      description: "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | \n|-------------|------------------------|\n| 10019       | Rate Limit Exceeded    |\n| 10020       | PhoneId Standard exceeded transaction hard cap. Request denied.                |\n"
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/errorObject'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 10019
+                    description:
+                      type: string
+                      example: Rate Limit Exceeded
+          examples:
+            Too Many Requests:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                external_id: CustomExternalID7349
+                status:
+                  updated_on: '2024-02-01T00:33:34.860418Z'
+                  code: 10019
+                  description: Rate Limit Exceeded
+    PID400:
+      description: "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n  | Status Code | Associated Text String | \n  |-------------|------------------------|\n  | 10032       | Request blocked due to this number appearing on a Telesign blocklist. | \n  | 10033       | Unverified phone_number requested for trial account.              | \n  | 10041       | Blocked due to legal compliance              | \n  | 11000       | Invalid value for parameter phone_number | \n  | 11001       | Invalid country code for parameter phone_number           | \n  | 11003       | Invalid value for parameter account_lifecycle_event | \n  | 11005       | Invalid value for parameter customer_id  | \n  | 11010       | Invalid value for parameter originating_ip         | \n  | 11011       | Invalid value for parameter reference_id | \n  | 12000       | Missing required parameter phone_number |\n"
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/errorObject'
+            - type: object
+              properties:
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 10032
+                    description:
+                      type: string
+                      example: Request blocked due to this number appearing on a TeleSign blocklist.
+          examples:
+            Invalid Request:
+              value:
+                reference_id: 0123456789ABCDEF0123456789ABCDEF
+                external_id: CustomExternalID7349
+                status:
+                  updated_on: '2024-02-01T00:33:34.860418Z'
+                  code: 10032
+                  description: Request blocked due to this number appearing on a TeleSign blocklist.
+  securitySchemes:
+    Basic:
+      type: http
+      description: Easiest to implement. See [Basic Authentication](/enterprise/docs/authentication#basic-authentication) for more details.
+      scheme: basic
+    Digest:
+      name: Authorization
+      type: apiKey
+      in: header
+      description: See [Digest Authentication](/enterprise/docs/authentication#basic-authentication) for more details.
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

@@ -1,0 +1,267 @@
+openapi: 3.2.0
+info:
+  title: Telesign Completions API
+  version: '1.0'
+  contact:
+    name: Telesign Customer Support Team
+    email: support@telesign.com
+  description: 'Operations tagged Completions across 2 of this provider''s published API definitions: telesign-sms-verify-api-openapi.json, telesign-voice-verify-api-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://rest-ww.telesign.com
+security:
+- Basic: []
+tags:
+- name: Completions
+paths:
+  /v1/verify/completion/{reference_id}:
+    parameters:
+    - name: reference_id
+      in: path
+      required: true
+      schema:
+        type: string
+    put:
+      description: 'Use this action to notify Telesign that you have completed verification with the SMS Verify API for an end-user. This is for a verification transaction where you generated the verification code yourself.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Responds with:** `application/json`
+
+        * **Rate limit:** Default rate limits by product'
+      parameters:
+      - in: path
+        name: reference_id
+        required: true
+        description: 'The reference ID for the transaction you want to provide completion data about.
+
+          '
+        schema:
+          type: string
+      responses:
+        '200':
+          description: "Success. Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n           \n| Status code | Description                                      |\n|-------------|--------------------------------------------------|\n| 1900        | Verify completion successfully recorded  |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/putCompletionResponse'
+        '400':
+          description: 'Bad request. The request could not be understood by the server due to malformed syntax. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.
+
+
+            | Status code | Associated text string |
+
+            |--|--|
+
+            | -10001 | Invalid parameter passed |
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+        '401':
+          description: "Unauthorized. The request requires user authentication. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.\n\n | Status code | Associated text string | \n |-------------|------------------------|\n | -30000 | Invalid customer ID |\n | -30001 | Account suspended | \n | -30002 | Account not activated |\n | -30003 | Account limit reached | \n | -30004 | Missing required Authorization header |\n | -30005 | Required Authorization header is not in the correct format | \n | -30006 | Invalid signature | \n | -30007 | Missing required Date or X-TS-Date header | \n | -30008 | Invalid X-TS-Auth-Method header | \n | -30009 | Date or X-TS-Date header is not [RFC822 compliant](https://www.w3.org/Protocols/rfc822/) | \n | -30010 | Date or X-TS-Date header is not within tolerable range |\n | -30011 | X-TS-Nonce header value is either too long or too short | \n | -30012 | X-TS-Nonce header value has been used recently |\n | -30013 | Invalid ReferenceID for Verify Completion |\n \n"
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/errorObject'
+                - type: object
+                  properties:
+                    signature_string:
+                      type: string
+                      description: Returned when request signature is not valid. Signature from failed authorization requests - doesn’t contain all required data (like x-ts-auth-method), or it’s not ordered properly.
+                      example: 'PUT\n\nTue, 31 Jan 2024 19:36:42 GMT\nx-ts-auth-method: HMAC-SHA256\n/v1/verify/completion/0123456789ABCDEF0123456789ABCDEF'
+        '404':
+          description: "Not found. The server has not found anything matching the request URI. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.\n\n| Status code | Associated text string | \n|-------------|------------------------|\n| -10001       | Customer ID / Reference ID not found           |\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+        '503':
+          description: 'Service unavailable. The system is unavailable, try again. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/statusObject'
+                  error:
+                    $ref: '#/components/schemas/errorObject'
+              examples:
+                System Unavailable:
+                  value:
+                    status:
+                      code: 500
+                      description: Transaction not attempted
+                    error:
+                      code: -90001
+                      description: System Unavailable, Please try again later.
+      summary: Report completion
+      tags:
+      - Completions
+      operationId: reportSMSVerifyCompletion
+    servers:
+    - url: https://rest-ww.telesign.com
+components:
+  schemas:
+    errorObject:
+      type: object
+      title: errorObject
+      description: Contains properties related to an error that occurred during processing of the request.
+      properties:
+        code:
+          type: integer
+          description: A numeric code specifying which error occurred.
+          example: -10001
+        description:
+          type: string
+          description: Text describing the error that occurred.
+          example: 'Invalid Request: PhoneNumber Parameter'
+    statusObject:
+      title: statusObject
+      type: object
+      description: Contains properties related to the processing status of the transaction.
+      properties:
+        code:
+          type: integer
+          description: A numeric code that indicates the status of your transaction.
+        description:
+          type: string
+          description: Text describing the status of your transaction.
+      required:
+      - code
+      - description
+    putCompletionResponse:
+      type: object
+      title: putCompletionResponse
+      properties:
+        reference_id:
+          type: string
+          description: A unique, randomly generated hex value that identifies your web service request.
+          minLength: 32
+          maxLength: 32
+        subresource:
+          type: string
+          description: The subresource in the URI path from your original request to initiate this transaction. Indicates which form of verification you used.
+          example: sms
+        errors:
+          type: array
+          description: Contains an object for each error condition that resulted from the request.
+          items:
+            $ref: '#/components/schemas/errorObject'
+        status:
+          type: object
+          description: Contains details about the request status.
+          properties:
+            code:
+              type: string
+              description: A numeric code indicating the processing status of this request.
+            description:
+              type: string
+              description: A text description of the status code.
+            updated_on:
+              type: string
+              description: 'An [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) timestamp indicating when the request status was updated. '
+          required:
+          - code
+          - description
+          - updated_on
+    failState:
+      title: failState
+      allOf:
+      - $ref: '#/components/schemas/sharedResSchema'
+      - type: object
+        properties:
+          status:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 500
+              description:
+                type: string
+                example: Transaction not attempted
+    putCompletionResponse_2:
+      title: putCompletionResponse
+      allOf:
+      - $ref: '#/components/schemas/sharedResSchema'
+      - type: object
+        properties:
+          sub_resource:
+            type: string
+            example: voice
+          status:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 1900
+              description:
+                type: string
+                example: Verify completion successfully recorded
+    sharedResSchema:
+      title: sharedResSchema
+      type: object
+      properties:
+        reference_id:
+          type: string
+          example: 0123456789ABCDEF0123456789ABCDEF
+          description: A unique, randomly generated hex value that identifies your web service request.
+        sub_resource:
+          type: string
+          example: call
+          description: The sub-resource in the URI path from your original request to initiate this transaction. Indicates which form of verification you used.
+        errors:
+          type: array
+          description: Contains an object for each error condition that resulted from the request.
+          items:
+            $ref: '#/components/schemas/errorObject'
+        status:
+          $ref: '#/components/schemas/status'
+    status:
+      title: status
+      type: object
+      description: Contains details about the request status.
+      properties:
+        code:
+          type: integer
+          description: A numeric code indicating the processing status of this request.
+          example: 103
+        description:
+          type: string
+          description: A text description of the status code.
+          example: Call in progress
+        updated_on:
+          type: string
+          description: 'An [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) timestamp indicating when the request status was updated. '
+          example: '2024-03-11T21:09:19.378673Z'
+      required:
+      - code
+      - description
+      - updated_on
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: Easiest to implement. See [Basic Authentication](/api-reference/authentication#basic-authentication) for more details.
+    Digest:
+      name: Authorization
+      type: apiKey
+      in: header
+      description: See [Digest Authentication](/api-reference/authentication#digest-authentication) for more details.
+x-refined-from:
+- telesign-sms-verify-api-openapi.json
+- telesign-voice-verify-api-openapi.json
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

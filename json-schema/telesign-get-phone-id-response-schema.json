@@ -1,0 +1,291 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-get-phone-id-response-schema.json",
+  "title": "getPhoneIdResponse",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-legacy-phone-id-api-openapi.yml#/components/schemas/getPhoneIdResponse",
+  "type": "object",
+  "properties": {
+    "reference_id": {
+      "type": "string",
+      "description": "A unique, randomly generated hex value that identifies your web service request."
+    },
+    "sub_resource": {
+      "type": "string",
+      "description": "The subresource accessed by your request. It is set to `contact`.",
+      "enum": [
+        "contact"
+      ]
+    },
+    "errors": {
+      "type": "array",
+      "description": "Contains an object for each error that resulted from the request.",
+      "items": {
+        "type": "object",
+        "description": "Contains properties describing this error.",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "A numeric code indicating the processing status for this transaction."
+          },
+          "description": {
+            "type": "string",
+            "description": "Text describing the type of error that occurred."
+          }
+        }
+      }
+    },
+    "phone_type": {
+      "type": "object",
+      "description": "Contains details about the phone type. ",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "One of the [phone type codes](/enterprise/docs/codes-languages-and-time-zones#phone-type-codes)."
+        },
+        "description": {
+          "type": "string",
+          "description": "Text describing the phone type. "
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "description": "Contains details about the status of your request.",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "A numeric code indicating the processing status of the transaction."
+        },
+        "description": {
+          "type": "string",
+          "description": "Text describing the transaction status."
+        },
+        "updated_on": {
+          "type": "string",
+          "description": "An <a href=\"http://www.ietf.org/rfc/rfc3339.txt\">RFC 3339</a> timestamp indicating when the transaction status was updated. "
+        }
+      }
+    },
+    "numbering": {
+      "$ref": "#/$defs/Numbering"
+    },
+    "location": {
+      "type": "object",
+      "description": "Contains geographical location information associated with the phone number. ",
+      "properties": {
+        "city": {
+          "type": "string",
+          "description": "The city associated with the phone number."
+        },
+        "county": {
+          "type": "string",
+          "description": "The [county](https://www.census.gov/geo/reference/county-adjacency.html) (or parish) associated with the phone number (U.S. only)."
+        },
+        "state": {
+          "type": "string",
+          "description": "The two-letter [state abbreviation code](http://pe.usps.com/text/pub28/28apb.htm) of the state (province, district, or territory) associated with the phone number (North America only).\n"
+        },
+        "zip": {
+          "type": "string",
+          "description": "The five-digit United States Postal Service [ZIP Code](https://www.usps.com/nationalpremieraccounts/findzipcodes.htm) associated with the phone number (U.S. only)."
+        },
+        "country": {
+          "type": "object",
+          "description": "Contains details about the country associated with the phone number. ",
+          "properties": {
+            "iso2": {
+              "type": "string",
+              "description": "The ISO 3166-1 two-letter [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes) associated with the phone number. "
+            },
+            "iso3": {
+              "type": "string",
+              "description": "The ISO 3166-1 three-letter country code associated with the phone number. "
+            },
+            "name": {
+              "type": "string",
+              "description": "The [country name](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes) associated with the phone number."
+            }
+          }
+        },
+        "time_zone": {
+          "type": "object",
+          "description": "Contains details about the [time zone](/enterprise/docs/codes-languages-and-time-zones#time-zones) associated with the phone number. For maximum and minimum UTC offsets, they are specified in units of hours, and range from -12 to +14. For positive numbers, the plus sign (+) may not be returned. Additional offsets due to Daylight Savings Time or Summer Time are not considered. For example, Russia, which spans 11 time zones, has a minimum UTC offset of +2, and a maximum of +12. ",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The [time zone](/enterprise/docs/codes-languages-and-time-zones#time-zones) associated with the phone number (U.S. only)."
+            },
+            "utc_offset_max": {
+              "type": "string",
+              "description": "For international phone numbers, this parameter returns the maximum UTC offset for the country associated with the phone number. For U.S. domestic phone numbers, this parameter returns the same result as utc_offset_min."
+            },
+            "utc_offset_min": {
+              "type": "string",
+              "description": "For U.S. domestic phone numbers, this parameter returns the UTC offset associated with the phone number. For international phone numbers, this parameter returns the minimum UTC offset for the country associated with the phone number."
+            }
+          }
+        },
+        "coordinates": {
+          "type": "object",
+          "description": "Contains details about the geographical coordinates of the location where the phone number is registered.",
+          "properties": {
+            "latitude": {
+              "description": "Latitude specifies the North-South position of a point on the Earth’s surface. It is an angular measurement that ranges from 0° at the Equator, to 90° at the North Pole (and -90° at the South Pole). It is returned here as a value indicating the number of degrees of latitude of the location associated with the phone number, expressed in seven decimal digits, with five decimal places. "
+            },
+            "longitude": {
+              "description": "Longitude specifies the East-West position of a point on the Earth’s surface. It is an angle measured East or West from the <a href=\"https://en.wikipedia.org/wiki/Prime_meridian>Prime Meridian</a>—ranging from 0° at the Prime Meridian, to +180° Eastward and -180° Westward. It is returned here as a value indicating the number of degrees of longitude of the location associated with the phone number, expressed in eight decimal digits, with five decimal places."
+            }
+          }
+        },
+        "metro_code": {
+          "type": "string",
+          "description": "A four-digit code indicating the <a href=\"http://www.census.gov/population/estimates/metro-city/99mfips.txt\">Primary Metropolitan Statistical Area (PMSA)</a> code for the location associated with the phone number (U.S. only). PMSA Codes are governed by the []US Census Bureau](http://www.census.gov/). This information is useful for large metropolitan areas that comprise several smaller cities. For example, the PMSA for Long Beach, California is Los Angeles County, which gives Long Beach the PMSA Code 4480."
+        }
+      }
+    },
+    "carrier": {
+      "type": "object",
+      "description": "Contains information about the company that provides telecommunications services for the phone number.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the carrier."
+        }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "description": "Contact information for the end user associated with the phone number.",
+      "properties": {
+        "firstname": {
+          "type": "string",
+          "description": "The end user's first name or given name. If the result is a business name, the full business name goes in this field. Depending on the data provider, it might not be possible to distinguish business names from personal names."
+        },
+        "lastname": {
+          "type": "string",
+          "description": "The end user's last name or family name. If they are a business, this value is null."
+        },
+        "address1": {
+          "type": "string",
+          "description": "The first line of the end user’s street address."
+        },
+        "address2": {
+          "type": "string",
+          "description": "The second line of the end user’s street address."
+        },
+        "address3": {
+          "type": "string",
+          "description": "The third line of the end user's street address."
+        },
+        "address4": {
+          "type": "string",
+          "description": "The fourth line of the end user's street address."
+        },
+        "city": {
+          "type": "string",
+          "description": "The city in which the end user is located."
+        },
+        "state_province": {
+          "type": "string",
+          "description": "The state, province, or region in which the end user is located."
+        },
+        "country": {
+          "type": "string",
+          "description": "The country in which the end user is located."
+        },
+        "zip_postal_code": {
+          "type": "string",
+          "description": "The United States Postal Service ZIP Code in which the end user is located (US addresses only)."
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Numbering": {
+      "title": "Numbering",
+      "type": "object",
+      "description": "Contains properties related to the numbering attributes of the specified phone number.",
+      "properties": {
+        "original": {
+          "type": "object",
+          "description": "Contains details about the original phone number included in the request.",
+          "properties": {
+            "phone_number": {
+              "type": "string",
+              "description": "The base phone number without the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes)."
+            },
+            "complete_phone_number": {
+              "type": "string",
+              "description": "The base phone number prefixed with the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes)."
+            },
+            "country_code": {
+              "type": "string",
+              "description": "The 1, 2, or 3-digit [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes). For example, the country dialing code for both the U.S.A. and Canada is `1`, and the country dialing code for the United Kingdom is `44`."
+            }
+          }
+        },
+        "cleansing": {
+          "type": "object",
+          "description": "Contains details about how the phone number was cleansed. Phone cleansing corrects common formatting issues in submitted phone numbers.",
+          "properties": {
+            "call": {
+              "type": "object",
+              "description": "Contains cleansing details for the phone number if it is enabled to receive voice calls.",
+              "properties": {
+                "cleansed_code": {
+                  "type": "integer",
+                  "description": "One of the [phone number cleansing codes](/enterprise/docs/codes-languages-and-time-zones#phone-number-cleansing-codes) specifying the cleansing operation performed on the phone number."
+                },
+                "country_code": {
+                  "type": "string",
+                  "description": "The 1, 2, or 3-digit [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes). For example, the country dialing code for both the U.S.A. and Canada is `1`, and the country dialing code for United Kingdom is `44`."
+                },
+                "max_length": {
+                  "type": "integer",
+                  "description": "The maximum number of digits allowed for phone numbers with this country dialing code."
+                },
+                "min_length": {
+                  "type": "integer",
+                  "description": "The minimum number of digits allowed for phone numbers with this country dialing code."
+                },
+                "phone_number": {
+                  "type": "string",
+                  "description": "The base phone number without the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes)."
+                }
+              }
+            },
+            "sms": {
+              "type": "object",
+              "description": "Contains cleansing details for the phone number if it is enabled to receive SMS.",
+              "properties": {
+                "cleansed_code": {
+                  "type": "integer",
+                  "description": "One of the [phone number cleansing codes](/enterprise/docs/codes-languages-and-time-zones#phone-number-cleansing-codes) specifying the cleansing operation performed on the phone number."
+                },
+                "country_code": {
+                  "type": "string",
+                  "description": "The 1, 2, or 3-digit [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes). For example, the country dialing code for both the U.S.A. and Canada is `1`, and the country dialing code for United Kingdom is `44`."
+                },
+                "max_length": {
+                  "type": "integer",
+                  "description": "The maximum number of digits allowed for phone numbers with this country dialing code."
+                },
+                "min_length": {
+                  "type": "integer",
+                  "description": "The minimum number of digits allowed for phone numbers with this country dialing code."
+                },
+                "phone_number": {
+                  "type": "string",
+                  "description": "The base phone number without the [country dialing code](/enterprise/docs/codes-languages-and-time-zones#country-codes-and-dialing-codes)."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

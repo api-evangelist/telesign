@@ -1,0 +1,38 @@
+generated: '2026-10-07'
+method: probed
+source: https://developer.telesign.com/mcp (POST tools/list on 2026-10-07 answered HTTP 401 {"jsonrpc":"2.0","error":{"code":-32001,"message":"Authorization required"}}; a control path on the same host answered 404, so the endpoint is real and gated)
+status: gated
+name: Telesign developer portal MCP server (ReadMe-hosted)
+description: >-
+  developer.telesign.com is a ReadMe-hosted portal and serves ReadMe's MCP endpoint at /mcp under Telesign's
+  own documentation domain. An unauthenticated JSON-RPC tools/list is refused with "Authorization required",
+  so the live tool schemas could not be read. Telesign publishes no MCP documentation and no tool table, and
+  no /.well-known/oauth-protected-resource or oauth-authorization-server document is served on this host, so
+  the authorization server an agent should use is not discoverable from the endpoint. This is a platform
+  feature of the docs host rather than a server Telesign engineered; it is recorded as the provider's MCP
+  surface because it is served from a host Telesign controls.
+server:
+  url: https://developer.telesign.com/mcp
+  transport: streamable-http
+  host: developer.telesign.com
+  platform: readme
+auth:
+  type: unknown
+  note: HTTP 401 "Authorization required" with no WWW-Authenticate challenge recorded; no RFC 9728 protected-resource metadata on the host.
+tools: []
+tools_note: tools/list is auth-gated and the provider documents no tool list; nothing is recorded rather than a guessed list.
+deployment:
+  mode: remote
+  endpoint: https://developer.telesign.com/mcp
+  auth: unknown
+  verified: probed
+probes:
+- url: https://developer.telesign.com/mcp
+  method: POST tools/list
+  status: 401
+  body: '{"jsonrpc":"2.0","error":{"code":-32001,"message":"Authorization required"},"id":null}'
+  date: '2026-10-07'
+- url: https://developer.telesign.com/.well-known/oauth-protected-resource
+  status: 404
+  date: '2026-10-07'
+  note: recorded by preflight-wave.py (well_known rows for developer.telesign.com carry no prm)

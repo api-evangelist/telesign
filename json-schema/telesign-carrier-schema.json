@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-carrier-schema.json",
+  "title": "Carrier",
+  "description": "Contains details about the company that provides telecommunications services for this phone number.",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-smart-verify-api-openapi.yml#/components/schemas/Carrier",
+  "type": "object",
+  "properties": {
+    "carrier_id": {
+      "type": "string",
+      "description": "An ID specifying this carrier. Contact our [Customer Support Team](mailto:support@telesign.com) to include this property in your response."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of this carrier."
+    }
+  }
+}

@@ -1,0 +1,72 @@
+generated: '2026-10-07'
+method: searched
+source: https://developer.telesign.com/enterprise/docs/authentication, https://developer.telesign.com/enterprise/docs/understand-telesign-status-and-error-codes, https://developer.telesign.com/enterprise/docs/transaction-callback-service, https://support.telesign.com/s/article/do-you-have-any-rate-limits, and the 21 published OpenAPI files under openapi/
+authentication:
+  style: 'Customer ID + API Key sent as HTTP Basic, or Telesign "Digest" (HMAC-SHA256 request signature in Authorization: TSA {Customer ID}:{signature} with x-ts-date, x-ts-auth-method and x-ts-nonce headers); Bearer token for the Protect Platform.'
+  docs: https://developer.telesign.com/enterprise/docs/authentication
+  artifact: authentication/telesign-authentication.yml
+idempotency:
+  coverage: none
+  mechanism: null
+  header: null
+  docs: https://developer.telesign.com/enterprise/docs/authentication
+  note: >-
+    No Idempotency-Key or equivalent replay-safe retry mechanism is documented for any write (sendSMS, sendSMSVerifyCode,
+    sendVoiceVerifyCode, createVerificationProcess, sendAdvancedMessage, sendBulkSMS, createMaskedSMSSession ...). The
+    x-ts-nonce header used by Digest authentication rejects a reused nonce (error 10002 "'x-ts-nonce' header value has been
+    used recently"), which prevents replay of a captured signature but does not make a client retry idempotent: a retried
+    send with a fresh nonce sends a second message.
+reversibility:
+  grade: none
+  write_surface:
+  - operationId: sendSMS
+    reversal: null
+    note: An SMS, voice call or omnichannel message, once accepted, cannot be recalled through the API; getSMSStatus / getMessagingStatus only report delivery.
+  - operationId: createVerificationProcess
+    reversal: updateVerificationProcess
+    window: null
+    note: 'PATCH /verification/{reference_id}/state accepts only action "finalize" ("Finalize this verification process. Telesign either verifies or rejects at this stage"); no cancel action is documented.'
+  - operationId: createMsgTemplate
+    reversal: deleteMsgTemplate
+    window: null
+    note: A template can be deleted, but deletion is itself a write with no documented restore.
+  - operationId: createMaskedSMSSession
+    reversal: null
+    note: Masked sessions are time-limited by the session parameters; no explicit end-session operation is published.
+  - operationId: post-accounts-account_id-keys-rest
+    reversal: delete-accounts-account_id-keys-rest-key_id
+    window: null
+    note: API keys can be deleted or patched (status), with no documented restore.
+  dry_run: null
+  dry_run_note: No dry-run or test mode is documented; the API Explorer charges the account for every request.
+pagination:
+  style: page-based on one operation only
+  operations:
+  - operationId: getRecordingsListByDateRange
+    params: [pagesize]
+  note: Almost every list surface is a single resource lookup by reference_id; only the Voice API recordings list paginates.
+field_expansion: null
+metadata: null
+request_tracing:
+  field: reference_id
+  description: Every transactional response carries a reference_id (32-character hex) that identifies the transaction and is the key for status lookups (GET /v1/verify/{reference_id}, GET /v1/messaging/{reference_id}, GET /v1/omnichannel/{reference_id}) and for completion reports.
+  header: null
+versioning:
+  scheme: path
+  note: Major version in the server or path (/v1, /v2) per product; see lifecycle/telesign-lifecycle.yml.
+error_envelope:
+  shape: '{"reference_id": "...", "status": {"updated_on": "...", "code": <int>, "description": "..."}, "errors": [{"code": <int>, "description": "..."}]}'
+  fields: ['reference_id', 'status.updated_on', 'status.code', 'status.description', 'errors[].code', 'errors[].description']
+  guidance: Code against status.code and errors[].code, not the HTTP status and not the description text.
+  docs: https://developer.telesign.com/enterprise/docs/understand-telesign-status-and-error-codes
+  artifact: errors/telesign-error-codes.yml
+rate_limit_signaling:
+  http_status: 429
+  headers: []
+  body_codes: [-40007, 3204, 5204, 10019]
+  note: Exhaustion is reported in the JSON body (status.code 500 "Transaction not attempted" with an error code such as -40007 Rate Limit Exceeded); no RateLimit-* or Retry-After header is documented.
+  artifact: rate-limits/telesign-rate-limits.yml
+webhooks:
+  signature: 'HMAC-SHA256 over the body with the base64-decoded API Key, in Authorization ("TSA {Customer ID}:{signature}") and X-TS-Authorization'
+  retries: up to four attempts, 5 second response timeout, waits of 5, 10 and 15 seconds between attempts (SMS and SMS Verify API)
+  docs: https://developer.telesign.com/enterprise/docs/transaction-callback-service

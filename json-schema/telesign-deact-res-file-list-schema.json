@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-deact-res-file-list-schema.json",
+  "title": "DeactResFileList",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-deactivated-numbers-api-openapi.yml#/components/schemas/DeactResFileList",
+  "type": "object",
+  "properties": {
+    "list_of_files": {
+      "type": "array",
+      "description": "Each element in this array is the name of a compressed file containing deactivated numbers. Use these filenames with the `/download/{file_name}` endpoint to download the available files as needed.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "code": {
+      "type": "integer",
+      "description": "A numeric code indicating the status of processing this request."
+    },
+    "description": {
+      "type": "string",
+      "description": "A text description of processing status of this request."
+    }
+  }
+}

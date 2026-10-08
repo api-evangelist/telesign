@@ -1,0 +1,947 @@
+openapi: 3.2.0
+info:
+  version: '1.0'
+  title: Engage Templates API
+  description: This spec contains details about the Telesign Engage API.
+  contact:
+    name: Telesign Customer Support Team
+    email: support@telesign.com
+servers:
+- url: https://rest-ww.telesign.com
+security:
+- Basic: []
+tags:
+- name: Templates
+paths:
+  /v1/omnichannel/templates:
+    get:
+      summary: Get all messaging templates
+      tags:
+      - Templates
+      responses:
+        '200':
+          description: '**Success.** Your request was fulfilled and resulted in data being retrieved.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TemplateRecord'
+              examples:
+                Example:
+                  value:
+                  - name: wa_bogo
+                    type: verified
+                    channel: whatsapp
+                    category: marketing
+                    language: en_US
+                    status: Approved
+                    mandatory_parameters:
+                    - header_url
+                    - body_text_1
+                  - name: wa_purchase_conf
+                    type: verified
+                    channel: whatsapp
+                    category: utility
+                    language: en_US
+                    status: Approved
+                    mandatory_parameters:
+                    - header_url
+                    - body_text_1
+                    - body_text_2
+        '401':
+          $ref: '#/components/responses/shared401Response'
+        '429':
+          $ref: '#/components/responses/shared429Response'
+        '503':
+          $ref: '#/components/responses/shared503Response'
+      operationId: getAllMsgTemplates
+      description: 'Use this action to get details for all Telesign Messaging templates associated with this Customer ID.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Responds with:** `application/json`
+
+        * **Rate limit:** Default rate limits by product'
+    post:
+      summary: Create messaging template
+      operationId: createMsgTemplate
+      responses:
+        '200':
+          description: "**Success.** Your request was successful and the service is processing your new template. Code against the Telesign status code from the `status.code` property in the response payload, rather than the HTTP status code of the response.\n \nStatus code | Text string | Description \n------------|-------------|------------\n3801|Request succesful|This template is being processed by the service. Additional updates on the status of this transaction will be sent to your transaction callback service endpoint."
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    status:
+                      $ref: '#/components/schemas/Status'
+                    id:
+                      type: string
+                      example: B5862A14363C016C8832D53625270015
+                      description: The service's unique identifier for this transaction.
+                - $ref: '#/components/schemas/Template'
+              examples:
+                Example:
+                  value:
+                    status:
+                      code: 3800
+                      description: Request successful
+                      updated_on: '2022-02-12T14:57:11.765723Z'
+                    id: B5862A14363C016C8832D53625270015
+                    name: wa_bogo
+        '400':
+          description: '**Bad request.** The request could not be understood by the server due to malformed syntax. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.
+
+
+            Status code | Text string        | Description
+
+            ------------|--------------------|------------
+
+            3110|Invalid request|The API request or its JSON payload is improperly formatted. (Final)
+
+            3301|Missing parameter channel|The API request does not contain the mandatory parameter `channel`. (Final)
+
+            3802|Missing parameter name|The API request does not contain the mandatory parameter `name`. (Final)
+
+            3803|Missing parameter type|The API request does not contain the mandatory parameter `type`. (Final)
+
+            3815|Missing parameter content|The API request does not contain the mandatory parameter `content`. (Final)
+
+            3816|Invalid value for parameter category: {category}|The value of parameter `category` is not one of the supported values. See request schema for a list of supported values. (Final)
+
+            3817|Invalid value for parameter category: {language}|The value of parameter `language` is not one of the supported values. See request schema for a list of supported values. (Final)
+
+            3819|Invalid value for parameter sample_text|The value for the `sample_text` parameter is missing or the number of values does not match the number of variables in the body or header.
+
+            3856|Invalid value for parameter name: {name}|Template name already exists, or it is missing, or it is not valid. (Final)'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    allOf:
+                    - $ref: '#/components/schemas/Status'
+                    - type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 3110
+                        description:
+                          type: string
+                          example: Invalid request
+              examples:
+                Example:
+                  value:
+                    status:
+                      code: 3110
+                      description: Invalid request
+                      updated_on: '2022-02-12T14:57:11.765723Z'
+        '401':
+          $ref: '#/components/responses/shared401Response'
+        '429':
+          $ref: '#/components/responses/shared429Response'
+        '503':
+          $ref: '#/components/responses/shared503Response'
+      description: 'Use this action to create a Telesign Messaging template.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Accepts:** `application/json`
+
+        * **Responds with:** `application/json`
+
+        * **Rate limit:** Default rate limits by product'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateCreationDetails'
+            examples:
+              Image:
+                value:
+                  name: name_of_the_template
+                  type: verified
+                  channel: whatsapp
+                  content:
+                  - header:
+                      type: image
+                      sample_url: https://s3.amazonaws.com/vero-finto-mktg/small-logo.jpg
+                  - body:
+                      type: text
+                      text: Hello, welcome to {{1}}.
+                      sample_text:
+                      - Vero-Finto
+                  category: marketing
+                  language: en
+              Dynamic link button:
+                value:
+                  type: verified
+                  channel: whatsapp
+                  name: wa_purchase_conf_track
+                  category: marketing
+                  language: en_US
+                  content:
+                  - body:
+                      type: text
+                      text: 'Thanks for your purchase on verofinto.com! Track your order status here:'
+                  - suggested_action:
+                    - otp:
+                        zero_tap_terms_accepted: true
+                      url_dynamic:
+                        url: https://verofintoshop.com/orders?id=
+                        url_text: Track Order
+                      action_type: url_dynamic
+              Copy code button:
+                value:
+                  name: copy_code_template
+                  type: verified
+                  channel: whatsapp
+                  content:
+                  - body:
+                      type: text
+                  - suggested_action:
+                    - action_type: otp
+                      otp:
+                        otp_text: Copy code
+                  category: authentication
+                  language: en
+              Location header:
+                value:
+                  name: location_header_template
+                  type: verified
+                  channel: whatsapp
+                  content:
+                  - header:
+                      type: location
+                  - body:
+                      type: text
+                      text: This is example of Location header template.
+                  category: marketing
+                  language: en
+              One-tap autofill:
+                value:
+                  name: one_tap_template
+                  type: verified
+                  channel: whatsapp
+                  content:
+                  - body:
+                      type: text
+                  - suggested_action:
+                    - action_type: otp
+                      otp:
+                        otp_text: Autofill
+                        package_name: com.example.myapplication
+                        signature_hash: 2FAINcGX7
+                  category: authentication
+                  language: en
+              Zero-tap:
+                value:
+                  name: zero_tap_template
+                  type: verified
+                  channel: whatsapp
+                  content:
+                  - body:
+                      type: text
+                  - suggested_action:
+                    - action_type: otp
+                      otp:
+                        otp_text: Autofill
+                        package_name: com.example.myapplication
+                        signature_hash: 2FAINcGX7
+                        zero_tap_terms_accepted: true
+                  category: authentication
+                  language: en
+              SMS:
+                value:
+                  name: name_of_the_template
+                  type: standard
+                  channel: sms
+                  content:
+                  - body:
+                      type: text
+                      text: Hello {{}}, this is {{}} template
+              Dial action:
+                value:
+                  type: verified
+                  channel: whatsapp
+                  name: name_dial_template
+                  category: marketing
+                  language: en_US
+                  content:
+                  - body:
+                      type: text
+                      text: Buy one get one free!
+                  - suggested_action:
+                    - dial:
+                        phone_number_to_dial: '18003334444'
+                        dial_text: Call us
+                      action_type: dial
+              Suggested Replies:
+                value:
+                  type: standard
+                  channel: whatsapp
+                  name: name_suggested_reply_template
+                  content:
+                  - body:
+                      type: text
+                      text: Hi, welcome to {{1}}!
+                      sample_text:
+                      - Vero-Finto
+                  - suggested_reply:
+                      reply_type: button
+                      button_number: 2
+                      buttons:
+                      - button_text: Email us
+                      - button_text: Call us
+        description: ''
+      tags:
+      - Templates
+  /v1/omnichannel/templates/{channel}/{name}:
+    parameters:
+    - $ref: '#/components/parameters/channel'
+    - $ref: '#/components/parameters/name'
+    get:
+      summary: Get messaging template
+      tags:
+      - Templates
+      responses:
+        '200':
+          description: '**Success.** Your request was fulfilled and resulted in data being retrieved.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateRecord'
+              examples:
+                Example:
+                  value:
+                    name: wa_bogo
+                    type: verified
+                    channel: whatsapp
+                    category: marketing
+                    language: en_US
+                    status: Approved
+                    mandatory_parameters:
+                    - body_text_1
+        '400':
+          description: '**Bad request.** The request could not be understood by the server due to malformed syntax. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.
+
+
+            Status code | Text string        | Description
+
+            ------------|--------------------|------------
+
+            3856|Invalid value for parameter name: {name}|The value of parameter name is missing or not valid.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    allOf:
+                    - $ref: '#/components/schemas/Status'
+                    - type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 3856
+                        description:
+                          type: string
+                          example: 'Invalid value for parameter name: name'
+              examples:
+                Example:
+                  value:
+                    status:
+                      code: 3856
+                      description: 'Invalid value for parameter name: name'
+                      updated_on: '2022-02-12T14:57:11.765723Z'
+        '401':
+          $ref: '#/components/responses/shared401Response'
+        '429':
+          $ref: '#/components/responses/shared429Response'
+        '503':
+          $ref: '#/components/responses/shared503Response'
+      operationId: getMsgTemplate
+      description: 'Use this action to get details for the specified Telesign Messaging template.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Responds with:** `application/json`
+
+        * **Rate limit:** Default rate limits by product'
+    delete:
+      summary: Delete template
+      operationId: deleteMsgTemplate
+      responses:
+        '200':
+          description: "**Success.** Your request was successful and the service is processing your deletion. Code against the Telesign status code from the `status.code` property in the response payload, rather than the HTTP status code of the response.\n \nStatus code | Text string | Description \n------------|-------------|------------\n3801|Request succesful|This deletion request is being processed by the service. Additional updates on the status ofthis transaction will be sent to your transaction callback service endpoint."
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    status:
+                      $ref: '#/components/schemas/Status'
+                - type: object
+                  properties:
+                    id:
+                      type: string
+                      example: B5862A14363C016C8832D53625270015
+                      description: The service's unique identifier for this transaction.
+                - $ref: '#/components/schemas/Template'
+              examples:
+                Example:
+                  value:
+                    status:
+                      code: 3800
+                      description: Request successful
+                      updated_on: '2022-02-12T14:57:11.765723Z'
+                    id: B5862A14363C016C8832D53625270015
+                    name: wa_bogo
+        '400':
+          description: '**Bad request.** The request could not be understood by the server due to malformed syntax. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.
+
+
+            Status code | Text string        | Description
+
+            ------------|--------------------|------------
+
+            3856|Invalid value for parameter name: {name}|The value of parameter name is missing or not valid.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    allOf:
+                    - $ref: '#/components/schemas/Status'
+                    - type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 3856
+                        description:
+                          type: string
+                          example: 'Invalid value for parameter name: name'
+              examples:
+                Example:
+                  value:
+                    status:
+                      code: 3856
+                      description: 'Invalid value for parameter name: name'
+                      updated_on: '2022-02-12T14:57:11.765723Z'
+        '401':
+          $ref: '#/components/responses/shared401Response'
+        '429':
+          $ref: '#/components/responses/shared429Response'
+        '503':
+          $ref: '#/components/responses/shared503Response'
+      description: 'Use this action to delete a Telesign Messaging template.
+
+
+        ## General requirements
+
+        * **Authentication:** Basic (easiest to implement) or Digest
+
+        * **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.
+
+        * **Responds with:** `application/json`
+
+        * **Rate limit:** Default rate limits by product'
+      tags:
+      - Templates
+components:
+  responses:
+    shared429Response:
+      description: '**Too many requests.** Too many requests sent to this service in a given amount of time. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.
+
+
+        Status code | Text string        | Description
+
+        ------------|--------------------|------------
+
+        3204|Rate limit exceeded|Allowed number of requests per second for this product or feature has been exceeded.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                allOf:
+                - $ref: '#/components/schemas/SlimStatus'
+                - type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 3204
+                    description:
+                      type: string
+                      example: Rate limit exceeded
+          examples:
+            Example:
+              value:
+                status:
+                  code: 3204
+                  description: Rate limit exceeded
+    shared401Response:
+      description: '**Unauthorized.** The request requires user authentication. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.
+
+
+        Status code | Text string        | Description
+
+        ------------|--------------------|------------
+
+        3400|Not authorized|Insufficient permissions to access this resource or authorization failed.
+
+        3818|Template Management Product not enabled for Customer ID|Omnichannel product is not enabled. (Final)'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                allOf:
+                - $ref: '#/components/schemas/SlimStatus'
+                - type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 3400
+                    description:
+                      type: string
+                      example: Not authorized
+          examples:
+            Example:
+              value:
+                status:
+                  code: 3400
+                  description: Not authorized
+    shared503Response:
+      description: '**Service unavailable.** The system is unavailable, try again. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.
+
+
+
+        Status code | Text string        | Description
+
+        ------------|--------------------|------------
+
+        3500|System Unavailable|The system is currently unavailable. The request should be resubmitted.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                allOf:
+                - $ref: '#/components/schemas/SlimStatus'
+                - type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 3500
+                    description:
+                      type: string
+                      example: System Unavailable
+          examples:
+            Example:
+              value:
+                status:
+                  code: 3500
+                  description: System Unavailable
+  schemas:
+    ContentObject:
+      title: ContentObject
+      anyOf:
+      - $ref: '#/components/schemas/header'
+      - $ref: '#/components/schemas/body'
+      - $ref: '#/components/schemas/footer'
+      - $ref: '#/components/schemas/SuggestedAction'
+      - $ref: '#/components/schemas/SuggestedReply'
+      description: ''
+    TemplateRecord:
+      title: TemplateRecord
+      allOf:
+      - $ref: '#/components/schemas/TemplateDetails'
+      - type: object
+        properties:
+          status:
+            type: string
+            description: The place of this template in Telesign's approval process. Note that WhatsApp templates used to initiate a conversation with a user also must be approved by WhatsApp. Telesign submits these templates for approval on your behalf and passes through the WhatsApp approval status in this same property.
+            example: Approved
+          mandatory_parameters:
+            type: array
+            description: Lists each parameter you must include when you use this template in a Telesign Messaging request.
+            items:
+              type: string
+        required:
+        - status
+        - mandatory_parameters
+    header:
+      title: header
+      type: object
+      properties:
+        header:
+          type: object
+          description: Contains properties related to the header of this template. Not supported for SMS templates. [Variables](/enterprise/docs/messaging-create-whatsapp-template#variables) can be included here.
+          properties:
+            type:
+              type: string
+              description: 'The type of content to display in the header of this template. Required when using a template header. '
+              enum:
+              - text
+              - image
+              - video
+              - file
+              - location
+              example: image
+            text:
+              type: string
+              maxLength: 60
+              description: Text to display in the header of this template. This is required if the value of `type` in this object is `text`. [Variables](/enterprise/docs/messaging-create-whatsapp-template#variables) can be included here.
+              example: 'Welcome to {{}} '
+            sample_url:
+              type: string
+              example: https://s3.amazonaws.com/verofinto-mktg/small-logo.jpg
+              description: The source URL for a sample media file or file for download of the type to be displayed in the messages created with this template. This is required for verified templates if the value of the `type` property in this object is `image`, `video`, or `file`.
+            sample_text:
+              type: array
+              description: A list of the sample values for each of the variables in `text`. This parameter is required if a variable is used in `text`. Use double curly brackets to include a variable name in a parameter value. See [Variables](/enterprise/docs/messaging-create-whatsapp-template#variables) for more information about formatting variables.
+              items:
+                type: string
+    TemplateCreationDetails:
+      title: TemplateCreationDetails
+      allOf:
+      - $ref: '#/components/schemas/TemplateDetails'
+      - type: object
+        properties:
+          content:
+            type: array
+            description: 'Contains properties defining the new template. The array can contain up to one instance of each object type: `header`, `body`, `footer`, `suggested_action`, and `suggested_reply`. A `body` object must be included. To add the first object, select the `Add` button. To add more objects, scroll past the `suggested_reply` object and select the `Add` button again. If you select a different object without using the `Add` button, it will replace your previous selection with the new one.'
+            uniqueItems: true
+            maxItems: 5
+            items:
+              $ref: '#/components/schemas/ContentObject'
+        required:
+        - content
+      x-examples: {}
+    TemplateSection:
+      title: TemplateSection
+      type: object
+      description: Contains properties defining a section in a list of options included in this template.
+      properties:
+        row_number:
+          type: integer
+          example: 1
+          description: 'he number of rows included in this section. A maximum of 10 rows can be included across **all** sections in this template. '
+          maximum: 10
+    SuggestedAction:
+      title: Suggested action
+      type: object
+      properties:
+        suggested_action:
+          type: array
+          description: Each item contains properties that define a call-to-action element to include in this template. Not supported for SMS templates.
+          maxItems: 2
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/TemplateSuggestedAction'
+    SuggestedReply:
+      title: Suggested reply
+      type: object
+      properties:
+        suggested_reply:
+          type: object
+          description: Contains properties that define suggested replies to include in this template. Supported for WhatsApp templates only. [Variables](/enterprise/docs/messaging-create-whatsapp-template#variables) can be included here.
+          properties:
+            reply_type:
+              type: string
+              enum:
+              - button
+              - list
+              example: button
+              description: The type of suggested replies to display in this template. Use `button` for WhatsApp [quick replies](https://developers.facebook.com/docs/messenger-platform/reference/buttons/quick-replies) and `list` for WhatsApp [list messages](https://developers.facebook.com/docs/whatsapp/guides/interactive-messages/#list-messages).
+            button_number:
+              type: integer
+              description: The number of buttons to include in this template. Required for suggested replies with type `buttons`.
+              example: 2
+              maximum: 3
+            buttons:
+              type: array
+              maxItems: 3
+              minItems: 1
+              description: Each item contains properties that define a suggested reply button to include in this template. Required when `suggested_reply.reply_type` has the value `button`. See WhatsApp [quick replies](https://developers.facebook.com/docs/messenger-platform/reference/buttons/quick-replies).
+              items:
+                $ref: '#/components/schemas/TemplateButton'
+            sections:
+              type: array
+              description: Each item contains properties that define a suggested reply section to include in this template. Required for suggested replies with type `list`. See WhatsApp [list messages](https://developers.facebook.com/docs/whatsapp/guides/interactive-messages/#list-messages).
+              minItems: 1
+              maxItems: 10
+              items:
+                $ref: '#/components/schemas/TemplateSection'
+    SlimStatus:
+      title: SlimStatus
+      type: object
+      properties:
+        code:
+          type: integer
+          description: A numeric code that indicates the status of your transaction.
+          example: 290
+        description:
+          type: string
+          description: Text describing the status of your transaction.
+          example: Message in progress
+      required:
+      - code
+      - description
+    TemplateDetails:
+      title: TemplateDetails
+      allOf:
+      - $ref: '#/components/schemas/Template'
+      - type: object
+        properties:
+          type:
+            type: string
+            description: Specifies whether the template requires verification by the channel provider or not.
+            enum:
+            - standard
+            - verified
+            example: verified
+          channel:
+            type: string
+            example: whatsapp
+            enum:
+            - whatsapp
+            - sms
+            description: 'The channel the template is used with. Each template can only be used with one channel. '
+          category:
+            type: string
+            description: The category name specifying this template's use case. Only required for WhatsApp templates. Do not include any whitespace characters.
+            example: marketing
+            enum:
+            - marketing
+            - utility
+            - authentication
+            - 1way
+          language:
+            type: string
+            example: en_US
+            description: 'An abbreviation specifying the language of the text in the template. This is required for WhatsApp templates and not supported for other templates. See  [Messaging - Supported languages for WhatsApp templates](/enterprise/docs/messaging-supported-languages-for-whatsapp-templates) for a list of valid abbreviations. '
+        required:
+        - type
+        - channel
+      x-examples: {}
+    footer:
+      title: footer
+      type: object
+      properties:
+        footer:
+          type: object
+          description: Contains properties related to the footer of this template. Not supported for SMS templates. Variables are not supported in the footer.
+          properties:
+            type:
+              type: string
+              enum:
+              - text
+              example: text
+              description: 'The type of content to display in the footer of this template. Required when using a template footer. '
+            text:
+              type: string
+              maxLength: 60
+              description: Text to display in the footer of this template. This is required if the value of `type` in this object is `text`. Variables are not supported in the footer.
+              example: Reply STOP to unsubscribe
+    Template:
+      title: Template
+      type: object
+      properties:
+        name:
+          type: string
+          example: wa_bogo
+          pattern: ^[a-z_]*
+          description: 'The name of this template. Use only lowercase alpha characters and underscores. For WhatsApp, the name must include "telesign_otp" if you want Telesign to generate the OTP for you. For example: "verofinto_telesign_otp_wa_template". To enable this feature and create SMS templates with the OTP auto-generated by Telesign, contact our [Customer Support Team](mailto:support@telesign.com).'
+          maxLength: 512
+      required:
+      - name
+    body:
+      title: body
+      type: object
+      properties:
+        body:
+          type: object
+          description: Contains properties related to the body of this template. [Variables](/enterprise/docs/messaging-create-whatsapp-template#variables) can be included here.
+          required:
+          - type
+          properties:
+            type:
+              type: string
+              description: The type of content to display in the body of this template.
+              enum:
+              - text
+              example: text
+            text:
+              type: string
+              maxLength: 1024
+              example: Buy one get one free!
+              description: Text to display in the body of this template. This is required if the value of `type` in this object is `text`. [Variables](/enterprise/docs/messaging-create-whatsapp-template#variables) can be included here.
+            sample_text:
+              type: array
+              description: A list of the sample values for each of the variables in `text`. This parameter is required if a variable is used in `text`. Use double curly brackets to include a variable name in a parameter value. See [Variables](/enterprise/docs/messaging-create-whatsapp-template#variables) for more information about formatting variables.
+              items:
+                type: string
+      required:
+      - body
+    TemplateButton:
+      title: TemplateButton
+      type: object
+      description: Contains properties defining a button included in this template.
+      properties:
+        button_text:
+          type: string
+          description: Text to display on this button. This cannot be changed in individual Messaging requests using this template.
+          example: 'Yes'
+          maxLength: 25
+      required:
+      - button_text
+    Status:
+      allOf:
+      - $ref: '#/components/schemas/SlimStatus'
+      - type: object
+        properties:
+          updated_on:
+            type: string
+            description: A timestamp showing when your transaction status was updated last.
+            example: '2022-31-03T14:51:28.709526Z'
+        required:
+        - updated_on
+      description: Contains properties related to the request status.
+      title: Status
+    TemplateSuggestedAction:
+      title: TemplateSuggestedAction
+      type: object
+      description: Contains properties that define a call-to-action element to include in this template. Supported for WhatsApp templates only. [Variables](/enterprise/docs/messaging-create-whatsapp-template#variables) can be included here.
+      properties:
+        action_type:
+          type: string
+          description: The type of call-to-action this button provides. A button of type `dial` and one of type `url` can only be included in the same template if it is a WhatsApp template. Button types `url` and `url_dynamic` are only supported for WhatsApp templates.
+          enum:
+          - dial
+          - url
+          - url_dynamic
+          - otp
+          example: dial
+        otp:
+          type: object
+          description: 'Contains properties defining the parts of the template related to presenting a one-time passcode (OTP) so an end-user can copy it. '
+          properties:
+            otp_text:
+              type: string
+              maxLength: 25
+              description: 'Defines the text shown on a copy code button below a one-time passcode when a WhatsApp copy code authentication template is used. The button allows the end-user to copy a one-time passcode. Use `Autofill` when a WhatsApp one-tap autofill or zero-tap authentication template is used. Required when using the authentication category for WhatsApp verified templates.  '
+              example: Autofill
+            package_name:
+              type: string
+              example: com.example.myapplication
+              pattern: ^[a-zA-Z0-9_]+
+              description: Lists your Android app's package name. It must match the package name set on the intent in Android and will have at least two segments (one or more dots), and each segment must start with a letter. All characters must be alphanumeric or an underscore. Required when using a WhatsApp [one-tap autofill](https://developers.facebook.com/docs/whatsapp/business-management-api/authentication-templates/autofill-button-authentication-templates) or [zero-tap](https://developers.facebook.com/docs/whatsapp/business-management-api/authentication-templates/zero-tap-authentication-templates) OTP template.
+            signature_hash:
+              type: string
+              pattern: ^[a-zA-Z0-9+/=]+
+              example: 28aFAINcGX7
+              description: Lists your Android app's signing key hash. It must match the installed app's signing key hash. All characters must be either alphanumeric, +, /, or = (a-zA-Z0-9+/=). Required when using a WhatsApp [one-tap autofill](https://developers.facebook.com/docs/whatsapp/business-management-api/authentication-templates/autofill-button-authentication-templates) or [zero-tap](https://developers.facebook.com/docs/whatsapp/business-management-api/authentication-templates/zero-tap-authentication-templates) OTP template.
+              minLength: 11
+              maxLength: 11
+            zero_tap_terms_accepted:
+              type: boolean
+              description: Set to `true` to indicate that you understand that your use of [zero-tap](https://developers.facebook.com/docs/whatsapp/business-management-api/authentication-templates/zero-tap-authentication-templates) is subject to the [WhatsApp Business Terms of Service](https://www.whatsapp.com/legal/business-terms), and that it's your responsibility to ensure your end users expect that the code will be automatically filled in on their behalf when they choose to receive the zero-tap code through WhatsApp. If it is set to `false`, the template will **not** be created because you need to accept WhatsApp’s zero-tap terms before creating zero-tap enabled message templates.
+        dial:
+          type: object
+          description: Contains properties defining a click-to-call button.
+          properties:
+            phone_number_to_dial:
+              type: string
+              example: '18003334444'
+              description: The phone number for the end user's device to call when this button is selected. This is required when using click-to-call buttons.
+            dial_text:
+              type: string
+              example: Call us
+              description: Text to display on this button. This is required when using click-to-call buttons.
+        url:
+          type: object
+          description: Contains properties defining a link button.
+          properties:
+            url:
+              type: string
+              example: https://verofintoshop.com/orders
+              maxLength: 2000
+              description: The complete URL of the destination of this link button. This cannot be modified by individual sends with this template. Required when using link buttons.
+            url_text:
+              type: string
+              example: Track Order
+              maxLength: 25
+              description: Text to display on this button. Required when using link buttons.
+        url_dynamic:
+          type: object
+          description: Contains properties defining a link button with a URL that can be dynamically modified in each message sent with this template.
+          properties:
+            url:
+              type: string
+              example: https://verofintoshop.com/orders?id=
+              maxLength: 2000
+              description: The base URL for the destination of this link button. Can be a static or dynamic url. In each message sent with this template you can add to this path for that send. Note that the maximum length for this value *includes the characters added to the path in any message using this template*. WhatsApp reserves 50 of the 200 characters for its own use. So you should stay far enough below this maximum to leave room for the length of characters you expect each message to add. Required when using link buttons.
+            url_text:
+              type: string
+              example: Track Order
+              maxLength: 25
+              description: Text to display on this button. Required when using link buttons.
+  parameters:
+    channel:
+      name: channel
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - whatsapp
+        - sms
+        example: whatsapp
+      description: One of the Telesign Messaging channels for which programmatic template management is supported.
+    name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+        example: wa_bogo
+      description: ' The name of this template.'
+  securitySchemes:
+    Basic:
+      type: http
+      description: Easiest to implement. See [Basic Authentication](/enterprise/docs/authentication#basic-authentication) for more details.
+      scheme: basic
+    Digest:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: See [Digest Authentication](/enterprise/docs/authentication#basic-authentication) for more details.
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

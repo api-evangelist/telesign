@@ -1,132 +1,77 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+name: Telesign pricing
+generated: '2026-10-07'
+method: searched
+source: https://www.telesign.com/pricing/sms-and-voice
+sources:
+- https://www.telesign.com/pricing/
+- https://www.telesign.com/pricing/sms-and-voice
+- https://www.telesign.com/pricing/verification-pricing
+- https://www.telesign.com/pricing/identity-pricing
+- https://www.telesign.com/pricing/intelligence
 provider: Telesign
 providerId: telesign
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: true
-tags:
-  - Communications
-  - Fraud Prevention
-  - Phone Intelligence
-  - SMS
-  - Verification
+audience: developer-api
+pricing_basis: per-call
+published: false
+delivery:
+  delivery: managed
 description: >-
-  Telesign uses pay-as-you-go pricing with no contracts, time-based commitments, or monthly fees;
-  per-message and per-request rates are quoted by destination country and are not published as a flat
-  rate card on the public pricing page. New developers can sign up for a self-serve trial that includes
-  complimentary test credits for SMS, SMS Verify, and Verify Plus. Volume customers negotiate preferred
-  pricing and committed-use packaging through Telesign sales.
-sources:
-  - https://www.telesign.com/pricing
-  - https://www.telesign.com/pricing/sms
-  - https://portal.telesign.com/signup
+  Telesign prices API usage per transaction, pay-as-you-go, with the per-country rate tables for SMS and
+  voice, verification, identity and intelligence rendered client-side on each pricing page behind a
+  country selector. Volume and committed-use customers negotiate preferred pricing with sales. A free trial
+  account with complimentary test credits and no credit card is the self-serve entry point.
+note: >-
+  The pricing pages show "Simple, flexible & transparent pricing" and a "Product / Price" table whose rows are
+  loaded by JavaScript for a selected country; a headless render on 2026-10-07 exposed the country list but no
+  numeric prices, so no numeric price is recorded and published is false.
+plan_count: 3
 plans:
-  - id: telesign-trial
-    name: Free Trial
-    type: freemium
-    description: Self-serve developer trial with complimentary test credits and no credit card required.
-    entries:
-      - label: Trial Credits
-        name: trial_credits
-        type: quota
-        metric: request
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: SMS API
-      - name: SMS Verify API
-      - name: Verify Plus API
-      - name: Sandbox / Portal Access
-  - id: telesign-pay-as-you-go
-    name: Pay-As-You-Go
-    type: usage-based
-    description: Per-message / per-request pricing varies by destination country; no monthly commitment.
-    entries:
-      - label: SMS Message
-        name: sms_message
-        type: metered
-        metric: request
-        limit: -1
-        timeFrame: usage
-        geo: varies-by-country
-        unit: 1
-        price: see https://www.telesign.com/pricing/sms
-        userMultiplied: false
-      - label: Voice Call
-        name: voice_call
-        type: metered
-        metric: request
-        limit: -1
-        timeFrame: usage
-        geo: varies-by-country
-        unit: 1
-        price: see https://www.telesign.com/pricing
-        userMultiplied: false
-      - label: PhoneID Lookup
-        name: phoneid_lookup
-        type: metered
-        metric: request
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: see https://www.telesign.com/pricing
-        userMultiplied: false
-      - label: Score Request
-        name: score_request
-        type: metered
-        metric: request
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: see https://www.telesign.com/pricing
-        userMultiplied: false
-      - label: Verify Request
-        name: verify_request
-        type: metered
-        metric: request
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: see https://www.telesign.com/pricing
-        userMultiplied: false
-    elements:
-      - name: SMS API
-      - name: Voice API
-      - name: PhoneID API
-      - name: Score API
-      - name: Verify API
-  - id: telesign-volume
-    name: Volume / Committed Use
-    type: enterprise
-    description: Preferred pricing and tailored packaging for volume and committed-use customers, negotiated with sales.
-    entries:
-      - label: Negotiated Volume
-        name: negotiated_volume
-        type: tiered
-        metric: request
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: contact sales
-        userMultiplied: false
-    elements:
-      - name: All Telesign APIs
-      - name: Volume Discounts
-      - name: Committed-Use Packaging
-      - name: Sales-Negotiated SLA
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- name: Free trial
+  price_text: Try for free
+  description: Trial users are given access to a unique API key and Customer ID, as well as complimentary test credits.
+  features:
+  - 'Products that are available to test through free trial accounts are: SMS, SMS Verify, Verify Plus, Phone ID, Phone ID Contact, and Intelligence.'
+  - Sign up for your free trial account ( no credit card required )
+  - 'With code: we provide code samples and SDKs in 7 different programming languages.'
+  - 'Without code: we provide browser-based API Explorers that allow users to test APIs without writing any code.'
+  limits:
+  - name: Trial credits
+    description: complimentary test credits
+- name: Pay-as-you-go
+  price_text: Pay-as-you-go
+  description: No contracts, time-based commitments, or monthly fees. Start coding today.
+  features:
+  - SMS and voice pricing is based on the destination. Our pay-as-you-go pricing gives you competitive rates with no hidden fees.
+  - Pricing is based on the verification method and country.
+  - Access real-time phone number and subscriber attributes. Pay for each transaction call or save with volume based-discounts.
+  limits: []
+- name: Volume discounts
+  price_text: Contact sales
+  description: Preferred pricing and tailored packaging for volume and committed-use. Chat with an expert.
+  features:
+  - Preferred pricing and tailored packaging for volume and committed-use.
+  limits: []
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models: []
+  units: []
+  plans:
+  - name: Free trial
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Pay-as-you-go
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Volume discounts
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-omni-req-details-for-wa-schema.json",
+  "title": "OmniReqDetailsForWA",
+  "description": "Contains properties specifying to the service how to construct the message for this channel.",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-engage-api-openapi.yml#/components/schemas/OmniReqDetailsForWA",
+  "type": "object",
+  "properties": {
+    "template": {
+      "type": "string",
+      "description": "The name of the template to use for this message."
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Contains sub-properties with values for variables in the message template. Which sub-properties to include here depends on which template you have selected.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "The main text of your message. <br/>**Required for:** `text`"
+        },
+        "header_url": {
+          "type": "string",
+          "description": "The source URL for a media file or file attachment to embed in the message. <br/>**Required for:** \n`image`, `video`, `audio`, `file`"
+        },
+        "file_name": {
+          "type": "string",
+          "description": "The display name of the file on end-user device. If you do not include a value for this parameter, the service uses a default value of \"file\". <br/>**Required for:** \n`file`"
+        },
+        "latitude": {
+          "type": "string",
+          "description": "The latitude coordinate of your location (number only).<br/>**Required for:** \n`location`"
+        },
+        "longitude": {
+          "type": "string",
+          "description": "The longitude coordinate of your location (number only).<br/>**Required for:** \n`location`"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-omni-req-details-for-viber-schema.json",
+  "title": "OmniReqDetailsForViber",
+  "description": "Contains properties specifying to the service how to construct the message for this channel.",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-engage-api-openapi.yml#/components/schemas/OmniReqDetailsForViber",
+  "type": "object",
+  "properties": {
+    "template": {
+      "type": "string",
+      "description": "The name of the template to use for this message.",
+      "enum": [
+        "text",
+        "text_session",
+        "image",
+        "image_session",
+        "video",
+        "text_video",
+        "url_action_video",
+        "url_action",
+        "otp_verify"
+      ]
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Contains sub-properties with values for variables in the message template. Which sub-properties to include here depends on which template you have selected.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "The main text of your message. <br/>**Required for:** `text`, `text_session`, `url_action`,  `text_video` and `url_action_video`."
+        },
+        "url": {
+          "type": "string",
+          "description": "Depending on the template being used, this is the URL for the link in the message or the URL where you are hosting an image or video file in the message.<br/>**Required for:** \n`image`, `image_session`, `url_action`, `video`, `text_video`, and `url_action_video`."
+        },
+        "url_id": {
+          "type": "string",
+          "description": "Unique identifier for the link in the message. **Required for:** `url_action`"
+        },
+        "url_text": {
+          "type": "string",
+          "description": "Text for the link button in the message. <br/>**Required for:** `url_action`"
+        },
+        "open_url": {
+          "type": "string",
+          "description": "The URL end users are directed to or the action performed when pressing the action button. "
+        },
+        "url_thumbnail": {
+          "type": "string",
+          "description": "A static image that acts as the preview image for the video. <br/>**Required for:** `text_video`."
+        },
+        "otp_code": {
+          "type": "string",
+          "description": "The OTP code of your verified template message. <br/>**Required for:** `otp_verify`"
+        },
+        "language": {
+          "type": "string",
+          "description": "ISO 639-1 two-letter language code. For more details, see [Messaging - Send Viber verification message](/enterprise/docs/messaging-send-viber-verification-message). If not specified, the default value will be English language. <br/>**Optional for:** `otp_verify`"
+        },
+        "reply_id": {
+          "type": "string",
+          "description": "This is sent back to the provider when a message sent to a end user is answered. The end user’s reply is linked to the tracking data value that is set in the request."
+        },
+        "button_text": {
+          "type": "string",
+          "description": "The text that appears on the action button. "
+        }
+      }
+    }
+  }
+}

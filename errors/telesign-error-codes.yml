@@ -1,0 +1,1627 @@
+generated: '2026-10-07'
+method: searched
+source: https://developer.telesign.com/enterprise/docs/all-status-and-error-codes
+docs:
+- https://developer.telesign.com/enterprise/docs/understand-telesign-status-and-error-codes
+- https://developer.telesign.com/enterprise/docs/all-status-and-error-codes
+format: telesign-status-and-error-codes
+envelope:
+  description: Every Telesign JSON response carries reference_id, status{updated_on, code, description} and errors[{code, description}]. Status codes are three or four digits and product-scoped (1xx Voice
+    Verify API; 2xx SMS Verify API and SMS; 3xx Phone ID and Intelligence; 20xx/24xx App Verify API; 28xx Phone ID identity signals; 5xx multiple products). Error codes are five digits, positive or negative,
+    and shared across products. Telesign recommends coding against status.code and errors[].code rather than the HTTP status or the description text.
+  fields:
+  - reference_id
+  - status.updated_on
+  - status.code
+  - status.description
+  - errors[].code
+  - errors[].description
+  http_statuses:
+  - 200
+  - 201
+  - 400
+  - 401
+  - 402
+  - 404
+  - 405
+  - 429
+  - 500
+  - 503
+status_code_count: 179
+error_code_count: 159
+status_codes:
+- code: 100
+  description: Call answered
+  section: Status Codes
+  associated_with: Voice Verify API
+  details: The call was answered by the end user or voicemail.
+- code: 101
+  description: Not answered
+  section: Status Codes
+  associated_with: Voice Verify API
+  details: No one answered the call.
+- code: 103
+  description: Call in progress
+  section: Status Codes
+  associated_with: Voice Verify API
+  details: The call is in progress. You get back an immediate response from Telesign when you make a request, usually with this status. If you retrieve status info later, it will resolve to a different
+    status code.
+- code: 105
+  description: Call not handled yet
+  section: Status Codes
+  associated_with: Voice Verify API
+  details: The verification call has not yet been attempted.
+- code: 106
+  description: Call failed
+  section: Status Codes
+  associated_with: Voice Verify API
+  details: The call did not go through. Typically this occurs when Telesign’s upstream providers fail to complete the call. Sometimes retrying will work.
+- code: 107
+  description: Line busy
+  section: Status Codes
+  associated_with: Voice Verify API
+  details: The line was busy when the call tried to reach the end user’s device.
+- code: 108
+  description: Call canceled by Telesign
+  section: Status Codes
+  associated_with: Voice Verify API
+  details: Call canceled by Telesign.
+- code: 129
+  description: Call blocked by your request
+  section: Status Codes
+  associated_with: Voice Verify API
+  details: Telesign blocked the call before it was placed. This is due to your prior submitted request to blocklist this phone number.
+- code: 130
+  description: Call blocked by Telesign
+  section: Status Codes
+  associated_with: Voice Verify API
+  details: Telesign blocks a message if it is being sent to a phone number that is on a global blocklist.
+- code: 200
+  description: Delivered to handset
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The SMS was delivered to the end user's phone. ***Final***
+- code: 201
+  description: Transaction successfully completed, suspicious activity detected
+  section: Status Codes
+  associated_with: SMS API, SMS Verify API
+  details: Telesign's internal anti-fraud mechanisms identified potentially suspicious activity related to the destination phone number.
+- code: 203
+  description: Delivered to gateway
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The SMS was delivered to the gateway. If the gateway responds with further information (including successful delivery to handset or delivery failure), the status is updated. ***Intermediate***
+- code: 207
+  description: Error delivering SMS to handset (reason unknown)
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The SMS could not be delivered to the end user's handset for an unknown reason. ***Final***
+- code: 210
+  description: Temporary phone error
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The SMS could not be delivered to the handset due to a temporary error with the phone. Examples - phone is turned off, not enough memory to store the message. ***Final***
+- code: 211
+  description: Permanent phone error
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The SMS could not be delivered to the handset due to a permanent error with the phone. For example, the phone is incompatible with SMS, or illegally registered on the network. This can happen
+    when a phone number is blacklisted, or is incorrectly provisioned. ***Final***
+- code: 220
+  description: Gateway/network cannot route message
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The network cannot route the message to the handset. ***Final***
+- code: 221
+  description: Message expired before delivery
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The message was queued by the mobile provider and timed out before it could be delivered to the handset. ***Final***
+- code: 222
+  description: SMS not supported
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: SMS is not supported by this phone, carrier, plan, or user.
+- code: 229
+  description: Message blocked by customer request
+  section: Status Codes
+  associated_with: SMS Verify API
+  details: This code can happen because you requested a block or because Telesign blocked on your behalf. The block is custom, meaning it applies to you and not others.
+- code: 230
+  description: Message blocked by Telesign
+  section: Status Codes
+  associated_with: SMS Verify API
+  details: Telesign blocks a message if it is being sent to a phone number that is on a global blocklist.
+- code: 231
+  description: Invalid/unsupported
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: Invalid/unsupported message content
+- code: 233
+  description: Message blocked due to high risk score.
+  section: Status Codes
+  associated_with: SMS Verify API
+  details: You requested that messages in a specific country be blocked, and the message was being sent to this country
+- code: 237
+  description: Message blocked in requested country
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: You requested that messages in a specific country be blocked, and the message was being sent to this country.
+- code: 238
+  description: Destination blocked by prefix
+  section: Status Codes
+  associated_with: SMS
+  details: You requested that phone numbers with a particular prefix be blocked.
+- code: 250
+  description: Final status unknown
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The final status of the SMS cannot be determined.
+- code: 251
+  description: Message successfully sent out for delivery, however final confirmation of delivery to handset was not received.
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: Telesign successfully delivered the message through our gateway and it passed downstream. However, Telesign did not receive a delivery receipt within 12 hours of transmission. We cannot confirm
+    delivery to the handset. The end user most likely did not receive the message.
+- code: 251
+  description: Message successfully sent out for delivery, however final confirmation of delivery to handset was not received.
+  section: Status Codes
+  associated_with: Bulk SMS
+  details: Message successfully sent out for delivery, however final confirmation of delivery to handset was not received.
+- code: 290
+  description: Message in progress
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The message is being sent to the SMS gateway. You get back an immediate response from Telesign when you make a request, usually with this status. If you retrieve status info later, it will resolve
+    to a different status code.
+- code: 292
+  description: Queued by gateway
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The SMS gateway has queued the message.
+- code: 293
+  description: Bulk request accepted
+  section: Status Codes
+  associated_with: Bulk SMS
+  details: The bulk request was accepted by Telesign.
+- code: 295
+  description: Status delayed
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The status of the SMS is temporarily unavailable.
+- code: 300
+  description: Transaction successfully completed
+  section: Status Codes
+  associated_with: Phone ID, Intelligence
+  details: The system was able to obtain all of the requested data for Intelligence or Phone ID.
+- code: 301
+  description: Transaction partially completed
+  section: Status Codes
+  associated_with: Phone ID, Intelligence
+  details: The system was able to obtain some of the data for Intelligence or Phone ID, but not all of it.
+- code: 500
+  description: Transaction not attempted
+  section: Status Codes
+  associated_with: All (Excluding SMS Verify API)
+  details: No call, message send, or other processing of the request was attempted.
+- code: 501
+  description: Not authorized
+  section: Status Codes
+  associated_with: SMS Verify API, SMS
+  details: No permissions for this resource, or authorization failed.
+- code: 502
+  description: Campaign error
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: This error can be generated if there is a problem with the short code used.
+- code: 503
+  description: Carrier rejected - temporary problem
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: This error is generated if there is an error on the carrier or operator side that is temporary and the message can be retried.
+- code: 504
+  description: Carrier rejected - permanent error
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: This error is generated if there is an error on the carrier or operator side that is permanent and the message should not be retried.
+- code: 505
+  description: Error on gateway - temporary error
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: This error is generated if there is an error on  Telesign's partner side that is considered temporary and the message can be retried.
+- code: 506
+  description: Error on gateway - permanent error
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: This error is generated if there is an error on Telesign's partner side that is considered permanent and the message should not be retried.
+- code: 507
+  description: Invalid destination address
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: There is a problem with the destination address used. Either the format is not valid, or the number is not associated with any carrier, or if MSC is used it does not know about this MSISDN.
+- code: 508
+  description: Invalid source address
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The message requires a source address. Verify that one is provided and correct.
+- code: 509
+  description: Parameters problem
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: One or more parameters used in the request is not supported.
+- code: 510
+  description: Message blocked by subscriber action or request
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The end user has blocked receiving SMS with their carrier plan or by request or from the particular short code used.
+- code: 511
+  description: Subscriber low on credit
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The end user exceeded their spending limits and cannot receive SMS.
+- code: 512
+  description: Roaming error
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: End user cannot receive SMS because their device that receives the messages is roaming.
+- code: 513
+  description: Mobile number portability error
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: SMS failed because ported combinations are unreachable.
+- code: 514
+  description: Subscriber absent
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The operator/carrier is temporarily unable to reach the end user's device.
+- code: 515
+  description: Suspected spam
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: This message is considered to be spam by carrier or operator.
+- code: 516
+  description: Delivery channel not supported by the end user's device
+  section: Status Codes
+  associated_with: Messaging
+  details: The end user's device does not support the channel used for delivery. ***Final***
+- code: 517
+  description: Selected DLT details for India not supported
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The DLT template ID or entity ID in the request cannot be found by the end operator.
+- code: 518
+  description: Message blocked due to high risk SIM swap indicator.
+  section: Status Codes
+  associated_with: SMS Verify API
+  details: The service determined that the SIM swap risk indicator for the destination number is higher than the maximum value configured for your account. For that reason Telesign did not send the SMS.
+- code: 519
+  description: Message not sent - requested SIM swap check could not be performed.
+  section: Status Codes
+  associated_with: SMS Verify API
+  details: The service could not perform the SIM swap check. This is because either the number is out of SIM swap coverage or information about the potential SIM swap event is missing.
+- code: 520
+  description: Content sent is not allowed
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The content in this message is not permitted by the carrier.
+- code: 521
+  description: Requested Sender ID is not allowed for destination
+  section: Status Codes
+  associated_with: SMS Verify API
+  details: The sender ID submitted in request is not allowed in destination country/operator.
+- code: 521
+  description: Requested Sender ID is not allowed for destination
+  section: Status Codes
+  associated_with: SMS
+  details: The sender ID submitted in request is not allowed in destination country/operator.
+- code: 599
+  description: Status not available
+  section: Status Codes
+  associated_with: SMS, SMS Verify API
+  details: The system is unable to provide status at this time.
+- code: 1900
+  description: Verify completion successfully recorded
+  section: Status Codes
+  associated_with: Get Status
+  details: The confirmation that the end-user has received the message has been successfully recorded.
+- code: 2000
+  description: Pending
+  section: Status Codes
+  associated_with: Smart Verify API
+  details: Smart Verify API process attempted.
+- code: 2028
+  description: Failure
+  section: Status Codes
+  associated_with: Smart Verify API
+  details: Blocked - the risk recommendation after running an Intelligence check on the number is too high.
+- code: 2800
+  description: Request successfully completed
+  section: Status Codes
+  associated_with: Phone ID (all identity attributes)
+  details: The request was successfully processed with valid parameters.
+- code: 2801
+  description: 'Invalid request addons parameter: {parameter_name}'
+  section: Status Codes
+  associated_with: Phone ID (all identity attributes)
+  details: The  specified `parameter_name` is not a valid parameter for this request and cannot be processed. Remove or replace it with a valid parameter.
+- code: 2802
+  description: '`name of add-on` add-on temporarily unavailable.'
+  section: Status Codes
+  associated_with: Phone ID (all identity attributes)
+  details: The requested add-on is currently unavailable and cannot be accessed at this time.
+- code: 2803
+  description: Phone number out of `name of add-on` add-on coverage.
+  section: Status Codes
+  associated_with: Phone ID (all identity attributes)
+  details: The specified phone number is not supported for the requested add-on service.
+- code: 2804
+  description: Phone number not applicable in `name of add-on` add-on.
+  section: Status Codes
+  associated_with: Phone ID (all identity attributes)
+  details: The provided phone number is not applicable for use with the requested add-on.
+- code: 2805
+  description: No `name of add-on` add-on information for phone number.
+  section: Status Codes
+  associated_with: Phone ID (all identity attributes)
+  details: No information could be retrieved for the provided phone number for the requested add-on.
+- code: 2806
+  description: '`Name of add-on` add-on is not enabled.'
+  section: Status Codes
+  associated_with: Phone ID (all identity attributes)
+  details: The requested add-on is not enabled for your account.
+- code: 2807
+  description: Some parameters submitted in the request are not valid.
+  section: Status Codes
+  associated_with: Phone ID (all identity attributes)
+  details: One or more parameters in the request are incorrect or do not conform to the expected format.
+- code: 2808
+  description: 'Invalid Request: {parameter_name} parameter is missing or empty.'
+  section: Status Codes
+  associated_with: Phone ID (all identity attributes)
+  details: The required parameter `parameter_name` is missing or has no value.
+- code: 2809
+  description: Billing Postal Code does not match `contact_plus` add-on information for phone number.
+  section: Status Codes
+  associated_with: Phone ID (Contact Plus add-on)
+  details: The Billing Postal Code provided does not match the information associated with the phone number in the `contact_plus` add-on.
+- code: 2810
+  description: Request process failed during data collection.
+  section: Status Codes
+  associated_with: Phone ID (all identity attributes)
+  details: The request could not be completed due to an issue during the data collection phase.
+- code: 2811
+  description: Request processing time out.
+  section: Status Codes
+  associated_with: Phone ID (all identity attributes)
+  details: The request could not be processed within the allotted time and has timed out.
+- code: 2812
+  description: '`name of add-on` exceeded transaction hard cap. Request denied.'
+  section: Status Codes
+  associated_with: Phone ID (all identity attributes)
+  details: The transaction limit for the add-on has been exceeded, and the request was denied.
+- code: 3000
+  description: Delivered
+  section: Status Codes
+  associated_with: Messaging
+  details: The message was delivered to the end-user. (Final if the last channel used doesn't support Read status. Intermediate otherwise)
+- code: 3001
+  description: Message in progress
+  section: Status Codes
+  associated_with: Messaging
+  details: Telesign successfully received this message request and is processing it. (Intermediate)
+- code: 3002
+  description: Delivered to Gateway
+  section: Status Codes
+  associated_with: Messaging
+  details: The message is in the process of delivery. Once all delivery options are exhausted, the status will be updated again. (Intermediate)
+- code: 3003
+  description: Delivery error
+  section: Status Codes
+  associated_with: Messaging
+  details: The message could not be delivered to the end-user. (Final)
+- code: 3004
+  description: Message successfully sent out for delivery, however final confirmation of delivery to handset was not received / MO successfully sent but final confirmation of delivery to handset was not
+    received
+  section: Status Codes
+  associated_with: Messaging
+  details: 'The message was successfully delivered to the gateway, but we cannot confirm delivery to the handset because we do not receive the final handset delivery receipts in this region. NOTE: There
+    is a high probability that this message was successfully delivered to the handset.'
+- code: 3005
+  description: Message is read
+  section: Status Codes
+  associated_with: Messaging
+  details: The message has been read by the end-user. (Final)
+- code: 3006
+  description: None of the channels is enabled for the customer
+  section: Status Codes
+  associated_with: Messaging
+  details: The channels specified in this request are all either not enabled for this customer or are invalid values. (Final)
+- code: 3011
+  description: Provider Account registration error
+  section: Status Codes
+  associated_with: Messaging
+  details: ''
+- code: 3012
+  description: Provider Account migration error
+  section: Status Codes
+  associated_with: Messaging
+  details: Provider Account migration error
+- code: 3030
+  description: Temporary phone error
+  section: Status Codes
+  associated_with: Messaging
+  details: The message could not be delivered to the handset due to a temporary error with the phone. Examples - phone is turned off, not enough memory to store the message. ***Final***
+- code: 3031
+  description: Permanent phone error
+  section: Status Codes
+  associated_with: Messaging
+  details: The message could not be delivered to the handset due to a permanent error with the phone. For example, the phone is incompatible with SMS, or illegally registered on the network. This can happen
+    when a phone number is blacklisted, or is incorrectly provisioned. ***Final***
+- code: 3032
+  description: Gateway/network cannot route message
+  section: Status Codes
+  associated_with: Messaging
+  details: The network cannot route the message to the handset. ***Final***
+- code: 3033
+  description: Message expired before delivery
+  section: Status Codes
+  associated_with: Messaging
+  details: The message was queued by the mobile provider and timed out before it could be delivered to the handset. ***Final***
+- code: 3034
+  description: SMS not supported
+  section: Status Codes
+  associated_with: Messaging
+  details: SMS is not supported by this phone, carrier, plan, or user.
+- code: 3035
+  description: Invalid/unsupported
+  section: Status Codes
+  associated_with: Messaging
+  details: The content of the message is not supported.
+- code: 3036
+  description: Price threshold exceeded
+  section: Status Codes
+  associated_with: Messaging
+  details: Message not sent due to the price exceeding your set maximum price.
+- code: 3037
+  description: Message blocked in requested country
+  section: Status Codes
+  associated_with: Messaging
+  details: You requested that messages in a specific country be blocked, and the message was being sent to this country.
+- code: 3038
+  description: Destination blocked by prefix
+  section: Status Codes
+  associated_with: Messaging
+  details: You requested that phone numbers with a particular prefix be blocked.
+- code: 3039
+  description: Final status unknown
+  section: Status Codes
+  associated_with: Messaging
+  details: The final status of the SMS cannot be determined.
+- code: 3040
+  description: Queued by gateway
+  section: Status Codes
+  associated_with: Messaging
+  details: The SMS gateway has queued the message.
+- code: 3041
+  description: Carrier rejected - temporary problem
+  section: Status Codes
+  associated_with: Messaging
+  details: This error is generated if there is an error on the carrier or operator side that is temporary and the message can be retried.
+- code: 3042
+  description: Carrier rejected - permanent error
+  section: Status Codes
+  associated_with: Messaging
+  details: This error is generated if there is an error on the carrier or operator side that is permanent and the message should not be retried.
+- code: 3043
+  description: Error on gateway - temporary error
+  section: Status Codes
+  associated_with: Messaging
+  details: This error is generated if there is an error on  Telesign's partner side that is considered temporary and the message can be retried.
+- code: 3044
+  description: Error on gateway - permanent error
+  section: Status Codes
+  associated_with: Messaging
+  details: This error is generated if there is an error on Telesign's partner side that is considered permanent and the message should not be retried.
+- code: 3045
+  description: Parameters problem
+  section: Status Codes
+  associated_with: Messaging
+  details: One or more parameters used in the request is not supported.
+- code: 3046
+  description: Message blocked by subscriber action or request
+  section: Status Codes
+  associated_with: Messaging
+  details: The end user has blocked receiving SMS with their carrier plan or by request or from the particular short code used.
+- code: 3047
+  description: Subscriber low on credit
+  section: Status Codes
+  associated_with: Messaging
+  details: The end user exceeded their spending limits and cannot receive SMS.
+- code: 3048
+  description: Roaming error
+  section: Status Codes
+  associated_with: Messaging
+  details: End user cannot receive SMS because their device that receives the messages is roaming.
+- code: 3049
+  description: Mobile number portability error
+  section: Status Codes
+  associated_with: Messaging
+  details: SMS failed because ported combinations are unreachable.
+- code: 3050
+  description: Subscriber absent
+  section: Status Codes
+  associated_with: Messaging
+  details: The operator/carrier is temporarily unable to reach the end user's device.
+- code: 3051
+  description: Suspected spam
+  section: Status Codes
+  associated_with: Messaging
+  details: This message is considered to be spam by carrier or operator.
+- code: 3052
+  description: Message blocked by your request
+  section: Status Codes
+  associated_with: Messaging
+  details: This code can happen because you requested a block or because Telesign blocked on your behalf. The block is custom, meaning it applies to you and not others.
+- code: 3053
+  description: Message blocked by Telesign
+  section: Status Codes
+  associated_with: Messaging
+  details: Telesign blocks a message if it is being sent to a phone number that is on a global blocklist.
+- code: 3054
+  description: Message cannot be sent to RBM provider - parsing error
+  section: Status Codes
+  associated_with: Messaging
+  details: Telesign’s RBM (Rich Business Messaging) partner encountered a temporary problem while sending this message. Please try again.
+- code: 3055
+  description: Delivery channel not supported by the end user's device
+  section: Status Codes
+  associated_with: Messaging
+  details: The end user's device does not support the channel used for delivery. ***Final***
+- code: 3056
+  description: Message failed to deliver in specified fallback time
+  section: Status Codes
+  associated_with: Messaging
+  details: Delivery could not be confirmed on this channel within the fallback window; triggers the next channel (if any) to send. (Intermediate)
+- code: 3057
+  description: Invalid source address
+  section: Status Codes
+  associated_with: Messaging
+  details: The message requires a source address. Verify that one is provided and correct.
+- code: 3058
+  description: The requested API host is not allowed for this `CustomerID`
+  section: Status Codes
+  associated_with: Messaging
+  details: The requested API host is not allowed for the account associated with this customer ID.
+- code: 3059
+  description: Exceeded number of elements for rich card
+  section: Status Codes
+  associated_with: Messaging
+  details: The number of elements (e.g., buttons, images) added exceeds the allowed number of elements for a rich card.
+- code: 3060
+  description: Delivery channel supported by the end user's device
+  section: Status Codes
+  associated_with: Messaging
+  details: The device associated with this phone number can use the selected channel.
+- code: 3061
+  description: Media size exceeds the limit
+  section: Status Codes
+  associated_with: Messaging
+  details: The media file size exceeds the maximum allowed limit and cannot be sent.
+- code: 3062
+  description: MMS not supported
+  section: Status Codes
+  associated_with: Messaging
+  details: MMS is not supported for this request and could not be processed.
+- code: 3071
+  description: Unverified phone\_number requested for trial account.
+  section: Status Codes
+  associated_with: Messaging
+  details: The phone number must be verified before it can be used in requests on a trial account.
+- code: 3072
+  description: Message blocked due to high risk score.
+  section: Status Codes
+  associated_with: Messaging
+  details: It was determined that the risk score for the destination number is higher than configured maximum risk score. For that reason Telesign did not send the message.
+- code: 3073
+  description: Insufficient funds in prepaid wallet
+  section: Status Codes
+  associated_with: Messaging
+  details: The prepaid wallet balance is insufficient to complete the requested transaction.
+- code: 3100
+  description: 'Unknown channel specified: {channel}'
+  section: Status Codes
+  associated_with: Messaging
+  details: This channel specified in the request is not one of the supported values; triggers the next channel (if any) to send. (Intermediate)
+- code: 3101
+  description: 'Invalid value for parameter phone\_number: {phone_number}'
+  section: Status Codes
+  associated_with: Messaging
+  details: Phone number is too long, too short, or contains non-digit values. (Intermediate)
+- code: 3102
+  description: 'Invalid value for parameter message\_type: {message_type}'
+  section: Status Codes
+  associated_with: Messaging
+  details: 'The value of parameter message\_type is not one of the supported values: `ARN`, `MKT`, `OTP`. (Final)'
+- code: 3103
+  description: 'Unsupported value for parameter external\_id: {external_id}'
+  section: Status Codes
+  associated_with: Messaging
+  details: The value of parameter `external_id` is longer than 100 or contains non-ASCII characters. (Final)
+- code: 3104
+  description: 'Invalid value for parameter account\_lifecycle\_event: {account_lifecycle_event}'
+  section: Status Codes
+  associated_with: Messaging
+  details: 'The value of parameter account\_lifecycle\_event is not one of the supported values: `create`, `sign-in`, `transact`, `update`, `delete`. (Final)'
+- code: 3105
+  description: 'Invalid value for parameter originating\_ip: {originating_ip}'
+  section: Status Codes
+  associated_with: Messaging
+  details: Parameter originating\_ip is improperly formatted. (Final)
+- code: 3106
+  description: 'Invalid value for parameter callback\_url: {callback_url}'
+  section: Status Codes
+  associated_with: Messaging
+  details: The value of parameter `callback_url` is empty. (Final)
+- code: 3107
+  description: Invalid value for parameter country\_code
+  section: Status Codes
+  associated_with: Messaging
+  details: The provided country code is either in an incorrect format or not one of the expected values.
+- code: 3108
+  description: Invalid value for parameter message
+  section: Status Codes
+  associated_with: Messaging
+  details: The message parameter has an invalid format or contains unexpected content.
+- code: 3109
+  description: 'Invalid value for parameter sender\_id: {sender_id}'
+  section: Status Codes
+  associated_with: Messaging
+  details: The specified sender ID does not match the expected value or is in an incorrect format. Ensure the provided sender ID has been created and is valid for your account.
+- code: 3110
+  description: Invalid request
+  section: Status Codes
+  associated_with: Messaging
+  details: The API request or its JSON payload is improperly formatted. (Final)
+- code: 3112
+  description: Specified template does not exist for selected channel
+  section: Status Codes
+  associated_with: Messaging
+  details: The template specified in the request does not exist for the selected messaging channel.
+- code: 3113
+  description: 'Invalid value for parameter channel: {channels}'
+  section: Status Codes
+  associated_with: Messaging
+  details: The value of the parameter channels contains the same channel more than once or is improperly formatted. (Final)
+- code: 3114
+  description: Specified message type not allowed outside of conversation window
+  section: Status Codes
+  associated_with: Messaging
+  details: The specified message type is not allowed to be sent outside of a conversation window.
+- code: 3115
+  description: Destination phone number not in coverage
+  section: Status Codes
+  associated_with: Messaging
+  details: The number you are trying to send a message to is not within the coverage area for message delivery.
+- code: 3200
+  description: '{channel} channel is not enabled for customer'
+  section: Status Codes
+  associated_with: Messaging
+  details: This channel is not enabled for this customer. (Intermediate)
+- code: 3202
+  description: Fallback is not enabled for Customer ID
+  section: Status Codes
+  associated_with: Messaging
+  details: Multiple channels are specified in the request, but fallback is not enabled for this customer. (Intermediate)
+- code: 3203
+  description: Callback URL parameter not enabled for Customer ID
+  section: Status Codes
+  associated_with: Messaging
+  details: Using `callback_url` in the API request is not allowed for this customer. (Final)
+- code: 3204
+  description: Rate limit exceeded
+  section: Status Codes
+  associated_with: Messaging
+  details: Allowed number of requests per second on Omnichannel API has been exceeded. (Final)
+- code: 3205
+  description: Rate Limit Exceeded
+  section: Status Codes
+  associated_with: Messaging
+  details: Allowed number of SMS transactions per second has been exceeded.
+- code: 3206
+  description: Omnichannel Product not enabled for Customer ID
+  section: Status Codes
+  associated_with: Messaging
+  details: Omnichannel product is not enabled for this customer. (Final)
+- code: 3207
+  description: Product exceeded transaction hard cap. Request denied.
+  section: Status Codes
+  associated_with: Messaging
+  details: Product exceeded transaction hard cap limit. Request denied.
+- code: 3208
+  description: Provider Account ID not found
+  section: Status Codes
+  associated_with: Messaging
+  details: The Provider Account ID could not be found in the system.
+- code: 3209
+  description: End-user not registered for testing
+  section: Status Codes
+  associated_with: Messaging
+  details: The end user's phone number has not been registered for use in testing requests.
+- code: 3300
+  description: Missing parameter channels
+  section: Status Codes
+  associated_with: Messaging
+  details: The API request does not contain mandatory parameter `channels`. (Final)
+- code: 3301
+  description: Missing parameter channel
+  section: Status Codes
+  associated_with: Messaging
+  details: The value of the parameter `channels` does not contain any instances of the mandatory sub-property `channel`. (Final)
+- code: 3302
+  description: Missing parameter phone\_number
+  section: Status Codes
+  associated_with: Messaging
+  details: The API request does not contain the mandatory parameter `phone_number`. (Final)
+- code: 3303
+  description: Missing parameter message
+  section: Status Codes
+  associated_with: Messaging
+  details: The API request does not contain the mandatory parameter `message`. (Final)
+- code: 3304
+  description: Missing parameter message\_type
+  section: Status Codes
+  associated_with: Messaging
+  details: The API request does not contain the mandatory parameter `message_type`. (Final)
+- code: 3305
+  description: Missing template specific parameters
+  section: Status Codes
+  associated_with: Messaging
+  details: The request is missing one or more required parameters specific to the selected template.
+- code: 3306
+  description: Missing message parameters for specified channel
+  section: Status Codes
+  associated_with: Messaging
+  details: Message object doesn't contain required info for sending message through selected channel. (Intermediate)
+- code: 3400
+  description: Not authorized
+  section: Status Codes
+  associated_with: Messaging
+  details: No permissions for this resource or authorization failed. (Final)
+- code: 3405
+  description: Missing required `Authorization` header
+  section: Status Codes
+  associated_with: Messaging
+  details: The request is missing the required `Authorization` header for authentication.
+- code: 3406
+  description: CustomerID Account Suspended.
+  section: Status Codes
+  associated_with: Messaging
+  details: The account associated with the provided Customer ID has been suspended.
+- code: 3408
+  description: CustomerID Account Not Found
+  section: Status Codes
+  associated_with: Messaging
+  details: The account associated with the provided Customer ID could not be found in the system.
+- code: 3409
+  description: Invalid source IP address.
+  section: Status Codes
+  associated_with: Messaging
+  details: The source IP address provided is not recognized or is invalid.
+- code: 3410
+  description: Invalid Customer ID.
+  section: Status Codes
+  associated_with: Messaging
+  details: The provided Customer ID is invalid or does not exist in the system.
+- code: 3411
+  description: Invalid API Key.
+  section: Status Codes
+  associated_with: Messaging
+  details: The API key provided is invalid or does not match the expected format.
+- code: 3412
+  description: Required 'Authorization' header is not in the correct format
+  section: Status Codes
+  associated_with: Messaging
+  details: The `Authorization` header is not in the correct format and cannot be processed.
+- code: 3413
+  description: Not Allowed Host
+  section: Status Codes
+  associated_with: Messaging
+  details: The host is not authorized to access the system.
+- code: 3500
+  description: System Unavailable
+  section: Status Codes
+  associated_with: Messaging
+  details: The system is currently unavailable. The request should be resubmitted. (Final)
+- code: 3601
+  description: Missing providers tracking data
+  section: Status Codes
+  associated_with: Messaging
+  details: The required tracking data from the provider is missing.
+- code: 4501
+  description: Success
+  section: Status Codes
+  associated_with: Silent Verify API
+  details: Verification flow started in Silent Verify Initiate.
+- code: 4502
+  description: The phone number does not match
+  section: Status Codes
+  associated_with: Silent Verify API
+  details: Unable to verify the device because the phone number isn't associated with the device.
+- code: 5000
+  description: New key was successfully created.
+  section: Status Codes
+  associated_with: Accounts API
+  details: A new REST API key was successfully created for your account.
+- code: 5001
+  description: Key list was successfully retrieved.
+  section: Status Codes
+  associated_with: Accounts API
+  details: A list of REST API key objects associated with your account was successfully returned.
+- code: 5002
+  description: Key object was successfully retrieved.
+  section: Status Codes
+  associated_with: Accounts API
+  details: The specified REST API key object associated with your account was successfully returned.
+- code: 5003
+  description: Key was successfully updated.
+  section: Status Codes
+  associated_with: Accounts API
+  details: The specified REST API key has been successfully updated and the key object with its new details has been returned.
+- code: 5004
+  description: Key successfully expired.
+  section: Status Codes
+  associated_with: Accounts API
+  details: The specified REST API key has been successfully expired and removed from the list of active keys for your account.
+- code: 5005
+  description: New account was successfully created.
+  section: Status Codes
+  associated_with: Accounts API
+  details: You have successfully cloned your account and created a new one.
+- code: 5101
+  description: Invalid value for body parameter {param name}
+  section: Status Codes
+  associated_with: Accounts API
+  details: The provided value for the body parameter `param name` is invalid or does not match the expected format.
+- code: 5103
+  description: Invalid value for path parameter {param name}
+  section: Status Codes
+  associated_with: Accounts API
+  details: The provided value for the path parameter `param name` is invalid or does not match the expected format.
+- code: 5110
+  description: Request payload is improperly formatted.
+  section: Status Codes
+  associated_with: Accounts API
+  details: The request payload is not properly structured or contains invalid data. Ensure that all required parameters are included and correct, and that the request format is valid.
+- code: 5111
+  description: The limit of {max_no_keys} keys has been reached.
+  section: Status Codes
+  associated_with: Accounts API
+  details: The maximum limit of keys has been reached and no additional keys can be added.
+- code: 5112
+  description: Missing required parameter {param_name}.
+  section: Status Codes
+  associated_with: Accounts API
+  details: The required parameter `param_name` is missing from the request and must be provided.
+- code: 5113
+  description: '{date-time-stamp} is not a valid future date.'
+  section: Status Codes
+  associated_with: Accounts API
+  details: The provided date-time stamp does not represent a future date or is invalid.
+- code: 5114
+  description: Too many users included in the request.
+  section: Status Codes
+  associated_with: Accounts API
+  details: The request includes more users than the allowed limit and cannot be processed.
+- code: 5204
+  description: Rate limit exceeded.
+  section: Status Codes
+  associated_with: Accounts API
+  details: Allowed number of requests per second on Accounts API has been exceeded.
+- code: 5400
+  description: Authentication failed.
+  section: Status Codes
+  associated_with: Accounts API
+  details: Authentication failed due to invalid credentials or missing required authentication details.
+- code: 5401
+  description: No permissions for this resource.
+  section: Status Codes
+  associated_with: Accounts API
+  details: The account does not have the necessary permissions to access the requested resource.
+- code: 5500
+  description: System unavailable. Please try again later.
+  section: Status Codes
+  associated_with: Accounts API
+  details: The system is currently unavailable. The request should be resubmitted.
+error_codes:
+- code: 10000
+  description: System Unavailable, Please try again later.
+  section: Status Codes
+  associated_with: SMS
+  details: The system is currently unavailable. The request should be resubmitted.
+- code: 10002
+  description: '''x-ts-nonce'' header value has been used recently'
+  section: Status Codes
+  associated_with: SMS
+  details: The `x-ts-nonce` header value cannot be reused in this request because it was used recently.
+- code: 10003
+  description: '''x-ts-nonce'' header value is either too long or too short'
+  section: Status Codes
+  associated_with: SMS
+  details: The `x-ts-nonce` header value is either too long or too short. Ensure that `x-ts-nonce` is within the acceptable length.
+- code: 10004
+  description: '''Date'' or ''x-ts-date'' header is not within tolerable range'
+  section: Status Codes
+  associated_with: SMS
+  details: The `Date` or `x-ts-date` header value is outside the acceptable range. Ensure that it is within the acceptable range.
+- code: 10005
+  description: '''Date'' or ''x-ts-date'' header is not RFC822 compliant'
+  section: Status Codes
+  associated_with: SMS
+  details: The `Date` or `x-ts-date` header value is not RFC822 compliant and cannot be processed.
+- code: 10006
+  description: Invalid 'x-ts-auth-method' header.
+  section: Status Codes
+  associated_with: SMS
+  details: The `x-ts-auth-method` header value is invalid and cannot be processed.
+- code: 10007
+  description: Missing required 'Date' or 'x-ts-date' header
+  section: Status Codes
+  associated_with: SMS
+  details: The required `Date` or `x-ts-date` header is missing and must be included in the request.
+- code: 10008
+  description: Invalid Signature.
+  section: Status Codes
+  associated_with: SMS
+  details: The signature provided is invalid and cannot be verified.
+- code: 10009
+  description: Missing required `Authorization` header
+  section: Status Codes
+  associated_with: SMS
+  details: The request is missing the required `Authorization` header for authentication.
+- code: 10010
+  description: CustomerID Account Suspended
+  section: Status Codes
+  associated_with: SMS
+  details: The account associated with the provided Customer ID has been suspended.
+- code: 10011
+  description: This product is not enabled for this CustomerID.
+  section: Status Codes
+  associated_with: SMS
+  details: SMS product is not enabled for this customer.
+- code: 10014
+  description: Invalid source IP address.
+  section: Status Codes
+  associated_with: SMS
+  details: The source IP address provided is not recognized or is invalid.
+- code: 10015
+  description: Invalid Customer ID.
+  section: Status Codes
+  associated_with: SMS
+  details: The provided Customer ID is invalid or does not exist in the system.
+- code: 10019
+  description: Rate Limit Exceeded
+  section: Status Codes
+  associated_with: SMS
+  details: Allowed number of requests per second on SMS has been exceeded.
+- code: 10020
+  description: Generic messaging exceeded transaction hard cap. Request denied.
+  section: Status Codes
+  associated_with: SMS
+  details: The transaction limit for generic messaging has been exceeded, and the request was denied.
+- code: 10022
+  description: Invalid API Key.
+  section: Status Codes
+  associated_with: SMS
+  details: The API key provided is invalid or does not match the expected format.
+- code: 10028
+  description: Required 'Authorization' header is not in the correct format
+  section: Status Codes
+  associated_with: SMS
+  details: The `Authorization` header is not in the correct format and cannot be processed.
+- code: 10030
+  description: Insufficient funds in prepaid wallet.
+  section: Status Codes
+  associated_with: SMS
+  details: The prepaid wallet balance is insufficient to complete the requested transaction.
+- code: 10031
+  description: Not Allowed Host
+  section: Status Codes
+  associated_with: SMS
+  details: The host is not authorized to access the system.
+- code: 10031
+  description: Message blocked by customer request
+  section: Status Codes
+  associated_with: SMS (DLR Callback only)
+  details: This code can happen because you requested a block or because Telesign blocked on your behalf. The block is custom, meaning it applies to you and not others.
+- code: 10032
+  description: Message blocked by TeleSign
+  section: Status Codes
+  associated_with: SMS
+  details: Telesign blocks a message if it is being sent to a phone number that is on a global blocklist.
+- code: 10033
+  description: '{phone_number} has not been verified for this trial account.'
+  section: Status Codes
+  associated_with: SMS
+  details: The phone number must be verified before it can be used in requests on a trial account.
+- code: 10035
+  description: The requested API host is not allowed for this CustomerID.
+  section: Status Codes
+  associated_with: SMS
+  details: The requested API host is not allowed for the account associated with this customer ID.
+- code: 10036
+  description: Reference ID expired
+  section: Status Codes
+  associated_with: SMS
+  details: The provided reference ID has expired and is no longer valid.
+- code: 11000
+  description: Invalid value for parameter phone\_number.
+  section: Status Codes
+  associated_with: SMS
+  details: Phone number is too long, too short, or contains non-digit values.
+- code: 11001
+  description: Invalid country code for parameter phone\_number.
+  section: Status Codes
+  associated_with: SMS
+  details: The provided country code is either in an incorrect format or not one of the expected values.
+- code: 11003
+  description: Invalid value for parameter account\_lifecycle\_event
+  section: Status Codes
+  associated_with: SMS
+  details: 'The value of parameter `account_lifecycle_event` is not one of the supported values: `create`, `sign-in`, `transact`, `update`, `delete`.'
+- code: 11004
+  description: Invalid value for parameter callback\_url
+  section: Status Codes
+  associated_with: SMS
+  details: The value of parameter `callback_url` is empty.
+- code: 11009
+  description: Invalid value for parameter message.
+  section: Status Codes
+  associated_with: SMS
+  details: The message parameter has an invalid format or contains unexpected content.
+- code: 11010
+  description: Invalid value for parameter originating\_ip.
+  section: Status Codes
+  associated_with: SMS
+  details: Parameter `originating_ip` is improperly formatted.
+- code: 11011
+  description: Invalid value for parameter reference\_id
+  section: Status Codes
+  associated_with: SMS
+  details: The provided value for the `reference_id` parameter is invalid or does not match the expected format.
+- code: 11013
+  description: Invalid value for parameter sender\_id.
+  section: Status Codes
+  associated_with: SMS
+  details: The specified sender ID does not match the expected value or is in an incorrect format. Ensure the provided sender ID has been created and is valid for your account.
+- code: 11016
+  description: Invalid value for parameter external\_id
+  section: Status Codes
+  associated_with: SMS
+  details: The value of parameter `external_id` is longer than 100 or contains non-ASCII characters.
+- code: 11017
+  description: Invalid value for parameter message\_type.
+  section: Status Codes
+  associated_with: SMS
+  details: 'The value of parameter message\_type is not one of the supported values: ARN, MKT, OTP.'
+- code: 11027
+  description: Invalid value for parameter integration\_name.
+  section: Status Codes
+  associated_with: SMS
+  details: The provided value for the `integration_name` parameter is invalid or does not match the expected format.
+- code: 11034
+  description: Invalid value for parameter dlt\_template\_id
+  section: Status Codes
+  associated_with: SMS
+  details: The provided value for the `dlt_template_id` parameter is invalid or does not match the expected format.
+- code: 11035
+  description: Invalid value for parameter dlt\_entity\_id
+  section: Status Codes
+  associated_with: SMS
+  details: The provided value for the `dlt_entity_id` parameter is invalid or does not match the expected format.
+- code: 12000
+  description: Missing Required Parameter phone\_number
+  section: Status Codes
+  associated_with: SMS
+  details: The required parameter `phone_number` is missing from the request and must be provided.
+- code: 12009
+  description: Missing Required Parameter message
+  section: Status Codes
+  associated_with: SMS
+  details: The required parameter `message` is missing from the request and must be provided.
+- code: 12017
+  description: Missing Required Parameter message\_type
+  section: Status Codes
+  associated_with: SMS
+  details: The required parameter `message_type` is missing from the request and must be provided.
+- code: -10001
+  description: Invalid parameter passed
+  section: Status Codes
+  associated_with: Completion
+  details: The parameter provided in the request is invalid or does not meet the required format.
+- code: -30000
+  description: Invalid customer ID
+  section: Status Codes
+  associated_with: Completion
+  details: The provided Customer ID is invalid or does not exist in the system.
+- code: -30001
+  description: Account suspended
+  section: Status Codes
+  associated_with: Completion
+  details: The account has been suspended.
+- code: -30002
+  description: Account not activated
+  section: Status Codes
+  associated_with: Completion
+  details: The account has not been activated and cannot be used.
+- code: -30003
+  description: Account limit reached
+  section: Status Codes
+  associated_with: Completion
+  details: The account has reached its limit and can no longer process additional requests.
+- code: -30004
+  description: Missing required Authorization header
+  section: Status Codes
+  associated_with: Completion
+  details: The request is missing the required `Authorization` header for authentication.
+- code: -30005
+  description: Required Authorization header is not in the correct format
+  section: Status Codes
+  associated_with: Completion
+  details: The `Authorization` header is not in the correct format and cannot be processed.
+- code: -30006
+  description: Invalid signature
+  section: Status Codes
+  associated_with: Completion
+  details: The signature provided is invalid and cannot be verified.
+- code: -30007
+  description: Missing required Date or X-TS-Date header
+  section: Status Codes
+  associated_with: Completion
+  details: The required `Date` or `x-ts-date` header is missing and must be included in the request.
+- code: -30008
+  description: Invalid X-TS-Auth-Method header
+  section: Status Codes
+  associated_with: Completion
+  details: The `x-ts-auth-method` header value is invalid and cannot be processed.
+- code: -30009
+  description: Date or X-TS-Date header is not RFC822 compliant
+  section: Status Codes
+  associated_with: Completion
+  details: The `Date` or `x-ts-date` header value is not RFC822 compliant and cannot be processed.
+- code: -30010
+  description: Date or X-TS-Date header is not within tolerable range
+  section: Status Codes
+  associated_with: Completion
+  details: The `Date` or `x-ts-date` header value is outside the acceptable range. Ensure that it is within the acceptable range.
+- code: -30011
+  description: X-TS-Nonce header value is either too long or too short
+  section: Status Codes
+  associated_with: Completion
+  details: The `x-ts-nonce` header value is either too long or too short. Ensure that `x-ts-nonce` is within the acceptable length.
+- code: -30012
+  description: X-TS-Nonce header value has been used recently
+  section: Status Codes
+  associated_with: Completion
+  details: The `x-ts-nonce` header value cannot be reused in this request because it was used recently.
+- code: -30013
+  description: Invalid ReferenceID for Verify Completion
+  section: Status Codes
+  associated_with: Completion
+  details: The provided Reference ID is invalid or does not exist in the system.
+- code: -10001
+  description: 'Invalid Request: ReferenceID Parameter: \<reference\_id>'
+  section: Error codes
+  associated_with: SMS Verify API
+- code: -10001
+  description: Not Allowed Host
+  section: Error codes
+  associated_with: SMS Verify API, Voice Verify API
+- code: -10001
+  description: CustomerID/ReferenceID not found
+  section: Error codes
+  associated_with: SMS Verify API, Voice Verify API, Number Deactivation, Smart Verify API
+- code: -10001
+  description: Invalid parameter passed
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -10001
+  description: 'Invalid Request: Missing parameter Parameter: Template'
+  section: Error codes
+  associated_with: Bulk SMS
+- code: -10002
+  description: Empty recipients list
+  section: Error codes
+  associated_with: Bulk SMS
+- code: -10003
+  description: Max number of recipients exceeded
+  section: Error codes
+  associated_with: Bulk SMS
+- code: -10004
+  description: Reference ID expired
+  section: Error codes
+  associated_with: Get Status
+- code: -10009
+  description: Invalid source IP address
+  section: Error codes
+  associated_with: SMS Verify API, Voice Verify API, Number Deactivation, Smart Verify API, Bulk SMS
+- code: -10030
+  description: Insufficient funds in prepaid wallet.
+  section: Error codes
+  associated_with: SMS Verify
+- code: -20001
+  description: Invalid request
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -20001
+  description: 'Invalid Request: CustomerID Parameter: \<customer\_id>'
+  section: Error codes
+  associated_with: SMS Verify API
+- code: -20002
+  description: This product is not enabled for this CustomerID
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -20002
+  description: This product is not enabled for this Customer ID.
+  section: Error codes
+  associated_with: SMS Verify API, Bulk SMS
+- code: -20003
+  description: This feature is not enabled for this Customer ID.
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -20004
+  description: This product is not enabled for this country.
+  section: Error codes
+  associated_with: Voice Verify API
+- code: -30000
+  description: Invalid CustomerID
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -30000
+  description: Invalid Customer ID
+  section: Error codes
+  associated_with: SMS Verify API, Bulk SMS
+- code: -30001
+  description: Account suspended
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -30001
+  description: Customer ID Account Suspended.
+  section: Error codes
+  associated_with: SMS Verify API, Bulk SMS
+- code: -30002
+  description: Account not activated
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -30002
+  description: Customer ID Account Not Activated.
+  section: Error codes
+  associated_with: SMS Verify API
+- code: -30003
+  description: Account limit reached
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -30003
+  description: Customer ID new account limit reached.
+  section: Error codes
+  associated_with: SMS Verify API
+- code: -30004
+  description: Missing required 'Authorization' header
+  section: Error codes
+  associated_with: SMS Verify API, Voice Verify API, Number Deactivation, Smart Verify API
+- code: -30005
+  description: Required Authorization header is not in the correct format
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -30005
+  description: Required 'Authorization' header is not in the correct format
+  section: Error codes
+  associated_with: SMS Verify API
+- code: -30006
+  description: Invalid signature
+  section: Error codes
+  associated_with: SMS Verify API, Voice Verify API, Number Deactivation, Smart Verify API
+- code: -30007
+  description: Missing required 'Date' or 'x-ts-date' header
+  section: Error codes
+  associated_with: SMS Verify API, Voice Verify API, Number Deactivation, Smart Verify API
+- code: -30008
+  description: Invalid X-TS-Auth-Method header
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -30008
+  description: Invalid 'x-ts-auth-method' header.
+  section: Error codes
+  associated_with: SMS Verify API
+- code: -30009
+  description: Date or X-TS-Date header is not [RFC822](https://www.w3.org/Protocols/rfc822/) compliant
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -30009
+  description: '''Date'' or ''x-ts-date'' header is not RFC822 compliant'
+  section: Error codes
+  associated_with: SMS Verify API
+- code: -30010
+  description: '''Date'' or ''x-ts-date'' header is not within tolerable range'
+  section: Error codes
+  associated_with: SMS Verify API, Voice Verify API, Number Deactivation, Smart Verify API
+- code: -30011
+  description: X-TS-Nonce header value is either too long or too short
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -30011
+  description: '''x-ts-nonce'' header value is either too long or too short'
+  section: Error codes
+  associated_with: SMS Verify API
+- code: -30012
+  description: '''x-ts-nonce'' header value has been used recently'
+  section: Error codes
+  associated_with: SMS Verify API, Voice Verify API, Number Deactivation, Smart Verify API
+- code: -30013
+  description: Invalid ReferenceID for Verify Completion
+  section: Error codes
+  associated_with: Completion, Get Status
+- code: -30015
+  description: Invalid API Key
+  section: Error codes
+  associated_with: SMS Verify API
+- code: -40001
+  description: Status unavailable
+  section: Error codes
+  associated_with: Get Status
+- code: -40002
+  description: Not authorized
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -40004
+  description: Resource not found
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -40005
+  description: Method not allowed
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -40006
+  description: Bad Request
+  section: Error codes
+  associated_with: Bulk SMS
+- code: -40007
+  description: Rate limit exceeded
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API, SMS Verify API
+- code: -40007
+  description: Rate Limit Exceeded
+  section: Error codes
+  associated_with: SMS Verify API, Bulk SMS
+- code: -40008
+  description: \[Product method] exceed transaction hard cap; Request denied
+  section: Error codes
+  associated_with: SMS Verify API, Voice Verify API, Number Deactivation, Smart Verify API
+- code: -40008
+  description: Verify SMS exceeded transaction hard cap. Request denied.
+  section: Error codes
+  associated_with: Bulk SMS
+- code: -40009
+  description: Phone number not supported
+  section: Error codes
+  associated_with: SMS Verify API, Voice Verify API, Number Deactivation, Smart Verify API
+- code: -40023
+  description: ''
+  section: Error codes
+  associated_with: Number Deactivation
+- code: -40024
+  description: Message blocked by customer request
+  section: Error codes
+  associated_with: Bulk SMS
+- code: -40025
+  description: Message blocked by Telesign
+  section: Error codes
+  associated_with: Bulk SMS
+- code: -50001
+  description: Max retries limit reached
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -50002
+  description: Mobile 2FA registration error
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -50003
+  description: Mobile device stamp drift too large
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -50051
+  description: Invalid hashcash submitted
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -50052
+  description: Unmatched registration initiate request
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -50054
+  description: Invalid API key
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -50055
+  description: Inactive API key
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -50056
+  description: Inactive application
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -50057
+  description: Invalid verification code
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -50058
+  description: Application is not registered for push notification
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -50059
+  description: Status not available
+  section: Error codes
+  associated_with: ''
+- code: -60001
+  description: Phone ID Contact data not found
+  section: Error codes
+  associated_with: Phone ID
+- code: -60002
+  description: Mobile 2FA registration warning
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -90001
+  description: System unavailable; please try again later
+  section: Error codes
+  associated_with: Voice Verify API, Number Deactivation, Smart Verify API
+- code: -90001
+  description: System Unavailable, please try again later.
+  section: Error codes
+  associated_with: SMS Verify API, Bulk SMS
+- code: 10000
+  description: System unavailable, please try again later.
+  section: Error codes
+  associated_with: Silent Verify API
+- code: 10004
+  description: Bad request
+  section: Error codes
+  associated_with: Silent Verify API
+- code: 10008
+  description: Invalid signature
+  section: Error codes
+  associated_with: Phone ID, Intelligence
+- code: 10009
+  description: Invalid value for parameter message
+  section: Error codes
+  associated_with: Phone ID, Intelligence
+- code: 10010
+  description: CustomerID Account Suspended
+  section: Error codes
+  associated_with: Phone ID, Intelligence
+- code: 10011
+  description: Invalid value for parameter reference\_id
+  section: Error codes
+  associated_with: Silent Verify API
+- code: 10012
+  description: This feature is not enabled for this CustomerID
+  section: Error codes
+  associated_with: Phone ID, Intelligence
+- code: 10013
+  description: Invalid Request. CustomerID Account Not Found
+  section: Error codes
+  associated_with: Phone ID, Intelligence
+- code: 10014
+  description: Invalid source IP address
+  section: Error codes
+  associated_with: Phone ID, Intelligence
+- code: 10015
+  description: Invalid Customer ID
+  section: Error codes
+  associated_with: Phone ID, Intelligence
+- code: 10017
+  description: Customer ID / Reference ID not found
+  section: Error codes
+  associated_with: Phone ID, Intelligence
+- code: 10019
+  description: Rate Limit Exceeded
+  section: Error codes
+  associated_with: Phone ID, Intelligence, Silent Verify
+- code: 10020
+  description: Messaging exceeded transaction hard cap. Request denied.
+  section: Error codes
+  associated_with: Phone ID, Intelligence
+- code: 10032
+  description: Request blocked due to this number appearing on a Telesign blocklist.
+  section: Error codes
+  associated_with: Phone ID, Intelligence
+- code: 10039
+  description: Internal server error
+  section: Error codes
+  associated_with: Silent Verify API
+- code: 10041
+  description: Blocked due to legal compliance
+  section: Error codes
+  associated_with: Intelligence, Phone ID
+- code: 11000
+  description: Invalid value for parameter phone\_number
+  section: Error codes
+  associated_with: Phone ID, Intelligence, Silent Verify API
+- code: 11001
+  description: Invalid country code for parameter phone\_number
+  section: Error codes
+  associated_with: Phone ID, Intelligence
+- code: 11002
+  description: Invalid value for parameter account\_id
+  section: Error codes
+  associated_with: Intelligence
+- code: 11003
+  description: Invalid value for parameter account\_lifecycle\_event
+  section: Error codes
+  associated_with: Phone ID, Intelligence
+- code: 11005
+  description: Invalid value for parameter customer\_id
+  section: Error codes
+  associated_with: Phone ID, Intelligence
+- code: 11006
+  description: Invalid value for parameter device\_id
+  section: Error codes
+  associated_with: Intelligence
+- code: 11007
+  description: Invalid value for email\_address
+  section: Error codes
+  associated_with: Intelligence
+- code: 11010
+  description: Invalid value for parameter originating\_ip
+  section: Error codes
+  associated_with: Phone ID, Intelligence
+- code: 11011
+  description: Invalid value for parameter reference\_id
+  section: Error codes
+  associated_with: Phone ID, Intelligence
+- code: 11024
+  description: Invalid value for parameter phone\_number\_1
+  section: Error codes
+  associated_with: Number Masking
+- code: 11025
+  description: Invalid value for parameter phone\_number\_2
+  section: Error codes
+  associated_with: Number Masking
+- code: 12000
+  description: Missing required parameter phone\_number
+  section: Error codes
+  associated_with: Phone ID, Intelligence
+- code: 12003
+  description: Missing required parameter account\_lifecycle\_event
+  section: Error codes
+  associated_with: Intelligence
+- code: 40001
+  description: Request timeout
+  section: Error codes
+  associated_with: Silent Verify API
+- code: 40002
+  description: Not authorized
+  section: Error codes
+  associated_with: Silent Verify API
+- code: 40003
+  description: No end client data found on records
+  section: Error codes
+  associated_with: Silent Verify API
+- code: 40004
+  description: The required parameter 'verification' is missing from the request
+  section: Error codes
+  associated_with: Silent Verify API
+- code: 40010
+  description: Not in coverage. The phone number being verified is not within the provider's network.
+  section: Error codes
+  associated_with: Silent Verify API
+- code: 45005
+  description: Error on gateway - temporary error. This error is generated if there is an error on Telesign's partner side that is considered temporary. You can try to send the message again.
+  section: Error codes
+  associated_with: Silent Verify API
+- code: 45006
+  description: Error on gateway - permanent error.  This error is generated if there is an error on Telesign's partner side that is considered permanent. You should not try to send the message again.
+  section: Error codes
+  associated_with: Silent Verify API
+- code: 45010
+  description: Provider not available to route the request. This error can occur when  providers not are available in the geographical area to route the request or when all providers failed (with errors)
+    to complete the requests.
+  section: Error codes
+  associated_with: Silent Verify API

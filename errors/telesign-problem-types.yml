@@ -1,0 +1,114 @@
+generated: '2026-10-07'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/telesign-accounts-api-openapi.yml
+- openapi/telesign-app-verify-api-openapi.yml
+- openapi/telesign-deactivated-numbers-api-openapi.yml
+- openapi/telesign-detect-api-openapi.yml
+- openapi/telesign-email-intelligence-api-openapi.yml
+- openapi/telesign-email-intelligence-extended-response-openapi.yml
+- openapi/telesign-engage-api-number-masking-openapi.yml
+- openapi/telesign-engage-api-openapi.yml
+- openapi/telesign-engage-api-voice-openapi.yml
+- openapi/telesign-engage-callbacks-openapi.yml
+- openapi/telesign-flow-builder-api-openapi.yml
+- openapi/telesign-intelligence-cloud-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: errorObject
+coverage:
+  operations: 65
+  statuses_declared: 11
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad request, the request could not be understood by the server due to malformed syntax. If you want
+    to code against a response, you should r
+  operations: 50
+  media_types:
+  - application/json
+  - applicaton/json
+  schema: errorObject
+- status: 401
+  title: Unauthorized
+  description: Unauthorized, the request requires user authentication. If you want to code against a response, you
+    should retrieve the status or error code
+  operations: 52
+  media_types:
+  - application/json
+  - applicaton/json
+  schema: errorObject
+- status: 402
+  title: Payment Required
+  description: Payment Required. If you want to code against a response, you should retrieve the status or error
+    code and use that rather than the HTTP sta
+  operations: 9
+  media_types:
+  - application/json
+  schema: errorObject
+- status: 403
+  title: Forbidden
+  description: '**Forbidden.**'
+  operations: 8
+  media_types:
+  - application/json
+  schema: errorObject
+- status: 404
+  title: Not Found
+  description: Not Found, the server has not found anything matching the Request-URI. If you want to code against
+    a response, you should retrieve the statu
+  operations: 30
+  media_types:
+  - application/json
+  - application/octet-stream
+  schema: errorObject
+- status: 405
+  title: Method Not Allowed
+  description: 'Indicates that the request method is known by the server but has been disabled and cannot be used. '
+  operations: 9
+  media_types:
+  - application/json
+  schema: 405-av-response
+- status: 408
+  title: Request Timeout
+  description: '**Request Timeout**'
+  operations: 2
+  media_types:
+  - application/json
+  schema: SVResponse
+- status: 413
+  title: Content Too Large
+  description: '**Content too large.** Your request failed because the payload is too large. Code against the Telesign
+    status code in the response payload r'
+  operations: 3
+  media_types:
+  - application/json
+  schema: null
+- status: 429
+  title: Too Many Requests
+  description: Too Many Requests, the user sent too many requests in a given amount of time. If you want to code
+    against a response, you should retrieve th
+  operations: 44
+  media_types:
+  - application/json
+  - text/plain
+  - applicaton/json
+  schema: 429-av-response
+- status: 500
+  title: Internal Server Error
+  description: Invalid Transaction, transaction not attempted.
+  operations: 18
+  media_types:
+  - application/json
+  schema: errorObject
+- status: 503
+  title: Service Unavailable
+  description: 'Service Unavailable, system unavailable, try again. Error codes are listed in the `error` parameter
+    in the response. '
+  operations: 44
+  media_types:
+  - application/json
+  - applicaton/json
+  schema: errorObject

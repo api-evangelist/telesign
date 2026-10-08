@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telesign/main/json-schema/telesign-omni-req-details-for-rcs-schema.json",
+  "title": "OmniReqDetailsForRCS",
+  "description": "Contains properties specifying to the service how to construct the message for this channel.",
+  "x-generated": "2026-10-07",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/telesign-engage-api-openapi.yml#/components/schemas/OmniReqDetailsForRCS",
+  "type": "object",
+  "properties": {
+    "template": {
+      "type": "string",
+      "description": "The name of the template to use for this message."
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Contains sub-properties with values for variables in the message template. Which sub-properties to include here depends on which template you have selected.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "The main text of your message. <br/>**Required for:** `text`,`dial_action`,`url_action`,`2_suggested_replies`, `3_suggested_replies` templates."
+        },
+        "button_text_1": {
+          "type": "string",
+          "description": "The text of the first suggested reply. <br/>**Required for:** `2_suggested_replies`, `3_suggested_replies` templates."
+        },
+        "button_payload_1": {
+          "type": "string",
+          "description": "Unique identifier for the first reply. <br/>**Required for:** `2_suggested_replies`, `3_suggested_replies` templates."
+        },
+        "button_text_2": {
+          "type": "string",
+          "description": "The text of the second suggested reply. <br/>**Required for:** `2_suggested_replies`, `3_suggested_replies` templates."
+        },
+        "button_payload_2": {
+          "type": "string",
+          "description": "Unique identifier for the second reply. <br/>**Required for:** `2_suggested_replies`, `3_suggested_replies` templates."
+        },
+        "button_text_3": {
+          "type": "string",
+          "description": "The text of the third suggested reply. <br/>**Required for:** `3_suggested_replies` template."
+        },
+        "button_payload_3": {
+          "type": "string",
+          "description": "Unique identifier for the third reply. <br/>**Required for:** `3_suggested_replies` template."
+        },
+        "url_text": {
+          "type": "string",
+          "description": "Text for the link in the message. <br/>**Required for:** `url_action`, `rc_url_action_vertical`, `rc_url_action_horizontal` templates."
+        },
+        "url_payload": {
+          "type": "string",
+          "description": "Unique identifier for the link in the message. <br/>**Required for:** `url_action`, `rc_url_action_vertical`, `rc_url_action_horizontal` templates."
+        },
+        "url": {
+          "type": "string",
+          "description": "Depending on the template being used, this is either the URL for the link in the message or the URL for a media file or file attachment to embed in the message. <br/>**Required for:** \n`media`, `url_action`, `rc_url_action_vertical`, `rc_url_action_horizontal`, `file`"
+        },
+        "dial_text": {
+          "type": "string",
+          "description": "Text on the click-to-call button. <br/>**Required for:** `dial_action`, `rc_dial_action_vertical`, `rc_dial_action_horizontal` templates."
+        },
+        "phone_number_to_dial": {
+          "type": "string",
+          "description": "The complete phone number to call when the button is selected. Include `+` at the beginning of international numbers. <br/>**Required for:** `dial_action`, `rc_dial_action_vertical`, `rc_dial_action_horizontal` templates."
+        },
+        "dial_payload": {
+          "type": "string",
+          "description": "Unique identifier for the click-to-call phone number in the message. <br/>**Required for:** `dial_action`, `rc_dial_action_vertical`, `rc_dial_action_horizontal` templates."
+        },
+        "media_url": {
+          "type": "string",
+          "description": "The URL reference for the image to include in the rich card in your message.  <br/>\n**Required for:** `rc_url_action_vertical`, `rc_dial_action_vertical`, `rc_url_action_horizontal`, `rc_dial_action_horizontal` templates."
+        },
+        "latitude": {
+          "type": "string",
+          "description": "The latitude coordinate of your location as a positive or negative number.<br/>**Required for:** \n`location`"
+        },
+        "longitude": {
+          "type": "string",
+          "description": "The longitude coordinate of your location as a positive or negative number.<br/>**Required for:** \n`location`"
+        }
+      }
+    }
+  }
+}
