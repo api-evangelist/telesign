@@ -19,7 +19,26 @@
     property: components.schemas.VerificationMethod
     matched_domain: google.com
     detected_by: sweep-cpaas.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
+  status: not-a-workflow
+  arazzo: null
+- slug: telesign-viber
+  label: Viber
+  partner: viber
+  partner_name: Viber
+  type: contract
+  channel: contract-enum
+  evidence: https://github.com/api-evangelist/telesign/blob/main/openapi/telesign-messaging-api-openapi.yml
+  source: edge
+  relationship: messaging-channel
+  contract_reference:
+    repo: telesign
+    spec_file: telesign-messaging-api-openapi.yml
+    value: viber
+    property: schemas.OmniReqChannelObj.channel
+    matched_domain: viber.com
+    detected_by: sweep-cpaas.py
+    detected: '2026-10-13'
   status: not-a-workflow
   arazzo: null
 - slug: telesign-whatsapp
@@ -38,6 +57,6 @@
     property: components.schemas.VerificationMethod
     matched_domain: whatsapp.com
     detected_by: sweep-cpaas.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
   status: not-a-workflow
   arazzo: null
