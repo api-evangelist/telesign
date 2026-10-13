@@ -53,6 +53,9 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 common:
+- type: CapabilityMap
+  url: capabilities/telesign-capability-edges.yml
+  name: Telesign Business Capability Map
 - type: Webhooks
   url: asyncapi/telesign-webhooks.yml
 - type: FinOps
