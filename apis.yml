@@ -48,6 +48,20 @@ tags:
 - Email Intelligence
 - Identity
 - Number Masking
+- Account
+tags_raw:
+- Authentication
+- Communications
+- Fraud Prevention
+- Phone Intelligence
+- SMS
+- Verification
+- Telecommunications
+- Messaging
+- Voice
+- Email Intelligence
+- Identity
+- Number Masking
 - Accounts
 maintainers:
 - FN: Kin Lane
@@ -159,6 +173,10 @@ apis:
   humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
   baseURL: https://accounts.telesign.com
   tags:
+  - Account
+  - APIKeys
+  - Account Management
+  tags_raw:
   - Accounts
   - API Keys
   - Account Management
@@ -230,6 +248,9 @@ apis:
   baseURL: https://us-east-1.di-hub.telesign.com
   tags:
   - Fraud Prevention
+  - Workflows
+  tags_raw:
+  - Fraud Prevention
   - Workflow
   properties:
   - type: OpenAPI
@@ -245,6 +266,8 @@ apis:
   humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
   baseURL: https://accounts.telesign.com
   tags:
+  - APIKeys
+  tags_raw:
   - API Keys
   properties:
   - type: OpenAPI
@@ -1347,6 +1370,8 @@ apis:
   humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
   baseURL: https://accounts.telesign.com
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
@@ -2339,6 +2364,8 @@ apis:
   humanURL: https://developer.telesign.com/enterprise/reference/cloneaccount
   baseURL: https://accounts.telesign.com
   tags:
+  - Recording
+  tags_raw:
   - Recordings
   properties:
   - type: OpenAPI
