@@ -114,11 +114,165 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Maven Central
+  partner: maven-central
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Java/JVM)
+  evidence: https://central.sonatype.com/artifact/com.telesign/telesign
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Maven Central (public registry JSON)
+    spec_file: null
+    language: Java/JVM
+    packages:
+    - name: com.telesign:telesign
+      version: 4.1.1
+      released: '2026-05-21'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.telesign/telesign
+      repo_leg: github-org:telesign
+      publisher_leg: groupId:telesign.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/telesignenterprisesdk
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: telesignenterprisesdk
+      version: 7.0.0
+      released: '2026-03-03'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/telesignenterprisesdk
+      repo_leg: github-org:telesign
+      publisher_leg: email:telesign.com
+      matched_by: domain
+    - name: telesignsdk
+      version: 5.2.0
+      released: '2026-09-15'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/telesignsdk
+      repo_leg: github-org:telesign
+      publisher_leg: email:telesign.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: NuGet Gallery
+  partner: nuget
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (.NET)
+  evidence: https://www.nuget.org/packages/Telesign
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: NuGet Gallery (public registry JSON)
+    spec_file: null
+    language: .NET
+    packages:
+    - name: Telesign
+      version: 4.1.0
+      released: '2026-06-03'
+      released_field: published
+      lapsed: false
+      page: https://www.nuget.org/packages/Telesign
+      repo_leg: github-org:telesign
+      publisher_leg: org:telesign
+      matched_by: github-org
+    - name: TelesignEnterprise
+      version: 3.2.1
+      released: '2026-09-09'
+      released_field: published
+      lapsed: false
+      page: https://www.nuget.org/packages/TelesignEnterprise
+      repo_leg: github-org:telesign
+      publisher_leg: org:telesign
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: PyPI
+  partner: pypi
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Python)
+  evidence: https://pypi.org/project/telesign/
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: telesign
+      version: 4.1.1
+      released: '2026-10-01'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/telesign/
+      repo_leg: github-org:telesign
+      publisher_leg: email:telesign.com
+      matched_by: domain
+    - name: telesignenterprise
+      version: 4.1.0
+      released: '2026-07-22'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/telesignenterprise/
+      repo_leg: github-org:telesign
+      publisher_leg: email:telesign.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
 generated: '2026-10-12'
 method: searched
 checked:
+- https://api.nuget.org/v3
 - https://azuremarketplace.microsoft.com/
+- https://crates.io/api/v1
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 - https://zapier.com/api/v4/apps/
 marketplace_apps: []
 source:
