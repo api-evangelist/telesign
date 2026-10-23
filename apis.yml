@@ -67,6 +67,8 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/telesign/overview
 - type: CapabilityMap
   url: capabilities/telesign-capability-edges.yml
   name: Telesign Business Capability Map
