@@ -1,0 +1,112 @@
+{
+  "info": {
+    "_postman_id": "ce36a37a-2f17-41f9-a92f-29bc3faba627",
+    "name": "Telesign Templates Callbacks API",
+    "description": "Operations tagged Templates Callbacks across 2 of this provider's published API definitions: telesign-engage-callbacks-openapi.json, telesign-engage-callbacks-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:33:57.000Z",
+    "updatedAt": "2026-10-22T01:33:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ce36a37a-2f17-41f9-a92f-29bc3faba627"
+  },
+  "item": [
+    {
+      "name": "msg_templates_endpoint",
+      "item": [
+        {
+          "name": "Receive template management callbacks",
+          "id": "70bc5d27-0d06-4b73-ba39-b41ebdb99a4c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channel\": \"whatsapp\",\n  \"name\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"language\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/msg_templates_endpoint",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "msg_templates_endpoint"
+              ]
+            },
+            "description": "This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging for template management requests. You can receive notifications from multiple Telesign services at the same endpoint.\n\n## Status codes\n\n| Status code | Text string | Description |\n|-------------|------------------------|-------------|\n|3850|Template successfully created|This template has been successfully created and is ready for use.|\n|3851|Template approved by provider|This template has been successfully created by Telesign and approved by the channel provider and is ready for use.|\n|3852|Template rejected by provider|This template has been rejected by the channel provider.|\n|3853|Template successfully removed|This template has been successfully removed.|\n|3854|Template flagged by provider|This template has been flagged by the channel provider due to misuse.|\n|3855|Template disabled by provider|This template has been disabled by the channel provider.|\n|3857|Removal unsuccessful - provider temporary problem|The template removal has been rejected by the channel provider.|"
+          },
+          "response": [
+            {
+              "id": "7d4bf62d-4874-4eda-9357-4b3ebf971ad4",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channel\": \"whatsapp\",\n  \"name\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"language\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/msg_templates_endpoint",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "msg_templates_endpoint"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:33:58.000Z",
+              "updatedAt": "2026-10-22T01:33:58.000Z",
+              "uid": "35240-7d4bf62d-4874-4eda-9357-4b3ebf971ad4"
+            }
+          ],
+          "createdAt": "2026-10-22T01:33:58.000Z",
+          "updatedAt": "2026-10-22T01:33:58.000Z",
+          "uid": "35240-70bc5d27-0d06-4b73-ba39-b41ebdb99a4c"
+        }
+      ],
+      "id": "8efefc50-b926-4d31-bf0c-3b8dc86a29ab",
+      "createdAt": "2026-10-22T01:33:58.000Z",
+      "updatedAt": "2026-10-22T01:33:58.000Z",
+      "uid": "35240-8efefc50-b926-4d31-bf0c-3b8dc86a29ab"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://your-callback-url.com"
+    }
+  ]
+}

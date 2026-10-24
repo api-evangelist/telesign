@@ -1,0 +1,1492 @@
+{
+  "info": {
+    "_postman_id": "f53ff061-4690-4630-b2ae-5c6f4f6c9747",
+    "name": "Telesign Initiate API",
+    "description": "Operations tagged Initiate across 2 of this provider's published API definitions: telesign-app-verify-api-openapi.json, telesign-silent-verify-api-openapi.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:32:26.000Z",
+    "updatedAt": "2026-10-22T01:32:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f53ff061-4690-4630-b2ae-5c6f4f6c9747"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "verify",
+          "item": [
+            {
+              "name": "auto",
+              "item": [
+                {
+                  "name": "voice",
+                  "item": [
+                    {
+                      "name": "initiate",
+                      "item": [
+                        {
+                          "name": "Send call with verification code",
+                          "id": "0a19c6b7-07c9-4d7b-8195-22e0e6be6571",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "urlencoded",
+                              "urlencoded": [
+                                {
+                                  "description": "(Required) Your end user's phone number, including the country code.",
+                                  "key": "phone_number",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The name of the company providing communication services for the device. This parameter takes the form of a string that can be up to 32 characters long. ",
+                                  "key": "carrier",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The type of connection the device uses, such as WiFi or cellular. This parameter is an integer up to 3 characters long.",
+                                  "key": "connection_type",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The international country code for the carrier for the device. This is an integer that is 3 characters long.",
+                                  "key": "device_icc",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The phone number associated with the device. This parameter is a string that can be up to 32 characters long.",
+                                  "key": "device_phone_number",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Whether the device is considered to be roaming in the current network, for Global System for Mobile Communications (GSM) purposes. It is an integer that is 1 character long.",
+                                  "key": "is_roaming",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Whether the device is capable of sending and receiving voice calls and messages. It is an integer that is 1 character long. ",
+                                  "key": "is_voice_capable",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The type of network the device is in. It is an integer that is 3 characters long. ",
+                                  "key": "network_type",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The version of the operating system the device uses.",
+                                  "key": "os_version",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The version of Android the device uses.",
+                                  "key": "platform_version",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "If you choose to specify a code (it should be five digits long), then you would add it to your initiate request as a string as shown in the example. You must have this feature enabled, speak with our Customer Support Team for assistance.",
+                                  "key": "verify_code",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The time in seconds that the handset is going to wait for the verification call to arrive, from the time it receives a successful initiate response. The call time is limited to 45 seconds.",
+                                  "key": "verification_timeout",
+                                  "value": "<integer>"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/verify/auto/voice/initiate",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "verify",
+                                "auto",
+                                "voice",
+                                "initiate"
+                              ]
+                            },
+                            "description": "Use this endpont to initiate verification of the specified phone number using the Telesign App Verify API.\n\nTo add this product to your account, contact a Telesign expert. This product is available for Full-service accounts only.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) and Digest\n* **Encoding:** Accepts only UTF-8 encoded unicode characters as inputs\n* **Accepts:** `application/x-www-form-urlencoded`\n* **Required headers:** `Content-Type - application/x-www-form-urlencoded`\n* **Rate limit:** Default rate limits by product"
+                          },
+                          "response": [
+                            {
+                              "id": "e7d9d8dc-582d-4ce3-b146-89e46bfd7679",
+                              "name": "Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) Your end user's phone number, including the country code.",
+                                      "key": "phone_number",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The name of the company providing communication services for the device. This parameter takes the form of a string that can be up to 32 characters long. ",
+                                      "key": "carrier",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The type of connection the device uses, such as WiFi or cellular. This parameter is an integer up to 3 characters long.",
+                                      "key": "connection_type",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The international country code for the carrier for the device. This is an integer that is 3 characters long.",
+                                      "key": "device_icc",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The phone number associated with the device. This parameter is a string that can be up to 32 characters long.",
+                                      "key": "device_phone_number",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether the device is considered to be roaming in the current network, for Global System for Mobile Communications (GSM) purposes. It is an integer that is 1 character long.",
+                                      "key": "is_roaming",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether the device is capable of sending and receiving voice calls and messages. It is an integer that is 1 character long. ",
+                                      "key": "is_voice_capable",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The type of network the device is in. It is an integer that is 3 characters long. ",
+                                      "key": "network_type",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The version of the operating system the device uses.",
+                                      "key": "os_version",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The version of Android the device uses.",
+                                      "key": "platform_version",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "If you choose to specify a code (it should be five digits long), then you would add it to your initiate request as a string as shown in the example. You must have this feature enabled, speak with our Customer Support Team for assistance.",
+                                      "key": "verify_code",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The time in seconds that the handset is going to wait for the verification call to arrive, from the time it receives a successful initiate response. The call time is limited to 45 seconds.",
+                                      "key": "verification_timeout",
+                                      "value": "<integer>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/verify/auto/voice/initiate",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "verify",
+                                    "auto",
+                                    "voice",
+                                    "initiate"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"resource_uri\": \"<string>\",\n  \"verify_code\": \"<string>\",\n  \"prefix\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T01:32:26.000Z",
+                              "updatedAt": "2026-10-22T01:32:26.000Z",
+                              "uid": "35240-e7d9d8dc-582d-4ce3-b146-89e46bfd7679"
+                            },
+                            {
+                              "id": "d640e3f6-ef52-48f7-93a2-97e1d4df490a",
+                              "name": "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) Your end user's phone number, including the country code.",
+                                      "key": "phone_number",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The name of the company providing communication services for the device. This parameter takes the form of a string that can be up to 32 characters long. ",
+                                      "key": "carrier",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The type of connection the device uses, such as WiFi or cellular. This parameter is an integer up to 3 characters long.",
+                                      "key": "connection_type",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The international country code for the carrier for the device. This is an integer that is 3 characters long.",
+                                      "key": "device_icc",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The phone number associated with the device. This parameter is a string that can be up to 32 characters long.",
+                                      "key": "device_phone_number",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether the device is considered to be roaming in the current network, for Global System for Mobile Communications (GSM) purposes. It is an integer that is 1 character long.",
+                                      "key": "is_roaming",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether the device is capable of sending and receiving voice calls and messages. It is an integer that is 1 character long. ",
+                                      "key": "is_voice_capable",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The type of network the device is in. It is an integer that is 3 characters long. ",
+                                      "key": "network_type",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The version of the operating system the device uses.",
+                                      "key": "os_version",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The version of Android the device uses.",
+                                      "key": "platform_version",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "If you choose to specify a code (it should be five digits long), then you would add it to your initiate request as a string as shown in the example. You must have this feature enabled, speak with our Customer Support Team for assistance.",
+                                      "key": "verify_code",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The time in seconds that the handset is going to wait for the verification call to arrive, from the time it receives a successful initiate response. The call time is limited to 45 seconds.",
+                                      "key": "verification_timeout",
+                                      "value": "<integer>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/verify/auto/voice/initiate",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "verify",
+                                    "auto",
+                                    "voice",
+                                    "initiate"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"resource_uri\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T01:32:26.000Z",
+                              "updatedAt": "2026-10-22T01:32:26.000Z",
+                              "uid": "35240-d640e3f6-ef52-48f7-93a2-97e1d4df490a"
+                            },
+                            {
+                              "id": "34ea62e3-d4db-4a8a-ac86-28ea8e957f6f",
+                              "name": "Unauthorized, the request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) Your end user's phone number, including the country code.",
+                                      "key": "phone_number",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The name of the company providing communication services for the device. This parameter takes the form of a string that can be up to 32 characters long. ",
+                                      "key": "carrier",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The type of connection the device uses, such as WiFi or cellular. This parameter is an integer up to 3 characters long.",
+                                      "key": "connection_type",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The international country code for the carrier for the device. This is an integer that is 3 characters long.",
+                                      "key": "device_icc",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The phone number associated with the device. This parameter is a string that can be up to 32 characters long.",
+                                      "key": "device_phone_number",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether the device is considered to be roaming in the current network, for Global System for Mobile Communications (GSM) purposes. It is an integer that is 1 character long.",
+                                      "key": "is_roaming",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether the device is capable of sending and receiving voice calls and messages. It is an integer that is 1 character long. ",
+                                      "key": "is_voice_capable",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The type of network the device is in. It is an integer that is 3 characters long. ",
+                                      "key": "network_type",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The version of the operating system the device uses.",
+                                      "key": "os_version",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The version of Android the device uses.",
+                                      "key": "platform_version",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "If you choose to specify a code (it should be five digits long), then you would add it to your initiate request as a string as shown in the example. You must have this feature enabled, speak with our Customer Support Team for assistance.",
+                                      "key": "verify_code",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The time in seconds that the handset is going to wait for the verification call to arrive, from the time it receives a successful initiate response. The call time is limited to 45 seconds.",
+                                      "key": "verification_timeout",
+                                      "value": "<integer>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/verify/auto/voice/initiate",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "verify",
+                                    "auto",
+                                    "voice",
+                                    "initiate"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"resource_uri\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T01:32:26.000Z",
+                              "updatedAt": "2026-10-22T01:32:26.000Z",
+                              "uid": "35240-34ea62e3-d4db-4a8a-ac86-28ea8e957f6f"
+                            },
+                            {
+                              "id": "d30d3e06-e17c-4243-bdde-3ca4f222e230",
+                              "name": "Not Found, the server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter ",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) Your end user's phone number, including the country code.",
+                                      "key": "phone_number",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The name of the company providing communication services for the device. This parameter takes the form of a string that can be up to 32 characters long. ",
+                                      "key": "carrier",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The type of connection the device uses, such as WiFi or cellular. This parameter is an integer up to 3 characters long.",
+                                      "key": "connection_type",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The international country code for the carrier for the device. This is an integer that is 3 characters long.",
+                                      "key": "device_icc",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The phone number associated with the device. This parameter is a string that can be up to 32 characters long.",
+                                      "key": "device_phone_number",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether the device is considered to be roaming in the current network, for Global System for Mobile Communications (GSM) purposes. It is an integer that is 1 character long.",
+                                      "key": "is_roaming",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether the device is capable of sending and receiving voice calls and messages. It is an integer that is 1 character long. ",
+                                      "key": "is_voice_capable",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The type of network the device is in. It is an integer that is 3 characters long. ",
+                                      "key": "network_type",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The version of the operating system the device uses.",
+                                      "key": "os_version",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The version of Android the device uses.",
+                                      "key": "platform_version",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "If you choose to specify a code (it should be five digits long), then you would add it to your initiate request as a string as shown in the example. You must have this feature enabled, speak with our Customer Support Team for assistance.",
+                                      "key": "verify_code",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The time in seconds that the handset is going to wait for the verification call to arrive, from the time it receives a successful initiate response. The call time is limited to 45 seconds.",
+                                      "key": "verification_timeout",
+                                      "value": "<integer>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/verify/auto/voice/initiate",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "verify",
+                                    "auto",
+                                    "voice",
+                                    "initiate"
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"sub_resource\": \"<string,null>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:32:26.000Z",
+                              "updatedAt": "2026-10-22T01:32:26.000Z",
+                              "uid": "35240-d30d3e06-e17c-4243-bdde-3ca4f222e230"
+                            },
+                            {
+                              "id": "4186389e-8cf1-480a-a671-855c4a16f6ad",
+                              "name": "Indicates that the request method is known by the server but has been disabled and cannot be used. \n\n| Error codes | Description |\n|-------------|-------------|\n| -40005 | Method not allowed |\n",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) Your end user's phone number, including the country code.",
+                                      "key": "phone_number",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The name of the company providing communication services for the device. This parameter takes the form of a string that can be up to 32 characters long. ",
+                                      "key": "carrier",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The type of connection the device uses, such as WiFi or cellular. This parameter is an integer up to 3 characters long.",
+                                      "key": "connection_type",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The international country code for the carrier for the device. This is an integer that is 3 characters long.",
+                                      "key": "device_icc",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The phone number associated with the device. This parameter is a string that can be up to 32 characters long.",
+                                      "key": "device_phone_number",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether the device is considered to be roaming in the current network, for Global System for Mobile Communications (GSM) purposes. It is an integer that is 1 character long.",
+                                      "key": "is_roaming",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether the device is capable of sending and receiving voice calls and messages. It is an integer that is 1 character long. ",
+                                      "key": "is_voice_capable",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The type of network the device is in. It is an integer that is 3 characters long. ",
+                                      "key": "network_type",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The version of the operating system the device uses.",
+                                      "key": "os_version",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The version of Android the device uses.",
+                                      "key": "platform_version",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "If you choose to specify a code (it should be five digits long), then you would add it to your initiate request as a string as shown in the example. You must have this feature enabled, speak with our Customer Support Team for assistance.",
+                                      "key": "verify_code",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The time in seconds that the handset is going to wait for the verification call to arrive, from the time it receives a successful initiate response. The call time is limited to 45 seconds.",
+                                      "key": "verification_timeout",
+                                      "value": "<integer>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/verify/auto/voice/initiate",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "verify",
+                                    "auto",
+                                    "voice",
+                                    "initiate"
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"sub_resource\": \"<string,null>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:32:26.000Z",
+                              "updatedAt": "2026-10-22T01:32:26.000Z",
+                              "uid": "35240-4186389e-8cf1-480a-a671-855c4a16f6ad"
+                            },
+                            {
+                              "id": "956a5347-eb37-4115-a456-d9e0413cb73f",
+                              "name": "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` par",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) Your end user's phone number, including the country code.",
+                                      "key": "phone_number",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The name of the company providing communication services for the device. This parameter takes the form of a string that can be up to 32 characters long. ",
+                                      "key": "carrier",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The type of connection the device uses, such as WiFi or cellular. This parameter is an integer up to 3 characters long.",
+                                      "key": "connection_type",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The international country code for the carrier for the device. This is an integer that is 3 characters long.",
+                                      "key": "device_icc",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The phone number associated with the device. This parameter is a string that can be up to 32 characters long.",
+                                      "key": "device_phone_number",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether the device is considered to be roaming in the current network, for Global System for Mobile Communications (GSM) purposes. It is an integer that is 1 character long.",
+                                      "key": "is_roaming",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether the device is capable of sending and receiving voice calls and messages. It is an integer that is 1 character long. ",
+                                      "key": "is_voice_capable",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The type of network the device is in. It is an integer that is 3 characters long. ",
+                                      "key": "network_type",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The version of the operating system the device uses.",
+                                      "key": "os_version",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The version of Android the device uses.",
+                                      "key": "platform_version",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "If you choose to specify a code (it should be five digits long), then you would add it to your initiate request as a string as shown in the example. You must have this feature enabled, speak with our Customer Support Team for assistance.",
+                                      "key": "verify_code",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The time in seconds that the handset is going to wait for the verification call to arrive, from the time it receives a successful initiate response. The call time is limited to 45 seconds.",
+                                      "key": "verification_timeout",
+                                      "value": "<integer>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/verify/auto/voice/initiate",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "verify",
+                                    "auto",
+                                    "voice",
+                                    "initiate"
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"sub_resource\": \"<string,null>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:32:26.000Z",
+                              "updatedAt": "2026-10-22T01:32:26.000Z",
+                              "uid": "35240-956a5347-eb37-4115-a456-d9e0413cb73f"
+                            },
+                            {
+                              "id": "e7111fff-b2fc-4e2c-9da4-67aae8640d81",
+                              "name": "Service Unavailable, system unavailable, try again. Error codes are listed in the `error` parameter in the response. \n\n| Error Code | Description |\n|-----------|-------------|\n| -90001 | System unavailable; please try again later |\n",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) Your end user's phone number, including the country code.",
+                                      "key": "phone_number",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The name of the company providing communication services for the device. This parameter takes the form of a string that can be up to 32 characters long. ",
+                                      "key": "carrier",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The type of connection the device uses, such as WiFi or cellular. This parameter is an integer up to 3 characters long.",
+                                      "key": "connection_type",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The international country code for the carrier for the device. This is an integer that is 3 characters long.",
+                                      "key": "device_icc",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The phone number associated with the device. This parameter is a string that can be up to 32 characters long.",
+                                      "key": "device_phone_number",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether the device is considered to be roaming in the current network, for Global System for Mobile Communications (GSM) purposes. It is an integer that is 1 character long.",
+                                      "key": "is_roaming",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether the device is capable of sending and receiving voice calls and messages. It is an integer that is 1 character long. ",
+                                      "key": "is_voice_capable",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The type of network the device is in. It is an integer that is 3 characters long. ",
+                                      "key": "network_type",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The version of the operating system the device uses.",
+                                      "key": "os_version",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The version of Android the device uses.",
+                                      "key": "platform_version",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "If you choose to specify a code (it should be five digits long), then you would add it to your initiate request as a string as shown in the example. You must have this feature enabled, speak with our Customer Support Team for assistance.",
+                                      "key": "verify_code",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The time in seconds that the handset is going to wait for the verification call to arrive, from the time it receives a successful initiate response. The call time is limited to 45 seconds.",
+                                      "key": "verification_timeout",
+                                      "value": "<integer>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/verify/auto/voice/initiate",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "verify",
+                                    "auto",
+                                    "voice",
+                                    "initiate"
+                                  ]
+                                }
+                              },
+                              "status": "Service Unavailable",
+                              "code": 503,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"sub_resource\": \"<string,null>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:32:26.000Z",
+                              "updatedAt": "2026-10-22T01:32:26.000Z",
+                              "uid": "35240-e7111fff-b2fc-4e2c-9da4-67aae8640d81"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:32:26.000Z",
+                          "updatedAt": "2026-10-22T01:32:26.000Z",
+                          "uid": "35240-0a19c6b7-07c9-4d7b-8195-22e0e6be6571"
+                        }
+                      ],
+                      "id": "524eeb11-1ba6-41e1-84e6-ee3313ab55a9",
+                      "createdAt": "2026-10-22T01:32:26.000Z",
+                      "updatedAt": "2026-10-22T01:32:26.000Z",
+                      "uid": "35240-524eeb11-1ba6-41e1-84e6-ee3313ab55a9"
+                    }
+                  ],
+                  "id": "dd53bd79-d8ef-42b9-96cc-2f78a33207c7",
+                  "createdAt": "2026-10-22T01:32:26.000Z",
+                  "updatedAt": "2026-10-22T01:32:26.000Z",
+                  "uid": "35240-dd53bd79-d8ef-42b9-96cc-2f78a33207c7"
+                }
+              ],
+              "id": "fe675046-6de7-4b32-b7b4-9807eeaa8a2e",
+              "createdAt": "2026-10-22T01:32:26.000Z",
+              "updatedAt": "2026-10-22T01:32:26.000Z",
+              "uid": "35240-fe675046-6de7-4b32-b7b4-9807eeaa8a2e"
+            }
+          ],
+          "id": "a3c357e5-1e59-4711-b106-a753c015e24e",
+          "createdAt": "2026-10-22T01:32:26.000Z",
+          "updatedAt": "2026-10-22T01:32:26.000Z",
+          "uid": "35240-a3c357e5-1e59-4711-b106-a753c015e24e"
+        }
+      ],
+      "id": "04180a13-9089-426e-af39-c8eab8e4073c",
+      "createdAt": "2026-10-22T01:32:26.000Z",
+      "updatedAt": "2026-10-22T01:32:26.000Z",
+      "uid": "35240-04180a13-9089-426e-af39-c8eab8e4073c"
+    },
+    {
+      "name": "silent",
+      "item": [
+        {
+          "name": "initiate",
+          "item": [
+            {
+              "name": "Create verification request",
+              "id": "a0372470-f170-4312-b223-9319da32cb07",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "Content-Type - json",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"external_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/silent/initiate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "silent",
+                    "initiate"
+                  ]
+                },
+                "description": "Use this action to initiate silent verification of a user via the Telesign Silent Verify API.\n\n**Note:** Before using the sample code on this page, contact the Telesign Customer Support Team. We will walk you through the necessary onboarding steps before you use the service. This product is for full-service accounts only. **Your request must come from a device with a mobile carrier connection.**\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/json`\n* **Responds with:** `application/json`\n* **Rate limit:** Default rate limits by product"
+              },
+              "response": [
+                {
+                  "id": "803dc1c2-d0c5-4eb8-ac63-a21910b80c1e",
+                  "name": "**Success.** Verification flow initiated.\n\nCode|Description\n--|--\n4501|Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Content-Type - json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"phone_number\": \"<string>\",\n  \"external_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/silent/initiate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "silent",
+                        "initiate"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"verification\": {\n    \"verification_url\": \"<string>\",\n    \"method\": \"<string>\",\n    \"expected_response_code\": \"<integer>\",\n    \"post_body\": \"<object,null>\",\n    \"query_string_params\": {\n      \"{param1_name}\": \"<string>\"\n    }\n  },\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:32:26.000Z",
+                  "updatedAt": "2026-10-22T01:32:26.000Z",
+                  "uid": "35240-803dc1c2-d0c5-4eb8-ac63-a21910b80c1e"
+                },
+                {
+                  "id": "a039be28-28cb-4425-bb10-265335e582d7",
+                  "name": "**Bad Request**\n\nCode | Description\n--|--\n10004|Bad request\n11000|Invalid value for parameter phone_number\n40003|No end client data found on records\n",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Content-Type - json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"phone_number\": \"<string>\",\n  \"external_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/silent/initiate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "silent",
+                        "initiate"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:32:26.000Z",
+                  "updatedAt": "2026-10-22T01:32:26.000Z",
+                  "uid": "35240-a039be28-28cb-4425-bb10-265335e582d7"
+                },
+                {
+                  "id": "1d7a23f5-8373-4990-a559-2065f7240060",
+                  "name": "**Unauthorized**\n\nCode | Description\n--|--\n40002|Not authorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Content-Type - json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"phone_number\": \"<string>\",\n  \"external_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/silent/initiate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "silent",
+                        "initiate"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:32:26.000Z",
+                  "updatedAt": "2026-10-22T01:32:26.000Z",
+                  "uid": "35240-1d7a23f5-8373-4990-a559-2065f7240060"
+                },
+                {
+                  "id": "d25a8cd7-26bb-40f5-a135-c914e9108ac1",
+                  "name": "**Request Timeout**\n\nCode | Description\n--|--\n40001 | Request timeout",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Content-Type - json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"phone_number\": \"<string>\",\n  \"external_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/silent/initiate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "silent",
+                        "initiate"
+                      ]
+                    }
+                  },
+                  "status": "Request Timeout",
+                  "code": 408,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:32:26.000Z",
+                  "updatedAt": "2026-10-22T01:32:26.000Z",
+                  "uid": "35240-d25a8cd7-26bb-40f5-a135-c914e9108ac1"
+                },
+                {
+                  "id": "34df9371-693b-440d-8733-8ddac5fd7772",
+                  "name": "**Too Many Requests**\n\nCode | Description\n--|--\n10019|Rate limit exceeded\n",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Content-Type - json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"phone_number\": \"<string>\",\n  \"external_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/silent/initiate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "silent",
+                        "initiate"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:32:26.000Z",
+                  "updatedAt": "2026-10-22T01:32:26.000Z",
+                  "uid": "35240-34df9371-693b-440d-8733-8ddac5fd7772"
+                },
+                {
+                  "id": "a3e1121f-14d5-4122-9259-dc3e36416d38",
+                  "name": "**Internal Server Error**\n\nCode | Description\n--|--\n10039\t|Internal Server Error\n45010   |Provider not found to route the request. This is a permanent error probably due to configuration issues. \n",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Content-Type - json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"phone_number\": \"<string>\",\n  \"external_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/silent/initiate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "silent",
+                        "initiate"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-10-22T01:32:26.000Z",
+                  "updatedAt": "2026-10-22T01:32:26.000Z",
+                  "uid": "35240-a3e1121f-14d5-4122-9259-dc3e36416d38"
+                },
+                {
+                  "id": "064d87fe-914c-4cee-b7f8-0ac87835df20",
+                  "name": "**Service Unavailable**\n\nCode | Description\n--|--\n10000 | System unavailable, please try again later\n45005 |Error on gateway - temporary error\n45006 |Error on gateway - permanent error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Content-Type - json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"phone_number\": \"<string>\",\n  \"external_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/silent/initiate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "silent",
+                        "initiate"
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:32:26.000Z",
+                  "updatedAt": "2026-10-22T01:32:26.000Z",
+                  "uid": "35240-064d87fe-914c-4cee-b7f8-0ac87835df20"
+                }
+              ],
+              "createdAt": "2026-10-22T01:32:26.000Z",
+              "updatedAt": "2026-10-22T01:32:26.000Z",
+              "uid": "35240-a0372470-f170-4312-b223-9319da32cb07"
+            }
+          ],
+          "id": "f121d691-ef48-4711-8775-030b8c0b04fb",
+          "createdAt": "2026-10-22T01:32:26.000Z",
+          "updatedAt": "2026-10-22T01:32:26.000Z",
+          "uid": "35240-f121d691-ef48-4711-8775-030b8c0b04fb"
+        }
+      ],
+      "id": "869effe9-1241-4d03-8098-a974978f0cff",
+      "createdAt": "2026-10-22T01:32:26.000Z",
+      "updatedAt": "2026-10-22T01:32:26.000Z",
+      "uid": "35240-869effe9-1241-4d03-8098-a974978f0cff"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rest-ww.telesign.com"
+    }
+  ]
+}

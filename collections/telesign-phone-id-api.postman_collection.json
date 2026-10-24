@@ -1,0 +1,1711 @@
+{
+  "info": {
+    "_postman_id": "708b6224-d86d-4ead-a29e-52a10004e415",
+    "name": "Detect Phone ID API",
+    "description": "This spec contains details about the Telesign Detect API.\n\nContact Support:\n Name: TeleSign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:33:15.000Z",
+    "updatedAt": "2026-10-22T01:33:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-708b6224-d86d-4ead-a29e-52a10004e415"
+  },
+  "item": [
+    {
+      "name": "phoneid",
+      "item": [
+        {
+          "name": "{complete_phone_number}",
+          "item": [
+            {
+              "name": "Request info about a phone number in path",
+              "id": "cb63af8f-ae57-47ac-a861-7077c5f4b50e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {},\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/phoneid/:complete_phone_number",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "phoneid",
+                    ":complete_phone_number"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7c9fa778-3548-48c8-af2d-06ef1f2a9924",
+                      "key": "complete_phone_number",
+                      "value": "<string>",
+                      "description": "(Required) The phone number you want to collect information about. Provide the entire phone number, including the country code, with no spaces or special characters."
+                    }
+                  ]
+                },
+                "description": "Enter a phone number with country code to receive detailed information about carrier, location, and other details.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/json`\n* **Responds with:** `application/json`\n* **Required headers:** `Content-Type - application/json`\n* **Rate limit:** Default rate limits by product"
+              },
+              "response": [
+                {
+                  "id": "96dab8dd-2ac9-442c-bbc5-e77449528cfc",
+                  "name": "Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n           \n| Status Code | Associated Text S",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {},\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/phoneid/:complete_phone_number",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "phoneid",
+                        ":complete_phone_number"
+                      ],
+                      "variable": [
+                        {
+                          "key": "complete_phone_number"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"phone_type\": {\n    \"code\": \"<string>\",\n    \"override_reason\": \"<string>\",\n    \"description\": \"<string>\",\n    \"override_reason_id\": \"<integer>\"\n  },\n  \"blocklisting\": {\n    \"block_code\": \"<integer>\",\n    \"block_description\": \"<string>\",\n    \"blocked\": \"<boolean>\"\n  },\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"numbering\": {\n    \"original\": {\n      \"phone_number\": \"<string>\",\n      \"complete_phone_number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"cleansing\": {\n      \"call\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      },\n      \"sms\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      }\n    }\n  },\n  \"location\": {\n    \"city\": \"<string>\",\n    \"county\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": {\n      \"iso2\": \"<string>\",\n      \"iso3\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"time_zone\": {\n      \"name\": \"<string>\",\n      \"utc_offset_max\": \"<string>\",\n      \"utc_offset_min\": \"<string>\"\n    },\n    \"coordinates\": {\n      \"latitude\": \"<float>\",\n      \"longitude\": \"<float>\"\n    },\n    \"metro_code\": \"<string>\"\n  },\n  \"age_verify\": {\n    \"age_verified\": true,\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"active_call_status\": {\n    \"is_call_active\": \"<boolean>\",\n    \"call_duration\": \"<integer>\",\n    \"call_direction\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"breached_number_check\": {\n    \"phone_number_breached\": \"<boolean>\",\n    \"breach_date\": \"<string>\",\n    \"breached_data\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"call_forward_detection\": {\n    \"call_forward_enabled\": \"<string>\",\n    \"call_forward_type\": \"unconditional\",\n    \"call_forward_condition\": \"unanswered\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"carrier\": {\n    \"carrier_id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"mcc\": \"<string>\",\n    \"mnc\": \"<string>\"\n  },\n  \"contact\": {\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"address4\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"date_of_birth\": \"<string>\",\n    \"email_address\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"id\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"state_province\": \"<string>\",\n    \"zip_postal_code\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"contact_match\": {\n    \"address_score\": \"<integer>\",\n    \"first_name_score\": \"<integer>\",\n    \"last_name_score\": \"<integer>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"contact_plus\": {\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"address4\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"date_of_birth\": \"<string>\",\n    \"email_address\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"id\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"state_province\": \"<string>\",\n    \"zip_postal_code\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"number_deactivation\": {\n    \"carrier_name\": \"<string>\",\n    \"last_deactivated\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    \"tracking_since\": \"<string>\",\n    \"recycled_since_last_verification\": \"not_recycled\"\n  },\n  \"subscriber_status\": {\n    \"account_activation_date\": \"<string>\",\n    \"account_type\": \"<string>\",\n    \"account_tenure_max\": \"<integer>\",\n    \"account_tenure_min\": \"<integer>\",\n    \"primary_account_holder\": \"<boolean>\",\n    \"account_status\": \"<string>\",\n    \"contract_type\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"porting_history\": {\n    \"carrier_current\": \"<string>\",\n    \"carrier_previous\": \"<string>\",\n    \"mcc_carrier_current\": \"<string>\",\n    \"mcc_carrier_previous\": \"<string>\",\n    \"mnc_carrier_current\": \"<string>\",\n    \"mnc_carrier_previous\": \"<string>\",\n    \"phone_type_current\": \"<string>\",\n    \"phone_type_previous\": \"<string>\",\n    \"port_date\": \"<string>\",\n    \"number_of_portings\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"porting_status\": {\n    \"mcc_current\": \"<string>\",\n    \"mnc_current\": \"<string>\",\n    \"ported\": \"<boolean>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"sim_swap\": {\n    \"swap_date\": \"<string>\",\n    \"swap_time\": \"<string>\",\n    \"risk_indicator\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"external_id\": \"<string,null>\"\n}",
+                  "createdAt": "2026-10-22T01:33:15.000Z",
+                  "updatedAt": "2026-10-22T01:33:15.000Z",
+                  "uid": "35240-96dab8dd-2ac9-442c-bbc5-e77449528cfc"
+                },
+                {
+                  "id": "e5bd3bfb-8198-4980-a7c2-0ab7cfa16f3b",
+                  "name": "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n  | Status Code | Associated ",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {},\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/phoneid/:complete_phone_number",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "phoneid",
+                        ":complete_phone_number"
+                      ],
+                      "variable": [
+                        {
+                          "key": "complete_phone_number"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:33:15.000Z",
+                  "updatedAt": "2026-10-22T01:33:15.000Z",
+                  "uid": "35240-e5bd3bfb-8198-4980-a7c2-0ab7cfa16f3b"
+                },
+                {
+                  "id": "cc950873-1931-485e-9e6a-6971a88a698d",
+                  "name": "Unauthorized, the request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n | Status Code | Associated Text String | \n |-------------|--",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {},\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/phoneid/:complete_phone_number",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "phoneid",
+                        ":complete_phone_number"
+                      ],
+                      "variable": [
+                        {
+                          "key": "complete_phone_number"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:33:15.000Z",
+                  "updatedAt": "2026-10-22T01:33:15.000Z",
+                  "uid": "35240-cc950873-1931-485e-9e6a-6971a88a698d"
+                },
+                {
+                  "id": "c9b04d27-581e-444f-afb6-b48336922e27",
+                  "name": "Payment Required. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | \n|-------------|------------------------|\n| 10030       | I",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {},\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/phoneid/:complete_phone_number",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "phoneid",
+                        ":complete_phone_number"
+                      ],
+                      "variable": [
+                        {
+                          "key": "complete_phone_number"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Payment Required",
+                  "code": 402,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:33:15.000Z",
+                  "updatedAt": "2026-10-22T01:33:15.000Z",
+                  "uid": "35240-c9b04d27-581e-444f-afb6-b48336922e27"
+                },
+                {
+                  "id": "7ebe52dc-6ad6-46f0-adff-5152a888c784",
+                  "name": "Not Found, the server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | \n|----",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {},\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/phoneid/:complete_phone_number",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "phoneid",
+                        ":complete_phone_number"
+                      ],
+                      "variable": [
+                        {
+                          "key": "complete_phone_number"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:33:15.000Z",
+                  "updatedAt": "2026-10-22T01:33:15.000Z",
+                  "uid": "35240-7ebe52dc-6ad6-46f0-adff-5152a888c784"
+                },
+                {
+                  "id": "b7661bc2-73fb-438f-98ed-677dc012dd81",
+                  "name": "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String |",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {},\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/phoneid/:complete_phone_number",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "phoneid",
+                        ":complete_phone_number"
+                      ],
+                      "variable": [
+                        {
+                          "key": "complete_phone_number"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:33:15.000Z",
+                  "updatedAt": "2026-10-22T01:33:15.000Z",
+                  "uid": "35240-b7661bc2-73fb-438f-98ed-677dc012dd81"
+                },
+                {
+                  "id": "afce3612-ee78-4ceb-91c0-f4a82ed5281f",
+                  "name": "Invalid Transaction, transaction not attempted.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {},\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/phoneid/:complete_phone_number",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "phoneid",
+                        ":complete_phone_number"
+                      ],
+                      "variable": [
+                        {
+                          "key": "complete_phone_number"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:33:15.000Z",
+                  "updatedAt": "2026-10-22T01:33:15.000Z",
+                  "uid": "35240-afce3612-ee78-4ceb-91c0-f4a82ed5281f"
+                },
+                {
+                  "id": "074a7dca-14ff-4d9b-bec0-43d588b1c46b",
+                  "name": "Service Unavailable, system unavailable, try again.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {},\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/phoneid/:complete_phone_number",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "phoneid",
+                        ":complete_phone_number"
+                      ],
+                      "variable": [
+                        {
+                          "key": "complete_phone_number"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:33:15.000Z",
+                  "updatedAt": "2026-10-22T01:33:15.000Z",
+                  "uid": "35240-074a7dca-14ff-4d9b-bec0-43d588b1c46b"
+                }
+              ],
+              "createdAt": "2026-10-22T01:33:15.000Z",
+              "updatedAt": "2026-10-22T01:33:15.000Z",
+              "uid": "35240-cb63af8f-ae57-47ac-a861-7077c5f4b50e"
+            }
+          ],
+          "id": "5af86ad9-8a0c-45fc-8f8c-edf0eef18220",
+          "createdAt": "2026-10-22T01:33:15.000Z",
+          "updatedAt": "2026-10-22T01:33:15.000Z",
+          "uid": "35240-5af86ad9-8a0c-45fc-8f8c-edf0eef18220"
+        },
+        {
+          "name": "live",
+          "item": [
+            {
+              "name": "{complete_phone_number}",
+              "item": [
+                {
+                  "name": "Get Live Status info",
+                  "id": "ff49d556-2c3b-4678-91e1-3b4152c64346",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/phoneid/live/:complete_phone_number?ucid=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "phoneid",
+                        "live",
+                        ":complete_phone_number"
+                      ],
+                      "query": [
+                        {
+                          "description": "A string that specifies one of the use case codes. \n\n| Use Case | Description |\n|----------|-------------|\n| ATCK | For use in a 2FA situation like updating an account, or trying to log in. |\n| BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. |\n| BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. |\n| CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. |\n| CLDR | Calendar Event | \n| LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. |\n| OTHR | Other - if you have a situation not addressed by the other tags. |\n| PWRT | For use in a situation where a password reset is required. |\n| RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. |\n| RXPF | For use in situations where you are trying to prevent prescription fraud. |\n| SHIP | For use in situations where you are sending a shipping notification. | \n| THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. |\n| TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | \n| UNKN | This is the same as OTHR. | \n",
+                          "key": "ucid",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "28491480-2874-481d-9a2e-f51de7e33f82",
+                          "key": "complete_phone_number",
+                          "value": "<string>",
+                          "description": "(Required) The phone number you want to collect information about. Provide the entire phone number, including the country code, with no spaces or special characters."
+                        }
+                      ]
+                    },
+                    "description": "Use this action to get insights about a phone number such as whether it is active or disconnected, whether its associated device is reachable or unreachable, and its associated device's roaming status.\n\nTo add this product to your account, contact a Telesign expert. This product is available for full-service accounts only.\n\n## General requirements\n* **Protocols:** `https`\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/x-www-form-urlencoded`\n* **Responds with:** `application/json`\n* **Required headers:** `Content-Type - application/x-www-form-urlencoded`\n* **Rate limit:** Default rate limits by product\n\n## Frequency of same number requests\nSending too many request to the API for the same phone number within a short period of time may result in an error, even if data is available for that number. If you receive a -60001 error in the response after making consecutive requests for the same phone number, consider limiting your request rate."
+                  },
+                  "response": [
+                    {
+                      "id": "a15f9721-45d0-4a91-9273-2a76811d8f85",
+                      "name": "Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n           \n| Status Code | Associated Text S",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/live/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "live",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "A string that specifies one of the use case codes. \n\n| Use Case | Description |\n|----------|-------------|\n| ATCK | For use in a 2FA situation like updating an account, or trying to log in. |\n| BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. |\n| BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. |\n| CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. |\n| CLDR | Calendar Event | \n| LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. |\n| OTHR | Other - if you have a situation not addressed by the other tags. |\n| PWRT | For use in a situation where a password reset is required. |\n| RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. |\n| RXPF | For use in situations where you are trying to prevent prescription fraud. |\n| SHIP | For use in situations where you are sending a shipping notification. | \n| THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. |\n| TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | \n| UNKN | This is the same as OTHR. | \n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"phone_type\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"numbering\": {\n    \"original\": {\n      \"phone_number\": \"<string>\",\n      \"complete_phone_number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"cleansing\": {\n      \"call\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      },\n      \"sms\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      }\n    }\n  },\n  \"location\": {\n    \"city\": \"<string>\",\n    \"county\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": {\n      \"iso2\": \"<string>\",\n      \"iso3\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"time_zone\": {\n      \"name\": \"<string>\",\n      \"utc_offset_max\": \"<string>\",\n      \"utc_offset_min\": \"<string>\"\n    },\n    \"coordinates\": {\n      \"latitude\": \"<string>\",\n      \"longitude\": \"<string>\"\n    },\n    \"metro_code\": \"<string>\"\n  },\n  \"carrier\": {\n    \"name\": \"<string>\"\n  },\n  \"live\": {\n    \"subscriber_status\": \"<string>\",\n    \"device_status\": \"<string>\",\n    \"roaming\": \"<string>\",\n    \"roaming_country\": \"<string,null>\",\n    \"roaming_country_iso2\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:15.000Z",
+                      "updatedAt": "2026-10-22T01:33:15.000Z",
+                      "uid": "35240-a15f9721-45d0-4a91-9273-2a76811d8f85"
+                    },
+                    {
+                      "id": "f627a120-acbc-4b97-af9e-f5a32ad30da6",
+                      "name": "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/live/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "live",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "A string that specifies one of the use case codes. \n\n| Use Case | Description |\n|----------|-------------|\n| ATCK | For use in a 2FA situation like updating an account, or trying to log in. |\n| BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. |\n| BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. |\n| CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. |\n| CLDR | Calendar Event | \n| LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. |\n| OTHR | Other - if you have a situation not addressed by the other tags. |\n| PWRT | For use in a situation where a password reset is required. |\n| RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. |\n| RXPF | For use in situations where you are trying to prevent prescription fraud. |\n| SHIP | For use in situations where you are sending a shipping notification. | \n| THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. |\n| TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | \n| UNKN | This is the same as OTHR. | \n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:33:15.000Z",
+                      "updatedAt": "2026-10-22T01:33:15.000Z",
+                      "uid": "35240-f627a120-acbc-4b97-af9e-f5a32ad30da6"
+                    },
+                    {
+                      "id": "55def77c-eaff-4cd4-9a33-a70b23b5cac1",
+                      "name": "Unauthorized, the request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/live/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "live",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "A string that specifies one of the use case codes. \n\n| Use Case | Description |\n|----------|-------------|\n| ATCK | For use in a 2FA situation like updating an account, or trying to log in. |\n| BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. |\n| BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. |\n| CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. |\n| CLDR | Calendar Event | \n| LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. |\n| OTHR | Other - if you have a situation not addressed by the other tags. |\n| PWRT | For use in a situation where a password reset is required. |\n| RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. |\n| RXPF | For use in situations where you are trying to prevent prescription fraud. |\n| SHIP | For use in situations where you are sending a shipping notification. | \n| THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. |\n| TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | \n| UNKN | This is the same as OTHR. | \n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:33:15.000Z",
+                      "updatedAt": "2026-10-22T01:33:15.000Z",
+                      "uid": "35240-55def77c-eaff-4cd4-9a33-a70b23b5cac1"
+                    },
+                    {
+                      "id": "863e0e80-c459-471e-b878-99cbd83d8095",
+                      "name": "Payment Required. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/live/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "live",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "A string that specifies one of the use case codes. \n\n| Use Case | Description |\n|----------|-------------|\n| ATCK | For use in a 2FA situation like updating an account, or trying to log in. |\n| BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. |\n| BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. |\n| CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. |\n| CLDR | Calendar Event | \n| LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. |\n| OTHR | Other - if you have a situation not addressed by the other tags. |\n| PWRT | For use in a situation where a password reset is required. |\n| RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. |\n| RXPF | For use in situations where you are trying to prevent prescription fraud. |\n| SHIP | For use in situations where you are sending a shipping notification. | \n| THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. |\n| TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | \n| UNKN | This is the same as OTHR. | \n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Payment Required",
+                      "code": 402,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:33:15.000Z",
+                      "updatedAt": "2026-10-22T01:33:15.000Z",
+                      "uid": "35240-863e0e80-c459-471e-b878-99cbd83d8095"
+                    },
+                    {
+                      "id": "96c5caaa-b1bd-479a-a889-e9f67ed08697",
+                      "name": "Not Found, the server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter ",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/live/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "live",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "A string that specifies one of the use case codes. \n\n| Use Case | Description |\n|----------|-------------|\n| ATCK | For use in a 2FA situation like updating an account, or trying to log in. |\n| BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. |\n| BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. |\n| CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. |\n| CLDR | Calendar Event | \n| LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. |\n| OTHR | Other - if you have a situation not addressed by the other tags. |\n| PWRT | For use in a situation where a password reset is required. |\n| RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. |\n| RXPF | For use in situations where you are trying to prevent prescription fraud. |\n| SHIP | For use in situations where you are sending a shipping notification. | \n| THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. |\n| TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | \n| UNKN | This is the same as OTHR. | \n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:33:15.000Z",
+                      "updatedAt": "2026-10-22T01:33:15.000Z",
+                      "uid": "35240-96c5caaa-b1bd-479a-a889-e9f67ed08697"
+                    },
+                    {
+                      "id": "05f5b8e4-ff19-423b-81f4-cd929f59aaf4",
+                      "name": "| Error Codes | Description |\n|-------------|-------------|\n| -40005 | Method not allowed |",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/live/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "live",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "A string that specifies one of the use case codes. \n\n| Use Case | Description |\n|----------|-------------|\n| ATCK | For use in a 2FA situation like updating an account, or trying to log in. |\n| BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. |\n| BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. |\n| CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. |\n| CLDR | Calendar Event | \n| LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. |\n| OTHR | Other - if you have a situation not addressed by the other tags. |\n| PWRT | For use in a situation where a password reset is required. |\n| RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. |\n| RXPF | For use in situations where you are trying to prevent prescription fraud. |\n| SHIP | For use in situations where you are sending a shipping notification. | \n| THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. |\n| TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | \n| UNKN | This is the same as OTHR. | \n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:33:15.000Z",
+                      "updatedAt": "2026-10-22T01:33:15.000Z",
+                      "uid": "35240-05f5b8e4-ff19-423b-81f4-cd929f59aaf4"
+                    },
+                    {
+                      "id": "47698600-a695-4292-a7f4-377bd79946d5",
+                      "name": "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` par",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/live/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "live",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "A string that specifies one of the use case codes. \n\n| Use Case | Description |\n|----------|-------------|\n| ATCK | For use in a 2FA situation like updating an account, or trying to log in. |\n| BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. |\n| BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. |\n| CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. |\n| CLDR | Calendar Event | \n| LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. |\n| OTHR | Other - if you have a situation not addressed by the other tags. |\n| PWRT | For use in a situation where a password reset is required. |\n| RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. |\n| RXPF | For use in situations where you are trying to prevent prescription fraud. |\n| SHIP | For use in situations where you are sending a shipping notification. | \n| THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. |\n| TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | \n| UNKN | This is the same as OTHR. | \n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:33:15.000Z",
+                      "updatedAt": "2026-10-22T01:33:15.000Z",
+                      "uid": "35240-47698600-a695-4292-a7f4-377bd79946d5"
+                    },
+                    {
+                      "id": "298e0ae5-09e6-42a8-9819-eaaa8b1ccd83",
+                      "name": "Invalid Transaction, transaction not attempted. Error codes are listed in the `error` parameter in the response. ",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/live/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "live",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "A string that specifies one of the use case codes. \n\n| Use Case | Description |\n|----------|-------------|\n| ATCK | For use in a 2FA situation like updating an account, or trying to log in. |\n| BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. |\n| BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. |\n| CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. |\n| CLDR | Calendar Event | \n| LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. |\n| OTHR | Other - if you have a situation not addressed by the other tags. |\n| PWRT | For use in a situation where a password reset is required. |\n| RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. |\n| RXPF | For use in situations where you are trying to prevent prescription fraud. |\n| SHIP | For use in situations where you are sending a shipping notification. | \n| THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. |\n| TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | \n| UNKN | This is the same as OTHR. | \n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:33:15.000Z",
+                      "updatedAt": "2026-10-22T01:33:15.000Z",
+                      "uid": "35240-298e0ae5-09e6-42a8-9819-eaaa8b1ccd83"
+                    },
+                    {
+                      "id": "2f36cc3d-1a68-4f67-9e2d-c735f3225de3",
+                      "name": "Service unavailable, try again. Error codes are listed in the `error` parameter in the response. \n\n| Error Code | Description |\n|------------|-------------|\n| -90001 | System unavailable; please try again later |",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/live/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "live",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "A string that specifies one of the use case codes. \n\n| Use Case | Description |\n|----------|-------------|\n| ATCK | For use in a 2FA situation like updating an account, or trying to log in. |\n| BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. |\n| BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. |\n| CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. |\n| CLDR | Calendar Event | \n| LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. |\n| OTHR | Other - if you have a situation not addressed by the other tags. |\n| PWRT | For use in a situation where a password reset is required. |\n| RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. |\n| RXPF | For use in situations where you are trying to prevent prescription fraud. |\n| SHIP | For use in situations where you are sending a shipping notification. | \n| THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. |\n| TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | \n| UNKN | This is the same as OTHR. | \n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:33:15.000Z",
+                      "updatedAt": "2026-10-22T01:33:15.000Z",
+                      "uid": "35240-2f36cc3d-1a68-4f67-9e2d-c735f3225de3"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:33:15.000Z",
+                  "updatedAt": "2026-10-22T01:33:15.000Z",
+                  "uid": "35240-ff49d556-2c3b-4678-91e1-3b4152c64346"
+                }
+              ],
+              "id": "ff35e5e4-4c27-4b3b-9c56-13d10b0a32bc",
+              "createdAt": "2026-10-22T01:33:15.000Z",
+              "updatedAt": "2026-10-22T01:33:15.000Z",
+              "uid": "35240-ff35e5e4-4c27-4b3b-9c56-13d10b0a32bc"
+            }
+          ],
+          "id": "c177507f-69cf-4dd4-8a8e-fada1bfec3c8",
+          "createdAt": "2026-10-22T01:33:15.000Z",
+          "updatedAt": "2026-10-22T01:33:15.000Z",
+          "uid": "35240-c177507f-69cf-4dd4-8a8e-fada1bfec3c8"
+        },
+        {
+          "name": "Request info about a phone number",
+          "id": "45190989-8aa1-4c3d-8e29-fbeda6f55b80",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone_number\": \"<string>\",\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {\n      \"email\": \"<string>\"\n    },\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"input_used\": \"email\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"not_recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/phoneid",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "phoneid"
+              ]
+            },
+            "description": "Enter a phone number with country code to receive detailed information about carrier, location, and other details.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/json`\n* **Responds with:** `application/json`\n* **Required headers:** `Content-Type - application/json`\n* **Rate limit:** Default rate limits by product"
+          },
+          "response": [
+            {
+              "id": "213f0c3e-cce1-4bd8-bf86-9d9cb499c71f",
+              "name": "Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n           \n| Status Code | Associated Text S",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {\n      \"email\": \"<string>\"\n    },\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"input_used\": \"email\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"not_recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/phoneid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "phoneid"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string>\",\n  \"phone_type\": {\n    \"code\": \"<string>\",\n    \"override_reason\": \"<string>\",\n    \"description\": \"<string>\",\n    \"override_reason_id\": \"<integer>\"\n  },\n  \"blocklisting\": {\n    \"block_code\": \"<integer>\",\n    \"block_description\": \"<string>\",\n    \"blocked\": \"<boolean>\"\n  },\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"numbering\": {\n    \"original\": {\n      \"phone_number\": \"<string>\",\n      \"complete_phone_number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"cleansing\": {\n      \"call\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      },\n      \"sms\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      }\n    }\n  },\n  \"location\": {\n    \"city\": \"<string>\",\n    \"county\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": {\n      \"iso2\": \"<string>\",\n      \"iso3\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"time_zone\": {\n      \"name\": \"<string>\",\n      \"utc_offset_max\": \"<string>\",\n      \"utc_offset_min\": \"<string>\"\n    },\n    \"coordinates\": {\n      \"latitude\": \"<float>\",\n      \"longitude\": \"<float>\"\n    },\n    \"metro_code\": \"<string>\"\n  },\n  \"age_verify\": {\n    \"age_verified\": true,\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"active_call_status\": {\n    \"is_call_active\": \"<boolean>\",\n    \"call_duration\": \"<integer>\",\n    \"call_direction\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"breached_number_check\": {\n    \"phone_number_breached\": \"<boolean>\",\n    \"breach_date\": \"<string>\",\n    \"breached_data\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"call_forward_detection\": {\n    \"call_forward_enabled\": \"<string>\",\n    \"call_forward_type\": \"unconditional\",\n    \"call_forward_condition\": \"unanswered\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"carrier\": {\n    \"carrier_id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"mcc\": \"<string>\",\n    \"mnc\": \"<string>\"\n  },\n  \"contact\": {\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"address4\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"date_of_birth\": \"<string>\",\n    \"email_address\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"id\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"state_province\": \"<string>\",\n    \"zip_postal_code\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"contact_match\": {\n    \"address_score\": \"<integer>\",\n    \"first_name_score\": \"<integer>\",\n    \"last_name_score\": \"<integer>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"contact_plus\": {\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"address4\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"date_of_birth\": \"<string>\",\n    \"email_address\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"id\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"state_province\": \"<string>\",\n    \"zip_postal_code\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"number_deactivation\": {\n    \"carrier_name\": \"<string>\",\n    \"last_deactivated\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    \"tracking_since\": \"<string>\",\n    \"recycled_since_last_verification\": \"not_recycled\"\n  },\n  \"subscriber_status\": {\n    \"account_activation_date\": \"<string>\",\n    \"account_type\": \"<string>\",\n    \"account_tenure_max\": \"<integer>\",\n    \"account_tenure_min\": \"<integer>\",\n    \"primary_account_holder\": \"<boolean>\",\n    \"account_status\": \"<string>\",\n    \"contract_type\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"porting_history\": {\n    \"carrier_current\": \"<string>\",\n    \"carrier_previous\": \"<string>\",\n    \"mcc_carrier_current\": \"<string>\",\n    \"mcc_carrier_previous\": \"<string>\",\n    \"mnc_carrier_current\": \"<string>\",\n    \"mnc_carrier_previous\": \"<string>\",\n    \"phone_type_current\": \"<string>\",\n    \"phone_type_previous\": \"<string>\",\n    \"port_date\": \"<string>\",\n    \"number_of_portings\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"porting_status\": {\n    \"mcc_current\": \"<string>\",\n    \"mnc_current\": \"<string>\",\n    \"ported\": \"<boolean>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"sim_swap\": {\n    \"swap_date\": \"<string>\",\n    \"swap_time\": \"<string>\",\n    \"risk_indicator\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"external_id\": \"<string,null>\"\n}",
+              "createdAt": "2026-10-22T01:33:15.000Z",
+              "updatedAt": "2026-10-22T01:33:15.000Z",
+              "uid": "35240-213f0c3e-cce1-4bd8-bf86-9d9cb499c71f"
+            },
+            {
+              "id": "1bf7f770-7cfb-46a1-ae93-90bafec5986a",
+              "name": "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n  | Status Code | Associated ",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {\n      \"email\": \"<string>\"\n    },\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"input_used\": \"email\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"not_recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/phoneid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "phoneid"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:33:15.000Z",
+              "updatedAt": "2026-10-22T01:33:15.000Z",
+              "uid": "35240-1bf7f770-7cfb-46a1-ae93-90bafec5986a"
+            },
+            {
+              "id": "00c8614e-4972-46cf-ba6d-2248af1ecf37",
+              "name": "Unauthorized, the request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n | Status Code | Associated Text String | \n |-------------|--",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {\n      \"email\": \"<string>\"\n    },\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"input_used\": \"email\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"not_recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/phoneid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "phoneid"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:33:15.000Z",
+              "updatedAt": "2026-10-22T01:33:15.000Z",
+              "uid": "35240-00c8614e-4972-46cf-ba6d-2248af1ecf37"
+            },
+            {
+              "id": "02344701-be8f-4286-a5a0-8f1cfa02ff34",
+              "name": "Payment Required. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | \n|-------------|------------------------|\n| 10030       | I",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {\n      \"email\": \"<string>\"\n    },\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"input_used\": \"email\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"not_recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/phoneid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "phoneid"
+                  ]
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:33:15.000Z",
+              "updatedAt": "2026-10-22T01:33:15.000Z",
+              "uid": "35240-02344701-be8f-4286-a5a0-8f1cfa02ff34"
+            },
+            {
+              "id": "dce1b3ce-a726-453d-81bc-3a43363fb8fc",
+              "name": "Not Found, the server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | \n|----",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {\n      \"email\": \"<string>\"\n    },\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"input_used\": \"email\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"not_recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/phoneid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "phoneid"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:33:15.000Z",
+              "updatedAt": "2026-10-22T01:33:15.000Z",
+              "uid": "35240-dce1b3ce-a726-453d-81bc-3a43363fb8fc"
+            },
+            {
+              "id": "64fbba24-7dd7-4d12-adac-859cbf30eed6",
+              "name": "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String |",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {\n      \"email\": \"<string>\"\n    },\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"input_used\": \"email\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"not_recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/phoneid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "phoneid"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:33:15.000Z",
+              "updatedAt": "2026-10-22T01:33:15.000Z",
+              "uid": "35240-64fbba24-7dd7-4d12-adac-859cbf30eed6"
+            },
+            {
+              "id": "b7785d5b-d8e4-413d-b941-7cf858f018ed",
+              "name": "Invalid Transaction, transaction not attempted.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {\n      \"email\": \"<string>\"\n    },\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"input_used\": \"email\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"not_recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/phoneid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "phoneid"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:33:15.000Z",
+              "updatedAt": "2026-10-22T01:33:15.000Z",
+              "uid": "35240-b7785d5b-d8e4-413d-b941-7cf858f018ed"
+            },
+            {
+              "id": "d58d28d3-e21b-43e1-b82b-8f31d8a0538f",
+              "name": "Service Unavailable, system unavailable, try again.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"account_lifecycle_event\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"addons\": {\n    \"age_verify\": {\n      \"age_threshold\": \"<integer>\"\n    },\n    \"active_call_status\": {},\n    \"breached_number_check\": {},\n    \"call_forward_detection\": {},\n    \"contact\": {\n      \"email\": \"<string>\"\n    },\n    \"contact_match\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"input_used\": \"email\"\n    },\n    \"contact_plus\": {\n      \"billing_postal_code\": \"<string>\"\n    },\n    \"number_deactivation\": {\n      \"carrier_name\": \"<string>\",\n      \"last_deactivated\": \"<string>\",\n      \"tracking_since\": \"<string>\",\n      \"status\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\"\n      },\n      \"recycled_since_last_verification\": \"not_recycled\"\n    },\n    \"subscriber_status\": {},\n    \"porting_history\": {\n      \"past_x_days\": \"<integer>\"\n    },\n    \"porting_status\": {},\n    \"sim_swap\": {}\n  },\n  \"consent\": {\n    \"method\": 1,\n    \"timestamp\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/phoneid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "phoneid"
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:33:15.000Z",
+              "updatedAt": "2026-10-22T01:33:15.000Z",
+              "uid": "35240-d58d28d3-e21b-43e1-b82b-8f31d8a0538f"
+            }
+          ],
+          "createdAt": "2026-10-22T01:33:15.000Z",
+          "updatedAt": "2026-10-22T01:33:15.000Z",
+          "uid": "35240-45190989-8aa1-4c3d-8e29-fbeda6f55b80"
+        }
+      ],
+      "id": "97eb900d-12c2-4b49-ba9e-2b0ce8f984d0",
+      "createdAt": "2026-10-22T01:33:15.000Z",
+      "updatedAt": "2026-10-22T01:33:15.000Z",
+      "uid": "35240-97eb900d-12c2-4b49-ba9e-2b0ce8f984d0"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rest-ww.telesign.com/v1"
+    }
+  ]
+}

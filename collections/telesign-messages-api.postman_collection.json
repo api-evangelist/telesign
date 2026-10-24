@@ -1,0 +1,789 @@
+{
+  "info": {
+    "_postman_id": "49ee9047-6669-46d1-a04a-ebb57bca9ad4",
+    "name": "SMS Verify Messages API",
+    "description": "Use the Telesign SMS Verify API to send an SMS with a one-time passcode (OTP) to a recipient phone number.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:32:44.000Z",
+    "updatedAt": "2026-10-22T01:32:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-49ee9047-6669-46d1-a04a-ebb57bca9ad4"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "verify",
+          "item": [
+            {
+              "name": "sms",
+              "item": [
+                {
+                  "name": "Send SMS verification code",
+                  "id": "58ed4671-8c6b-4366-bdba-e63f1ec028f4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) The end user's phone number you want to send a message to, as digits without spaces or special characters, beginning with the country dialing code.",
+                          "key": "phone_number",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A code specifying the use case you are making the request for. Choices include:\n* `ATCK` - For use in a 2FA situation like updating an account or logging in.\n* `BACF` - For creating an account where the service may be vulnerable to bulk attacks and fraudsters.\n* `BACS` - For creating an account where the service may be vulnerable to bulk attacks or individual spammers.\n* `CHBK` - For use when someone is trying to buy something expensive or unusual and you want to verify it is really them.\n* `CLDR` - Calendar event.\n* `LEAD` - For use in a situation where you require a person to enter personal details to request information about a potential purchase (like a loan, real estate, or attending a school), and you want to check if they are legitimate.\n* `OTHR` - For a situation not addressed by other tags.\n* `PWRT` - For use in a situation where a password reset is required.\n* `RESV` - For use when you have end users making reservations, and you want to confirm they will show up.\n* `RXPF` - For use when you are trying to prevent prescription fraud.\n* `SHIP` - For use when you are sending a shipping notification.\n* `THEF` - For use when you are trying to prevent an end user from deactivating or redirecting a phone number for identity theft purposes.\n* `TRVF` - For use when you are transferring money and want to check if the transfer is approved by sending a text message to your end user. This is similar to `CHBK`, but is specifically for a money transaction.\n* `UNKN` - For a situation not addressed by other tags (same as `OTHR`).",
+                          "key": "ucid",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's IP address (do not send your own IP address). This is used to help Telesign improve our services. IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc791\">Internet Protocol</a>. For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc4291#section-2.2\">IP Version 6 Addressing Architecture</a>.",
+                          "key": "originating_ip",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A code specifying the language of the predefined template you wish to use. For a complete list of codes, see [SMS Verify API - Supported languages](/enterprise/docs/sms-verify-api-supported-languages). If you provide overriding message text in the `template` parameter, this field is not used.",
+                          "key": "language",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The verification code used for the code challenge. By defauls, Telesign randomly generates a seven-digit numeric value for you. You can override the default behavior by including your own numeric code for this parameter, with a value between `000` and `9999999`. Only numeric characters are supported. Either way, the verification code replaces the variable `$$CODE$$` in the message template. ",
+                          "key": "verify_code",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Text that overrides the contents of the predefined message templates. Include the `$$CODE$$` variable to have the verification code automatically inserted. For payment transactions, include the `$$AMOUNT$$` and `$$PAYEE$$` variables to have those payment details from your other params automatically inserted. By default, the maximum length of this field is 160 characters. Telesign recommends that you keep your messages brief if possible, but if you want to send longer messages contact our Customer Support Team to have the maximum increased. A long message may be up to 1600 characters.",
+                          "key": "template",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Specifies the sender ID to be displayed to the end user on the SMS message. Before using this, give any sender IDs you might want to use to our Customer Support Team, so we can add them to our allow list. If the sender ID in this field is not on this list, it is not used. We do not guarantee that the sender ID you specify will be used; Telesign may override this value to improve delivery quality or to follow the SMS regulations of particular countries. We recommend limiting values to 0-9 and A-Z, as support for other ASCII characters varies by carrier.",
+                          "key": "sender_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Whether you are using this service as your primary provider to send this message (`\u201dtrue\u201d`) or\"as a backup after your primary provider failed (`\u201dfalse\u201d`). We use this data to optimize message routing.",
+                          "key": "is_primary",
+                          "value": "true"
+                        },
+                        {
+                          "description": "**(India-local traffic only)**. The ID of the DLT template used for this message. See [India DLT Update](https://support.telesign.com/s/article/India-DLT-Update) for more details on the relevant regulations.",
+                          "key": "dlt_template_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "**(India-local traffic only)**. The ID of the entity sending this message. See [India DLT Update](https://support.telesign.com/s/article/India-DLT-Update) for more details on the relevant regulations.",
+                          "key": "dlt_entity_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "**(Payment-transactions only)**  Replaces the `$$AMOUNT$$` variable in the message template. Specifies the currency and amount for the payment that the end user is approving. This parameter is required if `transaction_payee` is included in the request.",
+                          "key": "transaction_amount",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "**(Payment-transactions only)** Replaces the `$$PAYEE$$` variable in the message template. Specifies the entity that the end user is approving a payment to.\nThis parameter is required if `transaction_amount` is included in the request.",
+                          "key": "transaction_payee",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Set a value of `\"true\"` to screen this transaction using a Telesign SIM Swap check. This only has an effect if we have enabled SIM Swap for your account and configured it to be toggled using this parameter. If your account is configured to perform the check on every transaction, set a value of `\"false\"` to suppress the check. Contact our [Customer Support Team](mailto:support@telesign.com) to turn on this feature.",
+                          "key": "sim_swap_check",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you\u2019ve previously set. The override only lasts for this request.",
+                          "key": "callback_url",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/verify/sms",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "verify",
+                        "sms"
+                      ]
+                    },
+                    "description": "Use this action to send an SMS with a verification code to a recipient phone number.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/x-www-form-urlencoded`\n* **Responds with:** `application/json`\n* **Required headers:** `Content-Type - application/x-www-form-urlencoded`\n* **Rate limit:** Default rate limits by product"
+                  },
+                  "response": [
+                    {
+                      "id": "7d776bf1-aae4-4c54-8885-3924c0f5a856",
+                      "name": "**Success.** Your request was fulfilled and resulted in a message being sent. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.\n \n",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number you want to send a message to, as digits without spaces or special characters, beginning with the country dialing code.",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A code specifying the use case you are making the request for. Choices include:\n* `ATCK` - For use in a 2FA situation like updating an account or logging in.\n* `BACF` - For creating an account where the service may be vulnerable to bulk attacks and fraudsters.\n* `BACS` - For creating an account where the service may be vulnerable to bulk attacks or individual spammers.\n* `CHBK` - For use when someone is trying to buy something expensive or unusual and you want to verify it is really them.\n* `CLDR` - Calendar event.\n* `LEAD` - For use in a situation where you require a person to enter personal details to request information about a potential purchase (like a loan, real estate, or attending a school), and you want to check if they are legitimate.\n* `OTHR` - For a situation not addressed by other tags.\n* `PWRT` - For use in a situation where a password reset is required.\n* `RESV` - For use when you have end users making reservations, and you want to confirm they will show up.\n* `RXPF` - For use when you are trying to prevent prescription fraud.\n* `SHIP` - For use when you are sending a shipping notification.\n* `THEF` - For use when you are trying to prevent an end user from deactivating or redirecting a phone number for identity theft purposes.\n* `TRVF` - For use when you are transferring money and want to check if the transfer is approved by sending a text message to your end user. This is similar to `CHBK`, but is specifically for a money transaction.\n* `UNKN` - For a situation not addressed by other tags (same as `OTHR`).",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Your end user's IP address (do not send your own IP address). This is used to help Telesign improve our services. IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc791\">Internet Protocol</a>. For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc4291#section-2.2\">IP Version 6 Addressing Architecture</a>.",
+                              "key": "originating_ip",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A code specifying the language of the predefined template you wish to use. For a complete list of codes, see [SMS Verify API - Supported languages](/enterprise/docs/sms-verify-api-supported-languages). If you provide overriding message text in the `template` parameter, this field is not used.",
+                              "key": "language",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The verification code used for the code challenge. By defauls, Telesign randomly generates a seven-digit numeric value for you. You can override the default behavior by including your own numeric code for this parameter, with a value between `000` and `9999999`. Only numeric characters are supported. Either way, the verification code replaces the variable `$$CODE$$` in the message template. ",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Text that overrides the contents of the predefined message templates. Include the `$$CODE$$` variable to have the verification code automatically inserted. For payment transactions, include the `$$AMOUNT$$` and `$$PAYEE$$` variables to have those payment details from your other params automatically inserted. By default, the maximum length of this field is 160 characters. Telesign recommends that you keep your messages brief if possible, but if you want to send longer messages contact our Customer Support Team to have the maximum increased. A long message may be up to 1600 characters.",
+                              "key": "template",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Specifies the sender ID to be displayed to the end user on the SMS message. Before using this, give any sender IDs you might want to use to our Customer Support Team, so we can add them to our allow list. If the sender ID in this field is not on this list, it is not used. We do not guarantee that the sender ID you specify will be used; Telesign may override this value to improve delivery quality or to follow the SMS regulations of particular countries. We recommend limiting values to 0-9 and A-Z, as support for other ASCII characters varies by carrier.",
+                              "key": "sender_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Whether you are using this service as your primary provider to send this message (`\u201dtrue\u201d`) or\"as a backup after your primary provider failed (`\u201dfalse\u201d`). We use this data to optimize message routing.",
+                              "key": "is_primary",
+                              "value": "true"
+                            },
+                            {
+                              "description": "**(India-local traffic only)**. The ID of the DLT template used for this message. See [India DLT Update](https://support.telesign.com/s/article/India-DLT-Update) for more details on the relevant regulations.",
+                              "key": "dlt_template_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "**(India-local traffic only)**. The ID of the entity sending this message. See [India DLT Update](https://support.telesign.com/s/article/India-DLT-Update) for more details on the relevant regulations.",
+                              "key": "dlt_entity_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "**(Payment-transactions only)**  Replaces the `$$AMOUNT$$` variable in the message template. Specifies the currency and amount for the payment that the end user is approving. This parameter is required if `transaction_payee` is included in the request.",
+                              "key": "transaction_amount",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "**(Payment-transactions only)** Replaces the `$$PAYEE$$` variable in the message template. Specifies the entity that the end user is approving a payment to.\nThis parameter is required if `transaction_amount` is included in the request.",
+                              "key": "transaction_payee",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Set a value of `\"true\"` to screen this transaction using a Telesign SIM Swap check. This only has an effect if we have enabled SIM Swap for your account and configured it to be toggled using this parameter. If your account is configured to perform the check on every transaction, set a value of `\"false\"` to suppress the check. Contact our [Customer Support Team](mailto:support@telesign.com) to turn on this feature.",
+                              "key": "sim_swap_check",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you\u2019ve previously set. The override only lasts for this request.",
+                              "key": "callback_url",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/sms",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "sms"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"verify\": {\n    \"code_state\": \"UNKNOWN\",\n    \"code_entered\": \"<string>\"\n  },\n  \"phone_type\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"numbering\": {\n    \"original\": {\n      \"phone_number\": \"<string>\",\n      \"complete_phone_number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"cleansing\": {\n      \"call\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      },\n      \"sms\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      }\n    }\n  },\n  \"risk\": {\n    \"level\": \"<string>\",\n    \"recommendation\": \"allow\",\n    \"score\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:32:44.000Z",
+                      "updatedAt": "2026-10-22T01:32:44.000Z",
+                      "uid": "35240-7d776bf1-aae4-4c54-8885-3924c0f5a856"
+                    },
+                    {
+                      "id": "9e315b9a-419f-4130-a0cc-e1666cb24335",
+                      "name": "**Bad request.** The request could not be understood by the server due to malformed syntax. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of th",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number you want to send a message to, as digits without spaces or special characters, beginning with the country dialing code.",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A code specifying the use case you are making the request for. Choices include:\n* `ATCK` - For use in a 2FA situation like updating an account or logging in.\n* `BACF` - For creating an account where the service may be vulnerable to bulk attacks and fraudsters.\n* `BACS` - For creating an account where the service may be vulnerable to bulk attacks or individual spammers.\n* `CHBK` - For use when someone is trying to buy something expensive or unusual and you want to verify it is really them.\n* `CLDR` - Calendar event.\n* `LEAD` - For use in a situation where you require a person to enter personal details to request information about a potential purchase (like a loan, real estate, or attending a school), and you want to check if they are legitimate.\n* `OTHR` - For a situation not addressed by other tags.\n* `PWRT` - For use in a situation where a password reset is required.\n* `RESV` - For use when you have end users making reservations, and you want to confirm they will show up.\n* `RXPF` - For use when you are trying to prevent prescription fraud.\n* `SHIP` - For use when you are sending a shipping notification.\n* `THEF` - For use when you are trying to prevent an end user from deactivating or redirecting a phone number for identity theft purposes.\n* `TRVF` - For use when you are transferring money and want to check if the transfer is approved by sending a text message to your end user. This is similar to `CHBK`, but is specifically for a money transaction.\n* `UNKN` - For a situation not addressed by other tags (same as `OTHR`).",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Your end user's IP address (do not send your own IP address). This is used to help Telesign improve our services. IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc791\">Internet Protocol</a>. For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc4291#section-2.2\">IP Version 6 Addressing Architecture</a>.",
+                              "key": "originating_ip",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A code specifying the language of the predefined template you wish to use. For a complete list of codes, see [SMS Verify API - Supported languages](/enterprise/docs/sms-verify-api-supported-languages). If you provide overriding message text in the `template` parameter, this field is not used.",
+                              "key": "language",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The verification code used for the code challenge. By defauls, Telesign randomly generates a seven-digit numeric value for you. You can override the default behavior by including your own numeric code for this parameter, with a value between `000` and `9999999`. Only numeric characters are supported. Either way, the verification code replaces the variable `$$CODE$$` in the message template. ",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Text that overrides the contents of the predefined message templates. Include the `$$CODE$$` variable to have the verification code automatically inserted. For payment transactions, include the `$$AMOUNT$$` and `$$PAYEE$$` variables to have those payment details from your other params automatically inserted. By default, the maximum length of this field is 160 characters. Telesign recommends that you keep your messages brief if possible, but if you want to send longer messages contact our Customer Support Team to have the maximum increased. A long message may be up to 1600 characters.",
+                              "key": "template",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Specifies the sender ID to be displayed to the end user on the SMS message. Before using this, give any sender IDs you might want to use to our Customer Support Team, so we can add them to our allow list. If the sender ID in this field is not on this list, it is not used. We do not guarantee that the sender ID you specify will be used; Telesign may override this value to improve delivery quality or to follow the SMS regulations of particular countries. We recommend limiting values to 0-9 and A-Z, as support for other ASCII characters varies by carrier.",
+                              "key": "sender_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Whether you are using this service as your primary provider to send this message (`\u201dtrue\u201d`) or\"as a backup after your primary provider failed (`\u201dfalse\u201d`). We use this data to optimize message routing.",
+                              "key": "is_primary",
+                              "value": "true"
+                            },
+                            {
+                              "description": "**(India-local traffic only)**. The ID of the DLT template used for this message. See [India DLT Update](https://support.telesign.com/s/article/India-DLT-Update) for more details on the relevant regulations.",
+                              "key": "dlt_template_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "**(India-local traffic only)**. The ID of the entity sending this message. See [India DLT Update](https://support.telesign.com/s/article/India-DLT-Update) for more details on the relevant regulations.",
+                              "key": "dlt_entity_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "**(Payment-transactions only)**  Replaces the `$$AMOUNT$$` variable in the message template. Specifies the currency and amount for the payment that the end user is approving. This parameter is required if `transaction_payee` is included in the request.",
+                              "key": "transaction_amount",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "**(Payment-transactions only)** Replaces the `$$PAYEE$$` variable in the message template. Specifies the entity that the end user is approving a payment to.\nThis parameter is required if `transaction_amount` is included in the request.",
+                              "key": "transaction_payee",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Set a value of `\"true\"` to screen this transaction using a Telesign SIM Swap check. This only has an effect if we have enabled SIM Swap for your account and configured it to be toggled using this parameter. If your account is configured to perform the check on every transaction, set a value of `\"false\"` to suppress the check. Contact our [Customer Support Team](mailto:support@telesign.com) to turn on this feature.",
+                              "key": "sim_swap_check",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you\u2019ve previously set. The override only lasts for this request.",
+                              "key": "callback_url",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/sms",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "sms"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:32:44.000Z",
+                      "updatedAt": "2026-10-22T01:32:44.000Z",
+                      "uid": "35240-9e315b9a-419f-4130-a0cc-e1666cb24335"
+                    },
+                    {
+                      "id": "adddf0a8-cd60-4037-ad0b-b2c33608750a",
+                      "name": "**Unauthorized.** The request requires user authentication. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.\n\n| Status code | Sta",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number you want to send a message to, as digits without spaces or special characters, beginning with the country dialing code.",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A code specifying the use case you are making the request for. Choices include:\n* `ATCK` - For use in a 2FA situation like updating an account or logging in.\n* `BACF` - For creating an account where the service may be vulnerable to bulk attacks and fraudsters.\n* `BACS` - For creating an account where the service may be vulnerable to bulk attacks or individual spammers.\n* `CHBK` - For use when someone is trying to buy something expensive or unusual and you want to verify it is really them.\n* `CLDR` - Calendar event.\n* `LEAD` - For use in a situation where you require a person to enter personal details to request information about a potential purchase (like a loan, real estate, or attending a school), and you want to check if they are legitimate.\n* `OTHR` - For a situation not addressed by other tags.\n* `PWRT` - For use in a situation where a password reset is required.\n* `RESV` - For use when you have end users making reservations, and you want to confirm they will show up.\n* `RXPF` - For use when you are trying to prevent prescription fraud.\n* `SHIP` - For use when you are sending a shipping notification.\n* `THEF` - For use when you are trying to prevent an end user from deactivating or redirecting a phone number for identity theft purposes.\n* `TRVF` - For use when you are transferring money and want to check if the transfer is approved by sending a text message to your end user. This is similar to `CHBK`, but is specifically for a money transaction.\n* `UNKN` - For a situation not addressed by other tags (same as `OTHR`).",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Your end user's IP address (do not send your own IP address). This is used to help Telesign improve our services. IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc791\">Internet Protocol</a>. For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc4291#section-2.2\">IP Version 6 Addressing Architecture</a>.",
+                              "key": "originating_ip",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A code specifying the language of the predefined template you wish to use. For a complete list of codes, see [SMS Verify API - Supported languages](/enterprise/docs/sms-verify-api-supported-languages). If you provide overriding message text in the `template` parameter, this field is not used.",
+                              "key": "language",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The verification code used for the code challenge. By defauls, Telesign randomly generates a seven-digit numeric value for you. You can override the default behavior by including your own numeric code for this parameter, with a value between `000` and `9999999`. Only numeric characters are supported. Either way, the verification code replaces the variable `$$CODE$$` in the message template. ",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Text that overrides the contents of the predefined message templates. Include the `$$CODE$$` variable to have the verification code automatically inserted. For payment transactions, include the `$$AMOUNT$$` and `$$PAYEE$$` variables to have those payment details from your other params automatically inserted. By default, the maximum length of this field is 160 characters. Telesign recommends that you keep your messages brief if possible, but if you want to send longer messages contact our Customer Support Team to have the maximum increased. A long message may be up to 1600 characters.",
+                              "key": "template",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Specifies the sender ID to be displayed to the end user on the SMS message. Before using this, give any sender IDs you might want to use to our Customer Support Team, so we can add them to our allow list. If the sender ID in this field is not on this list, it is not used. We do not guarantee that the sender ID you specify will be used; Telesign may override this value to improve delivery quality or to follow the SMS regulations of particular countries. We recommend limiting values to 0-9 and A-Z, as support for other ASCII characters varies by carrier.",
+                              "key": "sender_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Whether you are using this service as your primary provider to send this message (`\u201dtrue\u201d`) or\"as a backup after your primary provider failed (`\u201dfalse\u201d`). We use this data to optimize message routing.",
+                              "key": "is_primary",
+                              "value": "true"
+                            },
+                            {
+                              "description": "**(India-local traffic only)**. The ID of the DLT template used for this message. See [India DLT Update](https://support.telesign.com/s/article/India-DLT-Update) for more details on the relevant regulations.",
+                              "key": "dlt_template_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "**(India-local traffic only)**. The ID of the entity sending this message. See [India DLT Update](https://support.telesign.com/s/article/India-DLT-Update) for more details on the relevant regulations.",
+                              "key": "dlt_entity_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "**(Payment-transactions only)**  Replaces the `$$AMOUNT$$` variable in the message template. Specifies the currency and amount for the payment that the end user is approving. This parameter is required if `transaction_payee` is included in the request.",
+                              "key": "transaction_amount",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "**(Payment-transactions only)** Replaces the `$$PAYEE$$` variable in the message template. Specifies the entity that the end user is approving a payment to.\nThis parameter is required if `transaction_amount` is included in the request.",
+                              "key": "transaction_payee",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Set a value of `\"true\"` to screen this transaction using a Telesign SIM Swap check. This only has an effect if we have enabled SIM Swap for your account and configured it to be toggled using this parameter. If your account is configured to perform the check on every transaction, set a value of `\"false\"` to suppress the check. Contact our [Customer Support Team](mailto:support@telesign.com) to turn on this feature.",
+                              "key": "sim_swap_check",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you\u2019ve previously set. The override only lasts for this request.",
+                              "key": "callback_url",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/sms",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "sms"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"signature_string\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:32:44.000Z",
+                      "updatedAt": "2026-10-22T01:32:44.000Z",
+                      "uid": "35240-adddf0a8-cd60-4037-ad0b-b2c33608750a"
+                    },
+                    {
+                      "id": "5e250ed6-fbbe-46d6-a83b-b0d3b095bac7",
+                      "name": "**Too many requests.** The user sent too many requests in a given amount of time. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number you want to send a message to, as digits without spaces or special characters, beginning with the country dialing code.",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A code specifying the use case you are making the request for. Choices include:\n* `ATCK` - For use in a 2FA situation like updating an account or logging in.\n* `BACF` - For creating an account where the service may be vulnerable to bulk attacks and fraudsters.\n* `BACS` - For creating an account where the service may be vulnerable to bulk attacks or individual spammers.\n* `CHBK` - For use when someone is trying to buy something expensive or unusual and you want to verify it is really them.\n* `CLDR` - Calendar event.\n* `LEAD` - For use in a situation where you require a person to enter personal details to request information about a potential purchase (like a loan, real estate, or attending a school), and you want to check if they are legitimate.\n* `OTHR` - For a situation not addressed by other tags.\n* `PWRT` - For use in a situation where a password reset is required.\n* `RESV` - For use when you have end users making reservations, and you want to confirm they will show up.\n* `RXPF` - For use when you are trying to prevent prescription fraud.\n* `SHIP` - For use when you are sending a shipping notification.\n* `THEF` - For use when you are trying to prevent an end user from deactivating or redirecting a phone number for identity theft purposes.\n* `TRVF` - For use when you are transferring money and want to check if the transfer is approved by sending a text message to your end user. This is similar to `CHBK`, but is specifically for a money transaction.\n* `UNKN` - For a situation not addressed by other tags (same as `OTHR`).",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Your end user's IP address (do not send your own IP address). This is used to help Telesign improve our services. IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc791\">Internet Protocol</a>. For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc4291#section-2.2\">IP Version 6 Addressing Architecture</a>.",
+                              "key": "originating_ip",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A code specifying the language of the predefined template you wish to use. For a complete list of codes, see [SMS Verify API - Supported languages](/enterprise/docs/sms-verify-api-supported-languages). If you provide overriding message text in the `template` parameter, this field is not used.",
+                              "key": "language",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The verification code used for the code challenge. By defauls, Telesign randomly generates a seven-digit numeric value for you. You can override the default behavior by including your own numeric code for this parameter, with a value between `000` and `9999999`. Only numeric characters are supported. Either way, the verification code replaces the variable `$$CODE$$` in the message template. ",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Text that overrides the contents of the predefined message templates. Include the `$$CODE$$` variable to have the verification code automatically inserted. For payment transactions, include the `$$AMOUNT$$` and `$$PAYEE$$` variables to have those payment details from your other params automatically inserted. By default, the maximum length of this field is 160 characters. Telesign recommends that you keep your messages brief if possible, but if you want to send longer messages contact our Customer Support Team to have the maximum increased. A long message may be up to 1600 characters.",
+                              "key": "template",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Specifies the sender ID to be displayed to the end user on the SMS message. Before using this, give any sender IDs you might want to use to our Customer Support Team, so we can add them to our allow list. If the sender ID in this field is not on this list, it is not used. We do not guarantee that the sender ID you specify will be used; Telesign may override this value to improve delivery quality or to follow the SMS regulations of particular countries. We recommend limiting values to 0-9 and A-Z, as support for other ASCII characters varies by carrier.",
+                              "key": "sender_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Whether you are using this service as your primary provider to send this message (`\u201dtrue\u201d`) or\"as a backup after your primary provider failed (`\u201dfalse\u201d`). We use this data to optimize message routing.",
+                              "key": "is_primary",
+                              "value": "true"
+                            },
+                            {
+                              "description": "**(India-local traffic only)**. The ID of the DLT template used for this message. See [India DLT Update](https://support.telesign.com/s/article/India-DLT-Update) for more details on the relevant regulations.",
+                              "key": "dlt_template_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "**(India-local traffic only)**. The ID of the entity sending this message. See [India DLT Update](https://support.telesign.com/s/article/India-DLT-Update) for more details on the relevant regulations.",
+                              "key": "dlt_entity_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "**(Payment-transactions only)**  Replaces the `$$AMOUNT$$` variable in the message template. Specifies the currency and amount for the payment that the end user is approving. This parameter is required if `transaction_payee` is included in the request.",
+                              "key": "transaction_amount",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "**(Payment-transactions only)** Replaces the `$$PAYEE$$` variable in the message template. Specifies the entity that the end user is approving a payment to.\nThis parameter is required if `transaction_amount` is included in the request.",
+                              "key": "transaction_payee",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Set a value of `\"true\"` to screen this transaction using a Telesign SIM Swap check. This only has an effect if we have enabled SIM Swap for your account and configured it to be toggled using this parameter. If your account is configured to perform the check on every transaction, set a value of `\"false\"` to suppress the check. Contact our [Customer Support Team](mailto:support@telesign.com) to turn on this feature.",
+                              "key": "sim_swap_check",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you\u2019ve previously set. The override only lasts for this request.",
+                              "key": "callback_url",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/sms",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "sms"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:32:44.000Z",
+                      "updatedAt": "2026-10-22T01:32:44.000Z",
+                      "uid": "35240-5e250ed6-fbbe-46d6-a83b-b0d3b095bac7"
+                    },
+                    {
+                      "id": "d1a37650-cbbe-4b26-be17-e3e649101d4f",
+                      "name": "**Service unavailable.** The system is unavailable, try again. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.\n\n| Status code | ",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number you want to send a message to, as digits without spaces or special characters, beginning with the country dialing code.",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A code specifying the use case you are making the request for. Choices include:\n* `ATCK` - For use in a 2FA situation like updating an account or logging in.\n* `BACF` - For creating an account where the service may be vulnerable to bulk attacks and fraudsters.\n* `BACS` - For creating an account where the service may be vulnerable to bulk attacks or individual spammers.\n* `CHBK` - For use when someone is trying to buy something expensive or unusual and you want to verify it is really them.\n* `CLDR` - Calendar event.\n* `LEAD` - For use in a situation where you require a person to enter personal details to request information about a potential purchase (like a loan, real estate, or attending a school), and you want to check if they are legitimate.\n* `OTHR` - For a situation not addressed by other tags.\n* `PWRT` - For use in a situation where a password reset is required.\n* `RESV` - For use when you have end users making reservations, and you want to confirm they will show up.\n* `RXPF` - For use when you are trying to prevent prescription fraud.\n* `SHIP` - For use when you are sending a shipping notification.\n* `THEF` - For use when you are trying to prevent an end user from deactivating or redirecting a phone number for identity theft purposes.\n* `TRVF` - For use when you are transferring money and want to check if the transfer is approved by sending a text message to your end user. This is similar to `CHBK`, but is specifically for a money transaction.\n* `UNKN` - For a situation not addressed by other tags (same as `OTHR`).",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Your end user's IP address (do not send your own IP address). This is used to help Telesign improve our services. IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc791\">Internet Protocol</a>. For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc4291#section-2.2\">IP Version 6 Addressing Architecture</a>.",
+                              "key": "originating_ip",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A code specifying the language of the predefined template you wish to use. For a complete list of codes, see [SMS Verify API - Supported languages](/enterprise/docs/sms-verify-api-supported-languages). If you provide overriding message text in the `template` parameter, this field is not used.",
+                              "key": "language",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The verification code used for the code challenge. By defauls, Telesign randomly generates a seven-digit numeric value for you. You can override the default behavior by including your own numeric code for this parameter, with a value between `000` and `9999999`. Only numeric characters are supported. Either way, the verification code replaces the variable `$$CODE$$` in the message template. ",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Text that overrides the contents of the predefined message templates. Include the `$$CODE$$` variable to have the verification code automatically inserted. For payment transactions, include the `$$AMOUNT$$` and `$$PAYEE$$` variables to have those payment details from your other params automatically inserted. By default, the maximum length of this field is 160 characters. Telesign recommends that you keep your messages brief if possible, but if you want to send longer messages contact our Customer Support Team to have the maximum increased. A long message may be up to 1600 characters.",
+                              "key": "template",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Specifies the sender ID to be displayed to the end user on the SMS message. Before using this, give any sender IDs you might want to use to our Customer Support Team, so we can add them to our allow list. If the sender ID in this field is not on this list, it is not used. We do not guarantee that the sender ID you specify will be used; Telesign may override this value to improve delivery quality or to follow the SMS regulations of particular countries. We recommend limiting values to 0-9 and A-Z, as support for other ASCII characters varies by carrier.",
+                              "key": "sender_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Whether you are using this service as your primary provider to send this message (`\u201dtrue\u201d`) or\"as a backup after your primary provider failed (`\u201dfalse\u201d`). We use this data to optimize message routing.",
+                              "key": "is_primary",
+                              "value": "true"
+                            },
+                            {
+                              "description": "**(India-local traffic only)**. The ID of the DLT template used for this message. See [India DLT Update](https://support.telesign.com/s/article/India-DLT-Update) for more details on the relevant regulations.",
+                              "key": "dlt_template_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "**(India-local traffic only)**. The ID of the entity sending this message. See [India DLT Update](https://support.telesign.com/s/article/India-DLT-Update) for more details on the relevant regulations.",
+                              "key": "dlt_entity_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "**(Payment-transactions only)**  Replaces the `$$AMOUNT$$` variable in the message template. Specifies the currency and amount for the payment that the end user is approving. This parameter is required if `transaction_payee` is included in the request.",
+                              "key": "transaction_amount",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "**(Payment-transactions only)** Replaces the `$$PAYEE$$` variable in the message template. Specifies the entity that the end user is approving a payment to.\nThis parameter is required if `transaction_amount` is included in the request.",
+                              "key": "transaction_payee",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Set a value of `\"true\"` to screen this transaction using a Telesign SIM Swap check. This only has an effect if we have enabled SIM Swap for your account and configured it to be toggled using this parameter. If your account is configured to perform the check on every transaction, set a value of `\"false\"` to suppress the check. Contact our [Customer Support Team](mailto:support@telesign.com) to turn on this feature.",
+                              "key": "sim_swap_check",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you\u2019ve previously set. The override only lasts for this request.",
+                              "key": "callback_url",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/sms",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "sms"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"signature_string\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:32:44.000Z",
+                      "updatedAt": "2026-10-22T01:32:44.000Z",
+                      "uid": "35240-d1a37650-cbbe-4b26-be17-e3e649101d4f"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:32:44.000Z",
+                  "updatedAt": "2026-10-22T01:32:44.000Z",
+                  "uid": "35240-58ed4671-8c6b-4366-bdba-e63f1ec028f4"
+                }
+              ],
+              "id": "47d3169a-0491-44c5-9862-594b7faa6f33",
+              "createdAt": "2026-10-22T01:32:44.000Z",
+              "updatedAt": "2026-10-22T01:32:44.000Z",
+              "uid": "35240-47d3169a-0491-44c5-9862-594b7faa6f33"
+            }
+          ],
+          "id": "92fd42c4-18d4-48ec-a94a-ffd1c27da385",
+          "createdAt": "2026-10-22T01:32:44.000Z",
+          "updatedAt": "2026-10-22T01:32:44.000Z",
+          "uid": "35240-92fd42c4-18d4-48ec-a94a-ffd1c27da385"
+        }
+      ],
+      "id": "0648df6a-0e31-46b2-84a0-0bd527fc53e6",
+      "createdAt": "2026-10-22T01:32:44.000Z",
+      "updatedAt": "2026-10-22T01:32:44.000Z",
+      "uid": "35240-0648df6a-0e31-46b2-84a0-0bd527fc53e6"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rest-ww.telesign.com"
+    }
+  ]
+}

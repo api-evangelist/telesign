@@ -1,0 +1,614 @@
+{
+  "info": {
+    "_postman_id": "0ce4e6b1-eb7d-4634-8cbd-3b7419b83f91",
+    "name": "Legacy Phone ID Phone ID Number Deactivation API",
+    "description": "This spec contains details about the deprecated Telesign Phone ID API. This API is no longer fully supported, but has not reached end of life.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:33:25.000Z",
+    "updatedAt": "2026-10-22T01:33:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0ce4e6b1-eb7d-4634-8cbd-3b7419b83f91"
+  },
+  "item": [
+    {
+      "name": "phoneid",
+      "item": [
+        {
+          "name": "number_deactivation",
+          "item": [
+            {
+              "name": "{complete_phone_number}",
+              "item": [
+                {
+                  "name": "Get deactivation status of a number",
+                  "id": "f0a03ff5-1d76-4d17-b6a7-344feb997993",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/phoneid/number_deactivation/:complete_phone_number?ucid=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "phoneid",
+                        "number_deactivation",
+                        ":complete_phone_number"
+                      ],
+                      "query": [
+                        {
+                          "description": "One of the use case codes. | Use case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. |",
+                          "key": "ucid",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "107dfb3a-7aa5-4fa3-9704-0fd8058c343b",
+                          "key": "complete_phone_number",
+                          "value": "<string>",
+                          "description": "(Required) The phone number you want to collect information about. Provide the entire phone number, including the country code, with no spaces or special characters.\n"
+                        }
+                      ]
+                    },
+                    "description": "The Phone ID Number Deactivation API determines whether a phone number has been deactivated, when, and by which carrier the phone number was deactivated based on carriers' phone number data and Telesign's proprietary analysis. NOTE: If you try this API out using the API Explorer, you will be billed for the transaction as you normally would.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/x-www-form-urlencoded`\n* **Responds with:** `application/json`\n* **Required headers:** `Content-Type - application/x-www-form-urlencoded`"
+                  },
+                  "response": [
+                    {
+                      "id": "ef706f86-61ea-42b8-9314-4bf251bb6475",
+                      "name": "Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n           \n| Status code | Associated text s",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/number_deactivation/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "number_deactivation",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. |",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"number_deactivation\",\n  \"number_deactivation\": {\n    \"number\": \"<string>\",\n    \"tracking_since\": \"<string>\",\n    \"last_deactivated\": \"<string>\",\n    \"mcc\": \"<integer>\",\n    \"mnc\": \"<integer>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:26.000Z",
+                      "updatedAt": "2026-10-22T01:33:26.000Z",
+                      "uid": "35240-ef706f86-61ea-42b8-9314-4bf251bb6475"
+                    },
+                    {
+                      "id": "ced0fd31-8aba-4d75-a7ef-9f68d9e31c83",
+                      "name": "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/number_deactivation/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "number_deactivation",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. |",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"number_deactivation\",\n  \"number_deactivation\": {\n    \"number\": \"<string>\",\n    \"tracking_since\": \"<string>\",\n    \"last_deactivated\": \"<string>\",\n    \"mcc\": \"<integer>\",\n    \"mnc\": \"<integer>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:26.000Z",
+                      "updatedAt": "2026-10-22T01:33:26.000Z",
+                      "uid": "35240-ced0fd31-8aba-4d75-a7ef-9f68d9e31c83"
+                    },
+                    {
+                      "id": "4a87086a-2930-4802-9f72-ad46f842a122",
+                      "name": "Unauthorized, the request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/number_deactivation/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "number_deactivation",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. |",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"number_deactivation\",\n  \"number_deactivation\": {\n    \"number\": \"<string>\",\n    \"tracking_since\": \"<string>\",\n    \"last_deactivated\": \"<string>\",\n    \"mcc\": \"<integer>\",\n    \"mnc\": \"<integer>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:26.000Z",
+                      "updatedAt": "2026-10-22T01:33:26.000Z",
+                      "uid": "35240-4a87086a-2930-4802-9f72-ad46f842a122"
+                    },
+                    {
+                      "id": "aa183f82-37c0-4b95-97d6-bee8d88b9f1d",
+                      "name": "Payment Required. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/number_deactivation/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "number_deactivation",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. |",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Payment Required",
+                      "code": 402,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"number_deactivation\",\n  \"number_deactivation\": {\n    \"number\": \"<string>\",\n    \"tracking_since\": \"<string>\",\n    \"last_deactivated\": \"<string>\",\n    \"mcc\": \"<integer>\",\n    \"mnc\": \"<integer>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:26.000Z",
+                      "updatedAt": "2026-10-22T01:33:26.000Z",
+                      "uid": "35240-aa183f82-37c0-4b95-97d6-bee8d88b9f1d"
+                    },
+                    {
+                      "id": "ac8882a9-2e2b-4a61-9c5e-e6fb7269b462",
+                      "name": "Not Found, the server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter ",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/number_deactivation/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "number_deactivation",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. |",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"number_deactivation\",\n  \"number_deactivation\": {\n    \"number\": \"<string>\",\n    \"tracking_since\": \"<string>\",\n    \"last_deactivated\": \"<string>\",\n    \"mcc\": \"<integer>\",\n    \"mnc\": \"<integer>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:26.000Z",
+                      "updatedAt": "2026-10-22T01:33:26.000Z",
+                      "uid": "35240-ac8882a9-2e2b-4a61-9c5e-e6fb7269b462"
+                    },
+                    {
+                      "id": "e938a48b-0cb2-4a47-8ce8-481dbc1b6f65",
+                      "name": "| Error Codes | Description |\n|-------------|-------------|\n| -40005 | Method not allowed |\n",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/number_deactivation/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "number_deactivation",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. |",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"number_deactivation\",\n  \"number_deactivation\": {\n    \"number\": \"<string>\",\n    \"tracking_since\": \"<string>\",\n    \"last_deactivated\": \"<string>\",\n    \"mcc\": \"<integer>\",\n    \"mnc\": \"<integer>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:26.000Z",
+                      "updatedAt": "2026-10-22T01:33:26.000Z",
+                      "uid": "35240-e938a48b-0cb2-4a47-8ce8-481dbc1b6f65"
+                    },
+                    {
+                      "id": "a750b603-1c76-45ad-952c-889771f7a6a7",
+                      "name": "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` par",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/number_deactivation/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "number_deactivation",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. |",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"number_deactivation\",\n  \"number_deactivation\": {\n    \"number\": \"<string>\",\n    \"tracking_since\": \"<string>\",\n    \"last_deactivated\": \"<string>\",\n    \"mcc\": \"<integer>\",\n    \"mnc\": \"<integer>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:26.000Z",
+                      "updatedAt": "2026-10-22T01:33:26.000Z",
+                      "uid": "35240-a750b603-1c76-45ad-952c-889771f7a6a7"
+                    },
+                    {
+                      "id": "d009c5e1-2bae-48e4-b87a-4d94cf45f15e",
+                      "name": "Invalid Transaction, transaction not attempted. Error codes are listed in the `error` parameter in the response. \n",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/number_deactivation/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "number_deactivation",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. |",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"number_deactivation\",\n  \"number_deactivation\": {\n    \"number\": \"<string>\",\n    \"tracking_since\": \"<string>\",\n    \"last_deactivated\": \"<string>\",\n    \"mcc\": \"<integer>\",\n    \"mnc\": \"<integer>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:26.000Z",
+                      "updatedAt": "2026-10-22T01:33:26.000Z",
+                      "uid": "35240-d009c5e1-2bae-48e4-b87a-4d94cf45f15e"
+                    },
+                    {
+                      "id": "9c3be5bb-626b-4e6e-a866-e871ef50455a",
+                      "name": "Service Unavailable, system unavailable, try again. Error codes are listed in the `error` parameter in the response. \n\n| Error Code | Description |\n|------------|-------------|\n| -90001 | System unavailable; please try again later |\n",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/number_deactivation/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "number_deactivation",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. |",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"number_deactivation\",\n  \"number_deactivation\": {\n    \"number\": \"<string>\",\n    \"tracking_since\": \"<string>\",\n    \"last_deactivated\": \"<string>\",\n    \"mcc\": \"<integer>\",\n    \"mnc\": \"<integer>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:26.000Z",
+                      "updatedAt": "2026-10-22T01:33:26.000Z",
+                      "uid": "35240-9c3be5bb-626b-4e6e-a866-e871ef50455a"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:33:26.000Z",
+                  "updatedAt": "2026-10-22T01:33:26.000Z",
+                  "uid": "35240-f0a03ff5-1d76-4d17-b6a7-344feb997993"
+                }
+              ],
+              "id": "c131dece-6876-4cac-9c9f-49c32635948c",
+              "createdAt": "2026-10-22T01:33:26.000Z",
+              "updatedAt": "2026-10-22T01:33:26.000Z",
+              "uid": "35240-c131dece-6876-4cac-9c9f-49c32635948c"
+            }
+          ],
+          "id": "0083be76-9faf-46cb-b2cc-69fb690175f1",
+          "createdAt": "2026-10-22T01:33:26.000Z",
+          "updatedAt": "2026-10-22T01:33:26.000Z",
+          "uid": "35240-0083be76-9faf-46cb-b2cc-69fb690175f1"
+        }
+      ],
+      "id": "17682cf6-4336-4105-a555-e26e7a5b0a57",
+      "createdAt": "2026-10-22T01:33:26.000Z",
+      "updatedAt": "2026-10-22T01:33:26.000Z",
+      "uid": "35240-17682cf6-4336-4105-a555-e26e7a5b0a57"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rest-ww.telesign.com/v1"
+    }
+  ]
+}

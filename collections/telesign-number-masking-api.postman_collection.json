@@ -1,0 +1,648 @@
+{
+  "info": {
+    "_postman_id": "d95e1400-9adb-4d7f-a2d2-af8fc792ca3b",
+    "name": "Telesign Number Masking API",
+    "description": "Operations tagged Number Masking across 2 of this provider's published API definitions: telesign-engage-api-number-masking-openapi.json, telesign-engage-api-number-masking-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:33:02.000Z",
+    "updatedAt": "2026-10-22T01:33:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d95e1400-9adb-4d7f-a2d2-af8fc792ca3b"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "anonymous",
+          "item": [
+            {
+              "name": "session",
+              "item": [
+                {
+                  "name": "sms",
+                  "item": [
+                    {
+                      "name": "Create masked SMS session",
+                      "id": "d5de4597-86ea-4590-b959-ca9a08253e2f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"phone_number_1\": \"<string>\",\n  \"phone_number_2\": \"<string>\",\n  \"validity_period\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/anonymous/session/sms",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "anonymous",
+                            "session",
+                            "sms"
+                          ]
+                        },
+                        "description": "Use this action to create an anonymous session for SMS communication with number masking. You must use SMS capable-only (not voice capable-only or dual-capable) numbers from Telesign as masking IDs when using this action.\n\n> Looking for the high-level guide page related to this action? Go to Number Masking - Create masked session for SMS.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/json`\n* **Responds with:** `application/json`\n* **Required headers:** `Content-Type - application/json`\n* **Rate limit:** Default rate limits by product"
+                      },
+                      "response": [
+                        {
+                          "id": "4026a349-a234-49f2-977e-3e0dce493a2f",
+                          "name": "**Success.** Your request was fulfilled and resulted in the creation of a new session. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the res",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"phone_number_1\": \"<string>\",\n  \"phone_number_2\": \"<string>\",\n  \"validity_period\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/anonymous/session/sms",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "anonymous",
+                                "session",
+                                "sms"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"reference_id\": \"<string>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"session_data\": {\n    \"session_end_on\": \"<string>\",\n    \"resource\": \"sms_voice\",\n    \"message\": \"<string>\",\n    \"phone_number_2\": {\n      \"complete_phone_number\": \"<string>\",\n      \"country_name\": \"<string>\",\n      \"country_iso3\": \"<string>\",\n      \"masked_id\": \"<string,null>\",\n      \"country_iso2\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"validity\": \"<string>\",\n    \"phone_number_1\": {\n      \"complete_phone_number\": \"<string>\",\n      \"country_name\": \"<string>\",\n      \"country_iso3\": \"<string>\",\n      \"masked_id\": \"<string,null>\",\n      \"country_iso2\": \"<string>\",\n      \"country_code\": \"<string>\"\n    }\n  },\n  \"error\": \"<string,null>\"\n}",
+                          "createdAt": "2026-10-22T01:33:03.000Z",
+                          "updatedAt": "2026-10-22T01:33:03.000Z",
+                          "uid": "35240-4026a349-a234-49f2-977e-3e0dce493a2f"
+                        },
+                        {
+                          "id": "32bfd96a-14ca-4bb6-a198-39ff9a3defa3",
+                          "name": "**Bad request.** The request could not be understood by the server due to malformed syntax. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of th",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"phone_number_1\": \"<string>\",\n  \"phone_number_2\": \"<string>\",\n  \"validity_period\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/anonymous/session/sms",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "anonymous",
+                                "session",
+                                "sms"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"reference_id\": \"<string>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"session_data\": {\n    \"session_end_on\": \"<string>\",\n    \"resource\": \"sms_voice\",\n    \"message\": \"<string>\",\n    \"phone_number_2\": {\n      \"complete_phone_number\": \"<string>\",\n      \"country_name\": \"<string>\",\n      \"country_iso3\": \"<string>\",\n      \"masked_id\": \"<string,null>\",\n      \"country_iso2\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"validity\": \"<string>\",\n    \"phone_number_1\": {\n      \"complete_phone_number\": \"<string>\",\n      \"country_name\": \"<string>\",\n      \"country_iso3\": \"<string>\",\n      \"masked_id\": \"<string,null>\",\n      \"country_iso2\": \"<string>\",\n      \"country_code\": \"<string>\"\n    }\n  },\n  \"error\": \"<string,null>\"\n}",
+                          "createdAt": "2026-10-22T01:33:03.000Z",
+                          "updatedAt": "2026-10-22T01:33:03.000Z",
+                          "uid": "35240-32bfd96a-14ca-4bb6-a198-39ff9a3defa3"
+                        },
+                        {
+                          "id": "7bc3f31e-1a5a-4217-903e-ba4153b2858d",
+                          "name": "Too many requests.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"phone_number_1\": \"<string>\",\n  \"phone_number_2\": \"<string>\",\n  \"validity_period\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/anonymous/session/sms",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "anonymous",
+                                "session",
+                                "sms"
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T01:33:03.000Z",
+                          "updatedAt": "2026-10-22T01:33:03.000Z",
+                          "uid": "35240-7bc3f31e-1a5a-4217-903e-ba4153b2858d"
+                        },
+                        {
+                          "id": "786d9378-91f8-4252-975e-ae163c38b087",
+                          "name": "**Service unavailable.** The system is unavailable, try again. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.\n\n| Status code | ",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"phone_number_1\": \"<string>\",\n  \"phone_number_2\": \"<string>\",\n  \"validity_period\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/anonymous/session/sms",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "anonymous",
+                                "session",
+                                "sms"
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"reference_id\": \"<string>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"session_data\": {\n    \"session_end_on\": \"<string>\",\n    \"resource\": \"sms_voice\",\n    \"message\": \"<string>\",\n    \"phone_number_2\": {\n      \"complete_phone_number\": \"<string>\",\n      \"country_name\": \"<string>\",\n      \"country_iso3\": \"<string>\",\n      \"masked_id\": \"<string,null>\",\n      \"country_iso2\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"validity\": \"<string>\",\n    \"phone_number_1\": {\n      \"complete_phone_number\": \"<string>\",\n      \"country_name\": \"<string>\",\n      \"country_iso3\": \"<string>\",\n      \"masked_id\": \"<string,null>\",\n      \"country_iso2\": \"<string>\",\n      \"country_code\": \"<string>\"\n    }\n  },\n  \"error\": \"<string,null>\"\n}",
+                          "createdAt": "2026-10-22T01:33:03.000Z",
+                          "updatedAt": "2026-10-22T01:33:03.000Z",
+                          "uid": "35240-786d9378-91f8-4252-975e-ae163c38b087"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:33:03.000Z",
+                      "updatedAt": "2026-10-22T01:33:03.000Z",
+                      "uid": "35240-d5de4597-86ea-4590-b959-ca9a08253e2f"
+                    }
+                  ],
+                  "id": "bf340852-5c2b-4877-b885-c83b702fae07",
+                  "createdAt": "2026-10-22T01:33:02.000Z",
+                  "updatedAt": "2026-10-22T01:33:02.000Z",
+                  "uid": "35240-bf340852-5c2b-4877-b885-c83b702fae07"
+                },
+                {
+                  "name": "sms_voice",
+                  "item": [
+                    {
+                      "name": "Create masked voice-SMS session",
+                      "id": "a92b07f2-1d06-4dcc-a8a7-08f5be7c53d2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"phone_number_1\": \"<string>\",\n  \"phone_number_2\": \"<string>\",\n  \"validity_period\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/anonymous/session/sms_voice",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "anonymous",
+                            "session",
+                            "sms_voice"
+                          ]
+                        },
+                        "description": "Use this action to create an anonymous session, usable either for SMS or voice communication with number masking. You must use only dual-capable (both SMS and voice capable) numbers from Telesign as masking IDs when using this action.\n\n> Looking for the high-level guide page related to this action? Go to Number Masking - Create masked session for SMS or voice.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/json`\n* **Responds with:** `application/json`\n* **Required headers:** `Content-Type - application/json`\n* **Rate limit:** Default rate limits by product"
+                      },
+                      "response": [
+                        {
+                          "id": "12abe9fb-69d3-4dac-be05-096d1b3bb03e",
+                          "name": "**Success.** Your request was fulfilled and resulted in the creation of a new session. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the res",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"phone_number_1\": \"<string>\",\n  \"phone_number_2\": \"<string>\",\n  \"validity_period\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/anonymous/session/sms_voice",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "anonymous",
+                                "session",
+                                "sms_voice"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"reference_id\": \"<string>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"session_data\": {\n    \"session_end_on\": \"<string>\",\n    \"resource\": \"sms_voice\",\n    \"message\": \"<string>\",\n    \"phone_number_2\": {\n      \"complete_phone_number\": \"<string>\",\n      \"country_name\": \"<string>\",\n      \"country_iso3\": \"<string>\",\n      \"masked_id\": \"<string,null>\",\n      \"country_iso2\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"validity\": \"<string>\",\n    \"phone_number_1\": {\n      \"complete_phone_number\": \"<string>\",\n      \"country_name\": \"<string>\",\n      \"country_iso3\": \"<string>\",\n      \"masked_id\": \"<string,null>\",\n      \"country_iso2\": \"<string>\",\n      \"country_code\": \"<string>\"\n    }\n  },\n  \"error\": \"<string,null>\"\n}",
+                          "createdAt": "2026-10-22T01:33:03.000Z",
+                          "updatedAt": "2026-10-22T01:33:03.000Z",
+                          "uid": "35240-12abe9fb-69d3-4dac-be05-096d1b3bb03e"
+                        },
+                        {
+                          "id": "44f242fc-1866-4ad7-bddd-6bf2ca29ac6a",
+                          "name": "**Bad request.** The request could not be understood by the server due to malformed syntax. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of th",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"phone_number_1\": \"<string>\",\n  \"phone_number_2\": \"<string>\",\n  \"validity_period\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/anonymous/session/sms_voice",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "anonymous",
+                                "session",
+                                "sms_voice"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"reference_id\": \"<string>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"session_data\": {\n    \"session_end_on\": \"<string>\",\n    \"resource\": \"sms_voice\",\n    \"message\": \"<string>\",\n    \"phone_number_2\": {\n      \"complete_phone_number\": \"<string>\",\n      \"country_name\": \"<string>\",\n      \"country_iso3\": \"<string>\",\n      \"masked_id\": \"<string,null>\",\n      \"country_iso2\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"validity\": \"<string>\",\n    \"phone_number_1\": {\n      \"complete_phone_number\": \"<string>\",\n      \"country_name\": \"<string>\",\n      \"country_iso3\": \"<string>\",\n      \"masked_id\": \"<string,null>\",\n      \"country_iso2\": \"<string>\",\n      \"country_code\": \"<string>\"\n    }\n  },\n  \"error\": \"<string,null>\"\n}",
+                          "createdAt": "2026-10-22T01:33:03.000Z",
+                          "updatedAt": "2026-10-22T01:33:03.000Z",
+                          "uid": "35240-44f242fc-1866-4ad7-bddd-6bf2ca29ac6a"
+                        },
+                        {
+                          "id": "350eecad-d83f-40d6-b46f-9155bcb18685",
+                          "name": "Too many requests.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"phone_number_1\": \"<string>\",\n  \"phone_number_2\": \"<string>\",\n  \"validity_period\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/anonymous/session/sms_voice",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "anonymous",
+                                "session",
+                                "sms_voice"
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T01:33:03.000Z",
+                          "updatedAt": "2026-10-22T01:33:03.000Z",
+                          "uid": "35240-350eecad-d83f-40d6-b46f-9155bcb18685"
+                        },
+                        {
+                          "id": "b31c7831-6def-4ab9-bf59-bb91a7bfb76e",
+                          "name": "**Service unavailable.** The system is unavailable, try again. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.\n\n| Status code | ",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"phone_number_1\": \"<string>\",\n  \"phone_number_2\": \"<string>\",\n  \"validity_period\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/anonymous/session/sms_voice",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "anonymous",
+                                "session",
+                                "sms_voice"
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"reference_id\": \"<string>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"session_data\": {\n    \"session_end_on\": \"<string>\",\n    \"resource\": \"sms_voice\",\n    \"message\": \"<string>\",\n    \"phone_number_2\": {\n      \"complete_phone_number\": \"<string>\",\n      \"country_name\": \"<string>\",\n      \"country_iso3\": \"<string>\",\n      \"masked_id\": \"<string,null>\",\n      \"country_iso2\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"validity\": \"<string>\",\n    \"phone_number_1\": {\n      \"complete_phone_number\": \"<string>\",\n      \"country_name\": \"<string>\",\n      \"country_iso3\": \"<string>\",\n      \"masked_id\": \"<string,null>\",\n      \"country_iso2\": \"<string>\",\n      \"country_code\": \"<string>\"\n    }\n  },\n  \"error\": \"<string,null>\"\n}",
+                          "createdAt": "2026-10-22T01:33:03.000Z",
+                          "updatedAt": "2026-10-22T01:33:03.000Z",
+                          "uid": "35240-b31c7831-6def-4ab9-bf59-bb91a7bfb76e"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:33:03.000Z",
+                      "updatedAt": "2026-10-22T01:33:03.000Z",
+                      "uid": "35240-a92b07f2-1d06-4dcc-a8a7-08f5be7c53d2"
+                    }
+                  ],
+                  "id": "1afe3869-aac1-4034-936e-9bafecba4889",
+                  "createdAt": "2026-10-22T01:33:02.000Z",
+                  "updatedAt": "2026-10-22T01:33:02.000Z",
+                  "uid": "35240-1afe3869-aac1-4034-936e-9bafecba4889"
+                }
+              ],
+              "id": "702bd2e2-bcfa-4586-8042-381b1f715b7d",
+              "createdAt": "2026-10-22T01:33:02.000Z",
+              "updatedAt": "2026-10-22T01:33:02.000Z",
+              "uid": "35240-702bd2e2-bcfa-4586-8042-381b1f715b7d"
+            }
+          ],
+          "id": "933ee821-95b0-4dc8-8781-07017c213ae6",
+          "createdAt": "2026-10-22T01:33:02.000Z",
+          "updatedAt": "2026-10-22T01:33:02.000Z",
+          "uid": "35240-933ee821-95b0-4dc8-8781-07017c213ae6"
+        }
+      ],
+      "id": "4adfe8e2-f202-4b42-b917-6e626d9edf7e",
+      "createdAt": "2026-10-22T01:33:02.000Z",
+      "updatedAt": "2026-10-22T01:33:02.000Z",
+      "uid": "35240-4adfe8e2-f202-4b42-b917-6e626d9edf7e"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rest-ww.telesign.com"
+    }
+  ]
+}

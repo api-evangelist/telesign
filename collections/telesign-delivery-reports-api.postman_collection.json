@@ -1,0 +1,204 @@
+{
+  "info": {
+    "_postman_id": "b022b05b-be51-412b-96a2-42f39f7dfa39",
+    "name": "Telesign Delivery Reports API",
+    "description": "Operations tagged Delivery Reports across 4 of this provider's published API definitions: telesign-sms-verify-api-callbacks-openapi.json, telesign-verify-api-callbacks-openapi.json, telesign-sms-verify-api-callbacks-openapi.yml, telesign-verify-api-callbacks-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:32:08.000Z",
+    "updatedAt": "2026-10-22T01:32:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b022b05b-be51-412b-96a2-42f39f7dfa39"
+  },
+  "item": [
+    {
+      "name": "sms_verify_dlr_endpoint",
+      "item": [
+        {
+          "name": "Receive SMS Verify API Delivery Reports",
+          "id": "05b500d0-25d5-4916-8b03-456d2e5da39f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"sub_resource\": \"<string>\",\n  \"submit_timestamp\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"reference_id\": \"<string>\",\n  \"verify\": {\n    \"code_state\": \"<string>\",\n    \"code_entered\": \"<string,null>\"\n  },\n  \"additional_info\": {\n    \"message_parts_count\": \"<integer>\",\n    \"price\": \"<string>\",\n    \"mnc\": \"<string>\",\n    \"mcc\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"message_parts_reference_ids\": \"<string>\",\n    \"sender_id \": \"<string>\"\n  },\n  \"score_status\": {\n    \"phone_type\": {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"risk\": {\n      \"recommendation\": \"<string>\",\n      \"score\": \"<integer>\",\n      \"level\": \"<string>\"\n    },\n    \"risk_insights\": {\n      \"status\": \"<integer>\",\n      \"category\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"a2p\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"p2p\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"number_type\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"ip\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"email\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"numbering\": {\n      \"phone_number\": \"<string>\",\n      \"min_length\": \"<integer>\",\n      \"max_length\": \"<integer>\",\n      \"country_code\": \"<string>\"\n    },\n    \"location\": {\n      \"city\": \"<string>\",\n      \"county\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": {\n        \"iso2\": \"<string>\",\n        \"iso3\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"timezone\": {\n        \"name\": \"<string>\",\n        \"utc_offset_max\": \"<string>\",\n        \"utc_offset_min\": \"<string>\"\n      },\n      \"coordinates\": {\n        \"latitude\": \"<float>\",\n        \"longitude\": \"<float>\"\n      },\n      \"metro_code\": \"<string>\"\n    },\n    \"blocklisting\": {\n      \"block_code\": \"<integer>\",\n      \"block_description\": \"<string>\",\n      \"blocked\": \"<boolean>\"\n    },\n    \"carrier\": {\n      \"carrier_id\": \"<integer>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"sim_swap\": {\n    \"swap_date\": \"<string>\",\n    \"swap_time\": \"<string>\",\n    \"risk_indicator\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sms_verify_dlr_endpoint",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sms_verify_dlr_endpoint"
+              ]
+            },
+            "description": "This is a web service created by you, to receive delivery reports (DLRs) from the Telesign SMS Verify API."
+          },
+          "response": [
+            {
+              "id": "6b947a82-345b-45db-889b-08e830b2c1a2",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"sub_resource\": \"<string>\",\n  \"submit_timestamp\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"reference_id\": \"<string>\",\n  \"verify\": {\n    \"code_state\": \"<string>\",\n    \"code_entered\": \"<string,null>\"\n  },\n  \"additional_info\": {\n    \"message_parts_count\": \"<integer>\",\n    \"price\": \"<string>\",\n    \"mnc\": \"<string>\",\n    \"mcc\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"message_parts_reference_ids\": \"<string>\",\n    \"sender_id \": \"<string>\"\n  },\n  \"score_status\": {\n    \"phone_type\": {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"risk\": {\n      \"recommendation\": \"<string>\",\n      \"score\": \"<integer>\",\n      \"level\": \"<string>\"\n    },\n    \"risk_insights\": {\n      \"status\": \"<integer>\",\n      \"category\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"a2p\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"p2p\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"number_type\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"ip\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"email\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"numbering\": {\n      \"phone_number\": \"<string>\",\n      \"min_length\": \"<integer>\",\n      \"max_length\": \"<integer>\",\n      \"country_code\": \"<string>\"\n    },\n    \"location\": {\n      \"city\": \"<string>\",\n      \"county\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": {\n        \"iso2\": \"<string>\",\n        \"iso3\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"timezone\": {\n        \"name\": \"<string>\",\n        \"utc_offset_max\": \"<string>\",\n        \"utc_offset_min\": \"<string>\"\n      },\n      \"coordinates\": {\n        \"latitude\": \"<float>\",\n        \"longitude\": \"<float>\"\n      },\n      \"metro_code\": \"<string>\"\n    },\n    \"blocklisting\": {\n      \"block_code\": \"<integer>\",\n      \"block_description\": \"<string>\",\n      \"blocked\": \"<boolean>\"\n    },\n    \"carrier\": {\n      \"carrier_id\": \"<integer>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"sim_swap\": {\n    \"swap_date\": \"<string>\",\n    \"swap_time\": \"<string>\",\n    \"risk_indicator\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sms_verify_dlr_endpoint",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sms_verify_dlr_endpoint"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:32:08.000Z",
+              "updatedAt": "2026-10-22T01:32:08.000Z",
+              "uid": "35240-6b947a82-345b-45db-889b-08e830b2c1a2"
+            }
+          ],
+          "createdAt": "2026-10-22T01:32:08.000Z",
+          "updatedAt": "2026-10-22T01:32:08.000Z",
+          "uid": "35240-05b500d0-25d5-4916-8b03-456d2e5da39f"
+        }
+      ],
+      "id": "1f9b31d2-98ba-43c8-abb1-77a9625f4345",
+      "createdAt": "2026-10-22T01:32:08.000Z",
+      "updatedAt": "2026-10-22T01:32:08.000Z",
+      "uid": "35240-1f9b31d2-98ba-43c8-abb1-77a9625f4345"
+    },
+    {
+      "name": "verify_dlr_endpoint",
+      "item": [
+        {
+          "name": "Receive Verify API Delivery Reports",
+          "id": "b41d4a1e-814f-42db-ac86-15f54b398987",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"state\": \"CANCELED\",\n  \"created_on\": \"<string>\",\n  \"inner_methods\": [\n    {\n      \"method\": \"push\",\n      \"state\": \"VERIFIED\",\n      \"err_code\": \"<integer>\",\n      \"err_msg\": \"<string>\",\n      \"tried_on\": \"<string>\",\n      \"updated_on\": \"<string>\"\n    },\n    {\n      \"method\": \"whatsapp\",\n      \"state\": \"REJECTED\",\n      \"err_code\": \"<integer>\",\n      \"err_msg\": \"<string>\",\n      \"tried_on\": \"<string>\",\n      \"updated_on\": \"<string>\"\n    }\n  ],\n  \"recipient\": {\n    \"phone_number\": \"<string>\",\n    \"push_app_token\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"reference_id\": \"<string>\",\n  \"updated_on\": \"<string>\",\n  \"verification_policy\": [\n    {\n      \"method\": \"whatsapp\",\n      \"fallback_time\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/verify_dlr_endpoint",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "verify_dlr_endpoint"
+              ]
+            },
+            "description": "This is a web service created by you, to receive delivery reports (DLRs) from the Telesign Verify API. You can receive callbacks, including DLRs, from multiple Telesign services at the same endpoint."
+          },
+          "response": [
+            {
+              "id": "d4b3bddb-1f5f-47e9-b8b6-d4502057f8d2",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"state\": \"CANCELED\",\n  \"created_on\": \"<string>\",\n  \"inner_methods\": [\n    {\n      \"method\": \"push\",\n      \"state\": \"VERIFIED\",\n      \"err_code\": \"<integer>\",\n      \"err_msg\": \"<string>\",\n      \"tried_on\": \"<string>\",\n      \"updated_on\": \"<string>\"\n    },\n    {\n      \"method\": \"whatsapp\",\n      \"state\": \"REJECTED\",\n      \"err_code\": \"<integer>\",\n      \"err_msg\": \"<string>\",\n      \"tried_on\": \"<string>\",\n      \"updated_on\": \"<string>\"\n    }\n  ],\n  \"recipient\": {\n    \"phone_number\": \"<string>\",\n    \"push_app_token\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"reference_id\": \"<string>\",\n  \"updated_on\": \"<string>\",\n  \"verification_policy\": [\n    {\n      \"method\": \"whatsapp\",\n      \"fallback_time\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/verify_dlr_endpoint",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "verify_dlr_endpoint"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:32:08.000Z",
+              "updatedAt": "2026-10-22T01:32:08.000Z",
+              "uid": "35240-d4b3bddb-1f5f-47e9-b8b6-d4502057f8d2"
+            }
+          ],
+          "createdAt": "2026-10-22T01:32:08.000Z",
+          "updatedAt": "2026-10-22T01:32:08.000Z",
+          "uid": "35240-b41d4a1e-814f-42db-ac86-15f54b398987"
+        }
+      ],
+      "id": "6746a948-67e6-4f98-b718-b75c4928657e",
+      "createdAt": "2026-10-22T01:32:08.000Z",
+      "updatedAt": "2026-10-22T01:32:08.000Z",
+      "uid": "35240-6746a948-67e6-4f98-b718-b75c4928657e"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://your-callback-url.com"
+    }
+  ]
+}

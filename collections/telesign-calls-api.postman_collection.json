@@ -1,0 +1,995 @@
+{
+  "info": {
+    "_postman_id": "93d38772-9533-41d5-8356-13eeb1528472",
+    "name": "Voice Verify Calls API",
+    "description": "Use the Telesign Voice Verify API to send a one-time passcode (OTP) in a voice call to a recipient phone number.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:31:56.000Z",
+    "updatedAt": "2026-10-22T01:31:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-93d38772-9533-41d5-8356-13eeb1528472"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "verify",
+          "item": [
+            {
+              "name": "call",
+              "item": [
+                {
+                  "name": "Send a voice verification code",
+                  "id": "b871c831-dec4-412c-9e1d-1e0350d4a0af",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) The end user's phone number, as a string of digits without spaces or punctuation, beginning with the country dialing code (for example, \"1\" for North America).",
+                          "key": "phone_number",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A string specifying a use case code. Choices include -\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a password reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shipping notification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring money and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR)\n",
+                          "key": "ucid",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc791\">Internet Protocol</a>. For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc4291#section-2.2\">IP Version 6 Addressing Architecture</a>.\n",
+                          "key": "originating_ip",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A code specifying the language of the predefined template you wish to use. For a complete list of codes, see [Voice Verify API - Supported languages for audio templates](/enterprise/docs/voice-verify-api-supported-languages-for-audio-templates). If you also include the `tts_message` parameter in this request, a different set of language codes is supported by the service; for a complete list of those codes, see [Voice - Supported languages for text-to-speech](/enterprise/docs/voice-supported-languages-for-text-to-speech). If the language you want to use is not supported, you may be able to add a custom audio template to your account, contact our [Customer Support Team](mailto:support@telesign.com) for more details.",
+                          "key": "language",
+                          "value": "en-US"
+                        },
+                        {
+                          "description": "By default, the verification code used for the code challenge is a randomly generated five-digit number assigned by Telesign. If you prefer to use your own verification code, you can override the default behavior by including a three- to five-digit numeric value between 100 and 99999 as the value for this parameter.",
+                          "key": "verify_code",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "This message is to be used in conjunction with `prompt_digit`. You provide a message to play, it is converted to text-to-speech and sent in a call and played for the end user. You are limited to 2000 code points. The message should contain the digit you want to press. For example, you might have the message - Press 7 to continue. Make sure the digit in your message matches the digit you send for `prompt_digit`. If the end user presses the correct digit, then the message you have for the `message` parameter plays. If the end user does not press the correct digit, the follow up message does not play, they hear the regular message repeated again. This can happen up to three times. If an end user presses incorrect digits on the third play through, the call hangs up. If the end user does not press any digits in the allotted time, the message repeats. If the end user does not press any digits a second time in a row, the call hangs up. All messages use the same `language` tag if you choose to include one.",
+                          "key": "prompt_message",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "This digit is to be used in conjunction with `prompt_message`. Provide a single digit 0-9 that you want the end user to press. After playing the prompt message, the system will wait and give the end user two chances to press the correct digit. If they do, the message in the `message` parameter plays. All messages use the same `language` tag if you choose to include one.",
+                          "key": "prompt_digit",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "This parameter allows you to set a phone number as caller ID for a Voice Verify API call sent to your end users. In order to use a specific caller ID, you must purchase a phone number from Telesign. This can be done by contacting our Customer Support Team and asking to buy one or more numbers. Be aware that 100% preservation of a caller ID value is not guaranteed. Telesign or a terminating operator may override the caller ID value that your end user will receive in order to improve delivery quality or follow local Telecom regulations in particular countries.",
+                          "key": "caller_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Provides a custom text-to-speech (TTS) message containing the verification one-time passcode (OTP) to play to the end user; this overrides the default template for the specified language. You must specify the message's language in the `language` parameter and the variable `$$CODE$$` in the message text. See [Voice Verify API - Text-to-speech tips](/enterprise/docs/voice-verify-api-text-to-speech-tips) for more details about this feature.",
+                          "key": "tts_message",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "PressX is a feature that allows you to send an end user a message that asks them to press a digit in order to hear their verification code. The message is in English, and as follows: Hello. Thank you for using the phone verification system. Please press *digit* to hear your code. The *digit* is randomly selected by Telesign, and the end user gets two tries to get the correct digit. If the end user presses the correct digit, they will receive a message containing their verification code. Please note that this feature is only available in English, so you cannot use a language tag for other languages with it. To use this feature, you would put `pressx=1` in the body of your request. You cannot use this feature with TTS.",
+                          "key": "pressx",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "It is not an issue when a user\u2019s phone number belongs to a modern Private Branch Exchange (PBX) because outside numbers are usually assigned to individual extensions. Older PBX systems on the other hand, require extra call processing because incoming calls require either a live switchboard operator or an automated attendant to request the number of the user\u2019s extension before completing the call. By default, Telesign does not support older PBX systems, but you can enable support for either live or automated switchboard scenarios by including the extension_type parameter. When you use this parameter, you must also use extension_template.\n",
+                          "key": "extension_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A numerical string that specifies the extension used in the call, as described above. If the user must be reached at an extension, then use this parameter to specify the extension number. The extension string is composed of digits. You may use a maximum of 28 characters to specify your extension. For the extension_type=1 (DTMF digits are dialed), you can include commas in the extension number string, where each comma represents a one second pause in the dialing sequence.",
+                          "key": "extension_template",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you've previously set. The override only lasts for this request.",
+                          "key": "callback_url",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/verify/call",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "verify",
+                        "call"
+                      ]
+                    },
+                    "description": "Use this action to send a voice message with a one-time passcode (OTP) to a recipient phone number.\n\nTo add this product to your account, contact a Telesign expert. This product is available for full-service accounts only.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) and Digest\n* **Encoding:** Accepts only UTF-8 encoded unicode characters as inputs\n* **Accepts:** `application/x-www-form-urlencoded`\n* **Required headers:** `Content-Type - application/x-www-form-urlencoded`\n* **Rate limit:** Default rate limits by product"
+                  },
+                  "response": [
+                    {
+                      "id": "d3d3bf02-9a3b-4d32-8be7-52e689a548dc",
+                      "name": "**Success.** Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.          \n\n| Status Code | Associ",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number, as a string of digits without spaces or punctuation, beginning with the country dialing code (for example, \"1\" for North America).",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A string specifying a use case code. Choices include -\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a password reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shipping notification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring money and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR)\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc791\">Internet Protocol</a>. For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc4291#section-2.2\">IP Version 6 Addressing Architecture</a>.\n",
+                              "key": "originating_ip",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A code specifying the language of the predefined template you wish to use. For a complete list of codes, see [Voice Verify API - Supported languages for audio templates](/enterprise/docs/voice-verify-api-supported-languages-for-audio-templates). If you also include the `tts_message` parameter in this request, a different set of language codes is supported by the service; for a complete list of those codes, see [Voice - Supported languages for text-to-speech](/enterprise/docs/voice-supported-languages-for-text-to-speech). If the language you want to use is not supported, you may be able to add a custom audio template to your account, contact our [Customer Support Team](mailto:support@telesign.com) for more details.",
+                              "key": "language",
+                              "value": "en-US"
+                            },
+                            {
+                              "description": "By default, the verification code used for the code challenge is a randomly generated five-digit number assigned by Telesign. If you prefer to use your own verification code, you can override the default behavior by including a three- to five-digit numeric value between 100 and 99999 as the value for this parameter.",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This message is to be used in conjunction with `prompt_digit`. You provide a message to play, it is converted to text-to-speech and sent in a call and played for the end user. You are limited to 2000 code points. The message should contain the digit you want to press. For example, you might have the message - Press 7 to continue. Make sure the digit in your message matches the digit you send for `prompt_digit`. If the end user presses the correct digit, then the message you have for the `message` parameter plays. If the end user does not press the correct digit, the follow up message does not play, they hear the regular message repeated again. This can happen up to three times. If an end user presses incorrect digits on the third play through, the call hangs up. If the end user does not press any digits in the allotted time, the message repeats. If the end user does not press any digits a second time in a row, the call hangs up. All messages use the same `language` tag if you choose to include one.",
+                              "key": "prompt_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This digit is to be used in conjunction with `prompt_message`. Provide a single digit 0-9 that you want the end user to press. After playing the prompt message, the system will wait and give the end user two chances to press the correct digit. If they do, the message in the `message` parameter plays. All messages use the same `language` tag if you choose to include one.",
+                              "key": "prompt_digit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This parameter allows you to set a phone number as caller ID for a Voice Verify API call sent to your end users. In order to use a specific caller ID, you must purchase a phone number from Telesign. This can be done by contacting our Customer Support Team and asking to buy one or more numbers. Be aware that 100% preservation of a caller ID value is not guaranteed. Telesign or a terminating operator may override the caller ID value that your end user will receive in order to improve delivery quality or follow local Telecom regulations in particular countries.",
+                              "key": "caller_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Provides a custom text-to-speech (TTS) message containing the verification one-time passcode (OTP) to play to the end user; this overrides the default template for the specified language. You must specify the message's language in the `language` parameter and the variable `$$CODE$$` in the message text. See [Voice Verify API - Text-to-speech tips](/enterprise/docs/voice-verify-api-text-to-speech-tips) for more details about this feature.",
+                              "key": "tts_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "PressX is a feature that allows you to send an end user a message that asks them to press a digit in order to hear their verification code. The message is in English, and as follows: Hello. Thank you for using the phone verification system. Please press *digit* to hear your code. The *digit* is randomly selected by Telesign, and the end user gets two tries to get the correct digit. If the end user presses the correct digit, they will receive a message containing their verification code. Please note that this feature is only available in English, so you cannot use a language tag for other languages with it. To use this feature, you would put `pressx=1` in the body of your request. You cannot use this feature with TTS.",
+                              "key": "pressx",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "It is not an issue when a user\u2019s phone number belongs to a modern Private Branch Exchange (PBX) because outside numbers are usually assigned to individual extensions. Older PBX systems on the other hand, require extra call processing because incoming calls require either a live switchboard operator or an automated attendant to request the number of the user\u2019s extension before completing the call. By default, Telesign does not support older PBX systems, but you can enable support for either live or automated switchboard scenarios by including the extension_type parameter. When you use this parameter, you must also use extension_template.\n",
+                              "key": "extension_type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A numerical string that specifies the extension used in the call, as described above. If the user must be reached at an extension, then use this parameter to specify the extension number. The extension string is composed of digits. You may use a maximum of 28 characters to specify your extension. For the extension_type=1 (DTMF digits are dialed), you can include commas in the extension number string, where each comma represents a one second pause in the dialing sequence.",
+                              "key": "extension_template",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you've previously set. The override only lasts for this request.",
+                              "key": "callback_url",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/call",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "call"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"verify\": {\n    \"code_state\": \"VALID\",\n    \"code_entered\": \"<string>\"\n  },\n  \"voice\": {\n    \"caller_id\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:31:56.000Z",
+                      "updatedAt": "2026-10-22T01:31:56.000Z",
+                      "uid": "35240-d3d3bf02-9a3b-4d32-8be7-52e689a548dc"
+                    },
+                    {
+                      "id": "ff189e4b-9fcf-4b4e-bdfa-4b6fcb4db4de",
+                      "name": "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Error Code | Associated Text",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number, as a string of digits without spaces or punctuation, beginning with the country dialing code (for example, \"1\" for North America).",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A string specifying a use case code. Choices include -\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a password reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shipping notification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring money and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR)\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc791\">Internet Protocol</a>. For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc4291#section-2.2\">IP Version 6 Addressing Architecture</a>.\n",
+                              "key": "originating_ip",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A code specifying the language of the predefined template you wish to use. For a complete list of codes, see [Voice Verify API - Supported languages for audio templates](/enterprise/docs/voice-verify-api-supported-languages-for-audio-templates). If you also include the `tts_message` parameter in this request, a different set of language codes is supported by the service; for a complete list of those codes, see [Voice - Supported languages for text-to-speech](/enterprise/docs/voice-supported-languages-for-text-to-speech). If the language you want to use is not supported, you may be able to add a custom audio template to your account, contact our [Customer Support Team](mailto:support@telesign.com) for more details.",
+                              "key": "language",
+                              "value": "en-US"
+                            },
+                            {
+                              "description": "By default, the verification code used for the code challenge is a randomly generated five-digit number assigned by Telesign. If you prefer to use your own verification code, you can override the default behavior by including a three- to five-digit numeric value between 100 and 99999 as the value for this parameter.",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This message is to be used in conjunction with `prompt_digit`. You provide a message to play, it is converted to text-to-speech and sent in a call and played for the end user. You are limited to 2000 code points. The message should contain the digit you want to press. For example, you might have the message - Press 7 to continue. Make sure the digit in your message matches the digit you send for `prompt_digit`. If the end user presses the correct digit, then the message you have for the `message` parameter plays. If the end user does not press the correct digit, the follow up message does not play, they hear the regular message repeated again. This can happen up to three times. If an end user presses incorrect digits on the third play through, the call hangs up. If the end user does not press any digits in the allotted time, the message repeats. If the end user does not press any digits a second time in a row, the call hangs up. All messages use the same `language` tag if you choose to include one.",
+                              "key": "prompt_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This digit is to be used in conjunction with `prompt_message`. Provide a single digit 0-9 that you want the end user to press. After playing the prompt message, the system will wait and give the end user two chances to press the correct digit. If they do, the message in the `message` parameter plays. All messages use the same `language` tag if you choose to include one.",
+                              "key": "prompt_digit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This parameter allows you to set a phone number as caller ID for a Voice Verify API call sent to your end users. In order to use a specific caller ID, you must purchase a phone number from Telesign. This can be done by contacting our Customer Support Team and asking to buy one or more numbers. Be aware that 100% preservation of a caller ID value is not guaranteed. Telesign or a terminating operator may override the caller ID value that your end user will receive in order to improve delivery quality or follow local Telecom regulations in particular countries.",
+                              "key": "caller_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Provides a custom text-to-speech (TTS) message containing the verification one-time passcode (OTP) to play to the end user; this overrides the default template for the specified language. You must specify the message's language in the `language` parameter and the variable `$$CODE$$` in the message text. See [Voice Verify API - Text-to-speech tips](/enterprise/docs/voice-verify-api-text-to-speech-tips) for more details about this feature.",
+                              "key": "tts_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "PressX is a feature that allows you to send an end user a message that asks them to press a digit in order to hear their verification code. The message is in English, and as follows: Hello. Thank you for using the phone verification system. Please press *digit* to hear your code. The *digit* is randomly selected by Telesign, and the end user gets two tries to get the correct digit. If the end user presses the correct digit, they will receive a message containing their verification code. Please note that this feature is only available in English, so you cannot use a language tag for other languages with it. To use this feature, you would put `pressx=1` in the body of your request. You cannot use this feature with TTS.",
+                              "key": "pressx",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "It is not an issue when a user\u2019s phone number belongs to a modern Private Branch Exchange (PBX) because outside numbers are usually assigned to individual extensions. Older PBX systems on the other hand, require extra call processing because incoming calls require either a live switchboard operator or an automated attendant to request the number of the user\u2019s extension before completing the call. By default, Telesign does not support older PBX systems, but you can enable support for either live or automated switchboard scenarios by including the extension_type parameter. When you use this parameter, you must also use extension_template.\n",
+                              "key": "extension_type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A numerical string that specifies the extension used in the call, as described above. If the user must be reached at an extension, then use this parameter to specify the extension number. The extension string is composed of digits. You may use a maximum of 28 characters to specify your extension. For the extension_type=1 (DTMF digits are dialed), you can include commas in the extension number string, where each comma represents a one second pause in the dialing sequence.",
+                              "key": "extension_template",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you've previously set. The override only lasts for this request.",
+                              "key": "callback_url",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/call",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "call"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:31:56.000Z",
+                      "updatedAt": "2026-10-22T01:31:56.000Z",
+                      "uid": "35240-ff189e4b-9fcf-4b4e-bdfa-4b6fcb4db4de"
+                    },
+                    {
+                      "id": "7f51c8a4-082e-4a57-84aa-6958e732c77f",
+                      "name": "**Unauthorized.** The request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Error Code | Description   |\n|------------|-------------",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number, as a string of digits without spaces or punctuation, beginning with the country dialing code (for example, \"1\" for North America).",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A string specifying a use case code. Choices include -\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a password reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shipping notification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring money and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR)\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc791\">Internet Protocol</a>. For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc4291#section-2.2\">IP Version 6 Addressing Architecture</a>.\n",
+                              "key": "originating_ip",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A code specifying the language of the predefined template you wish to use. For a complete list of codes, see [Voice Verify API - Supported languages for audio templates](/enterprise/docs/voice-verify-api-supported-languages-for-audio-templates). If you also include the `tts_message` parameter in this request, a different set of language codes is supported by the service; for a complete list of those codes, see [Voice - Supported languages for text-to-speech](/enterprise/docs/voice-supported-languages-for-text-to-speech). If the language you want to use is not supported, you may be able to add a custom audio template to your account, contact our [Customer Support Team](mailto:support@telesign.com) for more details.",
+                              "key": "language",
+                              "value": "en-US"
+                            },
+                            {
+                              "description": "By default, the verification code used for the code challenge is a randomly generated five-digit number assigned by Telesign. If you prefer to use your own verification code, you can override the default behavior by including a three- to five-digit numeric value between 100 and 99999 as the value for this parameter.",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This message is to be used in conjunction with `prompt_digit`. You provide a message to play, it is converted to text-to-speech and sent in a call and played for the end user. You are limited to 2000 code points. The message should contain the digit you want to press. For example, you might have the message - Press 7 to continue. Make sure the digit in your message matches the digit you send for `prompt_digit`. If the end user presses the correct digit, then the message you have for the `message` parameter plays. If the end user does not press the correct digit, the follow up message does not play, they hear the regular message repeated again. This can happen up to three times. If an end user presses incorrect digits on the third play through, the call hangs up. If the end user does not press any digits in the allotted time, the message repeats. If the end user does not press any digits a second time in a row, the call hangs up. All messages use the same `language` tag if you choose to include one.",
+                              "key": "prompt_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This digit is to be used in conjunction with `prompt_message`. Provide a single digit 0-9 that you want the end user to press. After playing the prompt message, the system will wait and give the end user two chances to press the correct digit. If they do, the message in the `message` parameter plays. All messages use the same `language` tag if you choose to include one.",
+                              "key": "prompt_digit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This parameter allows you to set a phone number as caller ID for a Voice Verify API call sent to your end users. In order to use a specific caller ID, you must purchase a phone number from Telesign. This can be done by contacting our Customer Support Team and asking to buy one or more numbers. Be aware that 100% preservation of a caller ID value is not guaranteed. Telesign or a terminating operator may override the caller ID value that your end user will receive in order to improve delivery quality or follow local Telecom regulations in particular countries.",
+                              "key": "caller_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Provides a custom text-to-speech (TTS) message containing the verification one-time passcode (OTP) to play to the end user; this overrides the default template for the specified language. You must specify the message's language in the `language` parameter and the variable `$$CODE$$` in the message text. See [Voice Verify API - Text-to-speech tips](/enterprise/docs/voice-verify-api-text-to-speech-tips) for more details about this feature.",
+                              "key": "tts_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "PressX is a feature that allows you to send an end user a message that asks them to press a digit in order to hear their verification code. The message is in English, and as follows: Hello. Thank you for using the phone verification system. Please press *digit* to hear your code. The *digit* is randomly selected by Telesign, and the end user gets two tries to get the correct digit. If the end user presses the correct digit, they will receive a message containing their verification code. Please note that this feature is only available in English, so you cannot use a language tag for other languages with it. To use this feature, you would put `pressx=1` in the body of your request. You cannot use this feature with TTS.",
+                              "key": "pressx",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "It is not an issue when a user\u2019s phone number belongs to a modern Private Branch Exchange (PBX) because outside numbers are usually assigned to individual extensions. Older PBX systems on the other hand, require extra call processing because incoming calls require either a live switchboard operator or an automated attendant to request the number of the user\u2019s extension before completing the call. By default, Telesign does not support older PBX systems, but you can enable support for either live or automated switchboard scenarios by including the extension_type parameter. When you use this parameter, you must also use extension_template.\n",
+                              "key": "extension_type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A numerical string that specifies the extension used in the call, as described above. If the user must be reached at an extension, then use this parameter to specify the extension number. The extension string is composed of digits. You may use a maximum of 28 characters to specify your extension. For the extension_type=1 (DTMF digits are dialed), you can include commas in the extension number string, where each comma represents a one second pause in the dialing sequence.",
+                              "key": "extension_template",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you've previously set. The override only lasts for this request.",
+                              "key": "callback_url",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/call",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "call"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:31:56.000Z",
+                      "updatedAt": "2026-10-22T01:31:56.000Z",
+                      "uid": "35240-7f51c8a4-082e-4a57-84aa-6958e732c77f"
+                    },
+                    {
+                      "id": "b758ec5b-feb3-4ba8-a4b3-ff0371eb7be4",
+                      "name": "**Not Found.** The server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Error Code | Associated Text String   |\n|",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number, as a string of digits without spaces or punctuation, beginning with the country dialing code (for example, \"1\" for North America).",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A string specifying a use case code. Choices include -\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a password reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shipping notification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring money and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR)\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc791\">Internet Protocol</a>. For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc4291#section-2.2\">IP Version 6 Addressing Architecture</a>.\n",
+                              "key": "originating_ip",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A code specifying the language of the predefined template you wish to use. For a complete list of codes, see [Voice Verify API - Supported languages for audio templates](/enterprise/docs/voice-verify-api-supported-languages-for-audio-templates). If you also include the `tts_message` parameter in this request, a different set of language codes is supported by the service; for a complete list of those codes, see [Voice - Supported languages for text-to-speech](/enterprise/docs/voice-supported-languages-for-text-to-speech). If the language you want to use is not supported, you may be able to add a custom audio template to your account, contact our [Customer Support Team](mailto:support@telesign.com) for more details.",
+                              "key": "language",
+                              "value": "en-US"
+                            },
+                            {
+                              "description": "By default, the verification code used for the code challenge is a randomly generated five-digit number assigned by Telesign. If you prefer to use your own verification code, you can override the default behavior by including a three- to five-digit numeric value between 100 and 99999 as the value for this parameter.",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This message is to be used in conjunction with `prompt_digit`. You provide a message to play, it is converted to text-to-speech and sent in a call and played for the end user. You are limited to 2000 code points. The message should contain the digit you want to press. For example, you might have the message - Press 7 to continue. Make sure the digit in your message matches the digit you send for `prompt_digit`. If the end user presses the correct digit, then the message you have for the `message` parameter plays. If the end user does not press the correct digit, the follow up message does not play, they hear the regular message repeated again. This can happen up to three times. If an end user presses incorrect digits on the third play through, the call hangs up. If the end user does not press any digits in the allotted time, the message repeats. If the end user does not press any digits a second time in a row, the call hangs up. All messages use the same `language` tag if you choose to include one.",
+                              "key": "prompt_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This digit is to be used in conjunction with `prompt_message`. Provide a single digit 0-9 that you want the end user to press. After playing the prompt message, the system will wait and give the end user two chances to press the correct digit. If they do, the message in the `message` parameter plays. All messages use the same `language` tag if you choose to include one.",
+                              "key": "prompt_digit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This parameter allows you to set a phone number as caller ID for a Voice Verify API call sent to your end users. In order to use a specific caller ID, you must purchase a phone number from Telesign. This can be done by contacting our Customer Support Team and asking to buy one or more numbers. Be aware that 100% preservation of a caller ID value is not guaranteed. Telesign or a terminating operator may override the caller ID value that your end user will receive in order to improve delivery quality or follow local Telecom regulations in particular countries.",
+                              "key": "caller_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Provides a custom text-to-speech (TTS) message containing the verification one-time passcode (OTP) to play to the end user; this overrides the default template for the specified language. You must specify the message's language in the `language` parameter and the variable `$$CODE$$` in the message text. See [Voice Verify API - Text-to-speech tips](/enterprise/docs/voice-verify-api-text-to-speech-tips) for more details about this feature.",
+                              "key": "tts_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "PressX is a feature that allows you to send an end user a message that asks them to press a digit in order to hear their verification code. The message is in English, and as follows: Hello. Thank you for using the phone verification system. Please press *digit* to hear your code. The *digit* is randomly selected by Telesign, and the end user gets two tries to get the correct digit. If the end user presses the correct digit, they will receive a message containing their verification code. Please note that this feature is only available in English, so you cannot use a language tag for other languages with it. To use this feature, you would put `pressx=1` in the body of your request. You cannot use this feature with TTS.",
+                              "key": "pressx",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "It is not an issue when a user\u2019s phone number belongs to a modern Private Branch Exchange (PBX) because outside numbers are usually assigned to individual extensions. Older PBX systems on the other hand, require extra call processing because incoming calls require either a live switchboard operator or an automated attendant to request the number of the user\u2019s extension before completing the call. By default, Telesign does not support older PBX systems, but you can enable support for either live or automated switchboard scenarios by including the extension_type parameter. When you use this parameter, you must also use extension_template.\n",
+                              "key": "extension_type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A numerical string that specifies the extension used in the call, as described above. If the user must be reached at an extension, then use this parameter to specify the extension number. The extension string is composed of digits. You may use a maximum of 28 characters to specify your extension. For the extension_type=1 (DTMF digits are dialed), you can include commas in the extension number string, where each comma represents a one second pause in the dialing sequence.",
+                              "key": "extension_template",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you've previously set. The override only lasts for this request.",
+                              "key": "callback_url",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/call",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "call"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:31:56.000Z",
+                      "updatedAt": "2026-10-22T01:31:56.000Z",
+                      "uid": "35240-b758ec5b-feb3-4ba8-a4b3-ff0371eb7be4"
+                    },
+                    {
+                      "id": "7c17808a-2a1a-4801-92c5-d415cf2e6486",
+                      "name": "**Method not allowed.** The request method is known by the server but has been disabled and cannot be used.\n\n| Error Code | Associated Text String   |\n|------------|--------------------------|\n| -40005     | Method Not Allowed       |\n",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number, as a string of digits without spaces or punctuation, beginning with the country dialing code (for example, \"1\" for North America).",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A string specifying a use case code. Choices include -\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a password reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shipping notification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring money and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR)\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc791\">Internet Protocol</a>. For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc4291#section-2.2\">IP Version 6 Addressing Architecture</a>.\n",
+                              "key": "originating_ip",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A code specifying the language of the predefined template you wish to use. For a complete list of codes, see [Voice Verify API - Supported languages for audio templates](/enterprise/docs/voice-verify-api-supported-languages-for-audio-templates). If you also include the `tts_message` parameter in this request, a different set of language codes is supported by the service; for a complete list of those codes, see [Voice - Supported languages for text-to-speech](/enterprise/docs/voice-supported-languages-for-text-to-speech). If the language you want to use is not supported, you may be able to add a custom audio template to your account, contact our [Customer Support Team](mailto:support@telesign.com) for more details.",
+                              "key": "language",
+                              "value": "en-US"
+                            },
+                            {
+                              "description": "By default, the verification code used for the code challenge is a randomly generated five-digit number assigned by Telesign. If you prefer to use your own verification code, you can override the default behavior by including a three- to five-digit numeric value between 100 and 99999 as the value for this parameter.",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This message is to be used in conjunction with `prompt_digit`. You provide a message to play, it is converted to text-to-speech and sent in a call and played for the end user. You are limited to 2000 code points. The message should contain the digit you want to press. For example, you might have the message - Press 7 to continue. Make sure the digit in your message matches the digit you send for `prompt_digit`. If the end user presses the correct digit, then the message you have for the `message` parameter plays. If the end user does not press the correct digit, the follow up message does not play, they hear the regular message repeated again. This can happen up to three times. If an end user presses incorrect digits on the third play through, the call hangs up. If the end user does not press any digits in the allotted time, the message repeats. If the end user does not press any digits a second time in a row, the call hangs up. All messages use the same `language` tag if you choose to include one.",
+                              "key": "prompt_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This digit is to be used in conjunction with `prompt_message`. Provide a single digit 0-9 that you want the end user to press. After playing the prompt message, the system will wait and give the end user two chances to press the correct digit. If they do, the message in the `message` parameter plays. All messages use the same `language` tag if you choose to include one.",
+                              "key": "prompt_digit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This parameter allows you to set a phone number as caller ID for a Voice Verify API call sent to your end users. In order to use a specific caller ID, you must purchase a phone number from Telesign. This can be done by contacting our Customer Support Team and asking to buy one or more numbers. Be aware that 100% preservation of a caller ID value is not guaranteed. Telesign or a terminating operator may override the caller ID value that your end user will receive in order to improve delivery quality or follow local Telecom regulations in particular countries.",
+                              "key": "caller_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Provides a custom text-to-speech (TTS) message containing the verification one-time passcode (OTP) to play to the end user; this overrides the default template for the specified language. You must specify the message's language in the `language` parameter and the variable `$$CODE$$` in the message text. See [Voice Verify API - Text-to-speech tips](/enterprise/docs/voice-verify-api-text-to-speech-tips) for more details about this feature.",
+                              "key": "tts_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "PressX is a feature that allows you to send an end user a message that asks them to press a digit in order to hear their verification code. The message is in English, and as follows: Hello. Thank you for using the phone verification system. Please press *digit* to hear your code. The *digit* is randomly selected by Telesign, and the end user gets two tries to get the correct digit. If the end user presses the correct digit, they will receive a message containing their verification code. Please note that this feature is only available in English, so you cannot use a language tag for other languages with it. To use this feature, you would put `pressx=1` in the body of your request. You cannot use this feature with TTS.",
+                              "key": "pressx",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "It is not an issue when a user\u2019s phone number belongs to a modern Private Branch Exchange (PBX) because outside numbers are usually assigned to individual extensions. Older PBX systems on the other hand, require extra call processing because incoming calls require either a live switchboard operator or an automated attendant to request the number of the user\u2019s extension before completing the call. By default, Telesign does not support older PBX systems, but you can enable support for either live or automated switchboard scenarios by including the extension_type parameter. When you use this parameter, you must also use extension_template.\n",
+                              "key": "extension_type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A numerical string that specifies the extension used in the call, as described above. If the user must be reached at an extension, then use this parameter to specify the extension number. The extension string is composed of digits. You may use a maximum of 28 characters to specify your extension. For the extension_type=1 (DTMF digits are dialed), you can include commas in the extension number string, where each comma represents a one second pause in the dialing sequence.",
+                              "key": "extension_template",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you've previously set. The override only lasts for this request.",
+                              "key": "callback_url",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/call",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "call"
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:31:56.000Z",
+                      "updatedAt": "2026-10-22T01:31:56.000Z",
+                      "uid": "35240-7c17808a-2a1a-4801-92c5-d415cf2e6486"
+                    },
+                    {
+                      "id": "57455e2c-d881-4954-a177-2ef6b2c2ef7a",
+                      "name": "**Too Many Requests.**\n\n| Error Code | Associated Text String   |\n|------------|--------------------------|\n| -40008     | {product} exceeded transaction hard cap. Request denied.          |\n",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number, as a string of digits without spaces or punctuation, beginning with the country dialing code (for example, \"1\" for North America).",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A string specifying a use case code. Choices include -\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a password reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shipping notification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring money and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR)\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc791\">Internet Protocol</a>. For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc4291#section-2.2\">IP Version 6 Addressing Architecture</a>.\n",
+                              "key": "originating_ip",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A code specifying the language of the predefined template you wish to use. For a complete list of codes, see [Voice Verify API - Supported languages for audio templates](/enterprise/docs/voice-verify-api-supported-languages-for-audio-templates). If you also include the `tts_message` parameter in this request, a different set of language codes is supported by the service; for a complete list of those codes, see [Voice - Supported languages for text-to-speech](/enterprise/docs/voice-supported-languages-for-text-to-speech). If the language you want to use is not supported, you may be able to add a custom audio template to your account, contact our [Customer Support Team](mailto:support@telesign.com) for more details.",
+                              "key": "language",
+                              "value": "en-US"
+                            },
+                            {
+                              "description": "By default, the verification code used for the code challenge is a randomly generated five-digit number assigned by Telesign. If you prefer to use your own verification code, you can override the default behavior by including a three- to five-digit numeric value between 100 and 99999 as the value for this parameter.",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This message is to be used in conjunction with `prompt_digit`. You provide a message to play, it is converted to text-to-speech and sent in a call and played for the end user. You are limited to 2000 code points. The message should contain the digit you want to press. For example, you might have the message - Press 7 to continue. Make sure the digit in your message matches the digit you send for `prompt_digit`. If the end user presses the correct digit, then the message you have for the `message` parameter plays. If the end user does not press the correct digit, the follow up message does not play, they hear the regular message repeated again. This can happen up to three times. If an end user presses incorrect digits on the third play through, the call hangs up. If the end user does not press any digits in the allotted time, the message repeats. If the end user does not press any digits a second time in a row, the call hangs up. All messages use the same `language` tag if you choose to include one.",
+                              "key": "prompt_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This digit is to be used in conjunction with `prompt_message`. Provide a single digit 0-9 that you want the end user to press. After playing the prompt message, the system will wait and give the end user two chances to press the correct digit. If they do, the message in the `message` parameter plays. All messages use the same `language` tag if you choose to include one.",
+                              "key": "prompt_digit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This parameter allows you to set a phone number as caller ID for a Voice Verify API call sent to your end users. In order to use a specific caller ID, you must purchase a phone number from Telesign. This can be done by contacting our Customer Support Team and asking to buy one or more numbers. Be aware that 100% preservation of a caller ID value is not guaranteed. Telesign or a terminating operator may override the caller ID value that your end user will receive in order to improve delivery quality or follow local Telecom regulations in particular countries.",
+                              "key": "caller_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Provides a custom text-to-speech (TTS) message containing the verification one-time passcode (OTP) to play to the end user; this overrides the default template for the specified language. You must specify the message's language in the `language` parameter and the variable `$$CODE$$` in the message text. See [Voice Verify API - Text-to-speech tips](/enterprise/docs/voice-verify-api-text-to-speech-tips) for more details about this feature.",
+                              "key": "tts_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "PressX is a feature that allows you to send an end user a message that asks them to press a digit in order to hear their verification code. The message is in English, and as follows: Hello. Thank you for using the phone verification system. Please press *digit* to hear your code. The *digit* is randomly selected by Telesign, and the end user gets two tries to get the correct digit. If the end user presses the correct digit, they will receive a message containing their verification code. Please note that this feature is only available in English, so you cannot use a language tag for other languages with it. To use this feature, you would put `pressx=1` in the body of your request. You cannot use this feature with TTS.",
+                              "key": "pressx",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "It is not an issue when a user\u2019s phone number belongs to a modern Private Branch Exchange (PBX) because outside numbers are usually assigned to individual extensions. Older PBX systems on the other hand, require extra call processing because incoming calls require either a live switchboard operator or an automated attendant to request the number of the user\u2019s extension before completing the call. By default, Telesign does not support older PBX systems, but you can enable support for either live or automated switchboard scenarios by including the extension_type parameter. When you use this parameter, you must also use extension_template.\n",
+                              "key": "extension_type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A numerical string that specifies the extension used in the call, as described above. If the user must be reached at an extension, then use this parameter to specify the extension number. The extension string is composed of digits. You may use a maximum of 28 characters to specify your extension. For the extension_type=1 (DTMF digits are dialed), you can include commas in the extension number string, where each comma represents a one second pause in the dialing sequence.",
+                              "key": "extension_template",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you've previously set. The override only lasts for this request.",
+                              "key": "callback_url",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/call",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "call"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:31:56.000Z",
+                      "updatedAt": "2026-10-22T01:31:56.000Z",
+                      "uid": "35240-57455e2c-d881-4954-a177-2ef6b2c2ef7a"
+                    },
+                    {
+                      "id": "aab9fba6-93ac-4bb4-9629-13094ca95315",
+                      "name": "**Service Unavailable.** The system is unavailable, try again.\n\n| Error Code | Associated Text String   |\n|------------|--------------------------|\n| -90001     | System Unavailable, please try again later.  |",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number, as a string of digits without spaces or punctuation, beginning with the country dialing code (for example, \"1\" for North America).",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A string specifying a use case code. Choices include -\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a password reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shipping notification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring money and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR)\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc791\">Internet Protocol</a>. For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled <a href=\"https://tools.ietf.org/html/rfc4291#section-2.2\">IP Version 6 Addressing Architecture</a>.\n",
+                              "key": "originating_ip",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A code specifying the language of the predefined template you wish to use. For a complete list of codes, see [Voice Verify API - Supported languages for audio templates](/enterprise/docs/voice-verify-api-supported-languages-for-audio-templates). If you also include the `tts_message` parameter in this request, a different set of language codes is supported by the service; for a complete list of those codes, see [Voice - Supported languages for text-to-speech](/enterprise/docs/voice-supported-languages-for-text-to-speech). If the language you want to use is not supported, you may be able to add a custom audio template to your account, contact our [Customer Support Team](mailto:support@telesign.com) for more details.",
+                              "key": "language",
+                              "value": "en-US"
+                            },
+                            {
+                              "description": "By default, the verification code used for the code challenge is a randomly generated five-digit number assigned by Telesign. If you prefer to use your own verification code, you can override the default behavior by including a three- to five-digit numeric value between 100 and 99999 as the value for this parameter.",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This message is to be used in conjunction with `prompt_digit`. You provide a message to play, it is converted to text-to-speech and sent in a call and played for the end user. You are limited to 2000 code points. The message should contain the digit you want to press. For example, you might have the message - Press 7 to continue. Make sure the digit in your message matches the digit you send for `prompt_digit`. If the end user presses the correct digit, then the message you have for the `message` parameter plays. If the end user does not press the correct digit, the follow up message does not play, they hear the regular message repeated again. This can happen up to three times. If an end user presses incorrect digits on the third play through, the call hangs up. If the end user does not press any digits in the allotted time, the message repeats. If the end user does not press any digits a second time in a row, the call hangs up. All messages use the same `language` tag if you choose to include one.",
+                              "key": "prompt_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This digit is to be used in conjunction with `prompt_message`. Provide a single digit 0-9 that you want the end user to press. After playing the prompt message, the system will wait and give the end user two chances to press the correct digit. If they do, the message in the `message` parameter plays. All messages use the same `language` tag if you choose to include one.",
+                              "key": "prompt_digit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This parameter allows you to set a phone number as caller ID for a Voice Verify API call sent to your end users. In order to use a specific caller ID, you must purchase a phone number from Telesign. This can be done by contacting our Customer Support Team and asking to buy one or more numbers. Be aware that 100% preservation of a caller ID value is not guaranteed. Telesign or a terminating operator may override the caller ID value that your end user will receive in order to improve delivery quality or follow local Telecom regulations in particular countries.",
+                              "key": "caller_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Provides a custom text-to-speech (TTS) message containing the verification one-time passcode (OTP) to play to the end user; this overrides the default template for the specified language. You must specify the message's language in the `language` parameter and the variable `$$CODE$$` in the message text. See [Voice Verify API - Text-to-speech tips](/enterprise/docs/voice-verify-api-text-to-speech-tips) for more details about this feature.",
+                              "key": "tts_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "PressX is a feature that allows you to send an end user a message that asks them to press a digit in order to hear their verification code. The message is in English, and as follows: Hello. Thank you for using the phone verification system. Please press *digit* to hear your code. The *digit* is randomly selected by Telesign, and the end user gets two tries to get the correct digit. If the end user presses the correct digit, they will receive a message containing their verification code. Please note that this feature is only available in English, so you cannot use a language tag for other languages with it. To use this feature, you would put `pressx=1` in the body of your request. You cannot use this feature with TTS.",
+                              "key": "pressx",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "It is not an issue when a user\u2019s phone number belongs to a modern Private Branch Exchange (PBX) because outside numbers are usually assigned to individual extensions. Older PBX systems on the other hand, require extra call processing because incoming calls require either a live switchboard operator or an automated attendant to request the number of the user\u2019s extension before completing the call. By default, Telesign does not support older PBX systems, but you can enable support for either live or automated switchboard scenarios by including the extension_type parameter. When you use this parameter, you must also use extension_template.\n",
+                              "key": "extension_type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A numerical string that specifies the extension used in the call, as described above. If the user must be reached at an extension, then use this parameter to specify the extension number. The extension string is composed of digits. You may use a maximum of 28 characters to specify your extension. For the extension_type=1 (DTMF digits are dialed), you can include commas in the extension number string, where each comma represents a one second pause in the dialing sequence.",
+                              "key": "extension_template",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you've previously set. The override only lasts for this request.",
+                              "key": "callback_url",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/call",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "call"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:31:56.000Z",
+                      "updatedAt": "2026-10-22T01:31:56.000Z",
+                      "uid": "35240-aab9fba6-93ac-4bb4-9629-13094ca95315"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:31:56.000Z",
+                  "updatedAt": "2026-10-22T01:31:56.000Z",
+                  "uid": "35240-b871c831-dec4-412c-9e1d-1e0350d4a0af"
+                }
+              ],
+              "id": "a8e71053-def8-476c-8eca-5fb94fa6e4d9",
+              "createdAt": "2026-10-22T01:31:56.000Z",
+              "updatedAt": "2026-10-22T01:31:56.000Z",
+              "uid": "35240-a8e71053-def8-476c-8eca-5fb94fa6e4d9"
+            }
+          ],
+          "id": "dea335a0-ddc4-4bca-99d8-0bcb5af41199",
+          "createdAt": "2026-10-22T01:31:56.000Z",
+          "updatedAt": "2026-10-22T01:31:56.000Z",
+          "uid": "35240-dea335a0-ddc4-4bca-99d8-0bcb5af41199"
+        }
+      ],
+      "id": "d307096c-6c0d-4cdf-8004-5425d70d5c70",
+      "createdAt": "2026-10-22T01:31:56.000Z",
+      "updatedAt": "2026-10-22T01:31:56.000Z",
+      "uid": "35240-d307096c-6c0d-4cdf-8004-5425d70d5c70"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rest-ww.telesign.com"
+    }
+  ]
+}

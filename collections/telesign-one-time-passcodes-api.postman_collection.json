@@ -1,0 +1,755 @@
+{
+  "info": {
+    "_postman_id": "d5e7fbcf-8590-487f-b316-d5426dcff0d2",
+    "name": "Smart Verify One-time passcodes API",
+    "description": "The Telesign Smart Verify API decides whether it is most effective to send a one-time passcode in an SMS or in a voice message.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:33:08.000Z",
+    "updatedAt": "2026-10-22T01:33:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d5e7fbcf-8590-487f-b316-d5426dcff0d2"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "verify",
+          "item": [
+            {
+              "name": "smart",
+              "item": [
+                {
+                  "name": "Send smart verify code",
+                  "id": "c3d7dd38-33ef-4b47-8375-5c5264723d45",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) The end user's phone number you want to send a message to, including the country code, as a string of digits without spaces or special characters, beginning with the country dialing code.",
+                          "key": "phone_number",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An abbreviation specifying a use case. Valid options are:\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a passwor reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shippingnotification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring moneyand you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR).\n",
+                          "key": "ucid",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "If you choose to pass a custom message, you use this parameter to indicate what the custom message would be for text to speech (TTS). You MUST set the language parameter if you use this parameter. If a language is not supported, Telesign may choose a default for you. If you do not set the language tag, United States English is assumed. Make sure to use $$CODE$$ in your message string, as this will generate and insert a random string with appropriate length as part of your TTS message.",
+                          "key": "tts_message",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "If you use the tts_message parameter you must set the language. Choose from the list of [supported languages](/enterprise/docs/voice-verify-supported-languages-for-text-to-speech) also used by the Telesign Voice Verify API.",
+                          "key": "language",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "If you choose to pass a custom message, you use this parameter to indicate what the custom message would be if an SMS is sent.",
+                          "key": "sms_message",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Overrides the service's automatic method selection (SMS falling back on voice call), and attempts to force it to use your specified method. You can specify either `Voice Verify` (use call) or `SMS Verify` (use SMS) as the recommended method to attempt. Telesign uses the override method whenever possible. Telesign may ignore this specified method if the destination device does not support it.",
+                          "key": "preference",
+                          "value": "Voice Verify"
+                        },
+                        {
+                          "description": "Overrides the service's automatic method selection (SMS falling back on voice call), and attempts to force it to use your specified method. You can specify either `Voice Verify` (use call) or `SMS Verify` (use SMS) as the recommended method to attempt. Telesign uses the override method whenever possible. Telesign may ignore this specified method if the destination device does not support it.",
+                          "key": "ignore_risk",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/verify/smart",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "verify",
+                        "smart"
+                      ]
+                    },
+                    "description": "Use this action to send a one-time passcode (OTP) to your end user with the Telesign Smart Verify API. The service decides whether it is most effective to send the code in an SMS or in a voice message.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement)\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/x-www-form-urlencoded`\n* **Responds with:** `application/json`"
+                  },
+                  "response": [
+                    {
+                      "id": "b52490c7-4f30-44ee-a65e-9eae58cc2990",
+                      "name": "Your request was fulfilled and resulted in a new resource being created. Code against the status or error code and use that rather than the HTTP status response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number you want to send a message to, including the country code, as a string of digits without spaces or special characters, beginning with the country dialing code.",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An abbreviation specifying a use case. Valid options are:\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a passwor reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shippingnotification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring moneyand you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR).\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you choose to pass a custom message, you use this parameter to indicate what the custom message would be for text to speech (TTS). You MUST set the language parameter if you use this parameter. If a language is not supported, Telesign may choose a default for you. If you do not set the language tag, United States English is assumed. Make sure to use $$CODE$$ in your message string, as this will generate and insert a random string with appropriate length as part of your TTS message.",
+                              "key": "tts_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you use the tts_message parameter you must set the language. Choose from the list of [supported languages](/enterprise/docs/voice-verify-supported-languages-for-text-to-speech) also used by the Telesign Voice Verify API.",
+                              "key": "language",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you choose to pass a custom message, you use this parameter to indicate what the custom message would be if an SMS is sent.",
+                              "key": "sms_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Overrides the service's automatic method selection (SMS falling back on voice call), and attempts to force it to use your specified method. You can specify either `Voice Verify` (use call) or `SMS Verify` (use SMS) as the recommended method to attempt. Telesign uses the override method whenever possible. Telesign may ignore this specified method if the destination device does not support it.",
+                              "key": "preference",
+                              "value": "Voice Verify"
+                            },
+                            {
+                              "description": "Overrides the service's automatic method selection (SMS falling back on voice call), and attempts to force it to use your specified method. You can specify either `Voice Verify` (use call) or `SMS Verify` (use SMS) as the recommended method to attempt. Telesign uses the override method whenever possible. Telesign may ignore this specified method if the destination device does not support it.",
+                              "key": "ignore_risk",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/smart",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "smart"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"numbering\": {\n    \"original\": {\n      \"phone_number\": \"<string>\",\n      \"complete_phone_number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"cleansing\": {\n      \"call\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      },\n      \"sms\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      }\n    }\n  },\n  \"phone_type\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"carrier\": {\n    \"carrier_id\": \"<string>\",\n    \"name\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:09.000Z",
+                      "updatedAt": "2026-10-22T01:33:09.000Z",
+                      "uid": "35240-b52490c7-4f30-44ee-a65e-9eae58cc2990"
+                    },
+                    {
+                      "id": "62074bcd-4db1-406d-80ce-318fd6b29235",
+                      "name": "Bad request, the request could not be understood by the server due to malformed syntax. Code against the status or error code and use that rather than the HTTP status response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number you want to send a message to, including the country code, as a string of digits without spaces or special characters, beginning with the country dialing code.",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An abbreviation specifying a use case. Valid options are:\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a passwor reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shippingnotification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring moneyand you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR).\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you choose to pass a custom message, you use this parameter to indicate what the custom message would be for text to speech (TTS). You MUST set the language parameter if you use this parameter. If a language is not supported, Telesign may choose a default for you. If you do not set the language tag, United States English is assumed. Make sure to use $$CODE$$ in your message string, as this will generate and insert a random string with appropriate length as part of your TTS message.",
+                              "key": "tts_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you use the tts_message parameter you must set the language. Choose from the list of [supported languages](/enterprise/docs/voice-verify-supported-languages-for-text-to-speech) also used by the Telesign Voice Verify API.",
+                              "key": "language",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you choose to pass a custom message, you use this parameter to indicate what the custom message would be if an SMS is sent.",
+                              "key": "sms_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Overrides the service's automatic method selection (SMS falling back on voice call), and attempts to force it to use your specified method. You can specify either `Voice Verify` (use call) or `SMS Verify` (use SMS) as the recommended method to attempt. Telesign uses the override method whenever possible. Telesign may ignore this specified method if the destination device does not support it.",
+                              "key": "preference",
+                              "value": "Voice Verify"
+                            },
+                            {
+                              "description": "Overrides the service's automatic method selection (SMS falling back on voice call), and attempts to force it to use your specified method. You can specify either `Voice Verify` (use call) or `SMS Verify` (use SMS) as the recommended method to attempt. Telesign uses the override method whenever possible. Telesign may ignore this specified method if the destination device does not support it.",
+                              "key": "ignore_risk",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/smart",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "smart"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:09.000Z",
+                      "updatedAt": "2026-10-22T01:33:09.000Z",
+                      "uid": "35240-62074bcd-4db1-406d-80ce-318fd6b29235"
+                    },
+                    {
+                      "id": "ad8ba688-7aba-4afe-92ce-7aa3ab9f9ac6",
+                      "name": "Unauthorized, the request requires user authentication. Code against the status or error code and use that rather than the HTTP status response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number you want to send a message to, including the country code, as a string of digits without spaces or special characters, beginning with the country dialing code.",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An abbreviation specifying a use case. Valid options are:\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a passwor reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shippingnotification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring moneyand you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR).\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you choose to pass a custom message, you use this parameter to indicate what the custom message would be for text to speech (TTS). You MUST set the language parameter if you use this parameter. If a language is not supported, Telesign may choose a default for you. If you do not set the language tag, United States English is assumed. Make sure to use $$CODE$$ in your message string, as this will generate and insert a random string with appropriate length as part of your TTS message.",
+                              "key": "tts_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you use the tts_message parameter you must set the language. Choose from the list of [supported languages](/enterprise/docs/voice-verify-supported-languages-for-text-to-speech) also used by the Telesign Voice Verify API.",
+                              "key": "language",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you choose to pass a custom message, you use this parameter to indicate what the custom message would be if an SMS is sent.",
+                              "key": "sms_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Overrides the service's automatic method selection (SMS falling back on voice call), and attempts to force it to use your specified method. You can specify either `Voice Verify` (use call) or `SMS Verify` (use SMS) as the recommended method to attempt. Telesign uses the override method whenever possible. Telesign may ignore this specified method if the destination device does not support it.",
+                              "key": "preference",
+                              "value": "Voice Verify"
+                            },
+                            {
+                              "description": "Overrides the service's automatic method selection (SMS falling back on voice call), and attempts to force it to use your specified method. You can specify either `Voice Verify` (use call) or `SMS Verify` (use SMS) as the recommended method to attempt. Telesign uses the override method whenever possible. Telesign may ignore this specified method if the destination device does not support it.",
+                              "key": "ignore_risk",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/smart",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "smart"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:09.000Z",
+                      "updatedAt": "2026-10-22T01:33:09.000Z",
+                      "uid": "35240-ad8ba688-7aba-4afe-92ce-7aa3ab9f9ac6"
+                    },
+                    {
+                      "id": "2663d841-7ff4-461c-86c1-9e721393b2ec",
+                      "name": "Not Found, the server has not found anything matching the Request-URI. Code against the status or error code and use that rather than the HTTP status response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number you want to send a message to, including the country code, as a string of digits without spaces or special characters, beginning with the country dialing code.",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An abbreviation specifying a use case. Valid options are:\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a passwor reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shippingnotification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring moneyand you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR).\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you choose to pass a custom message, you use this parameter to indicate what the custom message would be for text to speech (TTS). You MUST set the language parameter if you use this parameter. If a language is not supported, Telesign may choose a default for you. If you do not set the language tag, United States English is assumed. Make sure to use $$CODE$$ in your message string, as this will generate and insert a random string with appropriate length as part of your TTS message.",
+                              "key": "tts_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you use the tts_message parameter you must set the language. Choose from the list of [supported languages](/enterprise/docs/voice-verify-supported-languages-for-text-to-speech) also used by the Telesign Voice Verify API.",
+                              "key": "language",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you choose to pass a custom message, you use this parameter to indicate what the custom message would be if an SMS is sent.",
+                              "key": "sms_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Overrides the service's automatic method selection (SMS falling back on voice call), and attempts to force it to use your specified method. You can specify either `Voice Verify` (use call) or `SMS Verify` (use SMS) as the recommended method to attempt. Telesign uses the override method whenever possible. Telesign may ignore this specified method if the destination device does not support it.",
+                              "key": "preference",
+                              "value": "Voice Verify"
+                            },
+                            {
+                              "description": "Overrides the service's automatic method selection (SMS falling back on voice call), and attempts to force it to use your specified method. You can specify either `Voice Verify` (use call) or `SMS Verify` (use SMS) as the recommended method to attempt. Telesign uses the override method whenever possible. Telesign may ignore this specified method if the destination device does not support it.",
+                              "key": "ignore_risk",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/smart",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "smart"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:09.000Z",
+                      "updatedAt": "2026-10-22T01:33:09.000Z",
+                      "uid": "35240-2663d841-7ff4-461c-86c1-9e721393b2ec"
+                    },
+                    {
+                      "id": "6b67085a-aa37-4889-ab92-4afd3becff3a",
+                      "name": "Responses are based on the subresource used. Code against the status or error code and use that rather than the HTTP status response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number you want to send a message to, including the country code, as a string of digits without spaces or special characters, beginning with the country dialing code.",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An abbreviation specifying a use case. Valid options are:\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a passwor reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shippingnotification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring moneyand you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR).\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you choose to pass a custom message, you use this parameter to indicate what the custom message would be for text to speech (TTS). You MUST set the language parameter if you use this parameter. If a language is not supported, Telesign may choose a default for you. If you do not set the language tag, United States English is assumed. Make sure to use $$CODE$$ in your message string, as this will generate and insert a random string with appropriate length as part of your TTS message.",
+                              "key": "tts_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you use the tts_message parameter you must set the language. Choose from the list of [supported languages](/enterprise/docs/voice-verify-supported-languages-for-text-to-speech) also used by the Telesign Voice Verify API.",
+                              "key": "language",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you choose to pass a custom message, you use this parameter to indicate what the custom message would be if an SMS is sent.",
+                              "key": "sms_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Overrides the service's automatic method selection (SMS falling back on voice call), and attempts to force it to use your specified method. You can specify either `Voice Verify` (use call) or `SMS Verify` (use SMS) as the recommended method to attempt. Telesign uses the override method whenever possible. Telesign may ignore this specified method if the destination device does not support it.",
+                              "key": "preference",
+                              "value": "Voice Verify"
+                            },
+                            {
+                              "description": "Overrides the service's automatic method selection (SMS falling back on voice call), and attempts to force it to use your specified method. You can specify either `Voice Verify` (use call) or `SMS Verify` (use SMS) as the recommended method to attempt. Telesign uses the override method whenever possible. Telesign may ignore this specified method if the destination device does not support it.",
+                              "key": "ignore_risk",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/smart",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "smart"
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:09.000Z",
+                      "updatedAt": "2026-10-22T01:33:09.000Z",
+                      "uid": "35240-6b67085a-aa37-4889-ab92-4afd3becff3a"
+                    },
+                    {
+                      "id": "c34d6fe0-2688-47c3-897b-42ebbc426d06",
+                      "name": "Too Many Requests, the user sent too many requests in a given amount of time. Code against the status or error code and use that rather than the HTTP status response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number you want to send a message to, including the country code, as a string of digits without spaces or special characters, beginning with the country dialing code.",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An abbreviation specifying a use case. Valid options are:\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a passwor reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shippingnotification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring moneyand you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR).\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you choose to pass a custom message, you use this parameter to indicate what the custom message would be for text to speech (TTS). You MUST set the language parameter if you use this parameter. If a language is not supported, Telesign may choose a default for you. If you do not set the language tag, United States English is assumed. Make sure to use $$CODE$$ in your message string, as this will generate and insert a random string with appropriate length as part of your TTS message.",
+                              "key": "tts_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you use the tts_message parameter you must set the language. Choose from the list of [supported languages](/enterprise/docs/voice-verify-supported-languages-for-text-to-speech) also used by the Telesign Voice Verify API.",
+                              "key": "language",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you choose to pass a custom message, you use this parameter to indicate what the custom message would be if an SMS is sent.",
+                              "key": "sms_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Overrides the service's automatic method selection (SMS falling back on voice call), and attempts to force it to use your specified method. You can specify either `Voice Verify` (use call) or `SMS Verify` (use SMS) as the recommended method to attempt. Telesign uses the override method whenever possible. Telesign may ignore this specified method if the destination device does not support it.",
+                              "key": "preference",
+                              "value": "Voice Verify"
+                            },
+                            {
+                              "description": "Overrides the service's automatic method selection (SMS falling back on voice call), and attempts to force it to use your specified method. You can specify either `Voice Verify` (use call) or `SMS Verify` (use SMS) as the recommended method to attempt. Telesign uses the override method whenever possible. Telesign may ignore this specified method if the destination device does not support it.",
+                              "key": "ignore_risk",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/smart",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "smart"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"verify\": {\n    \"code_state\": \"UNKNOWN\",\n    \"code_entered\": \"<string>\"\n  },\n  \"additional_info\": {\n    \"mcc\": \"<string>\",\n    \"mnc\": \"<string>\",\n    \"price\": \"<string>\"\n  },\n  \"phone_type\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"numbering\": {\n    \"original\": {\n      \"phone_number\": \"<string>\",\n      \"complete_phone_number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"cleansing\": {\n      \"call\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      },\n      \"sms\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      }\n    }\n  },\n  \"sim_swap\": {\n    \"swap_date\": \"<string>\",\n    \"swap_time\": \"<string>\",\n    \"risk_indicator\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"risk\": {\n    \"level\": \"<string>\",\n    \"recommendation\": \"allow\",\n    \"score\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:09.000Z",
+                      "updatedAt": "2026-10-22T01:33:09.000Z",
+                      "uid": "35240-c34d6fe0-2688-47c3-897b-42ebbc426d06"
+                    },
+                    {
+                      "id": "627e649b-9cb6-4616-96f6-66e4c03b309e",
+                      "name": "Service Unavailable, system unavailable, try again. Code against the status or error code and use that rather than the HTTP status response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The end user's phone number you want to send a message to, including the country code, as a string of digits without spaces or special characters, beginning with the country dialing code.",
+                              "key": "phone_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An abbreviation specifying a use case. Valid options are:\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a passwor reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shippingnotification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring moneyand you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR).\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you choose to pass a custom message, you use this parameter to indicate what the custom message would be for text to speech (TTS). You MUST set the language parameter if you use this parameter. If a language is not supported, Telesign may choose a default for you. If you do not set the language tag, United States English is assumed. Make sure to use $$CODE$$ in your message string, as this will generate and insert a random string with appropriate length as part of your TTS message.",
+                              "key": "tts_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you use the tts_message parameter you must set the language. Choose from the list of [supported languages](/enterprise/docs/voice-verify-supported-languages-for-text-to-speech) also used by the Telesign Voice Verify API.",
+                              "key": "language",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If you choose to pass a custom message, you use this parameter to indicate what the custom message would be if an SMS is sent.",
+                              "key": "sms_message",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Overrides the service's automatic method selection (SMS falling back on voice call), and attempts to force it to use your specified method. You can specify either `Voice Verify` (use call) or `SMS Verify` (use SMS) as the recommended method to attempt. Telesign uses the override method whenever possible. Telesign may ignore this specified method if the destination device does not support it.",
+                              "key": "preference",
+                              "value": "Voice Verify"
+                            },
+                            {
+                              "description": "Overrides the service's automatic method selection (SMS falling back on voice call), and attempts to force it to use your specified method. You can specify either `Voice Verify` (use call) or `SMS Verify` (use SMS) as the recommended method to attempt. Telesign uses the override method whenever possible. Telesign may ignore this specified method if the destination device does not support it.",
+                              "key": "ignore_risk",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/smart",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "smart"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"verify\": {\n    \"code_state\": \"UNKNOWN\",\n    \"code_entered\": \"<string>\"\n  },\n  \"additional_info\": {\n    \"mcc\": \"<string>\",\n    \"mnc\": \"<string>\",\n    \"price\": \"<string>\"\n  },\n  \"phone_type\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"numbering\": {\n    \"original\": {\n      \"phone_number\": \"<string>\",\n      \"complete_phone_number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"cleansing\": {\n      \"call\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      },\n      \"sms\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      }\n    }\n  },\n  \"sim_swap\": {\n    \"swap_date\": \"<string>\",\n    \"swap_time\": \"<string>\",\n    \"risk_indicator\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"risk\": {\n    \"level\": \"<string>\",\n    \"recommendation\": \"allow\",\n    \"score\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:09.000Z",
+                      "updatedAt": "2026-10-22T01:33:09.000Z",
+                      "uid": "35240-627e649b-9cb6-4616-96f6-66e4c03b309e"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:33:09.000Z",
+                  "updatedAt": "2026-10-22T01:33:09.000Z",
+                  "uid": "35240-c3d7dd38-33ef-4b47-8375-5c5264723d45"
+                }
+              ],
+              "id": "b96b2f99-d4e3-4d41-ba78-3901b962059a",
+              "createdAt": "2026-10-22T01:33:09.000Z",
+              "updatedAt": "2026-10-22T01:33:09.000Z",
+              "uid": "35240-b96b2f99-d4e3-4d41-ba78-3901b962059a"
+            }
+          ],
+          "id": "dce3d45d-3144-4464-bf51-7600f45c54ed",
+          "createdAt": "2026-10-22T01:33:09.000Z",
+          "updatedAt": "2026-10-22T01:33:09.000Z",
+          "uid": "35240-dce3d45d-3144-4464-bf51-7600f45c54ed"
+        }
+      ],
+      "id": "1e5dc402-23e2-420c-8201-07f66b22d7c8",
+      "createdAt": "2026-10-22T01:33:09.000Z",
+      "updatedAt": "2026-10-22T01:33:09.000Z",
+      "uid": "35240-1e5dc402-23e2-420c-8201-07f66b22d7c8"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rest-ww.telesign.com"
+    }
+  ]
+}

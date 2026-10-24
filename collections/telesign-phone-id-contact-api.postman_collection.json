@@ -1,0 +1,614 @@
+{
+  "info": {
+    "_postman_id": "98c0a6b8-1147-4956-aaf0-8da76aaab9ba",
+    "name": "Legacy Phone ID Phone ID Contact API",
+    "description": "This spec contains details about the deprecated Telesign Phone ID API. This API is no longer fully supported, but has not reached end of life.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:33:19.000Z",
+    "updatedAt": "2026-10-22T01:33:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-98c0a6b8-1147-4956-aaf0-8da76aaab9ba"
+  },
+  "item": [
+    {
+      "name": "phoneid",
+      "item": [
+        {
+          "name": "contact",
+          "item": [
+            {
+              "name": "{complete_phone_number}",
+              "item": [
+                {
+                  "name": "Get contact details",
+                  "id": "693d7490-12ee-4605-99ae-10170b217eab",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/phoneid/contact/:complete_phone_number?ucid=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "phoneid",
+                        "contact",
+                        ":complete_phone_number"
+                      ],
+                      "query": [
+                        {
+                          "description": "One of the use case codes. | Use Case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. | ",
+                          "key": "ucid",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "94422969-4cbb-418f-8f35-789f1e779ad0",
+                          "key": "complete_phone_number",
+                          "value": "<string>",
+                          "description": "(Required) The phone number you want to collect information about. Provide the entire phone number, including the country code, with no spaces or special characters.\n"
+                        }
+                      ]
+                    },
+                    "description": "Enter a phone number to receive detailed contact information related to the subscriber's phone number to provide another set of indicators for established risk engines. NOTE: If you try this API out using the API Explorer, you will be billed for the transaction as you normally would.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/x-www-form-urlencoded`\n* **Responds with:** `application/json`\n* **Required headers:** `Content-Type - application/x-www-form-urlencoded`"
+                  },
+                  "response": [
+                    {
+                      "id": "e2f0b82c-5014-4a42-92b6-4a591dfb8826",
+                      "name": "Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n           \n| Status code | Associated text s",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/contact/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "contact",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use Case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. | ",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"contact\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"phone_type\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"numbering\": {\n    \"original\": {\n      \"phone_number\": \"<string>\",\n      \"complete_phone_number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"cleansing\": {\n      \"call\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      },\n      \"sms\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      }\n    }\n  },\n  \"location\": {\n    \"city\": \"<string>\",\n    \"county\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": {\n      \"iso2\": \"<string>\",\n      \"iso3\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"time_zone\": {\n      \"name\": \"<string>\",\n      \"utc_offset_max\": \"<string>\",\n      \"utc_offset_min\": \"<string>\"\n    },\n    \"coordinates\": {\n      \"latitude\": {\n        \"description\": \"Latitude specifies the North-South position of a point on the Earth\u2019s surface. It is an angular measurement that ranges from 0\u00b0 at the Equator, to 90\u00b0 at the North Pole (and -90\u00b0 at the South Pole). It is returned here as a value indicating the number of degrees of latitude of the location associated with the phone number, expressed in seven decimal digits, with five decimal places. \",\n        \"example\": \"34.18264\"\n      },\n      \"longitude\": {\n        \"description\": \"Longitude specifies the East-West position of a point on the Earth\u2019s surface. It is an angle measured East or West from the <a href=\\\"https://en.wikipedia.org/wiki/Prime_meridian>Prime Meridian</a>\u2014ranging from 0\u00b0 at the Prime Meridian, to +180\u00b0 Eastward and -180\u00b0 Westward. It is returned here as a value indicating the number of degrees of longitude of the location associated with the phone number, expressed in eight decimal digits, with five decimal places.\",\n        \"example\": \"-118.30840\"\n      }\n    },\n    \"metro_code\": \"<string>\"\n  },\n  \"carrier\": {\n    \"name\": \"<string>\"\n  },\n  \"contact\": {\n    \"firstname\": \"<string>\",\n    \"lastname\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"address4\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state_province\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_postal_code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:20.000Z",
+                      "updatedAt": "2026-10-22T01:33:20.000Z",
+                      "uid": "35240-e2f0b82c-5014-4a42-92b6-4a591dfb8826"
+                    },
+                    {
+                      "id": "9923b574-e378-497c-922e-ac54aa74019c",
+                      "name": "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/contact/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "contact",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use Case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. | ",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"contact\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"phone_type\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"numbering\": {\n    \"original\": {\n      \"phone_number\": \"<string>\",\n      \"complete_phone_number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"cleansing\": {\n      \"call\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      },\n      \"sms\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      }\n    }\n  },\n  \"location\": {\n    \"city\": \"<string>\",\n    \"county\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": {\n      \"iso2\": \"<string>\",\n      \"iso3\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"time_zone\": {\n      \"name\": \"<string>\",\n      \"utc_offset_max\": \"<string>\",\n      \"utc_offset_min\": \"<string>\"\n    },\n    \"coordinates\": {\n      \"latitude\": {\n        \"description\": \"Latitude specifies the North-South position of a point on the Earth\u2019s surface. It is an angular measurement that ranges from 0\u00b0 at the Equator, to 90\u00b0 at the North Pole (and -90\u00b0 at the South Pole). It is returned here as a value indicating the number of degrees of latitude of the location associated with the phone number, expressed in seven decimal digits, with five decimal places. \",\n        \"example\": \"34.18264\"\n      },\n      \"longitude\": {\n        \"description\": \"Longitude specifies the East-West position of a point on the Earth\u2019s surface. It is an angle measured East or West from the <a href=\\\"https://en.wikipedia.org/wiki/Prime_meridian>Prime Meridian</a>\u2014ranging from 0\u00b0 at the Prime Meridian, to +180\u00b0 Eastward and -180\u00b0 Westward. It is returned here as a value indicating the number of degrees of longitude of the location associated with the phone number, expressed in eight decimal digits, with five decimal places.\",\n        \"example\": \"-118.30840\"\n      }\n    },\n    \"metro_code\": \"<string>\"\n  },\n  \"carrier\": {\n    \"name\": \"<string>\"\n  },\n  \"contact\": {\n    \"firstname\": \"<string>\",\n    \"lastname\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"address4\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state_province\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_postal_code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:20.000Z",
+                      "updatedAt": "2026-10-22T01:33:20.000Z",
+                      "uid": "35240-9923b574-e378-497c-922e-ac54aa74019c"
+                    },
+                    {
+                      "id": "c8db4e0b-9c56-44b3-846b-86e59d602921",
+                      "name": "Unauthorized, the request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/contact/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "contact",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use Case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. | ",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"contact\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"phone_type\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"numbering\": {\n    \"original\": {\n      \"phone_number\": \"<string>\",\n      \"complete_phone_number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"cleansing\": {\n      \"call\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      },\n      \"sms\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      }\n    }\n  },\n  \"location\": {\n    \"city\": \"<string>\",\n    \"county\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": {\n      \"iso2\": \"<string>\",\n      \"iso3\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"time_zone\": {\n      \"name\": \"<string>\",\n      \"utc_offset_max\": \"<string>\",\n      \"utc_offset_min\": \"<string>\"\n    },\n    \"coordinates\": {\n      \"latitude\": {\n        \"description\": \"Latitude specifies the North-South position of a point on the Earth\u2019s surface. It is an angular measurement that ranges from 0\u00b0 at the Equator, to 90\u00b0 at the North Pole (and -90\u00b0 at the South Pole). It is returned here as a value indicating the number of degrees of latitude of the location associated with the phone number, expressed in seven decimal digits, with five decimal places. \",\n        \"example\": \"34.18264\"\n      },\n      \"longitude\": {\n        \"description\": \"Longitude specifies the East-West position of a point on the Earth\u2019s surface. It is an angle measured East or West from the <a href=\\\"https://en.wikipedia.org/wiki/Prime_meridian>Prime Meridian</a>\u2014ranging from 0\u00b0 at the Prime Meridian, to +180\u00b0 Eastward and -180\u00b0 Westward. It is returned here as a value indicating the number of degrees of longitude of the location associated with the phone number, expressed in eight decimal digits, with five decimal places.\",\n        \"example\": \"-118.30840\"\n      }\n    },\n    \"metro_code\": \"<string>\"\n  },\n  \"carrier\": {\n    \"name\": \"<string>\"\n  },\n  \"contact\": {\n    \"firstname\": \"<string>\",\n    \"lastname\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"address4\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state_province\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_postal_code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:20.000Z",
+                      "updatedAt": "2026-10-22T01:33:20.000Z",
+                      "uid": "35240-c8db4e0b-9c56-44b3-846b-86e59d602921"
+                    },
+                    {
+                      "id": "2d21e56d-63fe-4a41-9b40-6a9524ac8f70",
+                      "name": "Payment Required. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the response. \n",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/contact/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "contact",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use Case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. | ",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Payment Required",
+                      "code": 402,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"contact\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"phone_type\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"numbering\": {\n    \"original\": {\n      \"phone_number\": \"<string>\",\n      \"complete_phone_number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"cleansing\": {\n      \"call\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      },\n      \"sms\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      }\n    }\n  },\n  \"location\": {\n    \"city\": \"<string>\",\n    \"county\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": {\n      \"iso2\": \"<string>\",\n      \"iso3\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"time_zone\": {\n      \"name\": \"<string>\",\n      \"utc_offset_max\": \"<string>\",\n      \"utc_offset_min\": \"<string>\"\n    },\n    \"coordinates\": {\n      \"latitude\": {\n        \"description\": \"Latitude specifies the North-South position of a point on the Earth\u2019s surface. It is an angular measurement that ranges from 0\u00b0 at the Equator, to 90\u00b0 at the North Pole (and -90\u00b0 at the South Pole). It is returned here as a value indicating the number of degrees of latitude of the location associated with the phone number, expressed in seven decimal digits, with five decimal places. \",\n        \"example\": \"34.18264\"\n      },\n      \"longitude\": {\n        \"description\": \"Longitude specifies the East-West position of a point on the Earth\u2019s surface. It is an angle measured East or West from the <a href=\\\"https://en.wikipedia.org/wiki/Prime_meridian>Prime Meridian</a>\u2014ranging from 0\u00b0 at the Prime Meridian, to +180\u00b0 Eastward and -180\u00b0 Westward. It is returned here as a value indicating the number of degrees of longitude of the location associated with the phone number, expressed in eight decimal digits, with five decimal places.\",\n        \"example\": \"-118.30840\"\n      }\n    },\n    \"metro_code\": \"<string>\"\n  },\n  \"carrier\": {\n    \"name\": \"<string>\"\n  },\n  \"contact\": {\n    \"firstname\": \"<string>\",\n    \"lastname\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"address4\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state_province\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_postal_code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:20.000Z",
+                      "updatedAt": "2026-10-22T01:33:20.000Z",
+                      "uid": "35240-2d21e56d-63fe-4a41-9b40-6a9524ac8f70"
+                    },
+                    {
+                      "id": "337f4c0f-76e2-46a2-becf-e487d65b7d3a",
+                      "name": "Not Found, the server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter ",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/contact/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "contact",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use Case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. | ",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"contact\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"phone_type\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"numbering\": {\n    \"original\": {\n      \"phone_number\": \"<string>\",\n      \"complete_phone_number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"cleansing\": {\n      \"call\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      },\n      \"sms\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      }\n    }\n  },\n  \"location\": {\n    \"city\": \"<string>\",\n    \"county\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": {\n      \"iso2\": \"<string>\",\n      \"iso3\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"time_zone\": {\n      \"name\": \"<string>\",\n      \"utc_offset_max\": \"<string>\",\n      \"utc_offset_min\": \"<string>\"\n    },\n    \"coordinates\": {\n      \"latitude\": {\n        \"description\": \"Latitude specifies the North-South position of a point on the Earth\u2019s surface. It is an angular measurement that ranges from 0\u00b0 at the Equator, to 90\u00b0 at the North Pole (and -90\u00b0 at the South Pole). It is returned here as a value indicating the number of degrees of latitude of the location associated with the phone number, expressed in seven decimal digits, with five decimal places. \",\n        \"example\": \"34.18264\"\n      },\n      \"longitude\": {\n        \"description\": \"Longitude specifies the East-West position of a point on the Earth\u2019s surface. It is an angle measured East or West from the <a href=\\\"https://en.wikipedia.org/wiki/Prime_meridian>Prime Meridian</a>\u2014ranging from 0\u00b0 at the Prime Meridian, to +180\u00b0 Eastward and -180\u00b0 Westward. It is returned here as a value indicating the number of degrees of longitude of the location associated with the phone number, expressed in eight decimal digits, with five decimal places.\",\n        \"example\": \"-118.30840\"\n      }\n    },\n    \"metro_code\": \"<string>\"\n  },\n  \"carrier\": {\n    \"name\": \"<string>\"\n  },\n  \"contact\": {\n    \"firstname\": \"<string>\",\n    \"lastname\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"address4\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state_province\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_postal_code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:20.000Z",
+                      "updatedAt": "2026-10-22T01:33:20.000Z",
+                      "uid": "35240-337f4c0f-76e2-46a2-becf-e487d65b7d3a"
+                    },
+                    {
+                      "id": "570c05f7-2cce-4532-add5-5faf851c5dab",
+                      "name": "| Error Codes | Description |\n|-------------|-------------|\n| -40005 | Method not allowed |\n",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/contact/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "contact",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use Case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. | ",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"contact\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"phone_type\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"numbering\": {\n    \"original\": {\n      \"phone_number\": \"<string>\",\n      \"complete_phone_number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"cleansing\": {\n      \"call\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      },\n      \"sms\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      }\n    }\n  },\n  \"location\": {\n    \"city\": \"<string>\",\n    \"county\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": {\n      \"iso2\": \"<string>\",\n      \"iso3\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"time_zone\": {\n      \"name\": \"<string>\",\n      \"utc_offset_max\": \"<string>\",\n      \"utc_offset_min\": \"<string>\"\n    },\n    \"coordinates\": {\n      \"latitude\": {\n        \"description\": \"Latitude specifies the North-South position of a point on the Earth\u2019s surface. It is an angular measurement that ranges from 0\u00b0 at the Equator, to 90\u00b0 at the North Pole (and -90\u00b0 at the South Pole). It is returned here as a value indicating the number of degrees of latitude of the location associated with the phone number, expressed in seven decimal digits, with five decimal places. \",\n        \"example\": \"34.18264\"\n      },\n      \"longitude\": {\n        \"description\": \"Longitude specifies the East-West position of a point on the Earth\u2019s surface. It is an angle measured East or West from the <a href=\\\"https://en.wikipedia.org/wiki/Prime_meridian>Prime Meridian</a>\u2014ranging from 0\u00b0 at the Prime Meridian, to +180\u00b0 Eastward and -180\u00b0 Westward. It is returned here as a value indicating the number of degrees of longitude of the location associated with the phone number, expressed in eight decimal digits, with five decimal places.\",\n        \"example\": \"-118.30840\"\n      }\n    },\n    \"metro_code\": \"<string>\"\n  },\n  \"carrier\": {\n    \"name\": \"<string>\"\n  },\n  \"contact\": {\n    \"firstname\": \"<string>\",\n    \"lastname\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"address4\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state_province\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_postal_code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:20.000Z",
+                      "updatedAt": "2026-10-22T01:33:20.000Z",
+                      "uid": "35240-570c05f7-2cce-4532-add5-5faf851c5dab"
+                    },
+                    {
+                      "id": "d022aa1d-525a-4f14-aead-c670393c335f",
+                      "name": "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` par",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/contact/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "contact",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use Case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. | ",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"contact\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"phone_type\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"numbering\": {\n    \"original\": {\n      \"phone_number\": \"<string>\",\n      \"complete_phone_number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"cleansing\": {\n      \"call\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      },\n      \"sms\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      }\n    }\n  },\n  \"location\": {\n    \"city\": \"<string>\",\n    \"county\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": {\n      \"iso2\": \"<string>\",\n      \"iso3\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"time_zone\": {\n      \"name\": \"<string>\",\n      \"utc_offset_max\": \"<string>\",\n      \"utc_offset_min\": \"<string>\"\n    },\n    \"coordinates\": {\n      \"latitude\": {\n        \"description\": \"Latitude specifies the North-South position of a point on the Earth\u2019s surface. It is an angular measurement that ranges from 0\u00b0 at the Equator, to 90\u00b0 at the North Pole (and -90\u00b0 at the South Pole). It is returned here as a value indicating the number of degrees of latitude of the location associated with the phone number, expressed in seven decimal digits, with five decimal places. \",\n        \"example\": \"34.18264\"\n      },\n      \"longitude\": {\n        \"description\": \"Longitude specifies the East-West position of a point on the Earth\u2019s surface. It is an angle measured East or West from the <a href=\\\"https://en.wikipedia.org/wiki/Prime_meridian>Prime Meridian</a>\u2014ranging from 0\u00b0 at the Prime Meridian, to +180\u00b0 Eastward and -180\u00b0 Westward. It is returned here as a value indicating the number of degrees of longitude of the location associated with the phone number, expressed in eight decimal digits, with five decimal places.\",\n        \"example\": \"-118.30840\"\n      }\n    },\n    \"metro_code\": \"<string>\"\n  },\n  \"carrier\": {\n    \"name\": \"<string>\"\n  },\n  \"contact\": {\n    \"firstname\": \"<string>\",\n    \"lastname\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"address4\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state_province\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_postal_code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:20.000Z",
+                      "updatedAt": "2026-10-22T01:33:20.000Z",
+                      "uid": "35240-d022aa1d-525a-4f14-aead-c670393c335f"
+                    },
+                    {
+                      "id": "44279292-912d-4f66-b9dc-cee3292810e2",
+                      "name": "Invalid Transaction, transaction not attempted. Error codes are listed in the `error` parameter in the response. \n",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/contact/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "contact",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use Case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. | ",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"contact\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"phone_type\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"numbering\": {\n    \"original\": {\n      \"phone_number\": \"<string>\",\n      \"complete_phone_number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"cleansing\": {\n      \"call\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      },\n      \"sms\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      }\n    }\n  },\n  \"location\": {\n    \"city\": \"<string>\",\n    \"county\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": {\n      \"iso2\": \"<string>\",\n      \"iso3\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"time_zone\": {\n      \"name\": \"<string>\",\n      \"utc_offset_max\": \"<string>\",\n      \"utc_offset_min\": \"<string>\"\n    },\n    \"coordinates\": {\n      \"latitude\": {\n        \"description\": \"Latitude specifies the North-South position of a point on the Earth\u2019s surface. It is an angular measurement that ranges from 0\u00b0 at the Equator, to 90\u00b0 at the North Pole (and -90\u00b0 at the South Pole). It is returned here as a value indicating the number of degrees of latitude of the location associated with the phone number, expressed in seven decimal digits, with five decimal places. \",\n        \"example\": \"34.18264\"\n      },\n      \"longitude\": {\n        \"description\": \"Longitude specifies the East-West position of a point on the Earth\u2019s surface. It is an angle measured East or West from the <a href=\\\"https://en.wikipedia.org/wiki/Prime_meridian>Prime Meridian</a>\u2014ranging from 0\u00b0 at the Prime Meridian, to +180\u00b0 Eastward and -180\u00b0 Westward. It is returned here as a value indicating the number of degrees of longitude of the location associated with the phone number, expressed in eight decimal digits, with five decimal places.\",\n        \"example\": \"-118.30840\"\n      }\n    },\n    \"metro_code\": \"<string>\"\n  },\n  \"carrier\": {\n    \"name\": \"<string>\"\n  },\n  \"contact\": {\n    \"firstname\": \"<string>\",\n    \"lastname\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"address4\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state_province\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_postal_code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:20.000Z",
+                      "updatedAt": "2026-10-22T01:33:20.000Z",
+                      "uid": "35240-44279292-912d-4f66-b9dc-cee3292810e2"
+                    },
+                    {
+                      "id": "7267299d-e537-4b7e-a809-d552ecb166f3",
+                      "name": "Service Unavailable, system unavailable, try again. Error codes are listed in the `error` parameter in the response. \n\n| Error Code | Description |\n|------------|-------------|\n| -90001 | System unavailable; please try again later |\n",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/phoneid/contact/:complete_phone_number?ucid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "phoneid",
+                            "contact",
+                            ":complete_phone_number"
+                          ],
+                          "query": [
+                            {
+                              "description": "One of the use case codes. | Use Case | Description ||----------|-------------|| ATCK | For use in a 2FA situation like updating an account, or trying to log in. || BACF | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual fraudsters. || BACS | For creating an account on somebody's service in a situation where the service may be vulnerable to bulk attacks or individual spammers. || CHBK | For use in a situation such as someone trying to buy something expensive or unusual on your platform, and you want to verify that it is really them. || CLDR | Calendar Event | | LEAD | For use in a situation where you require a person to enter their personal information in order to obtain information about something like a loan or realty or a school, and you want to check if the person is bogus or not. || OTHR | Other - if you have a situation not addressed by the other tags. || PWRT | For use in a situation where a password reset is required. || RESV | For use in a situation where you have end users making reservations and not showing up, and you want to be able to include some kind of phone verification in that loop. || RXPF | For use in situations where you are trying to prevent prescription fraud. || SHIP | For use in situations where you are sending a shipping notification. | | THEF | For use in situations where you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity. || TRVF | For use in situations where you are transferring money, and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction. | | UNKN | This is the same as OTHR. | ",
+                              "key": "ucid",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "complete_phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"contact\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"phone_type\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"numbering\": {\n    \"original\": {\n      \"phone_number\": \"<string>\",\n      \"complete_phone_number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"cleansing\": {\n      \"call\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      },\n      \"sms\": {\n        \"cleansed_code\": \"<integer>\",\n        \"country_code\": \"<string>\",\n        \"max_length\": \"<integer>\",\n        \"min_length\": \"<integer>\",\n        \"phone_number\": \"<string>\"\n      }\n    }\n  },\n  \"location\": {\n    \"city\": \"<string>\",\n    \"county\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": {\n      \"iso2\": \"<string>\",\n      \"iso3\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"time_zone\": {\n      \"name\": \"<string>\",\n      \"utc_offset_max\": \"<string>\",\n      \"utc_offset_min\": \"<string>\"\n    },\n    \"coordinates\": {\n      \"latitude\": {\n        \"description\": \"Latitude specifies the North-South position of a point on the Earth\u2019s surface. It is an angular measurement that ranges from 0\u00b0 at the Equator, to 90\u00b0 at the North Pole (and -90\u00b0 at the South Pole). It is returned here as a value indicating the number of degrees of latitude of the location associated with the phone number, expressed in seven decimal digits, with five decimal places. \",\n        \"example\": \"34.18264\"\n      },\n      \"longitude\": {\n        \"description\": \"Longitude specifies the East-West position of a point on the Earth\u2019s surface. It is an angle measured East or West from the <a href=\\\"https://en.wikipedia.org/wiki/Prime_meridian>Prime Meridian</a>\u2014ranging from 0\u00b0 at the Prime Meridian, to +180\u00b0 Eastward and -180\u00b0 Westward. It is returned here as a value indicating the number of degrees of longitude of the location associated with the phone number, expressed in eight decimal digits, with five decimal places.\",\n        \"example\": \"-118.30840\"\n      }\n    },\n    \"metro_code\": \"<string>\"\n  },\n  \"carrier\": {\n    \"name\": \"<string>\"\n  },\n  \"contact\": {\n    \"firstname\": \"<string>\",\n    \"lastname\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"address4\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state_province\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_postal_code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:20.000Z",
+                      "updatedAt": "2026-10-22T01:33:20.000Z",
+                      "uid": "35240-7267299d-e537-4b7e-a809-d552ecb166f3"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:33:20.000Z",
+                  "updatedAt": "2026-10-22T01:33:20.000Z",
+                  "uid": "35240-693d7490-12ee-4605-99ae-10170b217eab"
+                }
+              ],
+              "id": "1cdb41f4-19e8-4380-9c89-703075407f62",
+              "createdAt": "2026-10-22T01:33:20.000Z",
+              "updatedAt": "2026-10-22T01:33:20.000Z",
+              "uid": "35240-1cdb41f4-19e8-4380-9c89-703075407f62"
+            }
+          ],
+          "id": "43994958-2bf3-4174-a0cb-aa9430954180",
+          "createdAt": "2026-10-22T01:33:20.000Z",
+          "updatedAt": "2026-10-22T01:33:20.000Z",
+          "uid": "35240-43994958-2bf3-4174-a0cb-aa9430954180"
+        }
+      ],
+      "id": "67da22de-157a-4ee6-83dc-1d0320584672",
+      "createdAt": "2026-10-22T01:33:20.000Z",
+      "updatedAt": "2026-10-22T01:33:20.000Z",
+      "uid": "35240-67da22de-157a-4ee6-83dc-1d0320584672"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rest-ww.telesign.com/v1"
+    }
+  ]
+}

@@ -1,0 +1,1264 @@
+{
+  "info": {
+    "_postman_id": "54ef4887-b1aa-47b0-8f36-0c22987be8f0",
+    "name": "Engage Templates API",
+    "description": "This spec contains details about the Telesign Engage API.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:33:52.000Z",
+    "updatedAt": "2026-10-22T01:33:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-54ef4887-b1aa-47b0-8f36-0c22987be8f0"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "omnichannel",
+          "item": [
+            {
+              "name": "templates",
+              "item": [
+                {
+                  "name": "{channel}",
+                  "item": [
+                    {
+                      "name": "{name}",
+                      "item": [
+                        {
+                          "name": "Get messaging template",
+                          "id": "dc1626ff-07e7-4bbc-8163-84cf76e3b6e7",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/omnichannel/templates/:channel/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "omnichannel",
+                                "templates",
+                                ":channel",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d79dd3b9-ac71-45da-acf6-e9dc4152040d",
+                                  "key": "channel",
+                                  "value": "whatsapp",
+                                  "description": "(Required) One of the Telesign Messaging channels for which programmatic template management is supported."
+                                },
+                                {
+                                  "id": "9f2b362d-5b2f-41c1-b610-12d010430a9a",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required)  The name of this template."
+                                }
+                              ]
+                            },
+                            "description": "Use this action to get details for the specified Telesign Messaging template.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Responds with:** `application/json`\n* **Rate limit:** Default rate limits by product"
+                          },
+                          "response": [
+                            {
+                              "id": "117d5f95-13ba-45d2-acec-1eb390a7d4d5",
+                              "name": "**Success.** Your request was fulfilled and resulted in data being retrieved.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/omnichannel/templates/:channel/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "omnichannel",
+                                    "templates",
+                                    ":channel",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "channel"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"channel\": \"whatsapp\",\n  \"mandatory_parameters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"minl\",\n  \"status\": \"<string>\",\n  \"type\": \"verified\",\n  \"category\": \"1way\",\n  \"language\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T01:33:53.000Z",
+                              "updatedAt": "2026-10-22T01:33:53.000Z",
+                              "uid": "35240-117d5f95-13ba-45d2-acec-1eb390a7d4d5"
+                            },
+                            {
+                              "id": "cebf7a52-eb3c-4d11-aecd-2703905c0780",
+                              "name": "**Bad request.** The request could not be understood by the server due to malformed syntax. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.\n\nStatus code | Text string        | Descri",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/omnichannel/templates/:channel/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "omnichannel",
+                                    "templates",
+                                    ":channel",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "channel"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:33:53.000Z",
+                              "updatedAt": "2026-10-22T01:33:53.000Z",
+                              "uid": "35240-cebf7a52-eb3c-4d11-aecd-2703905c0780"
+                            },
+                            {
+                              "id": "08d225ec-7d8b-4453-9e8e-44f7d518e9ce",
+                              "name": "**Unauthorized.** The request requires user authentication. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.\n\nStatus code | Text string        | Description\n------------|-------------",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/omnichannel/templates/:channel/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "omnichannel",
+                                    "templates",
+                                    ":channel",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "channel"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:33:53.000Z",
+                              "updatedAt": "2026-10-22T01:33:53.000Z",
+                              "uid": "35240-08d225ec-7d8b-4453-9e8e-44f7d518e9ce"
+                            },
+                            {
+                              "id": "e7058bfd-fc36-4505-97c2-b6edbe062ce4",
+                              "name": "**Too many requests.** Too many requests sent to this service in a given amount of time. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.\n\nStatus code | Text string        | Descripti",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/omnichannel/templates/:channel/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "omnichannel",
+                                    "templates",
+                                    ":channel",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "channel"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:33:53.000Z",
+                              "updatedAt": "2026-10-22T01:33:53.000Z",
+                              "uid": "35240-e7058bfd-fc36-4505-97c2-b6edbe062ce4"
+                            },
+                            {
+                              "id": "ca9d635c-4606-4f82-9b3a-02b1e3abbf60",
+                              "name": "**Service unavailable.** The system is unavailable, try again. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.\n\n\nStatus code | Text string        | Description\n------------|---------",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/omnichannel/templates/:channel/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "omnichannel",
+                                    "templates",
+                                    ":channel",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "channel"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Service Unavailable",
+                              "code": 503,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:33:53.000Z",
+                              "updatedAt": "2026-10-22T01:33:53.000Z",
+                              "uid": "35240-ca9d635c-4606-4f82-9b3a-02b1e3abbf60"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:33:53.000Z",
+                          "updatedAt": "2026-10-22T01:33:53.000Z",
+                          "uid": "35240-dc1626ff-07e7-4bbc-8163-84cf76e3b6e7"
+                        },
+                        {
+                          "name": "Delete template",
+                          "id": "59455874-3ed0-410d-8920-194732df7768",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/omnichannel/templates/:channel/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "omnichannel",
+                                "templates",
+                                ":channel",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "450e6a35-9381-491a-8d9a-5a28dbdbcb0f",
+                                  "key": "channel",
+                                  "value": "whatsapp",
+                                  "description": "(Required) One of the Telesign Messaging channels for which programmatic template management is supported."
+                                },
+                                {
+                                  "id": "3197f05a-6aff-4dbf-a30e-e9ec00dfe407",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required)  The name of this template."
+                                }
+                              ]
+                            },
+                            "description": "Use this action to delete a Telesign Messaging template.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Responds with:** `application/json`\n* **Rate limit:** Default rate limits by product"
+                          },
+                          "response": [
+                            {
+                              "id": "d669c7dd-b5b1-449a-95fd-8c22960681eb",
+                              "name": "**Success.** Your request was successful and the service is processing your deletion. Code against the Telesign status code from the `status.code` property in the response payload, rather than the HTTP status code of the response.\n \nStatus code | Text str",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/omnichannel/templates/:channel/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "omnichannel",
+                                    "templates",
+                                    ":channel",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "channel"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"fbj_y\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"id\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T01:33:53.000Z",
+                              "updatedAt": "2026-10-22T01:33:53.000Z",
+                              "uid": "35240-d669c7dd-b5b1-449a-95fd-8c22960681eb"
+                            },
+                            {
+                              "id": "8cba17a5-cc19-4768-b83b-09e2ad9e9641",
+                              "name": "**Bad request.** The request could not be understood by the server due to malformed syntax. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.\n\nStatus code | Text string        | Descri",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/omnichannel/templates/:channel/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "omnichannel",
+                                    "templates",
+                                    ":channel",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "channel"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:33:53.000Z",
+                              "updatedAt": "2026-10-22T01:33:53.000Z",
+                              "uid": "35240-8cba17a5-cc19-4768-b83b-09e2ad9e9641"
+                            },
+                            {
+                              "id": "04f0b2d7-728e-4879-a168-ae5ba087fa69",
+                              "name": "**Unauthorized.** The request requires user authentication. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.\n\nStatus code | Text string        | Description\n------------|-------------",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/omnichannel/templates/:channel/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "omnichannel",
+                                    "templates",
+                                    ":channel",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "channel"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:33:53.000Z",
+                              "updatedAt": "2026-10-22T01:33:53.000Z",
+                              "uid": "35240-04f0b2d7-728e-4879-a168-ae5ba087fa69"
+                            },
+                            {
+                              "id": "97b0527a-81b6-4016-b96d-43fe3b537f75",
+                              "name": "**Too many requests.** Too many requests sent to this service in a given amount of time. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.\n\nStatus code | Text string        | Descripti",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/omnichannel/templates/:channel/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "omnichannel",
+                                    "templates",
+                                    ":channel",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "channel"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:33:53.000Z",
+                              "updatedAt": "2026-10-22T01:33:53.000Z",
+                              "uid": "35240-97b0527a-81b6-4016-b96d-43fe3b537f75"
+                            },
+                            {
+                              "id": "3542b64c-4355-4be0-8242-ee66c14aa4e1",
+                              "name": "**Service unavailable.** The system is unavailable, try again. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.\n\n\nStatus code | Text string        | Description\n------------|---------",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/omnichannel/templates/:channel/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "omnichannel",
+                                    "templates",
+                                    ":channel",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "channel"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Service Unavailable",
+                              "code": 503,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:33:53.000Z",
+                              "updatedAt": "2026-10-22T01:33:53.000Z",
+                              "uid": "35240-3542b64c-4355-4be0-8242-ee66c14aa4e1"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:33:53.000Z",
+                          "updatedAt": "2026-10-22T01:33:53.000Z",
+                          "uid": "35240-59455874-3ed0-410d-8920-194732df7768"
+                        }
+                      ],
+                      "id": "0361796f-9025-4f87-93be-45475ab55702",
+                      "createdAt": "2026-10-22T01:33:53.000Z",
+                      "updatedAt": "2026-10-22T01:33:53.000Z",
+                      "uid": "35240-0361796f-9025-4f87-93be-45475ab55702"
+                    }
+                  ],
+                  "id": "d70f521a-0fbe-4b44-9fd7-1ee0f784160b",
+                  "createdAt": "2026-10-22T01:33:53.000Z",
+                  "updatedAt": "2026-10-22T01:33:53.000Z",
+                  "uid": "35240-d70f521a-0fbe-4b44-9fd7-1ee0f784160b"
+                },
+                {
+                  "name": "Get all messaging templates",
+                  "id": "89dd5ab4-ba08-4dd1-a9a1-b0cd8d0845e4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/omnichannel/templates",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "omnichannel",
+                        "templates"
+                      ]
+                    },
+                    "description": "Use this action to get details for all Telesign Messaging templates associated with this Customer ID.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Responds with:** `application/json`\n* **Rate limit:** Default rate limits by product"
+                  },
+                  "response": [
+                    {
+                      "id": "e449737c-74de-4aa7-a068-3273389719d6",
+                      "name": "**Success.** Your request was fulfilled and resulted in data being retrieved.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/omnichannel/templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "omnichannel",
+                            "templates"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"channel\": \"whatsapp\",\n    \"mandatory_parameters\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"name\": \"rbavgeuw\",\n    \"status\": \"<string>\",\n    \"type\": \"standard\",\n    \"category\": \"marketing\",\n    \"language\": \"<string>\"\n  },\n  {\n    \"channel\": \"whatsapp\",\n    \"mandatory_parameters\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"name\": \"zgtk\",\n    \"status\": \"<string>\",\n    \"type\": \"standard\",\n    \"category\": \"marketing\",\n    \"language\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-10-22T01:33:53.000Z",
+                      "updatedAt": "2026-10-22T01:33:53.000Z",
+                      "uid": "35240-e449737c-74de-4aa7-a068-3273389719d6"
+                    },
+                    {
+                      "id": "dbec39bf-2c13-4c57-9e5b-5e1b2bd191b5",
+                      "name": "**Unauthorized.** The request requires user authentication. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.\n\nStatus code | Text string        | Description\n------------|-------------",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/omnichannel/templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "omnichannel",
+                            "templates"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:53.000Z",
+                      "updatedAt": "2026-10-22T01:33:53.000Z",
+                      "uid": "35240-dbec39bf-2c13-4c57-9e5b-5e1b2bd191b5"
+                    },
+                    {
+                      "id": "70725070-50cc-4400-a96e-4ee4d0f1d0fa",
+                      "name": "**Too many requests.** Too many requests sent to this service in a given amount of time. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.\n\nStatus code | Text string        | Descripti",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/omnichannel/templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "omnichannel",
+                            "templates"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:53.000Z",
+                      "updatedAt": "2026-10-22T01:33:53.000Z",
+                      "uid": "35240-70725070-50cc-4400-a96e-4ee4d0f1d0fa"
+                    },
+                    {
+                      "id": "1ce9dd9e-ebec-418e-afc3-c804b4ab9713",
+                      "name": "**Service unavailable.** The system is unavailable, try again. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.\n\n\nStatus code | Text string        | Description\n------------|---------",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/omnichannel/templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "omnichannel",
+                            "templates"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:53.000Z",
+                      "updatedAt": "2026-10-22T01:33:53.000Z",
+                      "uid": "35240-1ce9dd9e-ebec-418e-afc3-c804b4ab9713"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:33:53.000Z",
+                  "updatedAt": "2026-10-22T01:33:53.000Z",
+                  "uid": "35240-89dd5ab4-ba08-4dd1-a9a1-b0cd8d0845e4"
+                },
+                {
+                  "name": "Create messaging template",
+                  "id": "4865bfd5-d6b3-4b83-bcaa-727b9941cb30",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"channel\": \"whatsapp\",\n  \"content\": [\n    {\n      \"header\": {\n        \"type\": \"image\",\n        \"text\": \"<string>\",\n        \"sample_url\": \"<string>\",\n        \"sample_text\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    {\n      \"header\": {\n        \"type\": \"video\",\n        \"text\": \"<string>\",\n        \"sample_url\": \"<string>\",\n        \"sample_text\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ],\n  \"name\": \"vxlxyj\",\n  \"type\": \"verified\",\n  \"category\": \"1way\",\n  \"language\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/omnichannel/templates",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "omnichannel",
+                        "templates"
+                      ]
+                    },
+                    "description": "Use this action to create a Telesign Messaging template.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/json`\n* **Responds with:** `application/json`\n* **Rate limit:** Default rate limits by product"
+                  },
+                  "response": [
+                    {
+                      "id": "73e2c6c0-06f1-472d-acbb-afd56a8c1810",
+                      "name": "**Success.** Your request was successful and the service is processing your new template. Code against the Telesign status code from the `status.code` property in the response payload, rather than the HTTP status code of the response.\n \nStatus code | Text",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"channel\": \"whatsapp\",\n  \"content\": [\n    {\n      \"header\": {\n        \"type\": \"image\",\n        \"text\": \"<string>\",\n        \"sample_url\": \"<string>\",\n        \"sample_text\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    {\n      \"header\": {\n        \"type\": \"video\",\n        \"text\": \"<string>\",\n        \"sample_url\": \"<string>\",\n        \"sample_text\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ],\n  \"name\": \"vxlxyj\",\n  \"type\": \"verified\",\n  \"category\": \"1way\",\n  \"language\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/omnichannel/templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "omnichannel",
+                            "templates"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"fbj_y\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"id\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:33:53.000Z",
+                      "updatedAt": "2026-10-22T01:33:53.000Z",
+                      "uid": "35240-73e2c6c0-06f1-472d-acbb-afd56a8c1810"
+                    },
+                    {
+                      "id": "1f2de183-284f-40e1-87af-fdedeacea2a0",
+                      "name": "**Bad request.** The request could not be understood by the server due to malformed syntax. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.\n\nStatus code | Text string        | Descri",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"channel\": \"whatsapp\",\n  \"content\": [\n    {\n      \"header\": {\n        \"type\": \"image\",\n        \"text\": \"<string>\",\n        \"sample_url\": \"<string>\",\n        \"sample_text\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    {\n      \"header\": {\n        \"type\": \"video\",\n        \"text\": \"<string>\",\n        \"sample_url\": \"<string>\",\n        \"sample_text\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ],\n  \"name\": \"vxlxyj\",\n  \"type\": \"verified\",\n  \"category\": \"1way\",\n  \"language\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/omnichannel/templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "omnichannel",
+                            "templates"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:53.000Z",
+                      "updatedAt": "2026-10-22T01:33:53.000Z",
+                      "uid": "35240-1f2de183-284f-40e1-87af-fdedeacea2a0"
+                    },
+                    {
+                      "id": "57d22f62-806d-4138-93bd-b538e22d6222",
+                      "name": "**Unauthorized.** The request requires user authentication. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.\n\nStatus code | Text string        | Description\n------------|-------------",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"channel\": \"whatsapp\",\n  \"content\": [\n    {\n      \"header\": {\n        \"type\": \"image\",\n        \"text\": \"<string>\",\n        \"sample_url\": \"<string>\",\n        \"sample_text\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    {\n      \"header\": {\n        \"type\": \"video\",\n        \"text\": \"<string>\",\n        \"sample_url\": \"<string>\",\n        \"sample_text\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ],\n  \"name\": \"vxlxyj\",\n  \"type\": \"verified\",\n  \"category\": \"1way\",\n  \"language\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/omnichannel/templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "omnichannel",
+                            "templates"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:53.000Z",
+                      "updatedAt": "2026-10-22T01:33:53.000Z",
+                      "uid": "35240-57d22f62-806d-4138-93bd-b538e22d6222"
+                    },
+                    {
+                      "id": "fc92bc1a-2a04-4407-8c52-ba1452843b3b",
+                      "name": "**Too many requests.** Too many requests sent to this service in a given amount of time. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.\n\nStatus code | Text string        | Descripti",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"channel\": \"whatsapp\",\n  \"content\": [\n    {\n      \"header\": {\n        \"type\": \"image\",\n        \"text\": \"<string>\",\n        \"sample_url\": \"<string>\",\n        \"sample_text\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    {\n      \"header\": {\n        \"type\": \"video\",\n        \"text\": \"<string>\",\n        \"sample_url\": \"<string>\",\n        \"sample_text\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ],\n  \"name\": \"vxlxyj\",\n  \"type\": \"verified\",\n  \"category\": \"1way\",\n  \"language\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/omnichannel/templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "omnichannel",
+                            "templates"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:53.000Z",
+                      "updatedAt": "2026-10-22T01:33:53.000Z",
+                      "uid": "35240-fc92bc1a-2a04-4407-8c52-ba1452843b3b"
+                    },
+                    {
+                      "id": "e680d835-2530-471b-a10c-79c3f99c9a37",
+                      "name": "**Service unavailable.** The system is unavailable, try again. Code against the value of the Telesign `status.code` property in the response payload, rather than the HTTP status code.\n\n\nStatus code | Text string        | Description\n------------|---------",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"channel\": \"whatsapp\",\n  \"content\": [\n    {\n      \"header\": {\n        \"type\": \"image\",\n        \"text\": \"<string>\",\n        \"sample_url\": \"<string>\",\n        \"sample_text\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    {\n      \"header\": {\n        \"type\": \"video\",\n        \"text\": \"<string>\",\n        \"sample_url\": \"<string>\",\n        \"sample_text\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ],\n  \"name\": \"vxlxyj\",\n  \"type\": \"verified\",\n  \"category\": \"1way\",\n  \"language\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/omnichannel/templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "omnichannel",
+                            "templates"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:53.000Z",
+                      "updatedAt": "2026-10-22T01:33:53.000Z",
+                      "uid": "35240-e680d835-2530-471b-a10c-79c3f99c9a37"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:33:53.000Z",
+                  "updatedAt": "2026-10-22T01:33:53.000Z",
+                  "uid": "35240-4865bfd5-d6b3-4b83-bcaa-727b9941cb30"
+                }
+              ],
+              "id": "ea1fd602-b084-4a36-b97b-269535b0a0e7",
+              "createdAt": "2026-10-22T01:33:53.000Z",
+              "updatedAt": "2026-10-22T01:33:53.000Z",
+              "uid": "35240-ea1fd602-b084-4a36-b97b-269535b0a0e7"
+            }
+          ],
+          "id": "6f60f984-9368-4101-89cd-4d8372fafc95",
+          "createdAt": "2026-10-22T01:33:53.000Z",
+          "updatedAt": "2026-10-22T01:33:53.000Z",
+          "uid": "35240-6f60f984-9368-4101-89cd-4d8372fafc95"
+        }
+      ],
+      "id": "241888f5-d3c3-4a64-bc74-c191531bfe59",
+      "createdAt": "2026-10-22T01:33:53.000Z",
+      "updatedAt": "2026-10-22T01:33:53.000Z",
+      "uid": "35240-241888f5-d3c3-4a64-bc74-c191531bfe59"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rest-ww.telesign.com"
+    }
+  ]
+}

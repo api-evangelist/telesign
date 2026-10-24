@@ -1,0 +1,404 @@
+{
+  "info": {
+    "_postman_id": "1c460232-8fc8-470b-96dd-5c1da0b4ac54",
+    "name": "Protect Platform Protect API Authentication API",
+    "description": "Use this API to initiate authentication for the Protect Platform API.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:33:32.000Z",
+    "updatedAt": "2026-10-22T01:33:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1c460232-8fc8-470b-96dd-5c1da0b4ac54"
+  },
+  "item": [
+    {
+      "name": "authenticationmanager",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "authenticate",
+              "item": [
+                {
+                  "name": "api",
+                  "item": [
+                    {
+                      "name": "Generate access token",
+                      "id": "85ec22a2-6593-481e-b1f6-e2a4e1a24e1a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The API Key associated with your account. (e.g., YOUR_API_KEY_HERE)",
+                            "key": "x-API-key",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"productId\": 3\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/authenticationmanager/v1/authenticate/api",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "authenticationmanager",
+                            "v1",
+                            "authenticate",
+                            "api"
+                          ]
+                        },
+                        "description": "> \ud83d\udcd8 NOTE:\n>\n> Select regional availability. This feature is currently available for customers with end users in select countries. To find out if this feature is available in your region, contact a Telesign expert. This product is available for full-service accounts only.\n\nUse this endpoint to generate an access token to interact securely with Protect Platform services, which require an external authentication service that issues an access token upon successful validation of an API Key.\n\nSend credentials via Basic Auth (\"Authorization: Basic ...\") together with \"x-API-key\". After you send a POST request to the authentication service with the required credentials, the service returns a Bearer token, which must be included in the Authorization header of all subsequent API requests to ensure secure access. If your access token expires, you must re-authenticate using this endpoint to obtain a new token. Include the accessToken in the Authorization header of every API request for authentication and authorization.\n\n## General requirements\n* **Authentication:** [Basic]\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/json`\n* **Responds with:** `application/json`\n* **Required headers:**\n* `Content-Type: application/json`\n* `x-API-key: [YOUR_API_KEY_HERE]`"
+                      },
+                      "response": [
+                        {
+                          "id": "34b042db-8038-44c3-9f9f-04a39bf65aef",
+                          "name": "**Success.** The request was processed successfully.\n\n| Status | Condition | error.message | Description |\n| --- | --- | --- | --- |\n| Success | \u2014 | The request was processed successfully. |",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) The API Key associated with your account. (e.g., YOUR_API_KEY_HERE)",
+                                "key": "x-API-key",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"productId\": 3\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/authenticationmanager/v1/authenticate/api",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "authenticationmanager",
+                                "v1",
+                                "authenticate",
+                                "api"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"data\": {\n    \"accessToken\": \"<string>\",\n    \"expirationTimeSeconds\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-10-22T01:33:32.000Z",
+                          "updatedAt": "2026-10-22T01:33:32.000Z",
+                          "uid": "35240-34b042db-8038-44c3-9f9f-04a39bf65aef"
+                        },
+                        {
+                          "id": "9c7eee8e-852d-4640-ab54-ab4f780f5eca",
+                          "name": "**Request validation failed.** One or more fields are missing or have the wrong type/format. See `errors.description` for more details.\n\nStatus Condition | error.message  | Description\n------------|---------------------|------------------------------\nMalf",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) The API Key associated with your account. (e.g., YOUR_API_KEY_HERE)",
+                                "key": "x-API-key",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"productId\": 3\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/authenticationmanager/v1/authenticate/api",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "authenticationmanager",
+                                "v1",
+                                "authenticate",
+                                "api"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:33:32.000Z",
+                          "updatedAt": "2026-10-22T01:33:32.000Z",
+                          "uid": "35240-9c7eee8e-852d-4640-ab54-ab4f780f5eca"
+                        },
+                        {
+                          "id": "7964ca04-9e50-421f-a683-c9391b817a5f",
+                          "name": "**Authorization Errors.** The authentication request failed because the token was invalid, expired, couldn't be validated or because no authorization header was provided. \n\nStatus Condition | error.message  | Description\n------------|---------------------",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) The API Key associated with your account. (e.g., YOUR_API_KEY_HERE)",
+                                "key": "x-API-key",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"productId\": 3\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/authenticationmanager/v1/authenticate/api",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "authenticationmanager",
+                                "v1",
+                                "authenticate",
+                                "api"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:33:32.000Z",
+                          "updatedAt": "2026-10-22T01:33:32.000Z",
+                          "uid": "35240-7964ca04-9e50-421f-a683-c9391b817a5f"
+                        },
+                        {
+                          "id": "9166f643-f1e5-43d4-b084-f6874c6b952b",
+                          "name": "**Unknown path.** The requested resource or endpoint does not exist. Invalid Path or endpoint requested, the API returns an error.\n\nStatus Condition | error.message  | Description\n------------|---------------------|----------------\nUnknown path | `Endpoin",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) The API Key associated with your account. (e.g., YOUR_API_KEY_HERE)",
+                                "key": "x-API-key",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"productId\": 3\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/authenticationmanager/v1/authenticate/api",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "authenticationmanager",
+                                "v1",
+                                "authenticate",
+                                "api"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:33:32.000Z",
+                          "updatedAt": "2026-10-22T01:33:32.000Z",
+                          "uid": "35240-9166f643-f1e5-43d4-b084-f6874c6b952b"
+                        },
+                        {
+                          "id": "12081619-4199-4860-891e-f4aba13eba00",
+                          "name": "**Internal error.** Unexpected exception on the server side.\n\nStatus Condition | error.message  | Description\n------------|---------------------|----------------\nInternal error | Internal Server Error | Unexpected exception on the server side.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) The API Key associated with your account. (e.g., YOUR_API_KEY_HERE)",
+                                "key": "x-API-key",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"productId\": 3\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/authenticationmanager/v1/authenticate/api",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "authenticationmanager",
+                                "v1",
+                                "authenticate",
+                                "api"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:33:32.000Z",
+                          "updatedAt": "2026-10-22T01:33:32.000Z",
+                          "uid": "35240-12081619-4199-4860-891e-f4aba13eba00"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:33:32.000Z",
+                      "updatedAt": "2026-10-22T01:33:32.000Z",
+                      "uid": "35240-85ec22a2-6593-481e-b1f6-e2a4e1a24e1a"
+                    }
+                  ],
+                  "id": "42564554-1538-4517-a30c-137cb99d1b5f",
+                  "createdAt": "2026-10-22T01:33:32.000Z",
+                  "updatedAt": "2026-10-22T01:33:32.000Z",
+                  "uid": "35240-42564554-1538-4517-a30c-137cb99d1b5f"
+                }
+              ],
+              "id": "ad95409c-f3ce-4a94-b012-e1a85a327788",
+              "createdAt": "2026-10-22T01:33:32.000Z",
+              "updatedAt": "2026-10-22T01:33:32.000Z",
+              "uid": "35240-ad95409c-f3ce-4a94-b012-e1a85a327788"
+            }
+          ],
+          "id": "e7098f91-bd32-49cf-8ebd-ffcbed8ea147",
+          "createdAt": "2026-10-22T01:33:32.000Z",
+          "updatedAt": "2026-10-22T01:33:32.000Z",
+          "uid": "35240-e7098f91-bd32-49cf-8ebd-ffcbed8ea147"
+        }
+      ],
+      "id": "0ebfc309-0cbc-4827-8f8f-895c1366f178",
+      "createdAt": "2026-10-22T01:33:32.000Z",
+      "updatedAt": "2026-10-22T01:33:32.000Z",
+      "uid": "35240-0ebfc309-0cbc-4827-8f8f-895c1366f178"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://us-east-1.di-platform.telesign.com"
+    }
+  ]
+}

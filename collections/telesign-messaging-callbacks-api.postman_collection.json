@@ -1,0 +1,572 @@
+{
+  "info": {
+    "_postman_id": "5ba4b80a-6847-4922-8d79-4aeff3d4257f",
+    "name": "Telesign Messaging Callbacks API",
+    "description": "Operations tagged Messaging Callbacks across 2 of this provider's published API definitions: telesign-engage-callbacks-openapi.json, telesign-engage-callbacks-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:32:56.000Z",
+    "updatedAt": "2026-10-22T01:32:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5ba4b80a-6847-4922-8d79-4aeff3d4257f"
+  },
+  "item": [
+    {
+      "name": "email_callback_endpoint",
+      "item": [
+        {
+          "name": "Receive email callbacks",
+          "id": "0833b154-016a-46e9-b7e9-c91869fee479",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"description\": \"<string>\",\n    \"code\": \"<integer>\"\n  },\n  \"content\": {\n    \"end_user_action\": {\n      \"template\": \"<string>\",\n      \"event\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/email_callback_endpoint",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "email_callback_endpoint"
+              ]
+            },
+            "description": "This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages from end users sent using its email channel. You can receive notifications from multiple Telesign services at the same endpoint. Confirm with our Customer Support Team that the channels you want to use for receiving inbound messages from end-users have been enabled.\n\n> Looking for the high-level guide page with examples related to this action? Go to Messaging - Receive inbound messages.\n\n## Status codes\n\n| Status code | Associated text string | Description |\n|-------------|------------------------|-------------------|\n| 1500 | Delivered | Delivered to you. |"
+          },
+          "response": [
+            {
+              "id": "ff973bd2-0fd7-4085-af13-8fd4cbbb4d30",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"description\": \"<string>\",\n    \"code\": \"<integer>\"\n  },\n  \"content\": {\n    \"end_user_action\": {\n      \"template\": \"<string>\",\n      \"event\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/email_callback_endpoint",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "email_callback_endpoint"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:32:56.000Z",
+              "updatedAt": "2026-10-22T01:32:56.000Z",
+              "uid": "35240-ff973bd2-0fd7-4085-af13-8fd4cbbb4d30"
+            }
+          ],
+          "createdAt": "2026-10-22T01:32:56.000Z",
+          "updatedAt": "2026-10-22T01:32:56.000Z",
+          "uid": "35240-0833b154-016a-46e9-b7e9-c91869fee479"
+        }
+      ],
+      "id": "571f7176-e309-4058-a0a4-82525e7de5e7",
+      "createdAt": "2026-10-22T01:32:56.000Z",
+      "updatedAt": "2026-10-22T01:32:56.000Z",
+      "uid": "35240-571f7176-e309-4058-a0a4-82525e7de5e7"
+    },
+    {
+      "name": "mms_callback_endpoint",
+      "item": [
+        {
+          "name": "Receive MMS callbacks",
+          "id": "32db0232-6e9b-4e1f-aacb-543daa306e38",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone_number\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"description\": \"<string>\",\n    \"code\": \"<integer>\"\n  },\n  \"content\": {\n    \"text_1\": \"<string>\",\n    \"subject\": \"<string>\",\n    \"url_image_1\": \"<string>\",\n    \"url_video_1\": \"<string>\",\n    \"url_audio_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/mms_callback_endpoint",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "mms_callback_endpoint"
+              ]
+            },
+            "description": "This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages from end users sent using its MMS channel. You can receive notifications from multiple Telesign services at the same endpoint. Confirm with our Customer Support Team that the channels you want to use for receiving inbound messages from end-users have been enabled.\n\n> Looking for the high-level guide page with examples related to this action? Go to Messaging - Receive inbound messages.\n\n## Status codes\n\n| Status code | Associated text string | Description |\n|-------------|------------------------|-------------------|\n| 1500 | Delivered | Delivered to you. |"
+          },
+          "response": [
+            {
+              "id": "ac0d4499-7291-4ff7-8643-2206080d2ae1",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"description\": \"<string>\",\n    \"code\": \"<integer>\"\n  },\n  \"content\": {\n    \"text_1\": \"<string>\",\n    \"subject\": \"<string>\",\n    \"url_image_1\": \"<string>\",\n    \"url_video_1\": \"<string>\",\n    \"url_audio_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/mms_callback_endpoint",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "mms_callback_endpoint"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:32:56.000Z",
+              "updatedAt": "2026-10-22T01:32:56.000Z",
+              "uid": "35240-ac0d4499-7291-4ff7-8643-2206080d2ae1"
+            }
+          ],
+          "createdAt": "2026-10-22T01:32:56.000Z",
+          "updatedAt": "2026-10-22T01:32:56.000Z",
+          "uid": "35240-32db0232-6e9b-4e1f-aacb-543daa306e38"
+        }
+      ],
+      "id": "288c4196-1f5c-4a69-b790-b33b3f123219",
+      "createdAt": "2026-10-22T01:32:56.000Z",
+      "updatedAt": "2026-10-22T01:32:56.000Z",
+      "uid": "35240-288c4196-1f5c-4a69-b790-b33b3f123219"
+    },
+    {
+      "name": "rcs_callback_endpoint",
+      "item": [
+        {
+          "name": "Receive RCS callbacks",
+          "id": "7cf9edd1-d610-474a-b429-c74adcb81226",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone_number\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"description\": \"<string>\",\n    \"code\": \"<integer>\"\n  },\n  \"rcs_sender_id\": \"<string>\",\n  \"content\": {\n    \"text\": \"<string>\",\n    \"location\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"end_user_action\": {\n      \"postback_data\": \"<string>\",\n      \"original_reference_id\": \"<string>\",\n      \"text\": \"<string>\",\n      \"iso_country_code\": \"<string>\",\n      \"action\": \"HELP\",\n      \"keyword\": \"<string>\"\n    },\n    \"file\": {\n      \"payload\": {\n        \"name\": \"<string>\",\n        \"mime_type\": \"<string>\",\n        \"uri\": \"<string>\",\n        \"size_bytes\": \"<integer>\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/rcs_callback_endpoint",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rcs_callback_endpoint"
+              ]
+            },
+            "description": "This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages from end users sent using its RCS channel. You can receive notifications from multiple Telesign services at the same endpoint. Confirm with our Customer Support Team that the channels you want to use for receiving inbound messages from end-users have been enabled. MO keyword handling feature is available for RCS, WhatsApp, and SMS channels, please contact our Customer Support Team to enable it for you.\n\n> Looking for the high-level guide page with examples related to this action? Go to Messaging - Receive inbound messages.\n\n## Status codes\n\n| Status code | Associated text string | Description |\n|-------------|------------------------|-------------------|\n| 1500 | Delivered | Delivered to you. |"
+          },
+          "response": [
+            {
+              "id": "5f60d4f1-de3b-4710-bd94-ae6d954d9026",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"description\": \"<string>\",\n    \"code\": \"<integer>\"\n  },\n  \"rcs_sender_id\": \"<string>\",\n  \"content\": {\n    \"text\": \"<string>\",\n    \"location\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"end_user_action\": {\n      \"postback_data\": \"<string>\",\n      \"original_reference_id\": \"<string>\",\n      \"text\": \"<string>\",\n      \"iso_country_code\": \"<string>\",\n      \"action\": \"HELP\",\n      \"keyword\": \"<string>\"\n    },\n    \"file\": {\n      \"payload\": {\n        \"name\": \"<string>\",\n        \"mime_type\": \"<string>\",\n        \"uri\": \"<string>\",\n        \"size_bytes\": \"<integer>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/rcs_callback_endpoint",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rcs_callback_endpoint"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:32:56.000Z",
+              "updatedAt": "2026-10-22T01:32:56.000Z",
+              "uid": "35240-5f60d4f1-de3b-4710-bd94-ae6d954d9026"
+            }
+          ],
+          "createdAt": "2026-10-22T01:32:56.000Z",
+          "updatedAt": "2026-10-22T01:32:56.000Z",
+          "uid": "35240-7cf9edd1-d610-474a-b429-c74adcb81226"
+        }
+      ],
+      "id": "8d8e0bb4-ba15-4a8f-b6e5-f555c6e8eac4",
+      "createdAt": "2026-10-22T01:32:56.000Z",
+      "updatedAt": "2026-10-22T01:32:56.000Z",
+      "uid": "35240-8d8e0bb4-ba15-4a8f-b6e5-f555c6e8eac4"
+    },
+    {
+      "name": "messaging_sms_callback_endpoint",
+      "item": [
+        {
+          "name": "Receive inbound SMS callbacks",
+          "id": "4bac8460-b105-4f20-8425-80a969ce2888",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"errors\": {},\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"submit_timestamp\": \"<string>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"description\": \"<string>\",\n    \"code\": \"<integer>\"\n  },\n  \"user_response\": {\n    \"sender_id\": \"<string>\",\n    \"iso_country_code\": \"<string>\",\n    \"action\": \"help\",\n    \"keyword\": \"<string>\",\n    \"phone_number\": \"<string>\",\n    \"mo_message\": \"<string>\",\n    \"price\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/messaging_sms_callback_endpoint",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "messaging_sms_callback_endpoint"
+              ]
+            },
+            "description": "This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages from end users sent using its SMS channel. You can receive notifications from multiple Telesign services at the same endpoint. Reference details for delivery status callbacks are located in Receive SMS delivery reports.\n\nConfirm with our Customer Support Team that the channels you want to use for receiving inbound messages from end-users have been enabled. MO keyword handling feature is available for RCS, WhatsApp, and SMS channels, please contact our Customer Support Team to enable it for you.\n\n> Looking for the high-level guide page with examples related to this action? Go to Messaging - Receive inbound messages.\n\n## Status codes\n\n| Status code | Associated text string | Description |\n|-------------|------------------------|-------------------|\n| 1500 | Delivered | Delivered to you. |"
+          },
+          "response": [
+            {
+              "id": "1bec7719-0f3c-4d5c-8fa0-4d96f4d14eca",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"errors\": {},\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"submit_timestamp\": \"<string>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"description\": \"<string>\",\n    \"code\": \"<integer>\"\n  },\n  \"user_response\": {\n    \"sender_id\": \"<string>\",\n    \"iso_country_code\": \"<string>\",\n    \"action\": \"help\",\n    \"keyword\": \"<string>\",\n    \"phone_number\": \"<string>\",\n    \"mo_message\": \"<string>\",\n    \"price\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/messaging_sms_callback_endpoint",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "messaging_sms_callback_endpoint"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:32:56.000Z",
+              "updatedAt": "2026-10-22T01:32:56.000Z",
+              "uid": "35240-1bec7719-0f3c-4d5c-8fa0-4d96f4d14eca"
+            }
+          ],
+          "createdAt": "2026-10-22T01:32:56.000Z",
+          "updatedAt": "2026-10-22T01:32:56.000Z",
+          "uid": "35240-4bac8460-b105-4f20-8425-80a969ce2888"
+        }
+      ],
+      "id": "86659b21-236c-4df7-8973-6d96809276d3",
+      "createdAt": "2026-10-22T01:32:56.000Z",
+      "updatedAt": "2026-10-22T01:32:56.000Z",
+      "uid": "35240-86659b21-236c-4df7-8973-6d96809276d3"
+    },
+    {
+      "name": "viber_callback_endpoint",
+      "item": [
+        {
+          "name": "Receive Viber callbacks",
+          "id": "9499bb35-8619-4b49-b49e-28d3daad2af6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone_number\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"description\": \"<string>\",\n    \"code\": \"<integer>\"\n  },\n  \"content\": {\n    \"original_reference_id\": \"<string>\",\n    \"text\": \"<string>\",\n    \"tracking_data\": \"<string>\",\n    \"media\": \"<string>\",\n    \"file_name\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/viber_callback_endpoint",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "viber_callback_endpoint"
+              ]
+            },
+            "description": "This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages from end users sent using its Viber channel. You can receive notifications from multiple Telesign services at the same endpoint. Confirm with our Customer Support Team that the channels you want to use for receiving inbound messages from end-users have been enabled.\n\n> Looking for the high-level guide page with examples related to this action? Go to Messaging - Receive inbound messages.\n\n## Status codes\n\n| Status code | Associated text string | Description |\n|-------------|------------------------|-------------------|\n| 1500 | Delivered | Delivered to you. |"
+          },
+          "response": [
+            {
+              "id": "d81c30fe-2216-4b56-aa8d-8c4427e69707",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"description\": \"<string>\",\n    \"code\": \"<integer>\"\n  },\n  \"content\": {\n    \"original_reference_id\": \"<string>\",\n    \"text\": \"<string>\",\n    \"tracking_data\": \"<string>\",\n    \"media\": \"<string>\",\n    \"file_name\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/viber_callback_endpoint",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "viber_callback_endpoint"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:32:56.000Z",
+              "updatedAt": "2026-10-22T01:32:56.000Z",
+              "uid": "35240-d81c30fe-2216-4b56-aa8d-8c4427e69707"
+            }
+          ],
+          "createdAt": "2026-10-22T01:32:56.000Z",
+          "updatedAt": "2026-10-22T01:32:56.000Z",
+          "uid": "35240-9499bb35-8619-4b49-b49e-28d3daad2af6"
+        }
+      ],
+      "id": "83655fad-b0e4-4501-94a6-6efa94ff9689",
+      "createdAt": "2026-10-22T01:32:56.000Z",
+      "updatedAt": "2026-10-22T01:32:56.000Z",
+      "uid": "35240-83655fad-b0e4-4501-94a6-6efa94ff9689"
+    },
+    {
+      "name": "whatsapp_callback_endpoint",
+      "item": [
+        {
+          "name": "Receive WhatsApp callbacks",
+          "id": "ac34295a-5cd0-4fa5-8381-46ac9931c1f7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone_number\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"waba_phone_number\": \"<string>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"description\": \"<string>\",\n    \"code\": \"<integer>\"\n  },\n  \"content\": {\n    \"type\": \"document\",\n    \"content\": {\n      \"body\": \"<string>\",\n      \"longitude\": \"<number>\",\n      \"latitude\": \"<number>\",\n      \"url\": \"<string>\",\n      \"sha256\": \"<string>\",\n      \"mime_type\": \"<string>\",\n      \"voice\": \"<boolean>\",\n      \"filename\": \"<string>\",\n      \"animated\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"address\": \"<string>\"\n    },\n    \"end_user_action\": {\n      \"postback_data\\t\": \"<string>\",\n      \"original_reference_id\": \"<string>\",\n      \"text\": \"<string>\",\n      \"iso_country_code\": \"<string>\",\n      \"action\": \"STOP\",\n      \"keyword\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/whatsapp_callback_endpoint",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "whatsapp_callback_endpoint"
+              ]
+            },
+            "description": "This is a web service created by you, to receive notifications from Telesign. The details described here are for notifications from Telesign Messaging regarding Mobile Originated (MO) messages from end-users sent using its WhatsApp channel. You can receive notifications from multiple Telesign services at the same endpoint. Confirm with our Customer Support Team that the channels you want to use for receiving inbound messages from end-users have been enabled. MO keyword handling feature is available for RCS, WhatsApp, and SMS channels, please contact our Customer Support Team to enable it for you.\n\n> Looking for the high-level guide page with examples related to this action? Go to Messaging - Receive inbound messages.\n\n## Status codes\n\n| Status code | Associated text string | Description |\n|-------------|------------------------|-------------------|\n| 1500 | Delivered | Delivered to you. |"
+          },
+          "response": [
+            {
+              "id": "11099a91-d6b3-409a-9530-075f3c1d949b",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"waba_phone_number\": \"<string>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"description\": \"<string>\",\n    \"code\": \"<integer>\"\n  },\n  \"content\": {\n    \"type\": \"document\",\n    \"content\": {\n      \"body\": \"<string>\",\n      \"longitude\": \"<number>\",\n      \"latitude\": \"<number>\",\n      \"url\": \"<string>\",\n      \"sha256\": \"<string>\",\n      \"mime_type\": \"<string>\",\n      \"voice\": \"<boolean>\",\n      \"filename\": \"<string>\",\n      \"animated\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"address\": \"<string>\"\n    },\n    \"end_user_action\": {\n      \"postback_data\\t\": \"<string>\",\n      \"original_reference_id\": \"<string>\",\n      \"text\": \"<string>\",\n      \"iso_country_code\": \"<string>\",\n      \"action\": \"STOP\",\n      \"keyword\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/whatsapp_callback_endpoint",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "whatsapp_callback_endpoint"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:32:56.000Z",
+              "updatedAt": "2026-10-22T01:32:56.000Z",
+              "uid": "35240-11099a91-d6b3-409a-9530-075f3c1d949b"
+            }
+          ],
+          "createdAt": "2026-10-22T01:32:56.000Z",
+          "updatedAt": "2026-10-22T01:32:56.000Z",
+          "uid": "35240-ac34295a-5cd0-4fa5-8381-46ac9931c1f7"
+        }
+      ],
+      "id": "fdee986d-7a8b-437b-bf33-c5a4a2449b8d",
+      "createdAt": "2026-10-22T01:32:56.000Z",
+      "updatedAt": "2026-10-22T01:32:56.000Z",
+      "uid": "35240-fdee986d-7a8b-437b-bf33-c5a4a2449b8d"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://your-callback-url.com"
+    }
+  ]
+}

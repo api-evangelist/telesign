@@ -1,0 +1,840 @@
+{
+  "info": {
+    "_postman_id": "37da73e9-1826-419d-b2f7-411662f3680f",
+    "name": "Email Intelligence API",
+    "description": "This spec contains details about the Telesign Email Intelligence API.\n\nContact Support:\n Name: TeleSign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:31:15.000Z",
+    "updatedAt": "2026-10-22T01:31:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-37da73e9-1826-419d-b2f7-411662f3680f"
+  },
+  "item": [
+    {
+      "name": "intelligence",
+      "item": [
+        {
+          "name": "email",
+          "item": [
+            {
+              "name": "Email Intelligence - Submit an email address to evaluate",
+              "id": "b41ef8cd-75f7-4619-a9ac-04be188fdd00",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) Your end user's email address. This value is case sensitive.",
+                      "key": "email_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The attempted action associated with this email address for which you want to evaluate the risk. Acceptable values for this parameter are -\n\n* create - For the creation of a new account.\n* sign-in - For when an end user signs in to their account.\n* transact - For when an end user completes a transaction within their account.\n* update - For when an update is performed, such as an update of account information or similar.\n* delete - For when an account is deleted.",
+                      "key": "account_lifecycle_event",
+                      "value": "update"
+                    },
+                    {
+                      "description": "Your end user's account ID. This value is case sensitive.",
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Your end user's phone number.",
+                      "key": "phone_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Your end user's device ID. This value is case sensitive.",
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Any ID passed from you that can uniquely identify this transaction in your system. The response simply echoes the value provided for this parameter.",
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).",
+                      "key": "originating_ip",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/intelligence/email",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "intelligence",
+                    "email"
+                  ]
+                },
+                "description": "Obtain a risk recommendation for this email address, as well as other relevant information using Email Intelligence API.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/x-www-form-urlencoded`\n* **Responds with:** `application/json`\n* **Required headers:** `Content-Type - application/x-www-form-urlencoded`\n* **Rate limit:** Default rate limits by product"
+              },
+              "response": [
+                {
+                  "id": "db0f75c3-3bac-44e5-ab3f-8b01cd91d4a5",
+                  "name": "**Success.** Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status code property in the response object and use that, rather than the HTTP status code. Individual pa",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Your end user's email address. This value is case sensitive.",
+                          "key": "email_address",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The attempted action associated with this email address for which you want to evaluate the risk. Acceptable values for this parameter are -\n\n* create - For the creation of a new account.\n* sign-in - For when an end user signs in to their account.\n* transact - For when an end user completes a transaction within their account.\n* update - For when an update is performed, such as an update of account information or similar.\n* delete - For when an account is deleted.",
+                          "key": "account_lifecycle_event",
+                          "value": "update"
+                        },
+                        {
+                          "description": "Your end user's account ID. This value is case sensitive.",
+                          "key": "account_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's phone number.",
+                          "key": "phone_number",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's device ID. This value is case sensitive.",
+                          "key": "device_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Any ID passed from you that can uniquely identify this transaction in your system. The response simply echoes the value provided for this parameter.",
+                          "key": "external_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).",
+                          "key": "originating_ip",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/intelligence/email",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "intelligence",
+                        "email"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"email_address_details\": {\n    \"original\": {\n      \"email_address \": \"<string>\",\n      \"is_valid\": \"<boolean>\"\n    },\n    \"cleansed\": {\n      \"email_address\": \"<string>\",\n      \"is_valid\": \"<boolean>\",\n      \"username\": \"<string>\",\n      \"domain\": \"<string>\"\n    },\n    \"cleansing_details\": {\n      \"is_modified\": \"<boolean>\",\n      \"gibberish_probability\": \"<number>\",\n      \"tag\": \"<string>\"\n    },\n    \"domain_details\": {\n      \"general_info\": {\n        \"registered_domain\": \"<string>\",\n        \"tld\": \"<string>\",\n        \"tld_type\": \"<string>\",\n        \"is_disposable\": \"<boolean>\"\n      }\n    }\n  },\n  \"intelligence_details\": {\n    \"risk\": {\n      \"level\": \"<string>\",\n      \"recommendation\": \"allow\",\n      \"score\": \"<integer>\"\n    },\n    \"insights\": {\n      \"category\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"phone_number\": {\n        \"activity\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"static\": [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      },\n      \"ip_address\": {\n        \"activity\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"static\": [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      },\n      \"email_address\": {\n        \"activity\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"static\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"domain\": [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:16.000Z",
+                  "updatedAt": "2026-10-22T01:31:16.000Z",
+                  "uid": "35240-db0f75c3-3bac-44e5-ab3f-8b01cd91d4a5"
+                },
+                {
+                  "id": "36ca2dd2-4e31-4415-8c0c-3fead0d26cae",
+                  "name": "**Bad request.** The request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n  | Status Code | Associa",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Your end user's email address. This value is case sensitive.",
+                          "key": "email_address",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The attempted action associated with this email address for which you want to evaluate the risk. Acceptable values for this parameter are -\n\n* create - For the creation of a new account.\n* sign-in - For when an end user signs in to their account.\n* transact - For when an end user completes a transaction within their account.\n* update - For when an update is performed, such as an update of account information or similar.\n* delete - For when an account is deleted.",
+                          "key": "account_lifecycle_event",
+                          "value": "update"
+                        },
+                        {
+                          "description": "Your end user's account ID. This value is case sensitive.",
+                          "key": "account_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's phone number.",
+                          "key": "phone_number",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's device ID. This value is case sensitive.",
+                          "key": "device_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Any ID passed from you that can uniquely identify this transaction in your system. The response simply echoes the value provided for this parameter.",
+                          "key": "external_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).",
+                          "key": "originating_ip",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/intelligence/email",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "intelligence",
+                        "email"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:16.000Z",
+                  "updatedAt": "2026-10-22T01:31:16.000Z",
+                  "uid": "35240-36ca2dd2-4e31-4415-8c0c-3fead0d26cae"
+                },
+                {
+                  "id": "69f94465-6a72-426a-b5eb-2c12a5bb191f",
+                  "name": "**Unauthorized.** The request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n | Status Code | Associated Text String | \n |------------",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Your end user's email address. This value is case sensitive.",
+                          "key": "email_address",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The attempted action associated with this email address for which you want to evaluate the risk. Acceptable values for this parameter are -\n\n* create - For the creation of a new account.\n* sign-in - For when an end user signs in to their account.\n* transact - For when an end user completes a transaction within their account.\n* update - For when an update is performed, such as an update of account information or similar.\n* delete - For when an account is deleted.",
+                          "key": "account_lifecycle_event",
+                          "value": "update"
+                        },
+                        {
+                          "description": "Your end user's account ID. This value is case sensitive.",
+                          "key": "account_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's phone number.",
+                          "key": "phone_number",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's device ID. This value is case sensitive.",
+                          "key": "device_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Any ID passed from you that can uniquely identify this transaction in your system. The response simply echoes the value provided for this parameter.",
+                          "key": "external_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).",
+                          "key": "originating_ip",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/intelligence/email",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "intelligence",
+                        "email"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:16.000Z",
+                  "updatedAt": "2026-10-22T01:31:16.000Z",
+                  "uid": "35240-69f94465-6a72-426a-b5eb-2c12a5bb191f"
+                },
+                {
+                  "id": "ac34ae00-c6ad-452a-8b46-b0ee4f34c61e",
+                  "name": "**Payment Required.** If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | \n|-------------|------------------------|\n| 10030      ",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Your end user's email address. This value is case sensitive.",
+                          "key": "email_address",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The attempted action associated with this email address for which you want to evaluate the risk. Acceptable values for this parameter are -\n\n* create - For the creation of a new account.\n* sign-in - For when an end user signs in to their account.\n* transact - For when an end user completes a transaction within their account.\n* update - For when an update is performed, such as an update of account information or similar.\n* delete - For when an account is deleted.",
+                          "key": "account_lifecycle_event",
+                          "value": "update"
+                        },
+                        {
+                          "description": "Your end user's account ID. This value is case sensitive.",
+                          "key": "account_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's phone number.",
+                          "key": "phone_number",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's device ID. This value is case sensitive.",
+                          "key": "device_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Any ID passed from you that can uniquely identify this transaction in your system. The response simply echoes the value provided for this parameter.",
+                          "key": "external_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).",
+                          "key": "originating_ip",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/intelligence/email",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "intelligence",
+                        "email"
+                      ]
+                    }
+                  },
+                  "status": "Payment Required",
+                  "code": 402,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:16.000Z",
+                  "updatedAt": "2026-10-22T01:31:16.000Z",
+                  "uid": "35240-ac34ae00-c6ad-452a-8b46-b0ee4f34c61e"
+                },
+                {
+                  "id": "fc627115-d9c1-4c11-bf92-d85b88fe5e7d",
+                  "name": "**Not Found.** The server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | \n|",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Your end user's email address. This value is case sensitive.",
+                          "key": "email_address",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The attempted action associated with this email address for which you want to evaluate the risk. Acceptable values for this parameter are -\n\n* create - For the creation of a new account.\n* sign-in - For when an end user signs in to their account.\n* transact - For when an end user completes a transaction within their account.\n* update - For when an update is performed, such as an update of account information or similar.\n* delete - For when an account is deleted.",
+                          "key": "account_lifecycle_event",
+                          "value": "update"
+                        },
+                        {
+                          "description": "Your end user's account ID. This value is case sensitive.",
+                          "key": "account_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's phone number.",
+                          "key": "phone_number",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's device ID. This value is case sensitive.",
+                          "key": "device_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Any ID passed from you that can uniquely identify this transaction in your system. The response simply echoes the value provided for this parameter.",
+                          "key": "external_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).",
+                          "key": "originating_ip",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/intelligence/email",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "intelligence",
+                        "email"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:16.000Z",
+                  "updatedAt": "2026-10-22T01:31:16.000Z",
+                  "uid": "35240-fc627115-d9c1-4c11-bf92-d85b88fe5e7d"
+                },
+                {
+                  "id": "db5b5439-e568-4d09-ace1-9559d9d46b9a",
+                  "name": "**Too Many Requests.** The user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text Stri",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Your end user's email address. This value is case sensitive.",
+                          "key": "email_address",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The attempted action associated with this email address for which you want to evaluate the risk. Acceptable values for this parameter are -\n\n* create - For the creation of a new account.\n* sign-in - For when an end user signs in to their account.\n* transact - For when an end user completes a transaction within their account.\n* update - For when an update is performed, such as an update of account information or similar.\n* delete - For when an account is deleted.",
+                          "key": "account_lifecycle_event",
+                          "value": "update"
+                        },
+                        {
+                          "description": "Your end user's account ID. This value is case sensitive.",
+                          "key": "account_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's phone number.",
+                          "key": "phone_number",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's device ID. This value is case sensitive.",
+                          "key": "device_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Any ID passed from you that can uniquely identify this transaction in your system. The response simply echoes the value provided for this parameter.",
+                          "key": "external_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).",
+                          "key": "originating_ip",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/intelligence/email",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "intelligence",
+                        "email"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:16.000Z",
+                  "updatedAt": "2026-10-22T01:31:16.000Z",
+                  "uid": "35240-db5b5439-e568-4d09-ace1-9559d9d46b9a"
+                },
+                {
+                  "id": "6c2d5c7c-2bb1-4f6c-874c-72611616a099",
+                  "name": "**Invalid Transaction.** Transaction not attempted.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Your end user's email address. This value is case sensitive.",
+                          "key": "email_address",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The attempted action associated with this email address for which you want to evaluate the risk. Acceptable values for this parameter are -\n\n* create - For the creation of a new account.\n* sign-in - For when an end user signs in to their account.\n* transact - For when an end user completes a transaction within their account.\n* update - For when an update is performed, such as an update of account information or similar.\n* delete - For when an account is deleted.",
+                          "key": "account_lifecycle_event",
+                          "value": "update"
+                        },
+                        {
+                          "description": "Your end user's account ID. This value is case sensitive.",
+                          "key": "account_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's phone number.",
+                          "key": "phone_number",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's device ID. This value is case sensitive.",
+                          "key": "device_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Any ID passed from you that can uniquely identify this transaction in your system. The response simply echoes the value provided for this parameter.",
+                          "key": "external_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).",
+                          "key": "originating_ip",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/intelligence/email",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "intelligence",
+                        "email"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:16.000Z",
+                  "updatedAt": "2026-10-22T01:31:16.000Z",
+                  "uid": "35240-6c2d5c7c-2bb1-4f6c-874c-72611616a099"
+                },
+                {
+                  "id": "90a5f153-9c53-4526-ae95-03e3c4760243",
+                  "name": "**Service Unavailable.** System unavailable, try again.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Your end user's email address. This value is case sensitive.",
+                          "key": "email_address",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The attempted action associated with this email address for which you want to evaluate the risk. Acceptable values for this parameter are -\n\n* create - For the creation of a new account.\n* sign-in - For when an end user signs in to their account.\n* transact - For when an end user completes a transaction within their account.\n* update - For when an update is performed, such as an update of account information or similar.\n* delete - For when an account is deleted.",
+                          "key": "account_lifecycle_event",
+                          "value": "update"
+                        },
+                        {
+                          "description": "Your end user's account ID. This value is case sensitive.",
+                          "key": "account_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's phone number.",
+                          "key": "phone_number",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's device ID. This value is case sensitive.",
+                          "key": "device_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Any ID passed from you that can uniquely identify this transaction in your system. The response simply echoes the value provided for this parameter.",
+                          "key": "external_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's IP address (do not send your own IP address). IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).",
+                          "key": "originating_ip",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/intelligence/email",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "intelligence",
+                        "email"
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"external_id\": \"<string,null>\",\n  \"status\": {\n    \"updated_on\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:16.000Z",
+                  "updatedAt": "2026-10-22T01:31:16.000Z",
+                  "uid": "35240-90a5f153-9c53-4526-ae95-03e3c4760243"
+                }
+              ],
+              "createdAt": "2026-10-22T01:31:16.000Z",
+              "updatedAt": "2026-10-22T01:31:16.000Z",
+              "uid": "35240-b41ef8cd-75f7-4619-a9ac-04be188fdd00"
+            }
+          ],
+          "id": "79bf3473-2e2e-4455-9b25-ee9356130cd8",
+          "createdAt": "2026-10-22T01:31:15.000Z",
+          "updatedAt": "2026-10-22T01:31:15.000Z",
+          "uid": "35240-79bf3473-2e2e-4455-9b25-ee9356130cd8"
+        }
+      ],
+      "id": "bc63eef4-fdd4-484c-a87d-dbbaaa899d98",
+      "createdAt": "2026-10-22T01:31:15.000Z",
+      "updatedAt": "2026-10-22T01:31:15.000Z",
+      "uid": "35240-bc63eef4-fdd4-484c-a87d-dbbaaa899d98"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "detect.telesign.com"
+    }
+  ]
+}

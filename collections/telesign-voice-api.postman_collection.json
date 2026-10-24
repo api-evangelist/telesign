@@ -1,0 +1,369 @@
+{
+  "info": {
+    "_postman_id": "ff916243-e753-4918-a0cd-872cac76ef7b",
+    "name": "Telesign Voice API",
+    "description": "Operations tagged Voice across 2 of this provider's published API definitions: telesign-engage-api-voice-openapi.json, telesign-engage-api-voice-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:34:10.000Z",
+    "updatedAt": "2026-10-22T01:34:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ff916243-e753-4918-a0cd-872cac76ef7b"
+  },
+  "item": [
+    {
+      "name": "voice",
+      "item": [
+        {
+          "name": "Send an action",
+          "id": "a4dd6274-0d20-4773-a470-b3c82769074e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"method\": \"<string>\",\n  \"params\": {}\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/voice",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "voice"
+              ]
+            },
+            "description": "Send an action to Telesign Voice. For more details on the object structure of each specific action type, see the *Voice - Actions* page.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Protocols:** HTTPS\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/json` (use JSON-RPC format)\n* **Responds with:** `application/json`\n* **Required headers:** `Content-Type - application/json`\n* **Rate limit:** Default rate limits by product"
+          },
+          "response": [
+            {
+              "id": "129e71c6-4044-4f33-8c7c-c8a66257ba12",
+              "name": "The request was successfully processed, but the service could not complete the action.\n\n|Error string | Description|\n|--|--|\n| `premium_to_number_rejected` | Phone number (`to`) in the request has the unsupported number type \\\"premium\\\". Action rejected. ",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"method\": \"<string>\",\n  \"params\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/voice",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "voice"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:34:11.000Z",
+              "updatedAt": "2026-10-22T01:34:11.000Z",
+              "uid": "35240-129e71c6-4044-4f33-8c7c-c8a66257ba12"
+            },
+            {
+              "id": "767ea4d2-7a25-44b9-99de-1bca93b84b1b",
+              "name": "**Success.** The request was successfully processed and the action was successfully taken.\n\nStatus string|Description\n--|--\n`dial_accepted`|The dial action was completed successfully and the end user answered the call.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"method\": \"<string>\",\n  \"params\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/voice",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "voice"
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"external_id\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:34:11.000Z",
+              "updatedAt": "2026-10-22T01:34:11.000Z",
+              "uid": "35240-767ea4d2-7a25-44b9-99de-1bca93b84b1b"
+            },
+            {
+              "id": "6b0e0c08-da79-46b9-b0cb-346ecdc7d858",
+              "name": "|Error string|Description|\n|--|--|\n| `caller_id_number_not_owned` | Virtual number (`caller_id_number`) in the request is not owned by you. Action rejected. |\n| `caller_id_number_not_provided` | Request does not include a virtual number (`caller_id_number",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"method\": \"<string>\",\n  \"params\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/voice",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "voice"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:34:11.000Z",
+              "updatedAt": "2026-10-22T01:34:11.000Z",
+              "uid": "35240-6b0e0c08-da79-46b9-b0cb-346ecdc7d858"
+            },
+            {
+              "id": "39fcd98c-ae1b-4a90-9e49-682d2edf04bb",
+              "name": "|Error string|Description|\n|--|--|\n| `credentials_not_provided` | Customer ID and/or API key missing from the authorization header of the request. Action rejected.|\n| `not_authorized` | Could not authenticate with the Customer ID and API key in the author",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"method\": \"<string>\",\n  \"params\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/voice",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "voice"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:34:11.000Z",
+              "updatedAt": "2026-10-22T01:34:11.000Z",
+              "uid": "35240-39fcd98c-ae1b-4a90-9e49-682d2edf04bb"
+            },
+            {
+              "id": "3b4b7994-db5d-433d-8373-b5258e3c005a",
+              "name": "|Error string|Description|\n|--|--|\n| `rate_limit_exceeded` | Account has exceeded rate limit for either outbound or inbound requests. Action rejected. |",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"method\": \"<string>\",\n  \"params\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/voice",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "voice"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:34:11.000Z",
+              "updatedAt": "2026-10-22T01:34:11.000Z",
+              "uid": "35240-3b4b7994-db5d-433d-8373-b5258e3c005a"
+            }
+          ],
+          "createdAt": "2026-10-22T01:34:11.000Z",
+          "updatedAt": "2026-10-22T01:34:11.000Z",
+          "uid": "35240-a4dd6274-0d20-4773-a470-b3c82769074e"
+        }
+      ],
+      "id": "77a56821-f5e8-470b-ba9e-3a5dda3cdd89",
+      "createdAt": "2026-10-22T01:34:11.000Z",
+      "updatedAt": "2026-10-22T01:34:11.000Z",
+      "uid": "35240-77a56821-f5e8-470b-ba9e-3a5dda3cdd89"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rest-ww.telesign.com/v2"
+    }
+  ]
+}

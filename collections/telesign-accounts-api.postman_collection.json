@@ -1,0 +1,479 @@
+{
+  "info": {
+    "_postman_id": "5f8cdb29-868b-4de8-b3e7-3ceafb5ac17b",
+    "name": "Accounts API",
+    "description": "Use this API to programmatically manage your Telesign accounts and their configurations.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:30:11.000Z",
+    "updatedAt": "2026-10-22T01:30:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5f8cdb29-868b-4de8-b3e7-3ceafb5ac17b"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{source_account_id}",
+          "item": [
+            {
+              "name": "Clone account",
+              "id": "9d876b40-c78a-4550-bd26-11dee14de831",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_name\": \"<string>\",\n  \"users\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"email\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/:source_account_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    ":source_account_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f8d0f0a5-42b5-4725-acf5-11964d12b193",
+                      "key": "source_account_id",
+                      "value": "<string>",
+                      "description": "(Required) Identifies the source account to clone."
+                    }
+                  ]
+                },
+                "description": "> \ud83d\udcd8 NOTE:\n>\n> Accounts API is currently available on a limited basis. Contact our Customer Support Team if you\u2019d like to explore using this API.\n\nUse this endpoint to clone an account. The account corresponding to the account ID in the path of your request is used as the source account. Configuration properties of the source account are applied to the new account.\n\nYou may include contact details for an initial user in the request. Telesign uses those details to send an invitation to sign in to that user, so it's important to ensure that info is valid. You can manually create additional users in your account.\n\nUsers and permissions are not copied from the source account.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/json`\n* **Responds with:** `application/json`\n* **Required headers:** `Content-Type - application/json`"
+              },
+              "response": [
+                {
+                  "id": "287e9c9a-4933-4202-9aa3-5e58cb988131",
+                  "name": "**Success.** The new account was successfully created.\n\n\nStatus code | Associated text string\n--|--\n5005|New account was successfully created.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_name\": \"<string>\",\n  \"users\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"email\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:source_account_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":source_account_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "source_account_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"data\": {\n    \"account_id\": \"<string>\",\n    \"account_name\": \"<string>\",\n    \"users\": [\n      {\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      {\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"email\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-10-22T01:30:11.000Z",
+                  "updatedAt": "2026-10-22T01:30:11.000Z",
+                  "uid": "35240-287e9c9a-4933-4202-9aa3-5e58cb988131"
+                },
+                {
+                  "id": "588b6d15-eddf-499d-92ea-b7c18b2e5626",
+                  "name": "**Bad Request.**\n\n\nStatus code | Associated text string \n--|-- \n5101|Invalid value for body parameter {param name}.\n5103|Invalid value for path parameter {param name} \n5110|Request payload is improperly formatted.\n5112|Missing required parameter {param_na",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_name\": \"<string>\",\n  \"users\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"email\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:source_account_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":source_account_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "source_account_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:30:11.000Z",
+                  "updatedAt": "2026-10-22T01:30:11.000Z",
+                  "uid": "35240-588b6d15-eddf-499d-92ea-b7c18b2e5626"
+                },
+                {
+                  "id": "6cf8b853-2314-476d-a35e-b1e68e77c43c",
+                  "name": "**Unauthorized.**\n\nStatus code | Associated text string\n-- | --\n5400 | Authentication failed.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_name\": \"<string>\",\n  \"users\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"email\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:source_account_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":source_account_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "source_account_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:30:11.000Z",
+                  "updatedAt": "2026-10-22T01:30:11.000Z",
+                  "uid": "35240-6cf8b853-2314-476d-a35e-b1e68e77c43c"
+                },
+                {
+                  "id": "e602bfee-192c-4cad-a813-3034969c7997",
+                  "name": "**Forbidden.**\n\nStatus code | Associated text string\n-- | --\n5401 | No permissions for this resource.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_name\": \"<string>\",\n  \"users\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"email\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:source_account_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":source_account_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "source_account_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:30:11.000Z",
+                  "updatedAt": "2026-10-22T01:30:11.000Z",
+                  "uid": "35240-e602bfee-192c-4cad-a813-3034969c7997"
+                },
+                {
+                  "id": "a1839cfd-c885-49f3-affa-21e06639d0e3",
+                  "name": "**Rate limit exceeded.**\n\nStatus code | Associated text string\n-- | --\n5204 | Rate limit exceeded.\n",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_name\": \"<string>\",\n  \"users\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"email\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:source_account_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":source_account_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "source_account_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:30:11.000Z",
+                  "updatedAt": "2026-10-22T01:30:11.000Z",
+                  "uid": "35240-a1839cfd-c885-49f3-affa-21e06639d0e3"
+                },
+                {
+                  "id": "62908c7c-57ac-4465-8bc7-5b870c8bae9d",
+                  "name": "**Service unavailable.**\n\nStatus code | Associated text string\n-- | --\n5500 | System unavailable. Please try again later.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_name\": \"<string>\",\n  \"users\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"email\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:source_account_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":source_account_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "source_account_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:30:11.000Z",
+                  "updatedAt": "2026-10-22T01:30:11.000Z",
+                  "uid": "35240-62908c7c-57ac-4465-8bc7-5b870c8bae9d"
+                }
+              ],
+              "createdAt": "2026-10-22T01:30:11.000Z",
+              "updatedAt": "2026-10-22T01:30:11.000Z",
+              "uid": "35240-9d876b40-c78a-4550-bd26-11dee14de831"
+            }
+          ],
+          "id": "015eb7ca-44a2-4d93-8f6c-4ad431625c3e",
+          "createdAt": "2026-10-22T01:30:11.000Z",
+          "updatedAt": "2026-10-22T01:30:11.000Z",
+          "uid": "35240-015eb7ca-44a2-4d93-8f6c-4ad431625c3e"
+        }
+      ],
+      "id": "cec26b69-adbd-4c63-b40c-487290f46648",
+      "createdAt": "2026-10-22T01:30:11.000Z",
+      "updatedAt": "2026-10-22T01:30:11.000Z",
+      "uid": "35240-cec26b69-adbd-4c63-b40c-487290f46648"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "accounts.telesign.com"
+    }
+  ]
+}

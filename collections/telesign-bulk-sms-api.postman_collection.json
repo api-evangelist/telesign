@@ -1,0 +1,489 @@
+{
+  "info": {
+    "_postman_id": "5e440c6d-03b5-4665-96cc-7232d6bfc870",
+    "name": "Engage Bulk SMS API",
+    "description": "This spec contains details about the Telesign Engage API.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:31:36.000Z",
+    "updatedAt": "2026-10-22T01:31:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5e440c6d-03b5-4665-96cc-7232d6bfc870"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "verify",
+          "item": [
+            {
+              "name": "bulk_sms",
+              "item": [
+                {
+                  "name": "Send bulk SMS",
+                  "id": "76735007-2424-48b2-831b-74a0306781bb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Comma separated list of recipient phone numbers (maximum of 1000). Optionally append a session ID to each phone number separated by a colon.",
+                          "key": "recipients",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The text of the message to your recipients.",
+                          "key": "template",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A string specifying a use case code. Choices include -\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a password reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shipping notification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring money and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR)\n",
+                          "key": "ucid",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The phone number from which to send these SMS messages.",
+                          "key": "sender_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/verify/bulk_sms",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "verify",
+                        "bulk_sms"
+                      ]
+                    },
+                    "description": "Use this endpoint to send the same SMS message to multiple recipients.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/x-www-form-urlencoded`\n* **Responds with:** `application/json`\n* **Required headers:** `Content-Type - application/x-www-form-urlencoded`\n* **Rate limit:** Default rate limits by product"
+                  },
+                  "response": [
+                    {
+                      "id": "123a09d9-3a29-4f23-b747-6c80333f7c64",
+                      "name": "**Success.** Your request to the service was created.\n\n| Status Code | Associated text string | Description|\n|-------------|------------------------|------------|\n| 293 | Bulk request accepted | The bulk request was accepted by Telesign. |   \n",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) Comma separated list of recipient phone numbers (maximum of 1000). Optionally append a session ID to each phone number separated by a colon.",
+                              "key": "recipients",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) The text of the message to your recipients.",
+                              "key": "template",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A string specifying a use case code. Choices include -\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a password reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shipping notification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring money and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR)\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The phone number from which to send these SMS messages.",
+                              "key": "sender_id",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/bulk_sms",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "bulk_sms"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:31:37.000Z",
+                      "updatedAt": "2026-10-22T01:31:37.000Z",
+                      "uid": "35240-123a09d9-3a29-4f23-b747-6c80333f7c64"
+                    },
+                    {
+                      "id": "7fa27e92-7d52-4411-a61e-15c0dd2a28a3",
+                      "name": "**Bad request.** The request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n|Status Code | Status Desc",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) Comma separated list of recipient phone numbers (maximum of 1000). Optionally append a session ID to each phone number separated by a colon.",
+                              "key": "recipients",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) The text of the message to your recipients.",
+                              "key": "template",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A string specifying a use case code. Choices include -\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a password reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shipping notification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring money and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR)\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The phone number from which to send these SMS messages.",
+                              "key": "sender_id",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/bulk_sms",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "bulk_sms"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:31:37.000Z",
+                      "updatedAt": "2026-10-22T01:31:37.000Z",
+                      "uid": "35240-7fa27e92-7d52-4411-a61e-15c0dd2a28a3"
+                    },
+                    {
+                      "id": "34ba7698-3b64-41fd-beda-3ece98de5229",
+                      "name": "**Unauthorized.** The request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n\n|Status Code | Status Description     | Error Code |Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) Comma separated list of recipient phone numbers (maximum of 1000). Optionally append a session ID to each phone number separated by a colon.",
+                              "key": "recipients",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) The text of the message to your recipients.",
+                              "key": "template",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A string specifying a use case code. Choices include -\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a password reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shipping notification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring money and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR)\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The phone number from which to send these SMS messages.",
+                              "key": "sender_id",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/bulk_sms",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "bulk_sms"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"signature_string\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:31:37.000Z",
+                      "updatedAt": "2026-10-22T01:31:37.000Z",
+                      "uid": "35240-34ba7698-3b64-41fd-beda-3ece98de5229"
+                    },
+                    {
+                      "id": "0b72293b-349e-4e75-93b9-7ccce1c891b4",
+                      "name": "**Too Many Requests.** The user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n\n\n|Status Code | Status Description ",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) Comma separated list of recipient phone numbers (maximum of 1000). Optionally append a session ID to each phone number separated by a colon.",
+                              "key": "recipients",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) The text of the message to your recipients.",
+                              "key": "template",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A string specifying a use case code. Choices include -\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a password reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shipping notification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring money and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR)\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The phone number from which to send these SMS messages.",
+                              "key": "sender_id",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/bulk_sms",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "bulk_sms"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:31:37.000Z",
+                      "updatedAt": "2026-10-22T01:31:37.000Z",
+                      "uid": "35240-0b72293b-349e-4e75-93b9-7ccce1c891b4"
+                    },
+                    {
+                      "id": "f508d25c-8827-47a0-8196-4f9a48688fa2",
+                      "name": "**Service Unavailable.** System unavailable, try again.\n\n\n|Status Code | Status Description     | Error Code |Error Description |\n|------------|------------------------|------------|------------------|\n|500|Transaction not attempted|-90001|System Unavaila",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) Comma separated list of recipient phone numbers (maximum of 1000). Optionally append a session ID to each phone number separated by a colon.",
+                              "key": "recipients",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) The text of the message to your recipients.",
+                              "key": "template",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A string specifying a use case code. Choices include -\n* ATCK - for use in a 2FA situation like updating an account or logging in\n* BACF - for creating an account where the service may be vulnerable to bulk attacks and fraudsters\n* BACS - for creating an account where the service may be vulnerable to bulk attacks or individual spammers\n* CHBK - for use when someone is trying to buy something expensive or unusual and you want to verify it is really them\n* CLDR - calendar event\n* LEAD - for use in a situation where you require a person to enter personal information in order to obtain information about something like a loan or realty or school, and you want to check if the person is bogus or not\n* OTHR - if you have a situation not addressed by other tags\n* PWRT - for use in a situation where a password reset is required\n* RESV - for use when you have end users making reservations and not showing up, and you want to be able to include phone verification in the loop\n* RXPF - for use when you are trying to prevent prescription fraud\n* SHIP - for use when you are sending a shipping notification\n* THEF - for use when you are trying to prevent an end user from deactivating or redirecting a phone number in order to take over someone else's identity\n* TRVF - for use when you are transferring money and you want to check to see if it is approved by sending a text message or phone call to your end user. This is similar to CHBK, but is specifically for a money transaction\n* UNKN - if you have a situation not addressed by other tags (same as OTHR)\n",
+                              "key": "ucid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The phone number from which to send these SMS messages.",
+                              "key": "sender_id",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/bulk_sms",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "bulk_sms"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"signature_string\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:31:37.000Z",
+                      "updatedAt": "2026-10-22T01:31:37.000Z",
+                      "uid": "35240-f508d25c-8827-47a0-8196-4f9a48688fa2"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:31:37.000Z",
+                  "updatedAt": "2026-10-22T01:31:37.000Z",
+                  "uid": "35240-76735007-2424-48b2-831b-74a0306781bb"
+                }
+              ],
+              "id": "f80bfe9f-4649-4d6d-9554-0548994de4e3",
+              "createdAt": "2026-10-22T01:31:37.000Z",
+              "updatedAt": "2026-10-22T01:31:37.000Z",
+              "uid": "35240-f80bfe9f-4649-4d6d-9554-0548994de4e3"
+            }
+          ],
+          "id": "95768db9-376c-4867-9e0a-c6777e71be73",
+          "createdAt": "2026-10-22T01:31:37.000Z",
+          "updatedAt": "2026-10-22T01:31:37.000Z",
+          "uid": "35240-95768db9-376c-4867-9e0a-c6777e71be73"
+        }
+      ],
+      "id": "d2c0f48e-854c-467e-8109-c800d86665d4",
+      "createdAt": "2026-10-22T01:31:37.000Z",
+      "updatedAt": "2026-10-22T01:31:37.000Z",
+      "uid": "35240-d2c0f48e-854c-467e-8109-c800d86665d4"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rest-ww.telesign.com"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "info": {
+    "_postman_id": "f5656a7a-abff-4e4e-b580-4207cb89f778",
+    "name": "Telesign SMS Callbacks API",
+    "description": "Operations tagged SMS Callbacks across 2 of this provider's published API definitions: telesign-engage-callbacks-openapi.json, telesign-engage-callbacks-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:33:47.000Z",
+    "updatedAt": "2026-10-22T01:33:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f5656a7a-abff-4e4e-b580-4207cb89f778"
+  },
+  "item": [
+    {
+      "name": "sms_delivery_reports_endpoint",
+      "item": [
+        {
+          "name": "Receive SMS delivery reports",
+          "id": "f9563a48-43b9-401b-8186-8930802621fe",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"reference_id\": \"<string>\",\n  \"submit_timestamp\": \"<string>\",\n  \"additional_info\": {\n    \"mcc\": \"<string>\",\n    \"mnc\": \"<string>\",\n    \"price\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"message_parts_count\": \"<integer>\",\n    \"message_parts_reference_ids\": \"<string>\",\n    \"sender_id\": \"<string>\",\n    \"cleansed_phone_number\": \"<string>\"\n  },\n  \"external_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sms_delivery_reports_endpoint",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sms_delivery_reports_endpoint"
+              ]
+            },
+            "description": "This is a web service created by you, to receive notifications from Telesign."
+          },
+          "response": [
+            {
+              "id": "3c08c088-f1c9-45b0-ad71-5a278f48647c",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"reference_id\": \"<string>\",\n  \"submit_timestamp\": \"<string>\",\n  \"additional_info\": {\n    \"mcc\": \"<string>\",\n    \"mnc\": \"<string>\",\n    \"price\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"message_parts_count\": \"<integer>\",\n    \"message_parts_reference_ids\": \"<string>\",\n    \"sender_id\": \"<string>\",\n    \"cleansed_phone_number\": \"<string>\"\n  },\n  \"external_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sms_delivery_reports_endpoint",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sms_delivery_reports_endpoint"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:33:48.000Z",
+              "updatedAt": "2026-10-22T01:33:48.000Z",
+              "uid": "35240-3c08c088-f1c9-45b0-ad71-5a278f48647c"
+            }
+          ],
+          "createdAt": "2026-10-22T01:33:48.000Z",
+          "updatedAt": "2026-10-22T01:33:48.000Z",
+          "uid": "35240-f9563a48-43b9-401b-8186-8930802621fe"
+        }
+      ],
+      "id": "69a7bced-9ca6-47d2-95f8-112ce4bac704",
+      "createdAt": "2026-10-22T01:33:48.000Z",
+      "updatedAt": "2026-10-22T01:33:48.000Z",
+      "uid": "35240-69a7bced-9ca6-47d2-95f8-112ce4bac704"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://your-callback-url.com"
+    }
+  ]
+}

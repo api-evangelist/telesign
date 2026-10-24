@@ -1,0 +1,1347 @@
+{
+  "info": {
+    "_postman_id": "e1c68553-959d-4845-a8e4-13f8e8398f7b",
+    "name": "Engage SMS API",
+    "description": "This spec contains details about the Telesign Engage API.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:33:42.000Z",
+    "updatedAt": "2026-10-22T01:33:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e1c68553-959d-4845-a8e4-13f8e8398f7b"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "messaging",
+          "item": [
+            {
+              "name": "{reference_id}",
+              "item": [
+                {
+                  "name": "Get transaction status",
+                  "id": "4f39c161-7914-44f3-a94d-59f6bfc534d5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/messaging/:reference_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "messaging",
+                        ":reference_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b9b18afd-c6e2-4fdc-b8ff-01f5fcda55d7",
+                          "key": "reference_id",
+                          "value": "<string>",
+                          "description": "(Required) A unique identifier you can use to query the Messaging API and find out the status of your transaction."
+                        }
+                      ]
+                    },
+                    "description": "Get delivery status and other details for an SMS transaction that you have created.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/x-www-form-urlencoded`\n* **Required headers:** `Content-Type - application/x-www-form-urlencoded`\n* **Rate limit:** Default rate limits by product"
+                  },
+                  "response": [
+                    {
+                      "id": "4361daaf-e230-4331-933f-ffe05a625e91",
+                      "name": "Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n\n | Status Code | Associated Text String | D",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/messaging/:reference_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "messaging",
+                            ":reference_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reference_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"additional_info\": {\n    \"message_part_sequence_number\": \"<integer>\",\n    \"message_parts_count\": \"<integer>\",\n    \"message_parts_reference_ids\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:43.000Z",
+                      "updatedAt": "2026-10-22T01:33:43.000Z",
+                      "uid": "35240-4361daaf-e230-4331-933f-ffe05a625e91"
+                    },
+                    {
+                      "id": "73f4daf5-2fdc-439f-afa0-de20f4c0170b",
+                      "name": "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n | Status Code | Associated T",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/messaging/:reference_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "messaging",
+                            ":reference_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reference_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-10-22T01:33:43.000Z",
+                      "updatedAt": "2026-10-22T01:33:43.000Z",
+                      "uid": "35240-73f4daf5-2fdc-439f-afa0-de20f4c0170b"
+                    },
+                    {
+                      "id": "8ecbe869-99b5-4e28-8701-8368cec2d395",
+                      "name": "Unauthorized, the request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n  Status code | Associated Text String \n -------------|------",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/messaging/:reference_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "messaging",
+                            ":reference_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reference_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"signature_string\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:33:43.000Z",
+                      "updatedAt": "2026-10-22T01:33:43.000Z",
+                      "uid": "35240-8ecbe869-99b5-4e28-8701-8368cec2d395"
+                    },
+                    {
+                      "id": "f43e5f44-8b41-4287-a76c-91ba31ab6991",
+                      "name": " Not Found, the server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status code | Description | \n|-------------|",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/messaging/:reference_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "messaging",
+                            ":reference_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reference_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-10-22T01:33:43.000Z",
+                      "updatedAt": "2026-10-22T01:33:43.000Z",
+                      "uid": "35240-f43e5f44-8b41-4287-a76c-91ba31ab6991"
+                    },
+                    {
+                      "id": "0f24b4b2-85e1-45d8-a1f6-de69451a24e2",
+                      "name": "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n Status code | Associated text string \n-",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/messaging/:reference_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "messaging",
+                            ":reference_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reference_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:43.000Z",
+                      "updatedAt": "2026-10-22T01:33:43.000Z",
+                      "uid": "35240-0f24b4b2-85e1-45d8-a1f6-de69451a24e2"
+                    },
+                    {
+                      "id": "e636a531-bfa8-4087-b9ae-57a1c35689f4",
+                      "name": "**Service unavailable.** The system is unavailable, try again. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.\n\n| Status code | ",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/messaging/:reference_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "messaging",
+                            ":reference_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reference_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:33:43.000Z",
+                      "updatedAt": "2026-10-22T01:33:43.000Z",
+                      "uid": "35240-e636a531-bfa8-4087-b9ae-57a1c35689f4"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:33:43.000Z",
+                  "updatedAt": "2026-10-22T01:33:43.000Z",
+                  "uid": "35240-4f39c161-7914-44f3-a94d-59f6bfc534d5"
+                }
+              ],
+              "id": "e3e40fe8-a29d-4e26-918b-006186a08bd2",
+              "createdAt": "2026-10-22T01:33:43.000Z",
+              "updatedAt": "2026-10-22T01:33:43.000Z",
+              "uid": "35240-e3e40fe8-a29d-4e26-918b-006186a08bd2"
+            },
+            {
+              "name": "Send an SMS message",
+              "id": "0b919b0f-a75b-454d-ba7d-00242d4b8772",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The end user's phone number with country code included. Avoid use of special characters and spaces.",
+                      "key": "phone_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Text of the message to be sent to the end user. You are limited to 1600 characters. If you send a very long message, Telesign splits your message into separate parts. Telesign recommends against sending messages that require multiple SMSes when possible.",
+                      "key": "message",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) This parameter specifies the traffic type being sent in the message. You can provide one of the following values -\n* OTP (One time passwords)\n* ARN (Alerts, reminders, and notifications)\n* MKT (Marketing traffic)\n",
+                      "key": "message_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "This parameter allows you to indicate what phase of the lifecycle you are in when you send a transaction. The options for this parameter are - \n* create - For the creation of a new account)\n* sign-in For when an end user signs in to their account.\n* transact - For when an end user completes a transaction within their account\n* update - For when an update is performed, such as an update of account information or similar. \n* delete - For when an account is deleted.\n",
+                      "key": "account_lifecycle_event",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "This parameter allows you to set a specific sender ID to be used on an SMS message sent to the end user. In order to use a specific sender ID, Telesign must whitelist your selected sender ID values. Be aware that 100% preservation of a sender ID value is not guaranteed. Telesign may override the sender ID value that your end user will receive in order to improve delivery quality or follow SMS regulations in particular countries. In order to use this feature, you must contact Telesign Support and have them enable it for you. We recommend limiting values to 0-9 and A-Z, as support for other ASCII characters varies by carrier.",
+                      "key": "sender_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A customer-generated ID for this transaction. The response simply echoes the value provided for this parameter.",
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Your end user's IP address (do not send your own IP address). This is used to help Telesign improve our services. IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).",
+                      "key": "originating_ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you\u2019ve previously set. The override only lasts for this request.",
+                      "key": "callback_url",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Whether you are using this service as your primary provider to send this message (`\u201dtrue\u201d`) or as a backup after your primary provider failed (`\u201dfalse\u201d`). We use this data to optimize message routing.",
+                      "key": "is_primary",
+                      "value": "true"
+                    },
+                    {
+                      "description": "**(India-local traffic only)**. The ID of the DLT template used for this message. See *[India DLT Update](https://support.telesign.com/s/article/India-DLT-Update)* for more details on the relevant regulations.",
+                      "key": "dlt_template_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "**(India-local traffic only)**. The ID of the entity sending this message. See *[India DLT Update](https://support.telesign.com/s/article/India-DLT-Update)* for more details on the relevant regulations. ",
+                      "key": "dlt_entity_id",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/messaging",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "messaging"
+                  ]
+                },
+                "description": "Send an SMS message. Use request parameters to specify the type of message, what phase of the account lifecycle the message is being sent in, and additional details about the transaction.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/x-www-form-urlencoded`\n* **Required headers:** `Content-Type - application/x-www-form-urlencoded`\n* **Rate limit:** Default rate limits by product"
+              },
+              "response": [
+                {
+                  "id": "7835fa2e-d1c5-4b1e-a44a-636dbcf68ac9",
+                  "name": "**Success.** Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status code and use that rather than the HTTP status response. \n \n| Status code | Associated text string ",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) The end user's phone number with country code included. Avoid use of special characters and spaces.",
+                          "key": "phone_number",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Text of the message to be sent to the end user. You are limited to 1600 characters. If you send a very long message, Telesign splits your message into separate parts. Telesign recommends against sending messages that require multiple SMSes when possible.",
+                          "key": "message",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) This parameter specifies the traffic type being sent in the message. You can provide one of the following values -\n* OTP (One time passwords)\n* ARN (Alerts, reminders, and notifications)\n* MKT (Marketing traffic)\n",
+                          "key": "message_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "This parameter allows you to indicate what phase of the lifecycle you are in when you send a transaction. The options for this parameter are - \n* create - For the creation of a new account)\n* sign-in For when an end user signs in to their account.\n* transact - For when an end user completes a transaction within their account\n* update - For when an update is performed, such as an update of account information or similar. \n* delete - For when an account is deleted.\n",
+                          "key": "account_lifecycle_event",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "This parameter allows you to set a specific sender ID to be used on an SMS message sent to the end user. In order to use a specific sender ID, Telesign must whitelist your selected sender ID values. Be aware that 100% preservation of a sender ID value is not guaranteed. Telesign may override the sender ID value that your end user will receive in order to improve delivery quality or follow SMS regulations in particular countries. In order to use this feature, you must contact Telesign Support and have them enable it for you. We recommend limiting values to 0-9 and A-Z, as support for other ASCII characters varies by carrier.",
+                          "key": "sender_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A customer-generated ID for this transaction. The response simply echoes the value provided for this parameter.",
+                          "key": "external_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's IP address (do not send your own IP address). This is used to help Telesign improve our services. IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).",
+                          "key": "originating_ip",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you\u2019ve previously set. The override only lasts for this request.",
+                          "key": "callback_url",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Whether you are using this service as your primary provider to send this message (`\u201dtrue\u201d`) or as a backup after your primary provider failed (`\u201dfalse\u201d`). We use this data to optimize message routing.",
+                          "key": "is_primary",
+                          "value": "true"
+                        },
+                        {
+                          "description": "**(India-local traffic only)**. The ID of the DLT template used for this message. See *[India DLT Update](https://support.telesign.com/s/article/India-DLT-Update)* for more details on the relevant regulations.",
+                          "key": "dlt_template_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "**(India-local traffic only)**. The ID of the entity sending this message. See *[India DLT Update](https://support.telesign.com/s/article/India-DLT-Update)* for more details on the relevant regulations. ",
+                          "key": "dlt_entity_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/messaging",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "messaging"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"phone_number_modified\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"cleansed_phone_number\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:33:43.000Z",
+                  "updatedAt": "2026-10-22T01:33:43.000Z",
+                  "uid": "35240-7835fa2e-d1c5-4b1e-a44a-636dbcf68ac9"
+                },
+                {
+                  "id": "7900e067-8e14-4fb8-94b5-c71f12538462",
+                  "name": "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n Status code | Associated tex",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) The end user's phone number with country code included. Avoid use of special characters and spaces.",
+                          "key": "phone_number",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Text of the message to be sent to the end user. You are limited to 1600 characters. If you send a very long message, Telesign splits your message into separate parts. Telesign recommends against sending messages that require multiple SMSes when possible.",
+                          "key": "message",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) This parameter specifies the traffic type being sent in the message. You can provide one of the following values -\n* OTP (One time passwords)\n* ARN (Alerts, reminders, and notifications)\n* MKT (Marketing traffic)\n",
+                          "key": "message_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "This parameter allows you to indicate what phase of the lifecycle you are in when you send a transaction. The options for this parameter are - \n* create - For the creation of a new account)\n* sign-in For when an end user signs in to their account.\n* transact - For when an end user completes a transaction within their account\n* update - For when an update is performed, such as an update of account information or similar. \n* delete - For when an account is deleted.\n",
+                          "key": "account_lifecycle_event",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "This parameter allows you to set a specific sender ID to be used on an SMS message sent to the end user. In order to use a specific sender ID, Telesign must whitelist your selected sender ID values. Be aware that 100% preservation of a sender ID value is not guaranteed. Telesign may override the sender ID value that your end user will receive in order to improve delivery quality or follow SMS regulations in particular countries. In order to use this feature, you must contact Telesign Support and have them enable it for you. We recommend limiting values to 0-9 and A-Z, as support for other ASCII characters varies by carrier.",
+                          "key": "sender_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A customer-generated ID for this transaction. The response simply echoes the value provided for this parameter.",
+                          "key": "external_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's IP address (do not send your own IP address). This is used to help Telesign improve our services. IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).",
+                          "key": "originating_ip",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you\u2019ve previously set. The override only lasts for this request.",
+                          "key": "callback_url",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Whether you are using this service as your primary provider to send this message (`\u201dtrue\u201d`) or as a backup after your primary provider failed (`\u201dfalse\u201d`). We use this data to optimize message routing.",
+                          "key": "is_primary",
+                          "value": "true"
+                        },
+                        {
+                          "description": "**(India-local traffic only)**. The ID of the DLT template used for this message. See *[India DLT Update](https://support.telesign.com/s/article/India-DLT-Update)* for more details on the relevant regulations.",
+                          "key": "dlt_template_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "**(India-local traffic only)**. The ID of the entity sending this message. See *[India DLT Update](https://support.telesign.com/s/article/India-DLT-Update)* for more details on the relevant regulations. ",
+                          "key": "dlt_entity_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/messaging",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "messaging"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"external_id\": \"<string>\",\n  \"signature_string\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:33:43.000Z",
+                  "updatedAt": "2026-10-22T01:33:43.000Z",
+                  "uid": "35240-7900e067-8e14-4fb8-94b5-c71f12538462"
+                },
+                {
+                  "id": "1fd4f9a4-c0e9-4be4-a05e-d25a5e42a318",
+                  "name": "Unauthorized, the request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n\n  Status code | Associated Text String \n -------------|------",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) The end user's phone number with country code included. Avoid use of special characters and spaces.",
+                          "key": "phone_number",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Text of the message to be sent to the end user. You are limited to 1600 characters. If you send a very long message, Telesign splits your message into separate parts. Telesign recommends against sending messages that require multiple SMSes when possible.",
+                          "key": "message",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) This parameter specifies the traffic type being sent in the message. You can provide one of the following values -\n* OTP (One time passwords)\n* ARN (Alerts, reminders, and notifications)\n* MKT (Marketing traffic)\n",
+                          "key": "message_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "This parameter allows you to indicate what phase of the lifecycle you are in when you send a transaction. The options for this parameter are - \n* create - For the creation of a new account)\n* sign-in For when an end user signs in to their account.\n* transact - For when an end user completes a transaction within their account\n* update - For when an update is performed, such as an update of account information or similar. \n* delete - For when an account is deleted.\n",
+                          "key": "account_lifecycle_event",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "This parameter allows you to set a specific sender ID to be used on an SMS message sent to the end user. In order to use a specific sender ID, Telesign must whitelist your selected sender ID values. Be aware that 100% preservation of a sender ID value is not guaranteed. Telesign may override the sender ID value that your end user will receive in order to improve delivery quality or follow SMS regulations in particular countries. In order to use this feature, you must contact Telesign Support and have them enable it for you. We recommend limiting values to 0-9 and A-Z, as support for other ASCII characters varies by carrier.",
+                          "key": "sender_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A customer-generated ID for this transaction. The response simply echoes the value provided for this parameter.",
+                          "key": "external_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's IP address (do not send your own IP address). This is used to help Telesign improve our services. IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).",
+                          "key": "originating_ip",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you\u2019ve previously set. The override only lasts for this request.",
+                          "key": "callback_url",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Whether you are using this service as your primary provider to send this message (`\u201dtrue\u201d`) or as a backup after your primary provider failed (`\u201dfalse\u201d`). We use this data to optimize message routing.",
+                          "key": "is_primary",
+                          "value": "true"
+                        },
+                        {
+                          "description": "**(India-local traffic only)**. The ID of the DLT template used for this message. See *[India DLT Update](https://support.telesign.com/s/article/India-DLT-Update)* for more details on the relevant regulations.",
+                          "key": "dlt_template_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "**(India-local traffic only)**. The ID of the entity sending this message. See *[India DLT Update](https://support.telesign.com/s/article/India-DLT-Update)* for more details on the relevant regulations. ",
+                          "key": "dlt_entity_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/messaging",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "messaging"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"signature_string\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:33:43.000Z",
+                  "updatedAt": "2026-10-22T01:33:43.000Z",
+                  "uid": "35240-1fd4f9a4-c0e9-4be4-a05e-d25a5e42a318"
+                },
+                {
+                  "id": "5989da22-49a5-47df-a361-99df7da29fc0",
+                  "name": "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n Status code | Associated text string \n-",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) The end user's phone number with country code included. Avoid use of special characters and spaces.",
+                          "key": "phone_number",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Text of the message to be sent to the end user. You are limited to 1600 characters. If you send a very long message, Telesign splits your message into separate parts. Telesign recommends against sending messages that require multiple SMSes when possible.",
+                          "key": "message",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) This parameter specifies the traffic type being sent in the message. You can provide one of the following values -\n* OTP (One time passwords)\n* ARN (Alerts, reminders, and notifications)\n* MKT (Marketing traffic)\n",
+                          "key": "message_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "This parameter allows you to indicate what phase of the lifecycle you are in when you send a transaction. The options for this parameter are - \n* create - For the creation of a new account)\n* sign-in For when an end user signs in to their account.\n* transact - For when an end user completes a transaction within their account\n* update - For when an update is performed, such as an update of account information or similar. \n* delete - For when an account is deleted.\n",
+                          "key": "account_lifecycle_event",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "This parameter allows you to set a specific sender ID to be used on an SMS message sent to the end user. In order to use a specific sender ID, Telesign must whitelist your selected sender ID values. Be aware that 100% preservation of a sender ID value is not guaranteed. Telesign may override the sender ID value that your end user will receive in order to improve delivery quality or follow SMS regulations in particular countries. In order to use this feature, you must contact Telesign Support and have them enable it for you. We recommend limiting values to 0-9 and A-Z, as support for other ASCII characters varies by carrier.",
+                          "key": "sender_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A customer-generated ID for this transaction. The response simply echoes the value provided for this parameter.",
+                          "key": "external_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's IP address (do not send your own IP address). This is used to help Telesign improve our services. IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).",
+                          "key": "originating_ip",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you\u2019ve previously set. The override only lasts for this request.",
+                          "key": "callback_url",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Whether you are using this service as your primary provider to send this message (`\u201dtrue\u201d`) or as a backup after your primary provider failed (`\u201dfalse\u201d`). We use this data to optimize message routing.",
+                          "key": "is_primary",
+                          "value": "true"
+                        },
+                        {
+                          "description": "**(India-local traffic only)**. The ID of the DLT template used for this message. See *[India DLT Update](https://support.telesign.com/s/article/India-DLT-Update)* for more details on the relevant regulations.",
+                          "key": "dlt_template_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "**(India-local traffic only)**. The ID of the entity sending this message. See *[India DLT Update](https://support.telesign.com/s/article/India-DLT-Update)* for more details on the relevant regulations. ",
+                          "key": "dlt_entity_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/messaging",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "messaging"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:33:43.000Z",
+                  "updatedAt": "2026-10-22T01:33:43.000Z",
+                  "uid": "35240-5989da22-49a5-47df-a361-99df7da29fc0"
+                },
+                {
+                  "id": "d0c696b8-c557-4a24-b9e9-dca7d60822c9",
+                  "name": "**Service unavailable.** The system is unavailable, try again. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.\n\n| Status code | ",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) The end user's phone number with country code included. Avoid use of special characters and spaces.",
+                          "key": "phone_number",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Text of the message to be sent to the end user. You are limited to 1600 characters. If you send a very long message, Telesign splits your message into separate parts. Telesign recommends against sending messages that require multiple SMSes when possible.",
+                          "key": "message",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) This parameter specifies the traffic type being sent in the message. You can provide one of the following values -\n* OTP (One time passwords)\n* ARN (Alerts, reminders, and notifications)\n* MKT (Marketing traffic)\n",
+                          "key": "message_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "This parameter allows you to indicate what phase of the lifecycle you are in when you send a transaction. The options for this parameter are - \n* create - For the creation of a new account)\n* sign-in For when an end user signs in to their account.\n* transact - For when an end user completes a transaction within their account\n* update - For when an update is performed, such as an update of account information or similar. \n* delete - For when an account is deleted.\n",
+                          "key": "account_lifecycle_event",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "This parameter allows you to set a specific sender ID to be used on an SMS message sent to the end user. In order to use a specific sender ID, Telesign must whitelist your selected sender ID values. Be aware that 100% preservation of a sender ID value is not guaranteed. Telesign may override the sender ID value that your end user will receive in order to improve delivery quality or follow SMS regulations in particular countries. In order to use this feature, you must contact Telesign Support and have them enable it for you. We recommend limiting values to 0-9 and A-Z, as support for other ASCII characters varies by carrier.",
+                          "key": "sender_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A customer-generated ID for this transaction. The response simply echoes the value provided for this parameter.",
+                          "key": "external_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Your end user's IP address (do not send your own IP address). This is used to help Telesign improve our services. IPv4 and IPv6 are supported. For IPv4, the value must be in the format defined by the Internet Engineering Task Force (IETF) in the Internet-Draft document titled [Internet Protocol](https://tools.ietf.org/html/rfc791). For IPv6, the value must be in the format defined by the IETF in the Internet-Draft document titled [IP Version 6 Addressing Architecture](https://tools.ietf.org/html/rfc4291#section-2.2).",
+                          "key": "originating_ip",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A URL where you want delivery reports to be sent related to your request. This overrides any default callback URL that you\u2019ve previously set. The override only lasts for this request.",
+                          "key": "callback_url",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Whether you are using this service as your primary provider to send this message (`\u201dtrue\u201d`) or as a backup after your primary provider failed (`\u201dfalse\u201d`). We use this data to optimize message routing.",
+                          "key": "is_primary",
+                          "value": "true"
+                        },
+                        {
+                          "description": "**(India-local traffic only)**. The ID of the DLT template used for this message. See *[India DLT Update](https://support.telesign.com/s/article/India-DLT-Update)* for more details on the relevant regulations.",
+                          "key": "dlt_template_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "**(India-local traffic only)**. The ID of the entity sending this message. See *[India DLT Update](https://support.telesign.com/s/article/India-DLT-Update)* for more details on the relevant regulations. ",
+                          "key": "dlt_entity_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/messaging",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "messaging"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"signature_string\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:33:43.000Z",
+                  "updatedAt": "2026-10-22T01:33:43.000Z",
+                  "uid": "35240-d0c696b8-c557-4a24-b9e9-dca7d60822c9"
+                }
+              ],
+              "createdAt": "2026-10-22T01:33:43.000Z",
+              "updatedAt": "2026-10-22T01:33:43.000Z",
+              "uid": "35240-0b919b0f-a75b-454d-ba7d-00242d4b8772"
+            }
+          ],
+          "id": "a6cc5f3f-f6ff-4ec3-9d7d-13c1a93b9dfa",
+          "createdAt": "2026-10-22T01:33:43.000Z",
+          "updatedAt": "2026-10-22T01:33:43.000Z",
+          "uid": "35240-a6cc5f3f-f6ff-4ec3-9d7d-13c1a93b9dfa"
+        },
+        {
+          "name": "verify",
+          "item": [
+            {
+              "name": "completion",
+              "item": [
+                {
+                  "name": "{reference_id}",
+                  "item": [
+                    {
+                      "name": "Report completion",
+                      "id": "b7f43b1e-7e9d-4de7-b5bf-524097574096",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/verify/completion/:reference_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "verify",
+                            "completion",
+                            ":reference_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e24fa591-b264-490c-b16b-1998a630117f",
+                              "key": "reference_id",
+                              "value": "<string>",
+                              "description": "(Required) The reference ID for the transaction you want to provide completion data about.\n"
+                            }
+                          ]
+                        },
+                        "description": "Use this action to notify Telesign that an end-user has received your SMS.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Responds with:** `application/json`\n* **Rate limit:** Default rate limits by product"
+                      },
+                      "response": [
+                        {
+                          "id": "fcecf121-1abd-40d5-a775-77b9eae2d520",
+                          "name": "Success. Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n           \n| Status code | Descripti",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/verify/completion/:reference_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "verify",
+                                "completion",
+                                ":reference_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "reference_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"reference_id\": \"<string>\",\n  \"subresource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-22T01:33:43.000Z",
+                          "updatedAt": "2026-10-22T01:33:43.000Z",
+                          "uid": "35240-fcecf121-1abd-40d5-a775-77b9eae2d520"
+                        },
+                        {
+                          "id": "2c9e9023-62a0-411c-8887-708d1bb650bd",
+                          "name": "Bad request. The request could not be understood by the server due to malformed syntax. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the re",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/verify/completion/:reference_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "verify",
+                                "completion",
+                                ":reference_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "reference_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:33:43.000Z",
+                          "updatedAt": "2026-10-22T01:33:43.000Z",
+                          "uid": "35240-2c9e9023-62a0-411c-8887-708d1bb650bd"
+                        },
+                        {
+                          "id": "e9b2ebe9-0a63-4f8c-b925-7a2854c9a647",
+                          "name": "Unauthorized. The request requires user authentication. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.\n\n | Status Code | Associ",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/verify/completion/:reference_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "verify",
+                                "completion",
+                                ":reference_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "reference_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"signature_string\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:33:43.000Z",
+                          "updatedAt": "2026-10-22T01:33:43.000Z",
+                          "uid": "35240-e9b2ebe9-0a63-4f8c-b925-7a2854c9a647"
+                        },
+                        {
+                          "id": "f59f4d4a-2d2c-4741-9b2f-3b6de5418cac",
+                          "name": "Not found. The server has not found anything matching the request URI. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.\n\n| Status",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/verify/completion/:reference_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "verify",
+                                "completion",
+                                ":reference_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "reference_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:33:43.000Z",
+                          "updatedAt": "2026-10-22T01:33:43.000Z",
+                          "uid": "35240-f59f4d4a-2d2c-4741-9b2f-3b6de5418cac"
+                        },
+                        {
+                          "id": "1c5b0255-cfa4-4e8d-8b02-f783ebb8e201",
+                          "name": "Service unavailable. The system is unavailable, try again. Code against the Telesign status or error codes from the `status.code` and `errors.code` properties in the response payload, rather than the HTTP status code of the response.\n",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/verify/completion/:reference_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "verify",
+                                "completion",
+                                ":reference_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "reference_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:33:43.000Z",
+                          "updatedAt": "2026-10-22T01:33:43.000Z",
+                          "uid": "35240-1c5b0255-cfa4-4e8d-8b02-f783ebb8e201"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:33:43.000Z",
+                      "updatedAt": "2026-10-22T01:33:43.000Z",
+                      "uid": "35240-b7f43b1e-7e9d-4de7-b5bf-524097574096"
+                    }
+                  ],
+                  "id": "12ce8993-a06d-47e9-821f-0209e626ee4d",
+                  "createdAt": "2026-10-22T01:33:43.000Z",
+                  "updatedAt": "2026-10-22T01:33:43.000Z",
+                  "uid": "35240-12ce8993-a06d-47e9-821f-0209e626ee4d"
+                }
+              ],
+              "id": "b6ab81ab-8ef3-4349-8295-b1ee113f28ae",
+              "createdAt": "2026-10-22T01:33:43.000Z",
+              "updatedAt": "2026-10-22T01:33:43.000Z",
+              "uid": "35240-b6ab81ab-8ef3-4349-8295-b1ee113f28ae"
+            }
+          ],
+          "id": "c675b64c-e6f2-44a6-a6d4-419d5f00990d",
+          "createdAt": "2026-10-22T01:33:43.000Z",
+          "updatedAt": "2026-10-22T01:33:43.000Z",
+          "uid": "35240-c675b64c-e6f2-44a6-a6d4-419d5f00990d"
+        }
+      ],
+      "id": "e69106bf-9b72-4757-8abc-a331aed560eb",
+      "createdAt": "2026-10-22T01:33:43.000Z",
+      "updatedAt": "2026-10-22T01:33:43.000Z",
+      "uid": "35240-e69106bf-9b72-4757-8abc-a331aed560eb"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rest-ww.telesign.com"
+    }
+  ]
+}

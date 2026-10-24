@@ -1,0 +1,1757 @@
+{
+  "info": {
+    "_postman_id": "99a0d290-0735-4983-abd3-e7235c2077ba",
+    "name": "Accounts API Keys API",
+    "description": "Use this API to programmatically manage your Telesign accounts and their configurations.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:31:29.000Z",
+    "updatedAt": "2026-10-22T01:31:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-99a0d290-0735-4983-abd3-e7235c2077ba"
+  },
+  "item": [
+    {
+      "name": "keys",
+      "item": [
+        {
+          "name": "{key_id}",
+          "item": [
+            {
+              "name": "Get one REST API key",
+              "id": "aa01f9f6-bb8a-4fea-a984-ec7531fc9529",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/keys/:key_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "keys",
+                    ":key_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7cfa3028-7e76-4b60-921f-bde849dd5bbc",
+                      "key": "key_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for managing this REST API key. This is NOT the key\u2019s value, which is used to authenticate REST API requests."
+                    }
+                  ]
+                },
+                "description": "> \ud83d\udcd8 NOTE:\n>\n> Accounts API is currently available on a limited basis. Contact our Customer Support Team if you\u2019d like to explore using this API.\n\nUse this action to list details related to the provided REST API key ID. The key value is not returned.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Responds with:** `application/json`"
+              },
+              "response": [
+                {
+                  "id": "dd31b4f0-1fa8-4ea9-bb37-1540f085f336",
+                  "name": "**Success**. The specified key object was successfully returned.\n\nStatus code | Associated text string\n--|--\n5002| Key object was successfully retrieved.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"data\": {\n    \"key_id\": \"<string>\",\n    \"last_updated\": \"<string>\",\n    \"expiration_date\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-dd31b4f0-1fa8-4ea9-bb37-1540f085f336"
+                },
+                {
+                  "id": "be734288-dde8-44e4-addb-33f744d64408",
+                  "name": "**Bad Request.**\n\nStatus code | Associated text string\n--|--\n5103|Invalid value for path parameter {param name}\n",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-be734288-dde8-44e4-addb-33f744d64408"
+                },
+                {
+                  "id": "bda56b69-2a70-43c1-a25c-1bc0583eaae6",
+                  "name": "**Unauthorized.**\n\nStatus code | Associated text string\n-- | --\n5400 | Authentication failed.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-bda56b69-2a70-43c1-a25c-1bc0583eaae6"
+                },
+                {
+                  "id": "8280e183-0950-45ed-bb92-7359e4601d66",
+                  "name": "**Forbidden.**\n\nStatus code | Associated text string\n-- | --\n5401 | No permissions for this resource.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-8280e183-0950-45ed-bb92-7359e4601d66"
+                },
+                {
+                  "id": "5fc509cc-8a7d-40f5-ab0c-8c3787e9f916",
+                  "name": "**Rate limit exceeded.**\n\nStatus code | Associated text string\n-- | --\n5204 | Rate limit exceeded.\n",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-5fc509cc-8a7d-40f5-ab0c-8c3787e9f916"
+                },
+                {
+                  "id": "180025a4-a8d6-4796-b089-120e6df89534",
+                  "name": "**Service unavailable.**\n\nStatus code | Associated text string\n-- | --\n5500 | System unavailable. Please try again later.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-180025a4-a8d6-4796-b089-120e6df89534"
+                }
+              ],
+              "createdAt": "2026-10-22T01:31:29.000Z",
+              "updatedAt": "2026-10-22T01:31:29.000Z",
+              "uid": "35240-aa01f9f6-bb8a-4fea-a984-ec7531fc9529"
+            },
+            {
+              "name": "Remove REST API key",
+              "id": "92556b3c-0075-42cc-b6b9-1aa1c8620029",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/keys/:key_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "keys",
+                    ":key_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d54f5e67-fc83-4a23-aeff-77451ea7cc41",
+                      "key": "key_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for managing this REST API key. This is NOT the key\u2019s value, which is used to authenticate REST API requests."
+                    }
+                  ]
+                },
+                "description": "> \ud83d\udcd8 NOTE:\n>\n> Accounts API is currently available on a limited basis. Contact our Customer Support Team if you\u2019d like to explore using this API.\n\nUse this action to expire this REST API key immediately.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Responds with:** `application/json`"
+              },
+              "response": [
+                {
+                  "id": "48d05429-6b83-4e29-8905-1312ec28576e",
+                  "name": "**Success.** The specified REST API key has been successfully expired and removed from the list of active keys for this account.\n\nStatus code | Associated text string\n--|--\n5004|Key successfully expired.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-48d05429-6b83-4e29-8905-1312ec28576e"
+                },
+                {
+                  "id": "cafeaa76-d4a6-4a87-b975-2609738dcb6f",
+                  "name": "**Bad Request.**\n\nStatus code | Associated text string\n--|--\n5103|Invalid value for path parameter {param name}",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-cafeaa76-d4a6-4a87-b975-2609738dcb6f"
+                },
+                {
+                  "id": "ca5a108a-8f90-4338-8385-a479701b8926",
+                  "name": "**Unauthorized.**\n\nStatus code | Associated text string\n-- | --\n5400 | Authentication failed.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-ca5a108a-8f90-4338-8385-a479701b8926"
+                },
+                {
+                  "id": "f35049b7-3d9a-4f90-bd02-ca8dde084727",
+                  "name": "**Forbidden.**\n\nStatus code | Associated text string\n-- | --\n5401 | No permissions for this resource.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-f35049b7-3d9a-4f90-bd02-ca8dde084727"
+                },
+                {
+                  "id": "e4e04dfb-4cf1-4607-abff-67ee4f115b04",
+                  "name": "**Rate limit exceeded.**\n\nStatus code | Associated text string\n-- | --\n5204 | Rate limit exceeded.\n",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-e4e04dfb-4cf1-4607-abff-67ee4f115b04"
+                },
+                {
+                  "id": "54b64da0-6543-4488-8346-a68eb46e6ca1",
+                  "name": "**Service unavailable.**\n\nStatus code | Associated text string\n-- | --\n5500 | System unavailable. Please try again later.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-54b64da0-6543-4488-8346-a68eb46e6ca1"
+                }
+              ],
+              "createdAt": "2026-10-22T01:31:29.000Z",
+              "updatedAt": "2026-10-22T01:31:29.000Z",
+              "uid": "35240-92556b3c-0075-42cc-b6b9-1aa1c8620029"
+            },
+            {
+              "name": "Update REST API key",
+              "id": "7d7a448b-464b-4e05-9cbf-e80aefcf4884",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiration_date\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/keys/:key_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "keys",
+                    ":key_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e37a254c-eb3c-47d5-867c-eed31815bd28",
+                      "key": "key_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for managing this REST API key. This is NOT the key\u2019s value, which is used to authenticate REST API requests."
+                    }
+                  ]
+                },
+                "description": "> \ud83d\udcd8 NOTE:\n>\n> Accounts API is currently available on a limited basis. Contact our Customer Support Team if you\u2019d like to explore using this API.\n\nUse this action to update a REST API key. This is used to set an expiration date for a key, change the expiration date, or remove the expiration date (making it a non-expiring key).\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/json`\n* **Responds with:** `application/json`\n* **Required headers:** `Content-Type - application/json`"
+              },
+              "response": [
+                {
+                  "id": "7dc759bb-a711-44b9-bde3-64ce8446a944",
+                  "name": "**Success** The specified REST API key has been succesfully updated and the key object with its new details has been returned.\n\nStatus code | Associated text string\n--|--\n5003|Key was successfully updated.\n",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"expiration_date\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"data\": {\n    \"key_id\": \"<string>\",\n    \"last_updated\": \"<string>\",\n    \"expiration_date\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-7dc759bb-a711-44b9-bde3-64ce8446a944"
+                },
+                {
+                  "id": "d9e1a188-4a35-4ae7-aae8-894a627b116b",
+                  "name": "**Bad Request.**\n\nStatus code | Associated text string\n--|--\n5101|Invalid value for body parameter {param name}. \n5103|Invalid value for path parameter {param name}\n5110|Request payload is improperly formatted.\n5112|Missing required parameter {param_name}",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"expiration_date\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-d9e1a188-4a35-4ae7-aae8-894a627b116b"
+                },
+                {
+                  "id": "64283a8b-9d23-4b83-8e56-ac57adbb99b4",
+                  "name": "**Unauthorized.**\n\nStatus code | Associated text string\n-- | --\n5400 | Authentication failed.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"expiration_date\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-64283a8b-9d23-4b83-8e56-ac57adbb99b4"
+                },
+                {
+                  "id": "c676c3af-a42a-4e72-b5c9-fe1917ac6c3b",
+                  "name": "**Forbidden.**\n\nStatus code | Associated text string\n-- | --\n5401 | No permissions for this resource.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"expiration_date\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-c676c3af-a42a-4e72-b5c9-fe1917ac6c3b"
+                },
+                {
+                  "id": "0a1e3ae4-84a6-441c-80f7-9c7b0520cee5",
+                  "name": "**Rate limit exceeded.**\n\nStatus code | Associated text string\n-- | --\n5204 | Rate limit exceeded.\n",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"expiration_date\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-0a1e3ae4-84a6-441c-80f7-9c7b0520cee5"
+                },
+                {
+                  "id": "9a09a0bc-6413-4c90-b235-ec637c40471b",
+                  "name": "**Service unavailable.**\n\nStatus code | Associated text string\n-- | --\n5500 | System unavailable. Please try again later.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"expiration_date\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/keys/:key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "keys",
+                        ":key_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "key_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:29.000Z",
+                  "updatedAt": "2026-10-22T01:31:29.000Z",
+                  "uid": "35240-9a09a0bc-6413-4c90-b235-ec637c40471b"
+                }
+              ],
+              "createdAt": "2026-10-22T01:31:29.000Z",
+              "updatedAt": "2026-10-22T01:31:29.000Z",
+              "uid": "35240-7d7a448b-464b-4e05-9cbf-e80aefcf4884"
+            }
+          ],
+          "id": "aa1d6ba0-0d2a-46c5-8278-4457b4749ccb",
+          "createdAt": "2026-10-22T01:31:29.000Z",
+          "updatedAt": "2026-10-22T01:31:29.000Z",
+          "uid": "35240-aa1d6ba0-0d2a-46c5-8278-4457b4749ccb"
+        },
+        {
+          "name": "List REST API keys",
+          "id": "b5999df4-edfa-4811-9a73-608fb92adde3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/keys",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "keys"
+              ]
+            },
+            "description": "> \ud83d\udcd8 NOTE:\n>\n> Accounts API is currently available on a limited basis. Contact our Customer Support Team if you\u2019d like to explore using this API.\n\nUse this action to list details related to all REST API keys for this account. The key values are not returned.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Responds with:** `application/json`"
+          },
+          "response": [
+            {
+              "id": "f5497b27-0888-495c-88ad-299f73ab414d",
+              "name": "**Success.** A list of REST API key objects associated with this account was successfully returned.\n\nStatus code | Associated text string\n--|--\n5001|Key list was successfully retrieved.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "keys"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"data\": {\n    \"keys\": [\n      {\n        \"key_id\": \"<string>\",\n        \"last_updated\": \"<string>\",\n        \"expiration_date\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-10-22T01:31:29.000Z",
+              "updatedAt": "2026-10-22T01:31:29.000Z",
+              "uid": "35240-f5497b27-0888-495c-88ad-299f73ab414d"
+            },
+            {
+              "id": "4b068354-fd25-43da-b16d-c61dee22627e",
+              "name": "**Unauthorized.**\n\nStatus code | Associated text string\n-- | --\n5400 | Authentication failed.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "keys"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:31:29.000Z",
+              "updatedAt": "2026-10-22T01:31:29.000Z",
+              "uid": "35240-4b068354-fd25-43da-b16d-c61dee22627e"
+            },
+            {
+              "id": "dab4bff2-ea93-4099-b12d-6b7c0b98f8b1",
+              "name": "**Forbidden.**\n\nStatus code | Associated text string\n-- | --\n5401 | No permissions for this resource.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "keys"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:31:29.000Z",
+              "updatedAt": "2026-10-22T01:31:29.000Z",
+              "uid": "35240-dab4bff2-ea93-4099-b12d-6b7c0b98f8b1"
+            },
+            {
+              "id": "b7424926-9a85-4c9b-8eea-1b164366fff3",
+              "name": "**Rate limit exceeded.**\n\nStatus code | Associated text string\n-- | --\n5204 | Rate limit exceeded.\n",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "keys"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:31:29.000Z",
+              "updatedAt": "2026-10-22T01:31:29.000Z",
+              "uid": "35240-b7424926-9a85-4c9b-8eea-1b164366fff3"
+            },
+            {
+              "id": "16c1c1e9-b7ea-4ede-bfe0-a7dbe9b9d474",
+              "name": "**Service unavailable.**\n\nStatus code | Associated text string\n-- | --\n5500 | System unavailable. Please try again later.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "keys"
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:31:29.000Z",
+              "updatedAt": "2026-10-22T01:31:29.000Z",
+              "uid": "35240-16c1c1e9-b7ea-4ede-bfe0-a7dbe9b9d474"
+            }
+          ],
+          "createdAt": "2026-10-22T01:31:29.000Z",
+          "updatedAt": "2026-10-22T01:31:29.000Z",
+          "uid": "35240-b5999df4-edfa-4811-9a73-608fb92adde3"
+        },
+        {
+          "name": "Create new REST API key",
+          "id": "cd515ace-05c4-4d9d-a5f9-cd4a92dbf150",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"expiration_date\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/keys",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "keys"
+              ]
+            },
+            "description": "> \ud83d\udcd8 NOTE:\n>\n> Accounts API is currently available on a limited basis. Contact our Customer Support Team if you\u2019d like to explore using this API.\n\nUse this action to create a new REST API key for this Telesign account.\n\nThis is the only action of this API that returns the key\u2019s value. Be sure to map it to the key ID in a secure fashion on your own system.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/json`\n* **Responds with:** `application/json`\n* **Required headers:** `Content-Type - application/json`"
+          },
+          "response": [
+            {
+              "id": "258f620e-9f92-4f40-8007-8cd66c0e6f9f",
+              "name": "**Success.** A new REST API key was successfully created for this account.\n\nStatus code | Associated text string\n--|--\n5000|New key was successfully created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiration_date\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "keys"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"key_id\": \"<string>\",\n    \"last_updated\": \"<string>\",\n    \"expiration_date\": \"<string>\",\n    \"key\": \"<string>\"\n  },\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:31:29.000Z",
+              "updatedAt": "2026-10-22T01:31:29.000Z",
+              "uid": "35240-258f620e-9f92-4f40-8007-8cd66c0e6f9f"
+            },
+            {
+              "id": "8dac707c-6932-40fd-a2ea-14201fe6d6e6",
+              "name": "**Bad Request.**\n\nStatus code | Associated text string\n--|--\n5101|Invalid value for body parameter {param name}.\n5110|Request payload is improperly formatted.\n5111|The limit of {max_no_keys} keys has been reached.\n5112|Missing required parameter {param_na",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiration_date\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "keys"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:31:29.000Z",
+              "updatedAt": "2026-10-22T01:31:29.000Z",
+              "uid": "35240-8dac707c-6932-40fd-a2ea-14201fe6d6e6"
+            },
+            {
+              "id": "2b21998b-1efa-4d88-a65b-3dc98d7ad5c7",
+              "name": "**Unauthorized.**\n\nStatus code | Associated text string\n-- | --\n5400 | Authentication failed.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiration_date\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "keys"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:31:29.000Z",
+              "updatedAt": "2026-10-22T01:31:29.000Z",
+              "uid": "35240-2b21998b-1efa-4d88-a65b-3dc98d7ad5c7"
+            },
+            {
+              "id": "dc8f755d-5612-4339-b27f-b2ff9b447e0f",
+              "name": "**Forbidden.**\n\nStatus code | Associated text string\n-- | --\n5401 | No permissions for this resource.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiration_date\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "keys"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:31:29.000Z",
+              "updatedAt": "2026-10-22T01:31:29.000Z",
+              "uid": "35240-dc8f755d-5612-4339-b27f-b2ff9b447e0f"
+            },
+            {
+              "id": "7caf1a4c-55f3-4d63-87c7-d476417ce9f0",
+              "name": "**Rate limit exceeded.**\n\nStatus code | Associated text string\n-- | --\n5204 | Rate limit exceeded.\n",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiration_date\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "keys"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:31:29.000Z",
+              "updatedAt": "2026-10-22T01:31:29.000Z",
+              "uid": "35240-7caf1a4c-55f3-4d63-87c7-d476417ce9f0"
+            },
+            {
+              "id": "2ad8cf3d-eae2-4e16-8d81-554a4d711cb8",
+              "name": "**Service unavailable.**\n\nStatus code | Associated text string\n-- | --\n5500 | System unavailable. Please try again later.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiration_date\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "keys"
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:31:29.000Z",
+              "updatedAt": "2026-10-22T01:31:29.000Z",
+              "uid": "35240-2ad8cf3d-eae2-4e16-8d81-554a4d711cb8"
+            }
+          ],
+          "createdAt": "2026-10-22T01:31:29.000Z",
+          "updatedAt": "2026-10-22T01:31:29.000Z",
+          "uid": "35240-cd515ace-05c4-4d9d-a5f9-cd4a92dbf150"
+        }
+      ],
+      "id": "1f8f5043-a1c1-4287-8ddc-e0305b60b8c3",
+      "createdAt": "2026-10-22T01:31:29.000Z",
+      "updatedAt": "2026-10-22T01:31:29.000Z",
+      "uid": "35240-1f8f5043-a1c1-4287-8ddc-e0305b60b8c3"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "accounts.telesign.com"
+    }
+  ]
+}

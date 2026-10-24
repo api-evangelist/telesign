@@ -1,0 +1,1527 @@
+{
+  "info": {
+    "_postman_id": "f7d62c5c-6cd8-402e-88cf-1f9c6f60e817",
+    "name": "Engage Messaging API",
+    "description": "This spec contains details about the Telesign Engage API.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:32:50.000Z",
+    "updatedAt": "2026-10-22T01:32:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f7d62c5c-6cd8-402e-88cf-1f9c6f60e817"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "omnichannel",
+          "item": [
+            {
+              "name": "{reference_id}",
+              "item": [
+                {
+                  "name": "Get transaction status",
+                  "id": "737a4bdf-5a0f-4c9c-8979-e3d82770e432",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/omnichannel/:reference_id?verify_code=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "omnichannel",
+                        ":reference_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "If Telesign generated the code sent to your end user, include the asserted verification code from your end user here. ",
+                          "key": "verify_code",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "d2310d74-dd54-4a15-83c6-aa5a4540c930",
+                          "key": "reference_id",
+                          "value": "<string>",
+                          "description": "(Required) A unique identifier you can use to query Messaging to find out the status of your transaction."
+                        }
+                      ]
+                    },
+                    "description": "Get delivery status and other details for a Telesign Messaging transaction that you have created. Get transaction status can be used for all Messaging API transactions. Also use this endpoint to complete verification, if Telesign generated your code.\n\nTo enable this feature for your account, contact our Customer Support Team.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Responds with:** `application/json`\n* **Rate limit:** Default rate limits by product"
+                  },
+                  "response": [
+                    {
+                      "id": "49003044-ff85-4d73-afd4-e2582c2e15fc",
+                      "name": "**Success.** Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text ",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/omnichannel/:reference_id?verify_code=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "omnichannel",
+                            ":reference_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "If Telesign generated the code sent to your end user, include the asserted verification code from your end user here. ",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "reference_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"additional_info\": {\n    \"price\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"mcc\": \"<string>\",\n    \"mnc\": \"<string>\"\n  },\n  \"channel_status\": [\n    {\n      \"viber\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"updated_on\": \"<string>\",\n        \"reference_id\": \"<string>\"\n      },\n      \"whatsapp\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"updated_on\": \"<string>\",\n        \"reference_id\": \"<string>\"\n      },\n      \"rcs\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"updated_on\": \"<string>\",\n        \"reference_id\": \"<string>\"\n      },\n      \"sms\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"updated_on\": \"<string>\",\n        \"reference_id\": \"<string>\"\n      },\n      \"email\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"updated_on\": \"<string>\",\n        \"reference_id\": \"<string>\"\n      }\n    },\n    {\n      \"viber\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"updated_on\": \"<string>\",\n        \"reference_id\": \"<string>\"\n      },\n      \"whatsapp\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"updated_on\": \"<string>\",\n        \"reference_id\": \"<string>\"\n      },\n      \"rcs\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"updated_on\": \"<string>\",\n        \"reference_id\": \"<string>\"\n      },\n      \"sms\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"updated_on\": \"<string>\",\n        \"reference_id\": \"<string>\"\n      },\n      \"email\": {\n        \"code\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"updated_on\": \"<string>\",\n        \"reference_id\": \"<string>\"\n      }\n    }\n  ],\n  \"external_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"last_channel\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"verify\": {\n    \"code_state\": \"<string>\",\n    \"code_entered\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:32:51.000Z",
+                      "updatedAt": "2026-10-22T01:32:51.000Z",
+                      "uid": "35240-49003044-ff85-4d73-afd4-e2582c2e15fc"
+                    },
+                    {
+                      "id": "96999705-d0e9-4bc3-9b41-2a3db3df1b0d",
+                      "name": "**Bad request.** The request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/omnichannel/:reference_id?verify_code=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "omnichannel",
+                            ":reference_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "If Telesign generated the code sent to your end user, include the asserted verification code from your end user here. ",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "reference_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:32:51.000Z",
+                      "updatedAt": "2026-10-22T01:32:51.000Z",
+                      "uid": "35240-96999705-d0e9-4bc3-9b41-2a3db3df1b0d"
+                    },
+                    {
+                      "id": "75c9a16e-bd99-4bee-81c6-b48a86a1dfa9",
+                      "name": "**Unauthorized.** The request requires user authentication. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | Description      ",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/omnichannel/:reference_id?verify_code=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "omnichannel",
+                            ":reference_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "If Telesign generated the code sent to your end user, include the asserted verification code from your end user here. ",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "reference_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:32:51.000Z",
+                      "updatedAt": "2026-10-22T01:32:51.000Z",
+                      "uid": "35240-75c9a16e-bd99-4bee-81c6-b48a86a1dfa9"
+                    },
+                    {
+                      "id": "defd4551-c118-4366-bcc4-ec58f7f713f7",
+                      "name": "**Not Found.** The server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | De",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/omnichannel/:reference_id?verify_code=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "omnichannel",
+                            ":reference_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "If Telesign generated the code sent to your end user, include the asserted verification code from your end user here. ",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "reference_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:32:51.000Z",
+                      "updatedAt": "2026-10-22T01:32:51.000Z",
+                      "uid": "35240-defd4551-c118-4366-bcc4-ec58f7f713f7"
+                    },
+                    {
+                      "id": "2aa25bd6-c372-47cb-808e-ea95dc3c3cdf",
+                      "name": "**Too Many Requests.** The user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text Stri",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/omnichannel/:reference_id?verify_code=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "omnichannel",
+                            ":reference_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "If Telesign generated the code sent to your end user, include the asserted verification code from your end user here. ",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "reference_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:32:51.000Z",
+                      "updatedAt": "2026-10-22T01:32:51.000Z",
+                      "uid": "35240-2aa25bd6-c372-47cb-808e-ea95dc3c3cdf"
+                    },
+                    {
+                      "id": "7eb3cfc7-a82f-4260-8ed0-a0afaaccc309",
+                      "name": "**Service Unavailable.** The system is unavailable, try again. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response.\n\n| Status Code | Associated Text String | Description   ",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/omnichannel/:reference_id?verify_code=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "omnichannel",
+                            ":reference_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "If Telesign generated the code sent to your end user, include the asserted verification code from your end user here. ",
+                              "key": "verify_code",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "reference_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:32:51.000Z",
+                      "updatedAt": "2026-10-22T01:32:51.000Z",
+                      "uid": "35240-7eb3cfc7-a82f-4260-8ed0-a0afaaccc309"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:32:51.000Z",
+                  "updatedAt": "2026-10-22T01:32:51.000Z",
+                  "uid": "35240-737a4bdf-5a0f-4c9c-8979-e3d82770e432"
+                }
+              ],
+              "id": "e8a53e4e-f98d-4516-8095-4c1da209b088",
+              "createdAt": "2026-10-22T01:32:50.000Z",
+              "updatedAt": "2026-10-22T01:32:50.000Z",
+              "uid": "35240-e8a53e4e-f98d-4516-8095-4c1da209b088"
+            },
+            {
+              "name": "Send a message with advanced features",
+              "id": "41304de4-1e1e-4c7c-996e-6ff3d864c7bb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type - application/json",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channels\": [\n    {\n      \"channel\": \"sms\",\n      \"fallback_time\": 300\n    },\n    {\n      \"channel\": \"whatsapp\",\n      \"fallback_time\": 300\n    }\n  ],\n  \"message\": {\n    \"rcs\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"button_text_1\": \"<string>\",\n        \"button_payload_1\": \"<string>\",\n        \"button_text_2\": \"<string>\",\n        \"button_payload_2\": \"<string>\",\n        \"button_text_3\": \"<string>\",\n        \"button_payload_3\": \"<string>\",\n        \"url_text\": \"<string>\",\n        \"url_payload\": \"<string>\",\n        \"url\": \"<string>\",\n        \"dial_text\": \"<string>\",\n        \"phone_number_to_dial\": \"<string>\",\n        \"dial_payload\": \"<string>\",\n        \"media_url\": \"<string>\",\n        \"latitude\": \"<string>\",\n        \"longitude\": \"<string>\"\n      }\n    },\n    \"whatsapp\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"header_url\": \"<string>\",\n        \"file_name\": \"<string>\",\n        \"latitude\": \"<string>\",\n        \"longitude\": \"<string>\"\n      }\n    },\n    \"viber\": {\n      \"template\": \"url_action\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"url\": \"<string>\",\n        \"url_id\": \"<string>\",\n        \"url_text\": \"<string>\",\n        \"open_url\": \"<string>\",\n        \"url_thumbnail\": \"<string>\",\n        \"otp_code\": \"<string>\",\n        \"language\": \"<string>\",\n        \"reply_id\": \"<string>\",\n        \"button_text\": \"<string>\"\n      }\n    },\n    \"mms\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"url\": \"<string>\"\n      }\n    },\n    \"sms\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\"\n      }\n    },\n    \"email\": {\n      \"template\": \"<string>\",\n      \"parameters\": {}\n    },\n    \"default\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\"\n      }\n    }\n  },\n  \"message_type\": \"OTP\",\n  \"recipient\": {\n    \"phone_number\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"external_id\": \"<string>\",\n  \"callback_url\": \"<string>\",\n  \"account_lifecycle_event\": \"sign-in\",\n  \"sender_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"phone_number\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/omnichannel",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "omnichannel"
+                  ]
+                },
+                "description": "Use this action to send a message with advanced features through your specified channel (optionally with cascading backup channels) to a recipient phone number or email address.\n\nTo add this product to your account, contact a Telesign expert. This product is available for full-service accounts only.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/json`\n* **Responds with:** `application/json`\n* **Rate limit:** Default rate limits by product"
+              },
+              "response": [
+                {
+                  "id": "80cda796-0b29-4939-8348-d8ae16b08fd9",
+                  "name": "**Success.** Your request was fulfilled and resulted in a message being sent. Code against the Telesign status or error codes from the `status.code` property in the response payload, rather than the HTTP status code of the response.\n \n | Status Code | Tex",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type - application/json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"channels\": [\n    {\n      \"channel\": \"sms\",\n      \"fallback_time\": 300\n    },\n    {\n      \"channel\": \"whatsapp\",\n      \"fallback_time\": 300\n    }\n  ],\n  \"message\": {\n    \"rcs\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"button_text_1\": \"<string>\",\n        \"button_payload_1\": \"<string>\",\n        \"button_text_2\": \"<string>\",\n        \"button_payload_2\": \"<string>\",\n        \"button_text_3\": \"<string>\",\n        \"button_payload_3\": \"<string>\",\n        \"url_text\": \"<string>\",\n        \"url_payload\": \"<string>\",\n        \"url\": \"<string>\",\n        \"dial_text\": \"<string>\",\n        \"phone_number_to_dial\": \"<string>\",\n        \"dial_payload\": \"<string>\",\n        \"media_url\": \"<string>\",\n        \"latitude\": \"<string>\",\n        \"longitude\": \"<string>\"\n      }\n    },\n    \"whatsapp\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"header_url\": \"<string>\",\n        \"file_name\": \"<string>\",\n        \"latitude\": \"<string>\",\n        \"longitude\": \"<string>\"\n      }\n    },\n    \"viber\": {\n      \"template\": \"url_action\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"url\": \"<string>\",\n        \"url_id\": \"<string>\",\n        \"url_text\": \"<string>\",\n        \"open_url\": \"<string>\",\n        \"url_thumbnail\": \"<string>\",\n        \"otp_code\": \"<string>\",\n        \"language\": \"<string>\",\n        \"reply_id\": \"<string>\",\n        \"button_text\": \"<string>\"\n      }\n    },\n    \"mms\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"url\": \"<string>\"\n      }\n    },\n    \"sms\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\"\n      }\n    },\n    \"email\": {\n      \"template\": \"<string>\",\n      \"parameters\": {}\n    },\n    \"default\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\"\n      }\n    }\n  },\n  \"message_type\": \"OTP\",\n  \"recipient\": {\n    \"phone_number\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"external_id\": \"<string>\",\n  \"callback_url\": \"<string>\",\n  \"account_lifecycle_event\": \"sign-in\",\n  \"sender_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"phone_number\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/omnichannel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "omnichannel"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"external_id\": \"MKT432538\"\n}",
+                  "createdAt": "2026-10-22T01:32:51.000Z",
+                  "updatedAt": "2026-10-22T01:32:51.000Z",
+                  "uid": "35240-80cda796-0b29-4939-8348-d8ae16b08fd9"
+                },
+                {
+                  "id": "886d773c-5f84-4979-bd26-41f734e60d4b",
+                  "name": "**Bad request.** The request could not be understood by the server due to malformed syntax. Code against the Telesign status or error codes from the `status.code` property in the response payload, rather than the HTTP status code of the response.\n\n | Stat",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type - application/json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"channels\": [\n    {\n      \"channel\": \"sms\",\n      \"fallback_time\": 300\n    },\n    {\n      \"channel\": \"whatsapp\",\n      \"fallback_time\": 300\n    }\n  ],\n  \"message\": {\n    \"rcs\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"button_text_1\": \"<string>\",\n        \"button_payload_1\": \"<string>\",\n        \"button_text_2\": \"<string>\",\n        \"button_payload_2\": \"<string>\",\n        \"button_text_3\": \"<string>\",\n        \"button_payload_3\": \"<string>\",\n        \"url_text\": \"<string>\",\n        \"url_payload\": \"<string>\",\n        \"url\": \"<string>\",\n        \"dial_text\": \"<string>\",\n        \"phone_number_to_dial\": \"<string>\",\n        \"dial_payload\": \"<string>\",\n        \"media_url\": \"<string>\",\n        \"latitude\": \"<string>\",\n        \"longitude\": \"<string>\"\n      }\n    },\n    \"whatsapp\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"header_url\": \"<string>\",\n        \"file_name\": \"<string>\",\n        \"latitude\": \"<string>\",\n        \"longitude\": \"<string>\"\n      }\n    },\n    \"viber\": {\n      \"template\": \"url_action\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"url\": \"<string>\",\n        \"url_id\": \"<string>\",\n        \"url_text\": \"<string>\",\n        \"open_url\": \"<string>\",\n        \"url_thumbnail\": \"<string>\",\n        \"otp_code\": \"<string>\",\n        \"language\": \"<string>\",\n        \"reply_id\": \"<string>\",\n        \"button_text\": \"<string>\"\n      }\n    },\n    \"mms\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"url\": \"<string>\"\n      }\n    },\n    \"sms\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\"\n      }\n    },\n    \"email\": {\n      \"template\": \"<string>\",\n      \"parameters\": {}\n    },\n    \"default\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\"\n      }\n    }\n  },\n  \"message_type\": \"OTP\",\n  \"recipient\": {\n    \"phone_number\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"external_id\": \"<string>\",\n  \"callback_url\": \"<string>\",\n  \"account_lifecycle_event\": \"sign-in\",\n  \"sender_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"phone_number\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/omnichannel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "omnichannel"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"external_id\": \"null\"\n}",
+                  "createdAt": "2026-10-22T01:32:51.000Z",
+                  "updatedAt": "2026-10-22T01:32:51.000Z",
+                  "uid": "35240-886d773c-5f84-4979-bd26-41f734e60d4b"
+                },
+                {
+                  "id": "a301fd82-b10d-40de-854e-861d1b8dee89",
+                  "name": "**Unauthorized.** The request requires user authentication. Code against the Telesign status or error codes from the `status.code` property in the response payload, rather than the HTTP status code of the response.\n\n | Status Code | Text String | Descript",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type - application/json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"channels\": [\n    {\n      \"channel\": \"sms\",\n      \"fallback_time\": 300\n    },\n    {\n      \"channel\": \"whatsapp\",\n      \"fallback_time\": 300\n    }\n  ],\n  \"message\": {\n    \"rcs\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"button_text_1\": \"<string>\",\n        \"button_payload_1\": \"<string>\",\n        \"button_text_2\": \"<string>\",\n        \"button_payload_2\": \"<string>\",\n        \"button_text_3\": \"<string>\",\n        \"button_payload_3\": \"<string>\",\n        \"url_text\": \"<string>\",\n        \"url_payload\": \"<string>\",\n        \"url\": \"<string>\",\n        \"dial_text\": \"<string>\",\n        \"phone_number_to_dial\": \"<string>\",\n        \"dial_payload\": \"<string>\",\n        \"media_url\": \"<string>\",\n        \"latitude\": \"<string>\",\n        \"longitude\": \"<string>\"\n      }\n    },\n    \"whatsapp\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"header_url\": \"<string>\",\n        \"file_name\": \"<string>\",\n        \"latitude\": \"<string>\",\n        \"longitude\": \"<string>\"\n      }\n    },\n    \"viber\": {\n      \"template\": \"url_action\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"url\": \"<string>\",\n        \"url_id\": \"<string>\",\n        \"url_text\": \"<string>\",\n        \"open_url\": \"<string>\",\n        \"url_thumbnail\": \"<string>\",\n        \"otp_code\": \"<string>\",\n        \"language\": \"<string>\",\n        \"reply_id\": \"<string>\",\n        \"button_text\": \"<string>\"\n      }\n    },\n    \"mms\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"url\": \"<string>\"\n      }\n    },\n    \"sms\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\"\n      }\n    },\n    \"email\": {\n      \"template\": \"<string>\",\n      \"parameters\": {}\n    },\n    \"default\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\"\n      }\n    }\n  },\n  \"message_type\": \"OTP\",\n  \"recipient\": {\n    \"phone_number\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"external_id\": \"<string>\",\n  \"callback_url\": \"<string>\",\n  \"account_lifecycle_event\": \"sign-in\",\n  \"sender_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"phone_number\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/omnichannel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "omnichannel"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"external_id\": null\n}",
+                  "createdAt": "2026-10-22T01:32:51.000Z",
+                  "updatedAt": "2026-10-22T01:32:51.000Z",
+                  "uid": "35240-a301fd82-b10d-40de-854e-861d1b8dee89"
+                },
+                {
+                  "id": "94b2fd2c-6d6c-41c6-881a-f0b5af699a66",
+                  "name": "Request entity too large. Allowed payload size is limited to 10KB.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type - application/json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"channels\": [\n    {\n      \"channel\": \"sms\",\n      \"fallback_time\": 300\n    },\n    {\n      \"channel\": \"whatsapp\",\n      \"fallback_time\": 300\n    }\n  ],\n  \"message\": {\n    \"rcs\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"button_text_1\": \"<string>\",\n        \"button_payload_1\": \"<string>\",\n        \"button_text_2\": \"<string>\",\n        \"button_payload_2\": \"<string>\",\n        \"button_text_3\": \"<string>\",\n        \"button_payload_3\": \"<string>\",\n        \"url_text\": \"<string>\",\n        \"url_payload\": \"<string>\",\n        \"url\": \"<string>\",\n        \"dial_text\": \"<string>\",\n        \"phone_number_to_dial\": \"<string>\",\n        \"dial_payload\": \"<string>\",\n        \"media_url\": \"<string>\",\n        \"latitude\": \"<string>\",\n        \"longitude\": \"<string>\"\n      }\n    },\n    \"whatsapp\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"header_url\": \"<string>\",\n        \"file_name\": \"<string>\",\n        \"latitude\": \"<string>\",\n        \"longitude\": \"<string>\"\n      }\n    },\n    \"viber\": {\n      \"template\": \"url_action\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"url\": \"<string>\",\n        \"url_id\": \"<string>\",\n        \"url_text\": \"<string>\",\n        \"open_url\": \"<string>\",\n        \"url_thumbnail\": \"<string>\",\n        \"otp_code\": \"<string>\",\n        \"language\": \"<string>\",\n        \"reply_id\": \"<string>\",\n        \"button_text\": \"<string>\"\n      }\n    },\n    \"mms\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"url\": \"<string>\"\n      }\n    },\n    \"sms\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\"\n      }\n    },\n    \"email\": {\n      \"template\": \"<string>\",\n      \"parameters\": {}\n    },\n    \"default\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\"\n      }\n    }\n  },\n  \"message_type\": \"OTP\",\n  \"recipient\": {\n    \"phone_number\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"external_id\": \"<string>\",\n  \"callback_url\": \"<string>\",\n  \"account_lifecycle_event\": \"sign-in\",\n  \"sender_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"phone_number\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/omnichannel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "omnichannel"
+                      ]
+                    }
+                  },
+                  "status": "Request Entity Too Large",
+                  "code": 413,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:32:51.000Z",
+                  "updatedAt": "2026-10-22T01:32:51.000Z",
+                  "uid": "35240-94b2fd2c-6d6c-41c6-881a-f0b5af699a66"
+                },
+                {
+                  "id": "6133f3a7-c698-4aae-b28a-6a702418e774",
+                  "name": "**Too many requests.** The user sent too many requests in a given amount of time. Code against the Telesign status or error codes from the `status.code` property in the response payload, rather than the HTTP status code of the response.\n\n | Status code | ",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type - application/json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"channels\": [\n    {\n      \"channel\": \"sms\",\n      \"fallback_time\": 300\n    },\n    {\n      \"channel\": \"whatsapp\",\n      \"fallback_time\": 300\n    }\n  ],\n  \"message\": {\n    \"rcs\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"button_text_1\": \"<string>\",\n        \"button_payload_1\": \"<string>\",\n        \"button_text_2\": \"<string>\",\n        \"button_payload_2\": \"<string>\",\n        \"button_text_3\": \"<string>\",\n        \"button_payload_3\": \"<string>\",\n        \"url_text\": \"<string>\",\n        \"url_payload\": \"<string>\",\n        \"url\": \"<string>\",\n        \"dial_text\": \"<string>\",\n        \"phone_number_to_dial\": \"<string>\",\n        \"dial_payload\": \"<string>\",\n        \"media_url\": \"<string>\",\n        \"latitude\": \"<string>\",\n        \"longitude\": \"<string>\"\n      }\n    },\n    \"whatsapp\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"header_url\": \"<string>\",\n        \"file_name\": \"<string>\",\n        \"latitude\": \"<string>\",\n        \"longitude\": \"<string>\"\n      }\n    },\n    \"viber\": {\n      \"template\": \"url_action\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"url\": \"<string>\",\n        \"url_id\": \"<string>\",\n        \"url_text\": \"<string>\",\n        \"open_url\": \"<string>\",\n        \"url_thumbnail\": \"<string>\",\n        \"otp_code\": \"<string>\",\n        \"language\": \"<string>\",\n        \"reply_id\": \"<string>\",\n        \"button_text\": \"<string>\"\n      }\n    },\n    \"mms\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"url\": \"<string>\"\n      }\n    },\n    \"sms\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\"\n      }\n    },\n    \"email\": {\n      \"template\": \"<string>\",\n      \"parameters\": {}\n    },\n    \"default\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\"\n      }\n    }\n  },\n  \"message_type\": \"OTP\",\n  \"recipient\": {\n    \"phone_number\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"external_id\": \"<string>\",\n  \"callback_url\": \"<string>\",\n  \"account_lifecycle_event\": \"sign-in\",\n  \"sender_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"phone_number\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/omnichannel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "omnichannel"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"external_id\": \"null\"\n}",
+                  "createdAt": "2026-10-22T01:32:51.000Z",
+                  "updatedAt": "2026-10-22T01:32:51.000Z",
+                  "uid": "35240-6133f3a7-c698-4aae-b28a-6a702418e774"
+                },
+                {
+                  "id": "33d2a777-87f0-4501-b57f-fd0da45c665c",
+                  "name": "**Service unavailable.** The system is unavailable, try again. Code against the Telesign status or error codes from the `status.code` property in the response payload, rather than the HTTP status code of the response.\n\n | Status Code | Text String | Descr",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type - application/json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"channels\": [\n    {\n      \"channel\": \"sms\",\n      \"fallback_time\": 300\n    },\n    {\n      \"channel\": \"whatsapp\",\n      \"fallback_time\": 300\n    }\n  ],\n  \"message\": {\n    \"rcs\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"button_text_1\": \"<string>\",\n        \"button_payload_1\": \"<string>\",\n        \"button_text_2\": \"<string>\",\n        \"button_payload_2\": \"<string>\",\n        \"button_text_3\": \"<string>\",\n        \"button_payload_3\": \"<string>\",\n        \"url_text\": \"<string>\",\n        \"url_payload\": \"<string>\",\n        \"url\": \"<string>\",\n        \"dial_text\": \"<string>\",\n        \"phone_number_to_dial\": \"<string>\",\n        \"dial_payload\": \"<string>\",\n        \"media_url\": \"<string>\",\n        \"latitude\": \"<string>\",\n        \"longitude\": \"<string>\"\n      }\n    },\n    \"whatsapp\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"header_url\": \"<string>\",\n        \"file_name\": \"<string>\",\n        \"latitude\": \"<string>\",\n        \"longitude\": \"<string>\"\n      }\n    },\n    \"viber\": {\n      \"template\": \"url_action\",\n      \"parameters\": {\n        \"text\": \"<string>\",\n        \"url\": \"<string>\",\n        \"url_id\": \"<string>\",\n        \"url_text\": \"<string>\",\n        \"open_url\": \"<string>\",\n        \"url_thumbnail\": \"<string>\",\n        \"otp_code\": \"<string>\",\n        \"language\": \"<string>\",\n        \"reply_id\": \"<string>\",\n        \"button_text\": \"<string>\"\n      }\n    },\n    \"mms\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"url\": \"<string>\"\n      }\n    },\n    \"sms\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\"\n      }\n    },\n    \"email\": {\n      \"template\": \"<string>\",\n      \"parameters\": {}\n    },\n    \"default\": {\n      \"template\": \"<string>\",\n      \"parameters\": {\n        \"text\": \"<string>\"\n      }\n    }\n  },\n  \"message_type\": \"OTP\",\n  \"recipient\": {\n    \"phone_number\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"external_id\": \"<string>\",\n  \"callback_url\": \"<string>\",\n  \"account_lifecycle_event\": \"sign-in\",\n  \"sender_id\": \"<string>\",\n  \"originating_ip\": \"<string>\",\n  \"phone_number\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/omnichannel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "omnichannel"
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  },\n  \"external_id\": \"null\"\n}",
+                  "createdAt": "2026-10-22T01:32:51.000Z",
+                  "updatedAt": "2026-10-22T01:32:51.000Z",
+                  "uid": "35240-33d2a777-87f0-4501-b57f-fd0da45c665c"
+                }
+              ],
+              "createdAt": "2026-10-22T01:32:51.000Z",
+              "updatedAt": "2026-10-22T01:32:51.000Z",
+              "uid": "35240-41304de4-1e1e-4c7c-996e-6ff3d864c7bb"
+            }
+          ],
+          "id": "b610d6fa-1805-4262-aebc-fef76fc99a57",
+          "createdAt": "2026-10-22T01:32:50.000Z",
+          "updatedAt": "2026-10-22T01:32:50.000Z",
+          "uid": "35240-b610d6fa-1805-4262-aebc-fef76fc99a57"
+        }
+      ],
+      "id": "9280b05f-3bf9-4d3a-b095-526632afdaf0",
+      "createdAt": "2026-10-22T01:32:50.000Z",
+      "updatedAt": "2026-10-22T01:32:50.000Z",
+      "uid": "35240-9280b05f-3bf9-4d3a-b095-526632afdaf0"
+    },
+    {
+      "name": "capability",
+      "item": [
+        {
+          "name": "{channel}",
+          "item": [
+            {
+              "name": "{phone_number}",
+              "item": [
+                {
+                  "name": "Check channel-capability of a phone number",
+                  "id": "2199c8a2-9368-474d-ba55-147b94383e13",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/capability/:channel/:phone_number",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "capability",
+                        ":channel",
+                        ":phone_number"
+                      ],
+                      "variable": [
+                        {
+                          "id": "604ec9b0-48a5-4127-85c7-3bfdea62591e",
+                          "key": "channel",
+                          "value": "rcs",
+                          "description": "(Required) The service checks the phone number for capability to use this channel."
+                        },
+                        {
+                          "id": "5fcf5b4f-3058-49a5-81a5-5dea545ae45e",
+                          "key": "phone_number",
+                          "value": "<string>",
+                          "description": "(Required) The phone number that the service should check for capability to use the specified channel."
+                        }
+                      ]
+                    },
+                    "description": "Use this action to check capability of a phone number to use the specified channel.\n\nTo enable this feature for your account, contact our Customer Support Team.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Responds with:** `application/json`\n* **Rate limit:** Default rate limits by product"
+                  },
+                  "response": [
+                    {
+                      "id": "278f1df6-121c-48ca-a9ed-04c1e98d39c5",
+                      "name": "**Success.** The service successfully processed this request. Code against the Telesign `status.code` property in the response payload, rather than the HTTP status code of the response.\n\nStatus code | Text string | Description\n--|--|--\n3055|Delivery chann",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/capability/:channel/:phone_number",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "capability",
+                            ":channel",
+                            ":phone_number"
+                          ],
+                          "variable": [
+                            {
+                              "key": "channel"
+                            },
+                            {
+                              "key": "phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:32:51.000Z",
+                      "updatedAt": "2026-10-22T01:32:51.000Z",
+                      "uid": "35240-278f1df6-121c-48ca-a9ed-04c1e98d39c5"
+                    },
+                    {
+                      "id": "ade0f2ad-2668-466f-aefd-eb447c09d6a2",
+                      "name": "**Bad request.** The request could not be understood by the server due to malformed syntax. Code against the Telesign status or error codes from the `status.code` property in the response payload, rather than the HTTP status code of the response.\n\nStatus ",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/capability/:channel/:phone_number",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "capability",
+                            ":channel",
+                            ":phone_number"
+                          ],
+                          "variable": [
+                            {
+                              "key": "channel"
+                            },
+                            {
+                              "key": "phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:32:51.000Z",
+                      "updatedAt": "2026-10-22T01:32:51.000Z",
+                      "uid": "35240-ade0f2ad-2668-466f-aefd-eb447c09d6a2"
+                    },
+                    {
+                      "id": "ada445bc-e147-4597-b9c7-2ef675c519f1",
+                      "name": "**Unauthorized.** The request requires user authentication. Code against the Telesign status or error codes from the `status.code` property in the response payload, rather than the HTTP status code of the response.\n\nStatus code | Text string | Description",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/capability/:channel/:phone_number",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "capability",
+                            ":channel",
+                            ":phone_number"
+                          ],
+                          "variable": [
+                            {
+                              "key": "channel"
+                            },
+                            {
+                              "key": "phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:32:51.000Z",
+                      "updatedAt": "2026-10-22T01:32:51.000Z",
+                      "uid": "35240-ada445bc-e147-4597-b9c7-2ef675c519f1"
+                    },
+                    {
+                      "id": "ef23794f-30ab-4d4d-97ff-af80d6a23e98",
+                      "name": "**Too many requests.** Too many requests sent to this API in a given amount of time. Code against the Telesign status or error codes from the `status.code` property in the response payload, rather than the HTTP status code of the response.\n\nStatus code | ",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/capability/:channel/:phone_number",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "capability",
+                            ":channel",
+                            ":phone_number"
+                          ],
+                          "variable": [
+                            {
+                              "key": "channel"
+                            },
+                            {
+                              "key": "phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:32:51.000Z",
+                      "updatedAt": "2026-10-22T01:32:51.000Z",
+                      "uid": "35240-ef23794f-30ab-4d4d-97ff-af80d6a23e98"
+                    },
+                    {
+                      "id": "fba1c646-ae72-4ff5-addf-bc7561654214",
+                      "name": "**Service unavailable.** The system is unavailable, try again. Code against the Telesign status or error codes from the `status.code` property in the response payload, rather than the HTTP status code of the response.\n\nStatus code | Text string | Descript",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/capability/:channel/:phone_number",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "capability",
+                            ":channel",
+                            ":phone_number"
+                          ],
+                          "variable": [
+                            {
+                              "key": "channel"
+                            },
+                            {
+                              "key": "phone_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:32:51.000Z",
+                      "updatedAt": "2026-10-22T01:32:51.000Z",
+                      "uid": "35240-fba1c646-ae72-4ff5-addf-bc7561654214"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:32:51.000Z",
+                  "updatedAt": "2026-10-22T01:32:51.000Z",
+                  "uid": "35240-2199c8a2-9368-474d-ba55-147b94383e13"
+                }
+              ],
+              "id": "c19a5757-8e6a-4235-9f67-c48a057e9c21",
+              "createdAt": "2026-10-22T01:32:50.000Z",
+              "updatedAt": "2026-10-22T01:32:50.000Z",
+              "uid": "35240-c19a5757-8e6a-4235-9f67-c48a057e9c21"
+            }
+          ],
+          "id": "72401fb9-c607-4aa9-aee5-e045694650d4",
+          "createdAt": "2026-10-22T01:32:50.000Z",
+          "updatedAt": "2026-10-22T01:32:50.000Z",
+          "uid": "35240-72401fb9-c607-4aa9-aee5-e045694650d4"
+        },
+        {
+          "name": "rcs",
+          "item": [
+            {
+              "name": "{phone_number}",
+              "item": [
+                {
+                  "name": "{agent_id}",
+                  "item": [
+                    {
+                      "name": "Check capability of a phone number for an RBM agent",
+                      "id": "c7eab316-12eb-464e-b0f3-ffc23a318799",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/capability/rcs/:phone_number/:agent_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "capability",
+                            "rcs",
+                            ":phone_number",
+                            ":agent_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2246dfca-59f8-4913-a610-a45dc6fd962f",
+                              "key": "phone_number",
+                              "value": "<string>",
+                              "description": "(Required) The phone number that the service should check for capability to receive messages from the specified RBM agent."
+                            },
+                            {
+                              "id": "ef72bc68-2b16-4099-a7ef-e077fd164f53",
+                              "key": "agent_id",
+                              "value": "<string>",
+                              "description": "(Required) Narrows the check to the phone number's capability to use the RBM agent specified by this unique identifier."
+                            }
+                          ]
+                        },
+                        "description": "Use this action to check capability of a phone number to receive messages from the specified RBM agent.\n\nTo enable this feature for your account, contact our Customer Support Team.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Responds with:** `application/json`\n* **Rate limit:** Default rate limits by product"
+                      },
+                      "response": [
+                        {
+                          "id": "8b8a1123-8ee6-43a3-b85c-d36d2c43ba8e",
+                          "name": "**Success.** The service successfully processed this request. Code against the Telesign `status.code` property in the response payload, rather than the HTTP status code of the response.\n\nStatus code | Text string | Description\n--|--|--\n3055|Delivery chann",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/capability/rcs/:phone_number/:agent_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "capability",
+                                "rcs",
+                                ":phone_number",
+                                ":agent_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "phone_number"
+                                },
+                                {
+                                  "key": "agent_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-22T01:32:51.000Z",
+                          "updatedAt": "2026-10-22T01:32:51.000Z",
+                          "uid": "35240-8b8a1123-8ee6-43a3-b85c-d36d2c43ba8e"
+                        },
+                        {
+                          "id": "7ea75745-1b4e-4ca2-8ad8-92e4d25bf58c",
+                          "name": "**Bad request.** The request could not be understood by the server due to malformed syntax. Code against the Telesign status or error codes from the `status.code` property in the response payload, rather than the HTTP status code of the response.\n\nStatus ",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/capability/rcs/:phone_number/:agent_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "capability",
+                                "rcs",
+                                ":phone_number",
+                                ":agent_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "phone_number"
+                                },
+                                {
+                                  "key": "agent_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-22T01:32:51.000Z",
+                          "updatedAt": "2026-10-22T01:32:51.000Z",
+                          "uid": "35240-7ea75745-1b4e-4ca2-8ad8-92e4d25bf58c"
+                        },
+                        {
+                          "id": "5079796d-46cb-46db-b03e-54f255668107",
+                          "name": "**Unauthorized.** The request requires user authentication. Code against the Telesign status or error codes from the `status.code` property in the response payload, rather than the HTTP status code of the response.\n\nStatus code | Text string | Description",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/capability/rcs/:phone_number/:agent_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "capability",
+                                "rcs",
+                                ":phone_number",
+                                ":agent_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "phone_number"
+                                },
+                                {
+                                  "key": "agent_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-22T01:32:51.000Z",
+                          "updatedAt": "2026-10-22T01:32:51.000Z",
+                          "uid": "35240-5079796d-46cb-46db-b03e-54f255668107"
+                        },
+                        {
+                          "id": "4885457f-cf1f-44f7-9a99-8960a481a120",
+                          "name": "**Too many requests.** Too many requests sent to this API in a given amount of time. Code against the Telesign status or error codes from the `status.code` property in the response payload, rather than the HTTP status code of the response.\n\nStatus code | ",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/capability/rcs/:phone_number/:agent_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "capability",
+                                "rcs",
+                                ":phone_number",
+                                ":agent_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "phone_number"
+                                },
+                                {
+                                  "key": "agent_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-22T01:32:51.000Z",
+                          "updatedAt": "2026-10-22T01:32:51.000Z",
+                          "uid": "35240-4885457f-cf1f-44f7-9a99-8960a481a120"
+                        },
+                        {
+                          "id": "82f5408a-5617-43cb-9d1a-6934b74e1049",
+                          "name": "**Service unavailable.** The system is unavailable, try again. Code against the Telesign status or error codes from the `status.code` property in the response payload, rather than the HTTP status code of the response.\n\nStatus code | Text string | Descript",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/capability/rcs/:phone_number/:agent_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "capability",
+                                "rcs",
+                                ":phone_number",
+                                ":agent_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "phone_number"
+                                },
+                                {
+                                  "key": "agent_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-22T01:32:51.000Z",
+                          "updatedAt": "2026-10-22T01:32:51.000Z",
+                          "uid": "35240-82f5408a-5617-43cb-9d1a-6934b74e1049"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:32:51.000Z",
+                      "updatedAt": "2026-10-22T01:32:51.000Z",
+                      "uid": "35240-c7eab316-12eb-464e-b0f3-ffc23a318799"
+                    }
+                  ],
+                  "id": "26bc5c9c-53ac-4e26-adb0-2a750c8c8933",
+                  "createdAt": "2026-10-22T01:32:50.000Z",
+                  "updatedAt": "2026-10-22T01:32:50.000Z",
+                  "uid": "35240-26bc5c9c-53ac-4e26-adb0-2a750c8c8933"
+                }
+              ],
+              "id": "9581e9ec-53e6-403e-9952-848eec5924b1",
+              "createdAt": "2026-10-22T01:32:50.000Z",
+              "updatedAt": "2026-10-22T01:32:50.000Z",
+              "uid": "35240-9581e9ec-53e6-403e-9952-848eec5924b1"
+            }
+          ],
+          "id": "e75a82fc-12d0-408e-aadd-6e9393de2dd5",
+          "createdAt": "2026-10-22T01:32:50.000Z",
+          "updatedAt": "2026-10-22T01:32:50.000Z",
+          "uid": "35240-e75a82fc-12d0-408e-aadd-6e9393de2dd5"
+        }
+      ],
+      "id": "6f02fe0d-bb06-49e8-a8ec-5831504ec8ed",
+      "createdAt": "2026-10-22T01:32:50.000Z",
+      "updatedAt": "2026-10-22T01:32:50.000Z",
+      "uid": "35240-6f02fe0d-bb06-49e8-a8ec-5831504ec8ed"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rest-ww.telesign.com"
+    }
+  ]
+}

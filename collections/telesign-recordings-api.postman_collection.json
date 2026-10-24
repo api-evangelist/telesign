@@ -1,0 +1,784 @@
+{
+  "info": {
+    "_postman_id": "76bbc0ab-ae04-49ca-98c5-eeebb18e151c",
+    "name": "Telesign Recordings API",
+    "description": "Operations tagged Recordings across 2 of this provider's published API definitions: telesign-engage-api-voice-openapi.json, telesign-engage-api-voice-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:33:37.000Z",
+    "updatedAt": "2026-10-22T01:33:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-76bbc0ab-ae04-49ca-98c5-eeebb18e151c"
+  },
+  "item": [
+    {
+      "name": "call_recording",
+      "item": [
+        {
+          "name": "{reference_id}",
+          "item": [
+            {
+              "name": "Retrieve a list of recordings for a call",
+              "id": "771d03af-a2b9-4177-8719-ae3eaca70f42",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/call_recording/:reference_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "call_recording",
+                    ":reference_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "98fa2625-3247-4342-8d69-990c7cc715cb",
+                      "key": "reference_id",
+                      "value": "<string>",
+                      "description": "(Required) Specifies the call for which you want to retrieve or delete recordings. This ID is returned in the HTTP response to the `dial` action that begins an outbound call or in the `incoming_call` event for an inbound call."
+                    }
+                  ]
+                },
+                "description": "Retrieve a list of recordings associated with the specified call. Each record includes a URL that can be used to download the recording, if available.\n\n## General requirements\n* **Authentication:** Basic\n* **Protocols:** HTTPS\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Responds with:** `application/json`\n* **Required headers:** `Content-Type - application/json`\n* **Rate limit:** Default rate limits by product"
+              },
+              "response": [
+                {
+                  "id": "bda223b4-3d54-4a16-a8da-531ab3971c78",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/call_recording/:reference_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "call_recording",
+                        ":reference_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reference_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"reference_id\": \"<string>\",\n    \"file_name\": \"<string>\",\n    \"status\": \"<string>\",\n    \"date\": \"<string>\",\n    \"url\": \"<string>\",\n    \"transcribe\": {\n      \"language_code\": \"<string>\",\n      \"transcription\": [\n        {\n          \"status\": \"<string>\",\n          \"result\": \"<string>\"\n        },\n        {\n          \"status\": \"<string>\",\n          \"result\": \"<string>\"\n        }\n      ]\n    }\n  },\n  {\n    \"reference_id\": \"<string>\",\n    \"file_name\": \"<string>\",\n    \"status\": \"<string>\",\n    \"date\": \"<string>\",\n    \"url\": \"<string>\",\n    \"transcribe\": {\n      \"language_code\": \"<string>\",\n      \"transcription\": [\n        {\n          \"status\": \"<string>\",\n          \"result\": \"<string>\"\n        },\n        {\n          \"status\": \"<string>\",\n          \"result\": \"<string>\"\n        }\n      ]\n    }\n  }\n]",
+                  "createdAt": "2026-10-22T01:33:38.000Z",
+                  "updatedAt": "2026-10-22T01:33:38.000Z",
+                  "uid": "35240-bda223b4-3d54-4a16-a8da-531ab3971c78"
+                },
+                {
+                  "id": "3268b957-56a4-4e7f-863c-3b8ae0fa3144",
+                  "name": "**Bad Request.** Your request contains invalid parameters or is missing required parameters. Check that you've included a valid `reference_id` for a Telesign Voice phone call in the path.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/call_recording/:reference_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "call_recording",
+                        ":reference_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reference_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:33:38.000Z",
+                  "updatedAt": "2026-10-22T01:33:38.000Z",
+                  "uid": "35240-3268b957-56a4-4e7f-863c-3b8ae0fa3144"
+                },
+                {
+                  "id": "1f0693e7-5911-4a93-bfde-7e67dbe263f4",
+                  "name": "**Unauthorized.** Customer ID and/or API Key were not provided or were not valid.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/call_recording/:reference_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "call_recording",
+                        ":reference_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reference_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:33:38.000Z",
+                  "updatedAt": "2026-10-22T01:33:38.000Z",
+                  "uid": "35240-1f0693e7-5911-4a93-bfde-7e67dbe263f4"
+                },
+                {
+                  "id": "4a3230bb-764d-4d73-a62c-68ce936f3e95",
+                  "name": "**Not Found.** No records were found matching the details of your request.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/call_recording/:reference_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "call_recording",
+                        ":reference_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reference_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:33:38.000Z",
+                  "updatedAt": "2026-10-22T01:33:38.000Z",
+                  "uid": "35240-4a3230bb-764d-4d73-a62c-68ce936f3e95"
+                }
+              ],
+              "createdAt": "2026-10-22T01:33:38.000Z",
+              "updatedAt": "2026-10-22T01:33:38.000Z",
+              "uid": "35240-771d03af-a2b9-4177-8719-ae3eaca70f42"
+            },
+            {
+              "name": "Delete recordings by ID",
+              "id": "30e9231a-a404-4959-975a-8768b5de7920",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/call_recording/:reference_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "call_recording",
+                    ":reference_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d054b408-0a25-4900-b05d-c1f4c7c312b7",
+                      "key": "reference_id",
+                      "value": "<string>",
+                      "description": "(Required) Specifies the call for which you want to retrieve or delete recordings. This ID is returned in the HTTP response to the `dial` action that begins an outbound call or in the `incoming_call` event for an inbound call."
+                    }
+                  ]
+                },
+                "description": "Delete all recordings and transcripts associated with the call specified by this reference ID.\n\n## General requirements\n* **Authentication:** Basic\n* **Protocols:** HTTPS\n* **Endpoint:** `https://rest-ww.telesign.com/call_recording/{reference_id}`\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Responds with:** `application/json`\n* **Required headers:** `Content-Type - application/json`\n* **Rate limit:** Default rate limits by product"
+              },
+              "response": [
+                {
+                  "id": "f0266576-ab3c-4440-9a78-f9f8ba4ec316",
+                  "name": "**Success.** Recordings and transcripts deleted, if authorized.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/call_recording/:reference_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "call_recording",
+                        ":reference_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reference_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:33:38.000Z",
+                  "updatedAt": "2026-10-22T01:33:38.000Z",
+                  "uid": "35240-f0266576-ab3c-4440-9a78-f9f8ba4ec316"
+                },
+                {
+                  "id": "997fc5c3-e40c-4227-9fe4-39606bc754bd",
+                  "name": "**Bad Request.** Your request contains invalid parameters or is missing required parameters. Check that you've included a valid `reference_id` for a Telesign Voice phone call in the path.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/call_recording/:reference_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "call_recording",
+                        ":reference_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reference_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:33:38.000Z",
+                  "updatedAt": "2026-10-22T01:33:38.000Z",
+                  "uid": "35240-997fc5c3-e40c-4227-9fe4-39606bc754bd"
+                },
+                {
+                  "id": "45c92167-c070-451b-a62a-326cd69d9558",
+                  "name": "**Unauthorized.** Customer ID and/or API Key were not provided or were not valid.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/call_recording/:reference_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "call_recording",
+                        ":reference_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reference_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:33:38.000Z",
+                  "updatedAt": "2026-10-22T01:33:38.000Z",
+                  "uid": "35240-45c92167-c070-451b-a62a-326cd69d9558"
+                },
+                {
+                  "id": "f58230d0-96c3-43ff-adc3-e6e97b454e30",
+                  "name": "**Not Found.** No records were found matching the details of your request.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/call_recording/:reference_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "call_recording",
+                        ":reference_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reference_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:33:38.000Z",
+                  "updatedAt": "2026-10-22T01:33:38.000Z",
+                  "uid": "35240-f58230d0-96c3-43ff-adc3-e6e97b454e30"
+                },
+                {
+                  "id": "1e3d4756-f432-4ab6-8ce7-4ed92d73ada4",
+                  "name": "**Deletion Failure.** One or more of the files you attempted to delete could not be deleted. The response payload lists which files were deleted and which were not.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/call_recording/:reference_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "call_recording",
+                        ":reference_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reference_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"failed_delete\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"reference_id\": \"<string>\",\n  \"succeed_delete\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-10-22T01:33:38.000Z",
+                  "updatedAt": "2026-10-22T01:33:38.000Z",
+                  "uid": "35240-1e3d4756-f432-4ab6-8ce7-4ed92d73ada4"
+                }
+              ],
+              "createdAt": "2026-10-22T01:33:38.000Z",
+              "updatedAt": "2026-10-22T01:33:38.000Z",
+              "uid": "35240-30e9231a-a404-4959-975a-8768b5de7920"
+            }
+          ],
+          "id": "24103483-321a-45f9-8503-fab84d128143",
+          "createdAt": "2026-10-22T01:33:38.000Z",
+          "updatedAt": "2026-10-22T01:33:38.000Z",
+          "uid": "35240-24103483-321a-45f9-8503-fab84d128143"
+        },
+        {
+          "name": "Get recordings list by date range",
+          "id": "8408cc86-53e7-49ca-8da3-21da5f9de177",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/call_recording?start_date_time=<string>&end_date_time=<string>&pagesize=<string>&token=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "call_recording"
+              ],
+              "query": [
+                {
+                  "description": "A timestamp defining the beginning of the date range (inclusive). If you include this, you must also include the `end_date_time` param, and must not include `token`.",
+                  "key": "start_date_time",
+                  "value": "<string>"
+                },
+                {
+                  "description": "A timestamp defining the end of the date range (inclusive). If you include this, you must also include the `start_date_time` param, and must not include `token`.",
+                  "key": "end_date_time",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The number of records to return per page.",
+                  "key": "pagesize",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Indicates to the service at which page of records to begin retrieval. Found in your previous request to the API. If you include this, you must not include either the `start_date_time` or the `end_date_time` params.",
+                  "key": "token",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve a list of recordings by date range. Each record includes a reference ID that you can use with other Recordings actions.\n\n## General requirements\n* **Authentication:** Basic\n* **Protocols:** HTTPS\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Responds with:** `application/json`\n* **Required headers:** `Content-Type - application/json`\n* **Rate limit:** Default rate limits by product"
+          },
+          "response": [
+            {
+              "id": "ae912364-a20d-4c9f-99d9-5f7ffa1dbeec",
+              "name": "**Success.** A list of recordings was successfully retrieved.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/call_recording?start_date_time=<string>&end_date_time=<string>&pagesize=<string>&token=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "call_recording"
+                  ],
+                  "query": [
+                    {
+                      "description": "A timestamp defining the beginning of the date range (inclusive). If you include this, you must also include the `end_date_time` param, and must not include `token`.",
+                      "key": "start_date_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A timestamp defining the end of the date range (inclusive). If you include this, you must also include the `start_date_time` param, and must not include `token`.",
+                      "key": "end_date_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The number of records to return per page.",
+                      "key": "pagesize",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Indicates to the service at which page of records to begin retrieval. Found in your previous request to the API. If you include this, you must not include either the `start_date_time` or the `end_date_time` params.",
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"call_recordings\": {\n    \"reference_id\": \"<string>\",\n    \"file_name\": \"<string>\",\n    \"status\": \"<string>\",\n    \"date\": \"<string>\"\n  },\n  \"token\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:33:38.000Z",
+              "updatedAt": "2026-10-22T01:33:38.000Z",
+              "uid": "35240-ae912364-a20d-4c9f-99d9-5f7ffa1dbeec"
+            },
+            {
+              "id": "c2f53789-e449-432e-b3ba-d7472da8d708",
+              "name": "**Bad Request.** Your request contains invalid parameters, contains mutually exclusive parameters, or is missing required parameters. If you included `start_date_time` and `end_date_time`, check that their values were in proper UTC format, and that `token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/call_recording?start_date_time=<string>&end_date_time=<string>&pagesize=<string>&token=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "call_recording"
+                  ],
+                  "query": [
+                    {
+                      "description": "A timestamp defining the beginning of the date range (inclusive). If you include this, you must also include the `end_date_time` param, and must not include `token`.",
+                      "key": "start_date_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A timestamp defining the end of the date range (inclusive). If you include this, you must also include the `start_date_time` param, and must not include `token`.",
+                      "key": "end_date_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The number of records to return per page.",
+                      "key": "pagesize",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Indicates to the service at which page of records to begin retrieval. Found in your previous request to the API. If you include this, you must not include either the `start_date_time` or the `end_date_time` params.",
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:33:38.000Z",
+              "updatedAt": "2026-10-22T01:33:38.000Z",
+              "uid": "35240-c2f53789-e449-432e-b3ba-d7472da8d708"
+            },
+            {
+              "id": "ab90733c-2600-4d44-8e42-e1f64342531f",
+              "name": "**Unauthorized.** Customer ID and/or API Key were not provided or were not valid.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/call_recording?start_date_time=<string>&end_date_time=<string>&pagesize=<string>&token=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "call_recording"
+                  ],
+                  "query": [
+                    {
+                      "description": "A timestamp defining the beginning of the date range (inclusive). If you include this, you must also include the `end_date_time` param, and must not include `token`.",
+                      "key": "start_date_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A timestamp defining the end of the date range (inclusive). If you include this, you must also include the `start_date_time` param, and must not include `token`.",
+                      "key": "end_date_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The number of records to return per page.",
+                      "key": "pagesize",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Indicates to the service at which page of records to begin retrieval. Found in your previous request to the API. If you include this, you must not include either the `start_date_time` or the `end_date_time` params.",
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:33:38.000Z",
+              "updatedAt": "2026-10-22T01:33:38.000Z",
+              "uid": "35240-ab90733c-2600-4d44-8e42-e1f64342531f"
+            },
+            {
+              "id": "aa61f57b-8108-4ee5-a31c-e20f4ca535bd",
+              "name": "**Not Found.** No records were found matching the details of your request.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/call_recording?start_date_time=<string>&end_date_time=<string>&pagesize=<string>&token=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "call_recording"
+                  ],
+                  "query": [
+                    {
+                      "description": "A timestamp defining the beginning of the date range (inclusive). If you include this, you must also include the `end_date_time` param, and must not include `token`.",
+                      "key": "start_date_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A timestamp defining the end of the date range (inclusive). If you include this, you must also include the `start_date_time` param, and must not include `token`.",
+                      "key": "end_date_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The number of records to return per page.",
+                      "key": "pagesize",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Indicates to the service at which page of records to begin retrieval. Found in your previous request to the API. If you include this, you must not include either the `start_date_time` or the `end_date_time` params.",
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:33:38.000Z",
+              "updatedAt": "2026-10-22T01:33:38.000Z",
+              "uid": "35240-aa61f57b-8108-4ee5-a31c-e20f4ca535bd"
+            }
+          ],
+          "createdAt": "2026-10-22T01:33:38.000Z",
+          "updatedAt": "2026-10-22T01:33:38.000Z",
+          "uid": "35240-8408cc86-53e7-49ca-8da3-21da5f9de177"
+        }
+      ],
+      "id": "6bd5f6a6-bb7d-4405-b8b1-5cbd34dbed35",
+      "createdAt": "2026-10-22T01:33:38.000Z",
+      "updatedAt": "2026-10-22T01:33:38.000Z",
+      "uid": "35240-6bd5f6a6-bb7d-4405-b8b1-5cbd34dbed35"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rest-ww.telesign.com/v2"
+    }
+  ]
+}

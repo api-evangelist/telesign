@@ -1,0 +1,112 @@
+{
+  "info": {
+    "_postman_id": "d448104c-b3ef-4700-8183-86b8c2b012e8",
+    "name": "Telesign Bulk SMS Callbacks API",
+    "description": "Operations tagged Bulk SMS Callbacks across 2 of this provider's published API definitions: telesign-engage-callbacks-openapi.json, telesign-engage-callbacks-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:31:41.000Z",
+    "updatedAt": "2026-10-22T01:31:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d448104c-b3ef-4700-8183-86b8c2b012e8"
+  },
+  "item": [
+    {
+      "name": "bulk_sms_callback_endpoint",
+      "item": [
+        {
+          "name": "Receive Bulk SMS callbacks",
+          "id": "33a1857c-def9-445e-aa78-a3dc4d941768",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"reference_id\": \"<string>\",\n  \"submit_timestamp\": \"<string>\",\n  \"session_id\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"sub_resource\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/bulk_sms_callback_endpoint",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bulk_sms_callback_endpoint"
+              ]
+            },
+            "description": "This is a web service created by you, to receive notifications from Telesign."
+          },
+          "response": [
+            {
+              "id": "477d9a23-64e5-4fc1-80dc-b0013f74577d",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"reference_id\": \"<string>\",\n  \"submit_timestamp\": \"<string>\",\n  \"session_id\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"sub_resource\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/bulk_sms_callback_endpoint",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bulk_sms_callback_endpoint"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:31:41.000Z",
+              "updatedAt": "2026-10-22T01:31:41.000Z",
+              "uid": "35240-477d9a23-64e5-4fc1-80dc-b0013f74577d"
+            }
+          ],
+          "createdAt": "2026-10-22T01:31:41.000Z",
+          "updatedAt": "2026-10-22T01:31:41.000Z",
+          "uid": "35240-33a1857c-def9-445e-aa78-a3dc4d941768"
+        }
+      ],
+      "id": "eb7dd03a-5218-4da9-8865-ea2d9ee87728",
+      "createdAt": "2026-10-22T01:31:41.000Z",
+      "updatedAt": "2026-10-22T01:31:41.000Z",
+      "uid": "35240-eb7dd03a-5218-4da9-8865-ea2d9ee87728"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://your-callback-url.com"
+    }
+  ]
+}

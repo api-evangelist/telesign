@@ -1,0 +1,541 @@
+{
+  "info": {
+    "_postman_id": "f8f5d140-2275-43fb-92f5-cb7bd6eb59a5",
+    "name": "Deactivated Numbers API",
+    "description": "**Encoding:** Accepts only UTF-8 encoded unicode characters as inputs.\n\nThe Deactivated Numbers API can be used to get lists of deactivated numbers. These can be used to ensure you don't send SMS messages to these numbers using our SMS and SMS Verify products.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:31:09.000Z",
+    "updatedAt": "2026-10-22T01:31:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f8f5d140-2275-43fb-92f5-cb7bd6eb59a5"
+  },
+  "item": [
+    {
+      "name": "files",
+      "item": [
+        {
+          "name": "Get file list",
+          "id": "dad5a92e-3958-4f36-8787-f3d9ecf721cd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/files",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "files"
+              ]
+            },
+            "description": "Use this action to get a list of files accessible for you to download that contain deactivated phone numbers.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Responds with:** `application/json`\n* **Rate limit:** Default rate limits by product"
+          },
+          "response": [
+            {
+              "id": "a59f551b-8e0d-4bda-b26d-ba3c728c9cc8",
+              "name": "**Success.** Your request was fulfilled and a list of file names was retrieved.\n\nCode | Meaning\n--|--\n2200|Request successfully completed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/files",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "files"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"list_of_files\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"code\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:31:10.000Z",
+              "updatedAt": "2026-10-22T01:31:10.000Z",
+              "uid": "35240-a59f551b-8e0d-4bda-b26d-ba3c728c9cc8"
+            },
+            {
+              "id": "e675ca0c-114a-4331-bcf3-6377e2d01728",
+              "name": "**Unauthorized.** The request requires user authentication. Customer ID and/or API Key were not provided or were not valid.\n\nCode | Meaning\n--|--\n2201|Unauthorized access.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/files",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "files"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:31:10.000Z",
+              "updatedAt": "2026-10-22T01:31:10.000Z",
+              "uid": "35240-e675ca0c-114a-4331-bcf3-6377e2d01728"
+            },
+            {
+              "id": "2e2f62b3-eb40-4ee2-aa2a-700913bcc2f1",
+              "name": "**Forbidden.** This user does not have access to this resource.\n\nCode | Meaning\n--|--\n2203|Request forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/files",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "files"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:31:10.000Z",
+              "updatedAt": "2026-10-22T01:31:10.000Z",
+              "uid": "35240-2e2f62b3-eb40-4ee2-aa2a-700913bcc2f1"
+            },
+            {
+              "id": "ba0946e7-ea25-4e80-9b23-274dd07da0f2",
+              "name": "**Internal server error.** There was a problem on our side. Try again later.\n\nCode | Meaning\n--|--\n2250|Internal Server Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/files",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "files"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:31:10.000Z",
+              "updatedAt": "2026-10-22T01:31:10.000Z",
+              "uid": "35240-ba0946e7-ea25-4e80-9b23-274dd07da0f2"
+            }
+          ],
+          "createdAt": "2026-10-22T01:31:10.000Z",
+          "updatedAt": "2026-10-22T01:31:10.000Z",
+          "uid": "35240-dad5a92e-3958-4f36-8787-f3d9ecf721cd"
+        }
+      ],
+      "id": "92b7c0bd-7466-4300-a8c6-ab77f2471b28",
+      "createdAt": "2026-10-22T01:31:10.000Z",
+      "updatedAt": "2026-10-22T01:31:10.000Z",
+      "uid": "35240-92b7c0bd-7466-4300-a8c6-ab77f2471b28"
+    },
+    {
+      "name": "download",
+      "item": [
+        {
+          "name": "{file_name}",
+          "item": [
+            {
+              "name": "Get file",
+              "id": "7aa3b17c-025f-4b6b-a783-2b63ca800da6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/download/:file_name",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "download",
+                    ":file_name"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2078f8fd-f33b-4008-b582-fb59789747b6",
+                      "key": "file_name",
+                      "value": "<string>",
+                      "description": "(Required) The filename of the deactivated numbers file you want to download."
+                    }
+                  ]
+                },
+                "description": "Use this action to download one specified file that contains deactivated phone numbers.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Responds with:** `application/json` or `application/octet-stream`\n* **Rate limit:** Default rate limits by product"
+              },
+              "response": [
+                {
+                  "id": "324493f5-33af-4f14-bf33-0eb75c6135c9",
+                  "name": "**Success.** Your request was fulfilled and a file was retrieved. Note that no response JSON object is returned in the payload, only the contents of the file itself.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/octet-stream"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/download/:file_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "download",
+                        ":file_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "file_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/octet-stream"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-10-22T01:31:10.000Z",
+                  "updatedAt": "2026-10-22T01:31:10.000Z",
+                  "uid": "35240-324493f5-33af-4f14-bf33-0eb75c6135c9"
+                },
+                {
+                  "id": "aab84b10-3a3e-45c1-9ba2-79341bf24b8f",
+                  "name": "**Unauthorized.** The request requires user authentication. Customer ID and/or API Key were not provided or were not valid.\n\nCode | Meaning\n--|--\n2201|Unauthorized access.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/download/:file_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "download",
+                        ":file_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "file_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:31:10.000Z",
+                  "updatedAt": "2026-10-22T01:31:10.000Z",
+                  "uid": "35240-aab84b10-3a3e-45c1-9ba2-79341bf24b8f"
+                },
+                {
+                  "id": "76ae67b6-c5dd-4924-bd7a-49ba95ea778e",
+                  "name": "**Forbidden.** This user does not have access to this resource.\n\nCode | Meaning\n--|--\n2203|Request forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/download/:file_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "download",
+                        ":file_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "file_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:31:10.000Z",
+                  "updatedAt": "2026-10-22T01:31:10.000Z",
+                  "uid": "35240-76ae67b6-c5dd-4924-bd7a-49ba95ea778e"
+                },
+                {
+                  "id": "b589ad43-fa84-4f21-a8c0-a026cf21cf53",
+                  "name": "**File not found.** The file was not available to retrieve.\n\nCode | Meaning\n--|--\n2204|Download failed, the file you are trying to download doesn't exist or may have been deleted.\n",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/octet-stream"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/download/:file_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "download",
+                        ":file_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "file_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"examples\": {\n    \"response\": {\n      \"value\": {\n        \"code\": 2204,\n        \"description\": \"Download failed, the file you are trying to download doesn't exist or may have been deleted.\"\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-10-22T01:31:10.000Z",
+                  "updatedAt": "2026-10-22T01:31:10.000Z",
+                  "uid": "35240-b589ad43-fa84-4f21-a8c0-a026cf21cf53"
+                },
+                {
+                  "id": "c75a30b8-66f0-4ce8-9cf0-c62f83633cf0",
+                  "name": "**Internal server error.** There was a problem on our side. Try again later.\n\nCode | Meaning\n--|--\n2250|Internal Server Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/download/:file_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "download",
+                        ":file_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "file_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:31:10.000Z",
+                  "updatedAt": "2026-10-22T01:31:10.000Z",
+                  "uid": "35240-c75a30b8-66f0-4ce8-9cf0-c62f83633cf0"
+                }
+              ],
+              "createdAt": "2026-10-22T01:31:10.000Z",
+              "updatedAt": "2026-10-22T01:31:10.000Z",
+              "uid": "35240-7aa3b17c-025f-4b6b-a783-2b63ca800da6"
+            }
+          ],
+          "id": "3951fe27-9200-4a14-b14e-a6a725265c27",
+          "createdAt": "2026-10-22T01:31:10.000Z",
+          "updatedAt": "2026-10-22T01:31:10.000Z",
+          "uid": "35240-3951fe27-9200-4a14-b14e-a6a725265c27"
+        }
+      ],
+      "id": "4b4ae802-e52b-4552-acd9-22726ff32a5b",
+      "createdAt": "2026-10-22T01:31:10.000Z",
+      "updatedAt": "2026-10-22T01:31:10.000Z",
+      "uid": "35240-4b4ae802-e52b-4552-acd9-22726ff32a5b"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://deact-api.telesign.com"
+    }
+  ]
+}

@@ -1,0 +1,2206 @@
+{
+  "info": {
+    "_postman_id": "cc030935-2927-410f-b0eb-1b043f15733a",
+    "name": "Telesign Finalize API",
+    "description": "Operations tagged Finalize across 2 of this provider's published API definitions: telesign-app-verify-api-openapi.json, telesign-silent-verify-api-openapi.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: Telesign Customer Support Team\n Email: support@telesign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:32:20.000Z",
+    "updatedAt": "2026-10-22T01:32:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cc030935-2927-410f-b0eb-1b043f15733a"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "verify",
+          "item": [
+            {
+              "name": "auto",
+              "item": [
+                {
+                  "name": "voice",
+                  "item": [
+                    {
+                      "name": "finalize",
+                      "item": [
+                        {
+                          "name": "callerid",
+                          "item": [
+                            {
+                              "name": "Report unknown caller ID",
+                              "id": "232763f7-6c41-402e-b026-8c43b83d4307",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) A unique, randomly generated hex value that identifies your web service request.",
+                                      "key": "reference_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) The caller ID that was not recognized.",
+                                      "key": "unknown_caller_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Your customer ID, assigned to you by Telesign.",
+                                      "key": "customer_id",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize/callerid",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "verify",
+                                    "auto",
+                                    "voice",
+                                    "finalize",
+                                    "callerid"
+                                  ]
+                                },
+                                "description": "If a Telesign App Verify API call is unsuccessful, the device will not receive the call. If there is a prefix sent by Telesign in the initiate request and it cannot be matched to the CLI of the verification call, you can use use this endpoint to report the issue to Telesign for troubleshooting.\n\nTo add this product to your account, contact a Telesign expert. This product is available for full-service accounts only.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) and Digest\n* **Encoding:** Accepts only UTF-8 encoded unicode characters as inputs\n* **Accepts:** `application/x-www-form-urlencoded`\n* **Required headers:** `Content-Type - application/x-www-form-urlencoded`\n* **Rate limit:** Default rate limits by product"
+                              },
+                              "response": [
+                                {
+                                  "id": "9b1d0774-a5ec-4e05-a9f5-a5cf2bc80ee2",
+                                  "name": "Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "urlencoded",
+                                      "urlencoded": [
+                                        {
+                                          "description": "(Required) A unique, randomly generated hex value that identifies your web service request.",
+                                          "key": "reference_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "(Required) The caller ID that was not recognized.",
+                                          "key": "unknown_caller_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Your customer ID, assigned to you by Telesign.",
+                                          "key": "customer_id",
+                                          "value": "<string>"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize/callerid",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "verify",
+                                        "auto",
+                                        "voice",
+                                        "finalize",
+                                        "callerid"
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"resource_uri\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T01:32:21.000Z",
+                                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                                  "uid": "35240-9b1d0774-a5ec-4e05-a9f5-a5cf2bc80ee2"
+                                },
+                                {
+                                  "id": "26ce5371-411f-4b67-906c-d14a8ea4f326",
+                                  "name": "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "urlencoded",
+                                      "urlencoded": [
+                                        {
+                                          "description": "(Required) A unique, randomly generated hex value that identifies your web service request.",
+                                          "key": "reference_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "(Required) The caller ID that was not recognized.",
+                                          "key": "unknown_caller_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Your customer ID, assigned to you by Telesign.",
+                                          "key": "customer_id",
+                                          "value": "<string>"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize/callerid",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "verify",
+                                        "auto",
+                                        "voice",
+                                        "finalize",
+                                        "callerid"
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"resource_uri\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T01:32:21.000Z",
+                                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                                  "uid": "35240-26ce5371-411f-4b67-906c-d14a8ea4f326"
+                                },
+                                {
+                                  "id": "3ac7d80c-28e7-4878-b53b-432e49584652",
+                                  "name": "Unauthorized, the request requires user authentication. If \nyou want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the respons",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "urlencoded",
+                                      "urlencoded": [
+                                        {
+                                          "description": "(Required) A unique, randomly generated hex value that identifies your web service request.",
+                                          "key": "reference_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "(Required) The caller ID that was not recognized.",
+                                          "key": "unknown_caller_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Your customer ID, assigned to you by Telesign.",
+                                          "key": "customer_id",
+                                          "value": "<string>"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize/callerid",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "verify",
+                                        "auto",
+                                        "voice",
+                                        "finalize",
+                                        "callerid"
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"resource_uri\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T01:32:21.000Z",
+                                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                                  "uid": "35240-3ac7d80c-28e7-4878-b53b-432e49584652"
+                                },
+                                {
+                                  "id": "51bce991-3038-4e31-8a60-229b92f07eb5",
+                                  "name": "Not Found, the server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter ",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "urlencoded",
+                                      "urlencoded": [
+                                        {
+                                          "description": "(Required) A unique, randomly generated hex value that identifies your web service request.",
+                                          "key": "reference_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "(Required) The caller ID that was not recognized.",
+                                          "key": "unknown_caller_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Your customer ID, assigned to you by Telesign.",
+                                          "key": "customer_id",
+                                          "value": "<string>"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize/callerid",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "verify",
+                                        "auto",
+                                        "voice",
+                                        "finalize",
+                                        "callerid"
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"sub_resource\": \"<string,null>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-10-22T01:32:21.000Z",
+                                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                                  "uid": "35240-51bce991-3038-4e31-8a60-229b92f07eb5"
+                                },
+                                {
+                                  "id": "df9f6cee-6262-4824-9d44-da3805aaf9a8",
+                                  "name": "Indicates that the request method is known by the server but has been disabled and cannot be used. \n\n| Error codes | Description |\n|-------------|-------------|\n| -40005 | Method not allowed |\n",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "urlencoded",
+                                      "urlencoded": [
+                                        {
+                                          "description": "(Required) A unique, randomly generated hex value that identifies your web service request.",
+                                          "key": "reference_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "(Required) The caller ID that was not recognized.",
+                                          "key": "unknown_caller_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Your customer ID, assigned to you by Telesign.",
+                                          "key": "customer_id",
+                                          "value": "<string>"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize/callerid",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "verify",
+                                        "auto",
+                                        "voice",
+                                        "finalize",
+                                        "callerid"
+                                      ]
+                                    }
+                                  },
+                                  "status": "Method Not Allowed",
+                                  "code": 405,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"sub_resource\": \"<string,null>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-10-22T01:32:21.000Z",
+                                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                                  "uid": "35240-df9f6cee-6262-4824-9d44-da3805aaf9a8"
+                                },
+                                {
+                                  "id": "745e5794-2698-4850-87d6-d4087a564980",
+                                  "name": "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` par",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "urlencoded",
+                                      "urlencoded": [
+                                        {
+                                          "description": "(Required) A unique, randomly generated hex value that identifies your web service request.",
+                                          "key": "reference_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "(Required) The caller ID that was not recognized.",
+                                          "key": "unknown_caller_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Your customer ID, assigned to you by Telesign.",
+                                          "key": "customer_id",
+                                          "value": "<string>"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize/callerid",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "verify",
+                                        "auto",
+                                        "voice",
+                                        "finalize",
+                                        "callerid"
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"resource_uri\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T01:32:21.000Z",
+                                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                                  "uid": "35240-745e5794-2698-4850-87d6-d4087a564980"
+                                },
+                                {
+                                  "id": "1458519f-7c3f-4fcc-8233-4d5912a9ba92",
+                                  "name": "Service Unavailable, system unavailable, try again. Error codes are listed in the `error` parameter in the response. \n\n| Error code | Description |\n|-----------|-------------|\n| -90001 | System unavailable; please try again later |\n",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "urlencoded",
+                                      "urlencoded": [
+                                        {
+                                          "description": "(Required) A unique, randomly generated hex value that identifies your web service request.",
+                                          "key": "reference_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "(Required) The caller ID that was not recognized.",
+                                          "key": "unknown_caller_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Your customer ID, assigned to you by Telesign.",
+                                          "key": "customer_id",
+                                          "value": "<string>"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize/callerid",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "verify",
+                                        "auto",
+                                        "voice",
+                                        "finalize",
+                                        "callerid"
+                                      ]
+                                    }
+                                  },
+                                  "status": "Service Unavailable",
+                                  "code": 503,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"sub_resource\": \"<string,null>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-10-22T01:32:21.000Z",
+                                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                                  "uid": "35240-1458519f-7c3f-4fcc-8233-4d5912a9ba92"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:32:21.000Z",
+                              "updatedAt": "2026-10-22T01:32:21.000Z",
+                              "uid": "35240-232763f7-6c41-402e-b026-8c43b83d4307"
+                            }
+                          ],
+                          "id": "3860fc5c-e118-420d-8f58-20853165d6a5",
+                          "createdAt": "2026-10-22T01:32:21.000Z",
+                          "updatedAt": "2026-10-22T01:32:21.000Z",
+                          "uid": "35240-3860fc5c-e118-420d-8f58-20853165d6a5"
+                        },
+                        {
+                          "name": "timeout",
+                          "item": [
+                            {
+                              "name": "Report timeout",
+                              "id": "9a155129-d0a6-4bcd-9f96-fe9847030609",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) A unique, randomly generated hex value that identifies your web service request.",
+                                      "key": "reference_id",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize/timeout",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "verify",
+                                    "auto",
+                                    "voice",
+                                    "finalize",
+                                    "timeout"
+                                  ]
+                                },
+                                "description": "If a mobile device verification call does not make it to the designated handset within the specified amount of time, you can use the Finalize Timeout endpoint to report the issue to Telesign.\n\nTo add this product to your account, contact a Telesign expert. This product is available for full-service accounts only.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) and Digest\n* **Encoding:** Accepts only UTF-8 encoded unicode characters as inputs\n* **Accepts:** `application/x-www-form-urlencoded`\n* **Required headers:** `Content-Type - application/x-www-form-urlencoded`\n* **Rate limit:** Default rate limits by product"
+                              },
+                              "response": [
+                                {
+                                  "id": "1735367c-e127-434e-9ee2-e202f36bd9f0",
+                                  "name": "Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "urlencoded",
+                                      "urlencoded": [
+                                        {
+                                          "description": "(Required) A unique, randomly generated hex value that identifies your web service request.",
+                                          "key": "reference_id",
+                                          "value": "<string>"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize/timeout",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "verify",
+                                        "auto",
+                                        "voice",
+                                        "finalize",
+                                        "timeout"
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"resource_uri\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T01:32:21.000Z",
+                                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                                  "uid": "35240-1735367c-e127-434e-9ee2-e202f36bd9f0"
+                                },
+                                {
+                                  "id": "68c26358-c530-4b4e-80de-b93218938c67",
+                                  "name": "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "urlencoded",
+                                      "urlencoded": [
+                                        {
+                                          "description": "(Required) A unique, randomly generated hex value that identifies your web service request.",
+                                          "key": "reference_id",
+                                          "value": "<string>"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize/timeout",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "verify",
+                                        "auto",
+                                        "voice",
+                                        "finalize",
+                                        "timeout"
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"resource_uri\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T01:32:21.000Z",
+                                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                                  "uid": "35240-68c26358-c530-4b4e-80de-b93218938c67"
+                                },
+                                {
+                                  "id": "105029e6-926b-47c5-956b-4b1a115db2b2",
+                                  "name": "Unauthorized, the request requires user authentication. If \nyou want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the respons",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "urlencoded",
+                                      "urlencoded": [
+                                        {
+                                          "description": "(Required) A unique, randomly generated hex value that identifies your web service request.",
+                                          "key": "reference_id",
+                                          "value": "<string>"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize/timeout",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "verify",
+                                        "auto",
+                                        "voice",
+                                        "finalize",
+                                        "timeout"
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"resource_uri\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T01:32:21.000Z",
+                                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                                  "uid": "35240-105029e6-926b-47c5-956b-4b1a115db2b2"
+                                },
+                                {
+                                  "id": "86762a30-6483-4522-9687-1abdf5d6c872",
+                                  "name": "Not Found, the server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter ",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "urlencoded",
+                                      "urlencoded": [
+                                        {
+                                          "description": "(Required) A unique, randomly generated hex value that identifies your web service request.",
+                                          "key": "reference_id",
+                                          "value": "<string>"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize/timeout",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "verify",
+                                        "auto",
+                                        "voice",
+                                        "finalize",
+                                        "timeout"
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"sub_resource\": \"<string,null>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-10-22T01:32:21.000Z",
+                                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                                  "uid": "35240-86762a30-6483-4522-9687-1abdf5d6c872"
+                                },
+                                {
+                                  "id": "fb3b5e81-d7c2-4ee3-a636-58086ba7cd46",
+                                  "name": "Indicates that the request method is known by the server but has been disabled and cannot be used. \n\n| Error codes | Description |\n|-------------|-------------|\n| -40005 | Method not allowed |\n",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "urlencoded",
+                                      "urlencoded": [
+                                        {
+                                          "description": "(Required) A unique, randomly generated hex value that identifies your web service request.",
+                                          "key": "reference_id",
+                                          "value": "<string>"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize/timeout",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "verify",
+                                        "auto",
+                                        "voice",
+                                        "finalize",
+                                        "timeout"
+                                      ]
+                                    }
+                                  },
+                                  "status": "Method Not Allowed",
+                                  "code": 405,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"sub_resource\": \"<string,null>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-10-22T01:32:21.000Z",
+                                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                                  "uid": "35240-fb3b5e81-d7c2-4ee3-a636-58086ba7cd46"
+                                },
+                                {
+                                  "id": "6b0296e5-44e8-4617-8b91-6466b07d68d7",
+                                  "name": "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` par",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "urlencoded",
+                                      "urlencoded": [
+                                        {
+                                          "description": "(Required) A unique, randomly generated hex value that identifies your web service request.",
+                                          "key": "reference_id",
+                                          "value": "<string>"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize/timeout",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "verify",
+                                        "auto",
+                                        "voice",
+                                        "finalize",
+                                        "timeout"
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"resource_uri\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T01:32:21.000Z",
+                                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                                  "uid": "35240-6b0296e5-44e8-4617-8b91-6466b07d68d7"
+                                },
+                                {
+                                  "id": "c7e75d25-6c76-4d68-b9d9-df200ab00bb1",
+                                  "name": "Service Unavailable, system unavailable, try again. Error codes are listed in the `error` parameter in the response. \n\n| Error code | Description |\n|------------|-------------|\n| -90001 | System unavailable; please try again later |\n",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "urlencoded",
+                                      "urlencoded": [
+                                        {
+                                          "description": "(Required) A unique, randomly generated hex value that identifies your web service request.",
+                                          "key": "reference_id",
+                                          "value": "<string>"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize/timeout",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "verify",
+                                        "auto",
+                                        "voice",
+                                        "finalize",
+                                        "timeout"
+                                      ]
+                                    }
+                                  },
+                                  "status": "Service Unavailable",
+                                  "code": 503,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"sub_resource\": \"<string,null>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-10-22T01:32:21.000Z",
+                                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                                  "uid": "35240-c7e75d25-6c76-4d68-b9d9-df200ab00bb1"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:32:21.000Z",
+                              "updatedAt": "2026-10-22T01:32:21.000Z",
+                              "uid": "35240-9a155129-d0a6-4bcd-9f96-fe9847030609"
+                            }
+                          ],
+                          "id": "e2051982-0dc0-4c17-859c-2a9923b6ab56",
+                          "createdAt": "2026-10-22T01:32:21.000Z",
+                          "updatedAt": "2026-10-22T01:32:21.000Z",
+                          "uid": "35240-e2051982-0dc0-4c17-859c-2a9923b6ab56"
+                        },
+                        {
+                          "name": "End call",
+                          "id": "c7f2ff0c-34ed-4956-84f9-da4c4beb6643",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "urlencoded",
+                              "urlencoded": [
+                                {
+                                  "description": "(Required) The reference identifier that Telesign generates and returns in its response to your verify/call service request. This value uniquely identifies each Telesign web service request. [Example] `reference_id=ABCDEF0123456789ABCDEF0123456789`",
+                                  "key": "reference_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Caller ID parsed by app from the caller id displayed on the device.",
+                                  "key": "verify_code",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "verify",
+                                "auto",
+                                "voice",
+                                "finalize"
+                              ]
+                            },
+                            "description": "Use this endpoint to terminate a call created using the Telesign App Verify API if the handset does not terminate the call in your application.\n\nTo add this product to your account, contact a Telesign expert. This product is available for full-service accounts only.\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) and Digest\n* **Encoding:** Accepts only UTF-8 encoded unicode characters as inputs\n* **Accepts:** `application/x-www-form-urlencoded`\n* **Required headers:** `Content-Type - application/x-www-form-urlencoded`\n* **Rate limit:** Default rate limits by product"
+                          },
+                          "response": [
+                            {
+                              "id": "8a0cbdb2-b054-41e2-b1b0-0eef4a068b82",
+                              "name": "Your request was fulfilled and resulted in a new resource being created. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. \n",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) The reference identifier that Telesign generates and returns in its response to your verify/call service request. This value uniquely identifies each Telesign web service request. [Example] `reference_id=ABCDEF0123456789ABCDEF0123456789`",
+                                      "key": "reference_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Caller ID parsed by app from the caller id displayed on the device.",
+                                      "key": "verify_code",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "verify",
+                                    "auto",
+                                    "voice",
+                                    "finalize"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"resource_uri\": \"<string>\",\n  \"verify_code\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T01:32:21.000Z",
+                              "updatedAt": "2026-10-22T01:32:21.000Z",
+                              "uid": "35240-8a0cbdb2-b054-41e2-b1b0-0eef4a068b82"
+                            },
+                            {
+                              "id": "ffc49035-caf4-4d8a-965d-1b0d646bdda4",
+                              "name": "Bad request, the request could not be understood by the server due to malformed syntax. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) The reference identifier that Telesign generates and returns in its response to your verify/call service request. This value uniquely identifies each Telesign web service request. [Example] `reference_id=ABCDEF0123456789ABCDEF0123456789`",
+                                      "key": "reference_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Caller ID parsed by app from the caller id displayed on the device.",
+                                      "key": "verify_code",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "verify",
+                                    "auto",
+                                    "voice",
+                                    "finalize"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"resource_uri\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T01:32:21.000Z",
+                              "updatedAt": "2026-10-22T01:32:21.000Z",
+                              "uid": "35240-ffc49035-caf4-4d8a-965d-1b0d646bdda4"
+                            },
+                            {
+                              "id": "a1e843a0-753a-46d3-a017-6fca9c9c90fc",
+                              "name": "Unauthorized, the request requires user authentication. If \nyou want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter in the respons",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) The reference identifier that Telesign generates and returns in its response to your verify/call service request. This value uniquely identifies each Telesign web service request. [Example] `reference_id=ABCDEF0123456789ABCDEF0123456789`",
+                                      "key": "reference_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Caller ID parsed by app from the caller id displayed on the device.",
+                                      "key": "verify_code",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "verify",
+                                    "auto",
+                                    "voice",
+                                    "finalize"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"resource_uri\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T01:32:21.000Z",
+                              "updatedAt": "2026-10-22T01:32:21.000Z",
+                              "uid": "35240-a1e843a0-753a-46d3-a017-6fca9c9c90fc"
+                            },
+                            {
+                              "id": "ece74d84-360e-4cc4-a94a-921b8f5a7f47",
+                              "name": "Not Found, the server has not found anything matching the Request-URI. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` parameter ",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) The reference identifier that Telesign generates and returns in its response to your verify/call service request. This value uniquely identifies each Telesign web service request. [Example] `reference_id=ABCDEF0123456789ABCDEF0123456789`",
+                                      "key": "reference_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Caller ID parsed by app from the caller id displayed on the device.",
+                                      "key": "verify_code",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "verify",
+                                    "auto",
+                                    "voice",
+                                    "finalize"
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"sub_resource\": \"<string,null>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:32:21.000Z",
+                              "updatedAt": "2026-10-22T01:32:21.000Z",
+                              "uid": "35240-ece74d84-360e-4cc4-a94a-921b8f5a7f47"
+                            },
+                            {
+                              "id": "5f93ac4f-a222-4bbb-b8d6-9842f2b3df68",
+                              "name": "Indicates that the request method is known by the server but has been disabled and cannot be used. \n\n| Error Codes | Description |\n|-------------|-------------|\n| -40005 | Method not allowed |\n",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) The reference identifier that Telesign generates and returns in its response to your verify/call service request. This value uniquely identifies each Telesign web service request. [Example] `reference_id=ABCDEF0123456789ABCDEF0123456789`",
+                                      "key": "reference_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Caller ID parsed by app from the caller id displayed on the device.",
+                                      "key": "verify_code",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "verify",
+                                    "auto",
+                                    "voice",
+                                    "finalize"
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"sub_resource\": \"<string,null>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:32:21.000Z",
+                              "updatedAt": "2026-10-22T01:32:21.000Z",
+                              "uid": "35240-5f93ac4f-a222-4bbb-b8d6-9842f2b3df68"
+                            },
+                            {
+                              "id": "7cd3aa24-caf2-4878-b590-082b5e5c2137",
+                              "name": "Too Many Requests, the user sent too many requests in a given amount of time. If you want to code against a response, you should retrieve the status or error code and use that rather than the HTTP status response. Error codes are listed in the `error` par",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) The reference identifier that Telesign generates and returns in its response to your verify/call service request. This value uniquely identifies each Telesign web service request. [Example] `reference_id=ABCDEF0123456789ABCDEF0123456789`",
+                                      "key": "reference_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Caller ID parsed by app from the caller id displayed on the device.",
+                                      "key": "verify_code",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "verify",
+                                    "auto",
+                                    "voice",
+                                    "finalize"
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"reference_id\": \"<string>\",\n  \"sub_resource\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  },\n  \"resource_uri\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T01:32:21.000Z",
+                              "updatedAt": "2026-10-22T01:32:21.000Z",
+                              "uid": "35240-7cd3aa24-caf2-4878-b590-082b5e5c2137"
+                            },
+                            {
+                              "id": "9bfb1241-9692-40c3-a385-cfab6b670110",
+                              "name": "Service Unavailable, system unavailable, try again. Error codes are listed in the `error` parameter in the response. \n\n| Error Code | Description |\n|------------|-------------|\n| -90001 | System unavailable; please try again later |\n",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) The reference identifier that Telesign generates and returns in its response to your verify/call service request. This value uniquely identifies each Telesign web service request. [Example] `reference_id=ABCDEF0123456789ABCDEF0123456789`",
+                                      "key": "reference_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Caller ID parsed by app from the caller id displayed on the device.",
+                                      "key": "verify_code",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/verify/auto/voice/finalize",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "verify",
+                                    "auto",
+                                    "voice",
+                                    "finalize"
+                                  ]
+                                }
+                              },
+                              "status": "Service Unavailable",
+                              "code": 503,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"reference_id\": \"<string,null>\",\n  \"sub_resource\": \"<string,null>\",\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:32:21.000Z",
+                              "updatedAt": "2026-10-22T01:32:21.000Z",
+                              "uid": "35240-9bfb1241-9692-40c3-a385-cfab6b670110"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:32:21.000Z",
+                          "updatedAt": "2026-10-22T01:32:21.000Z",
+                          "uid": "35240-c7f2ff0c-34ed-4956-84f9-da4c4beb6643"
+                        }
+                      ],
+                      "id": "46086a82-5215-4e42-a3b4-63ef2686755a",
+                      "createdAt": "2026-10-22T01:32:21.000Z",
+                      "updatedAt": "2026-10-22T01:32:21.000Z",
+                      "uid": "35240-46086a82-5215-4e42-a3b4-63ef2686755a"
+                    }
+                  ],
+                  "id": "d2e3adbf-eafe-4f3a-8b98-897ef12a1d43",
+                  "createdAt": "2026-10-22T01:32:21.000Z",
+                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                  "uid": "35240-d2e3adbf-eafe-4f3a-8b98-897ef12a1d43"
+                }
+              ],
+              "id": "bc3e4e14-aecc-483b-924a-39528e5533ef",
+              "createdAt": "2026-10-22T01:32:21.000Z",
+              "updatedAt": "2026-10-22T01:32:21.000Z",
+              "uid": "35240-bc3e4e14-aecc-483b-924a-39528e5533ef"
+            }
+          ],
+          "id": "f58169d0-3621-4e28-bd9f-dfaddea7d0b0",
+          "createdAt": "2026-10-22T01:32:21.000Z",
+          "updatedAt": "2026-10-22T01:32:21.000Z",
+          "uid": "35240-f58169d0-3621-4e28-bd9f-dfaddea7d0b0"
+        }
+      ],
+      "id": "9c1d3445-93cd-4cec-a197-3e6fedd79703",
+      "createdAt": "2026-10-22T01:32:21.000Z",
+      "updatedAt": "2026-10-22T01:32:21.000Z",
+      "uid": "35240-9c1d3445-93cd-4cec-a197-3e6fedd79703"
+    },
+    {
+      "name": "silent",
+      "item": [
+        {
+          "name": "finalize",
+          "item": [
+            {
+              "name": "Get final verification status",
+              "id": "85e7713c-a8a9-4789-8974-82a903c768c1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "Content-Type - json",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"initiate_reference_id\": \"<string>\",\n  \"verification\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/silent/finalize",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "silent",
+                    "finalize"
+                  ]
+                },
+                "description": "Use this action to check for final verification status, after the client receives a response from the carrier.\n\n**Note:** Before using the sample code on this page, contact the Telesign Customer Support Team. We will walk you through the necessary onboarding steps before you use the service. This product is for full-service accounts only. **Your request must come from a device with a mobile carrier connection.**\n\n## General requirements\n* **Authentication:** Basic (easiest to implement) or Digest\n* **Encoding:** Accepts only **UTF-8 unicode** characters as inputs.\n* **Accepts:** `application/json`\n* **Responds with:** `application/json`\n* **Rate limit:** Default rate limits by product"
+              },
+              "response": [
+                {
+                  "id": "0679e5e9-4573-4aa9-b148-9928355fe6c5",
+                  "name": "**Success.** The service processed your request.\n\n|Code|Description|\n|--|--|\n|4501|Successfully verified|\n|4502|The phone number does not match|",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Content-Type - json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"initiate_reference_id\": \"<string>\",\n  \"verification\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/silent/finalize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "silent",
+                        "finalize"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:32:21.000Z",
+                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                  "uid": "35240-0679e5e9-4573-4aa9-b148-9928355fe6c5"
+                },
+                {
+                  "id": "ee76432b-21ec-4a93-a66f-df5e82fae595",
+                  "name": "**Bad Request**\n\nCode | Description\n--|--\n10004|Bad request \n40003|No end client data found on records\n40004|The required parameter \u2018verification\u2019 is missing from the request\n40010|Not in coverage. The phone number being verified is not within the provide",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Content-Type - json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"initiate_reference_id\": \"<string>\",\n  \"verification\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/silent/finalize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "silent",
+                        "finalize"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:32:21.000Z",
+                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                  "uid": "35240-ee76432b-21ec-4a93-a66f-df5e82fae595"
+                },
+                {
+                  "id": "c0ae7116-891d-4d68-aefc-911cabb7643e",
+                  "name": "**Unauthorized**\n\nCode | Description\n--|--\n40002|Not authorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Content-Type - json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"initiate_reference_id\": \"<string>\",\n  \"verification\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/silent/finalize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "silent",
+                        "finalize"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:32:21.000Z",
+                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                  "uid": "35240-c0ae7116-891d-4d68-aefc-911cabb7643e"
+                },
+                {
+                  "id": "3f5a6804-d4ff-4744-ad93-efa33b56e769",
+                  "name": "**Not Found**\n\nCode | Description\n--|--\n10011|Invalid value for parameter reference_id\n",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Content-Type - json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"initiate_reference_id\": \"<string>\",\n  \"verification\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/silent/finalize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "silent",
+                        "finalize"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:32:21.000Z",
+                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                  "uid": "35240-3f5a6804-d4ff-4744-ad93-efa33b56e769"
+                },
+                {
+                  "id": "5e6e5eeb-5c0e-4c15-a064-a41ac4b60199",
+                  "name": "**Request Timeout**\n\nCode | Description\n--|--\n40001 | Request timeout",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Content-Type - json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"initiate_reference_id\": \"<string>\",\n  \"verification\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/silent/finalize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "silent",
+                        "finalize"
+                      ]
+                    }
+                  },
+                  "status": "Request Timeout",
+                  "code": 408,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:32:21.000Z",
+                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                  "uid": "35240-5e6e5eeb-5c0e-4c15-a064-a41ac4b60199"
+                },
+                {
+                  "id": "4d45fc1d-1300-4089-8e95-c39d56e50cb9",
+                  "name": "**Too Many Requests**\n\nCode | Description\n--|--\n10019|Rate limit exceeded\n",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Content-Type - json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"initiate_reference_id\": \"<string>\",\n  \"verification\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/silent/finalize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "silent",
+                        "finalize"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:32:21.000Z",
+                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                  "uid": "35240-4d45fc1d-1300-4089-8e95-c39d56e50cb9"
+                },
+                {
+                  "id": "0d429b78-6087-4282-83a6-f7dcd465f236",
+                  "name": "**Internal Server Error**\n\nCode | Description\n--|--\n10039\t|Internal Server Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Content-Type - json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"initiate_reference_id\": \"<string>\",\n  \"verification\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/silent/finalize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "silent",
+                        "finalize"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:32:21.000Z",
+                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                  "uid": "35240-0d429b78-6087-4282-83a6-f7dcd465f236"
+                },
+                {
+                  "id": "7d0008b2-0433-4c7f-8c82-333ba433514e",
+                  "name": "**Service Unavailable**\n\nCode | Description\n--|--\n10000 |System unavailable, please try again later\n45005 |Error on gateway - temporary error\n45006 |Error on gateway - permanent error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Content-Type - json",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"initiate_reference_id\": \"<string>\",\n  \"verification\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/silent/finalize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "silent",
+                        "finalize"
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reference_id\": \"<string>\",\n  \"status\": {\n    \"code\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"updated_on\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:32:21.000Z",
+                  "updatedAt": "2026-10-22T01:32:21.000Z",
+                  "uid": "35240-7d0008b2-0433-4c7f-8c82-333ba433514e"
+                }
+              ],
+              "createdAt": "2026-10-22T01:32:21.000Z",
+              "updatedAt": "2026-10-22T01:32:21.000Z",
+              "uid": "35240-85e7713c-a8a9-4789-8974-82a903c768c1"
+            }
+          ],
+          "id": "5bbdb7ec-594e-4c1c-a7cb-fd8cc2b794c7",
+          "createdAt": "2026-10-22T01:32:21.000Z",
+          "updatedAt": "2026-10-22T01:32:21.000Z",
+          "uid": "35240-5bbdb7ec-594e-4c1c-a7cb-fd8cc2b794c7"
+        }
+      ],
+      "id": "554d6d74-6736-46b6-94d3-d3d4f3d23b54",
+      "createdAt": "2026-10-22T01:32:21.000Z",
+      "updatedAt": "2026-10-22T01:32:21.000Z",
+      "uid": "35240-554d6d74-6736-46b6-94d3-d3d4f3d23b54"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rest-ww.telesign.com"
+    }
+  ]
+}
