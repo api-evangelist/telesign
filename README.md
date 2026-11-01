@@ -1,4 +1,4 @@
-# Telesign (telesign)
+# Telesign
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,149 +64,257 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Telesign provides a comprehensive suite of communications and security APIs enabling businesses to verify phone numbers, send SMS and voice messages, and assess fraud risk. Core offerings include SMS messaging, voice calls, multi-channel verification (OTP/MFA), phone number intelligence (PhoneID), reputation scoring, and silent verification. Telesign serves thousands of enterprises globally for account security, fraud prevention, and customer communications.
+Telesign provides a comprehensive suite of communications and security APIs enabling businesses to verify phone numbers, send SMS, omnichannel and voice messages, and assess fraud risk. The developer portal publishes 22 OpenAPI contracts (65 operations) covering SMS Verify, Voice Verify, Silent Verify, App Verify and the multi-channel Verify API; Messaging (SMS, WhatsApp, Viber, RCS, MMS, email), Voice, Number Masking and Bulk SMS; Phone ID, Intelligence Cloud and Email Intelligence risk signals; and Accounts, Deactivated Numbers, Flow Builder and Protect Platform management surfaces, plus an RFC 9727 API catalog and callback (webhook) payload contracts.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/telesign/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/telesign/refs/heads/main/apis.yml)
+**Areas:** Authentication · Communications · Fraud Prevention · Phone Intelligence · SMS · Verification · Telecommunications · Messaging · Voice · Email Intelligence · Identity · Number Masking
 
-## Tags
+## Telesign on APIs.io
 
-- Authentication
-- Communications
-- Fraud Prevention
-- Phone Intelligence
-- SMS
-- Verification
+Everything profiled for Telesign is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/telesign/](https://apis.io/providers/telesign/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (31)
 
-- **Modified:** 2026-05-19
+- [Telesign Accounts API](https://apis.io/apis/telesign/accounts-api/) — Use this API to programmatically manage your Telesign accounts and their configurations.
+- [Telesign Deactivated Numbers API](https://apis.io/apis/telesign/deactivated-numbers-api/) — Encoding: Accepts only UTF-8 encoded unicode characters as inputs. The Deactivated Numbers API can be used to get lists of deactivated numbers. These can be…
+- [Telesign Email Intelligence API](https://apis.io/apis/telesign/email-intelligence-api/) — Email Intelligence API (1 operations): Email Intelligence - Submit an email address to evaluate.
+- [Telesign Flow Builder API](https://apis.io/apis/telesign/flow-builder-api/) — The Flow Builder solution is designed to streamline the creation, execution, and management of transactional flows. By leveraging business rules and data…
+- [Telesign API Keys API](https://apis.io/apis/telesign/telesign-api-keys-api/) — The API Keys API from Telesign — 2 operation(s) for api keys.
+- [Telesign Bulk SMS API](https://apis.io/apis/telesign/telesign-bulk-sms-api/) — The Bulk SMS API from Telesign — 1 operation(s) for bulk sms.
+- [Telesign Bulk SMS Callbacks API](https://apis.io/apis/telesign/telesign-bulk-sms-callbacks-api/) — The Bulk SMS Callbacks API from Telesign — 1 operation(s) for bulk sms callbacks.
+- [Telesign Calls API](https://apis.io/apis/telesign/telesign-calls-api/) — The Calls API from Telesign — 1 operation(s) for calls.
+- [Telesign Completions API](https://apis.io/apis/telesign/telesign-completions-api/) — The Completions API from Telesign — 1 operation(s) for completions.
+- [Telesign Delivery Reports API](https://apis.io/apis/telesign/telesign-delivery-reports-api/) — The Delivery Reports API from Telesign — 2 operation(s) for delivery reports.
+- [Telesign Email Intelligence Extended Response API](https://apis.io/apis/telesign/telesign-email-intelligence-extended-response-api/) — The Email Intelligence Extended Response API from Telesign — 1 operation(s) for email intelligence extended response.
+- [Telesign Finalize API](https://apis.io/apis/telesign/telesign-finalize-api/) — The Finalize API from Telesign — 4 operation(s) for finalize.
+- [Telesign Initiate API](https://apis.io/apis/telesign/telesign-initiate-api/) — The Initiate API from Telesign — 2 operation(s) for initiate.
+- [Telesign Intelligence API](https://apis.io/apis/telesign/telesign-intelligence-api/) — The Intelligence API from Telesign — 2 operation(s) for intelligence.
+- [Telesign Messages API](https://apis.io/apis/telesign/telesign-messages-api/) — The Messages API from Telesign — 1 operation(s) for messages.
+- [Telesign Messaging API](https://apis.io/apis/telesign/telesign-messaging-api/) — The Messaging API from Telesign — 4 operation(s) for messaging.
+- [Telesign Messaging Callbacks API](https://apis.io/apis/telesign/telesign-messaging-callbacks-api/) — The Messaging Callbacks API from Telesign — 6 operation(s) for messaging callbacks.
+- [Telesign Number Masking API](https://apis.io/apis/telesign/telesign-number-masking-api/) — The Number Masking API from Telesign — 2 operation(s) for number masking.
+- [Telesign One-time passcodes API](https://apis.io/apis/telesign/telesign-one-time-passcodes-api/) — The One-time passcodes API from Telesign — 1 operation(s) for one-time passcodes.
+- [Telesign Phone ID API](https://apis.io/apis/telesign/telesign-phone-id-api/) — The Phone ID API from Telesign — 3 operation(s) for phone id.
+- [Telesign Phone ID Contact API](https://apis.io/apis/telesign/telesign-phone-id-contact-api/) — The Phone ID Contact API from Telesign — 1 operation(s) for phone id contact.
+- [Telesign Phone ID Number Deactivation API](https://apis.io/apis/telesign/telesign-phone-id-number-deactivation-api/) — The Phone ID Number Deactivation API from Telesign — 1 operation(s) for phone id number deactivation.
+- [Telesign Protect API Authentication API](https://apis.io/apis/telesign/telesign-protect-api-authentication-api/) — The Protect API Authentication API from Telesign — 1 operation(s) for protect api authentication.
+- [Telesign Recordings API](https://apis.io/apis/telesign/telesign-recordings-api/) — The Recordings API from Telesign — 2 operation(s) for recordings.
+- [Telesign SMS API](https://apis.io/apis/telesign/telesign-sms-api/) — The SMS API from Telesign — 3 operation(s) for sms.
+- [Telesign SMS Callbacks API](https://apis.io/apis/telesign/telesign-sms-callbacks-api/) — The SMS Callbacks API from Telesign — 1 operation(s) for sms callbacks.
+- [Telesign Templates API](https://apis.io/apis/telesign/telesign-templates-api/) — The Templates API from Telesign — 2 operation(s) for templates.
+- [Telesign Templates Callbacks API](https://apis.io/apis/telesign/telesign-templates-callbacks-api/) — The Templates Callbacks API from Telesign — 1 operation(s) for templates callbacks.
+- [Telesign Transaction Status API](https://apis.io/apis/telesign/telesign-transaction-status-api/) — The Transaction Status API from Telesign — 2 operation(s) for transaction status.
+- [Telesign Verification Process API](https://apis.io/apis/telesign/telesign-verification-process-api/) — The Verification Process API from Telesign — 3 operation(s) for verification process.
+- [Telesign Voice API](https://apis.io/apis/telesign/telesign-voice-api/) — The Voice API from Telesign — 1 operation(s) for voice.
 
-## APIs
+### Published properties
 
-### Telesign SMS API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Send SMS messages including alerts, notifications, reminders, marketing messages, and one-time passwords to phone numbers worldwide. Messages are classified by type (OTP, ARN, MKT) and provide delivery status tracking via reference IDs.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://developer.telesign.com/enterprise/docs/sms-get-started](https://developer.telesign.com/enterprise/docs/sms-get-started)
-- **Base URL:** `https://rest-ww.telesign.com/v1`
+Event-driven and webhook contracts.
 
-#### Tags
+- [Telesign Webhooks](https://apis.io/asyncapis/telesign/telesign-webhooks/)
 
-- Alerts
-- Messaging
-- Notifications
-- OTP
-- SMS
+#### MCP servers (1)
 
-#### Properties
+Model Context Protocol servers that expose the API to agents.
 
-- [Documentation](https://developer.telesign.com/enterprise/docs/sms-get-started)
-- [OpenAPI](openapi/telesign-sms-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/telesign-sms.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/telesign-sms.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Telesign developer portal MCP server (ReadMe-hosted)](https://apis.io/servers/telesign/telesign-developer-portal-mcp-server-readme-hosted/)
 
-### Telesign PhoneID API
+#### Agentic access (1)
 
-Retrieve global phone number intelligence including carrier information, geographic location, phone type (mobile, landline, VoIP), and subscriber data. Used for fraud prevention, identity verification, and risk assessment during account creation and transactions.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://developer.telesign.com/enterprise/docs/phoneid-api-overview](https://developer.telesign.com/enterprise/docs/phoneid-api-overview)
-- **Base URL:** `https://rest-ww.telesign.com/v1`
+- [Telesign Agentic Access](https://apis.io/agentic-access/telesign/telesign-agentic-access/)
 
-#### Tags
+#### JSON Schema (40)
 
-- Carrier Data
-- Fraud Prevention
-- Identity Verification
-- Phone Intelligence
-- Risk Assessment
+The data models the API reads and writes.
 
-#### Properties
+- [200-av-response](https://apis.io/schemas/telesign/telesign-200-av-response/)
+- [Account](https://apis.io/schemas/telesign/telesign-account/)
+- [AccountDetails](https://apis.io/schemas/telesign/telesign-account-details/)
+- [Action](https://apis.io/schemas/telesign/telesign-action/)
+- [CallerIDAVResponse](https://apis.io/schemas/telesign/telesign-caller-id-av-response/)
+- [Carrier](https://apis.io/schemas/telesign/telesign-carrier/)
+- [DeactResFileList](https://apis.io/schemas/telesign/telesign-deact-res-file-list/)
+- [FinalizeAVResponse](https://apis.io/schemas/telesign/telesign-finalize-av-response/)
+- [GetAVStatusResponse](https://apis.io/schemas/telesign/telesign-get-av-status-response/)
+- [getPhoneIdLiveResponse](https://apis.io/schemas/telesign/telesign-get-phone-id-live-response/)
+- [getPhoneIdNDResponse](https://apis.io/schemas/telesign/telesign-get-phone-id-ndresponse/)
+- [getPhoneIdResponse](https://apis.io/schemas/telesign/telesign-get-phone-id-response/)
+- [getStatusResponse](https://apis.io/schemas/telesign/telesign-get-status-response/)
+- [GET Verification Response](https://apis.io/schemas/telesign/telesign-get-verification-response/)
+- [InitiateAVResponse](https://apis.io/schemas/telesign/telesign-initiate-av-response/)
+- [NumMaskInputs](https://apis.io/schemas/telesign/telesign-num-mask-inputs/)
+- [OmniReqChannelObj](https://apis.io/schemas/telesign/telesign-omni-req-channel-obj/)
+- [OmniReqDetailsForRCS](https://apis.io/schemas/telesign/telesign-omni-req-details-for-rcs/)
+- [OmniReqDetailsForViber](https://apis.io/schemas/telesign/telesign-omni-req-details-for-viber/)
+- [OmniReqDetailsForWA](https://apis.io/schemas/telesign/telesign-omni-req-details-for-wa/)
+- [PATCH Verification State Change Request](https://apis.io/schemas/telesign/telesign-patch-verification-state-request/)
+- [PatchVerificationStateResponse](https://apis.io/schemas/telesign/telesign-patch-verification-state-response/)
+- [postEmailIDRequestBody](https://apis.io/schemas/telesign/telesign-post-email-idrequest-body/)
+- [postEmailIntResponse](https://apis.io/schemas/telesign/telesign-post-email-int-response/)
+- [postPhoneIDRequestBody](https://apis.io/schemas/telesign/telesign-post-phone-idrequest-body/)
+- …and 15 more published on APIs.io
 
-- [Documentation](https://developer.telesign.com/enterprise/docs/phoneid-api-overview)
-- [OpenAPI](openapi/telesign-phoneid-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/telesign-phoneid.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/telesign-phoneid.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### JSON Structure (2)
 
-### Telesign Verify API
+Data models expressed in JSON Structure.
 
-Multi-channel phone-based verification and MFA. Send one-time passcodes via SMS, voice, WhatsApp, Viber, RCS, or email, and verify codes submitted by end users. Supports password reset, account creation verification, and login MFA flows.
+- [Telesign Messaging Structure](https://apis.io/json-structure/telesign/telesign-messaging-structure/)
+- [Telesign Structure](https://apis.io/json-structure/telesign/telesign-structure/)
 
-- **Human URL:** [https://developer.telesign.com/enterprise/docs/verify-api-overview](https://developer.telesign.com/enterprise/docs/verify-api-overview)
-- **Base URL:** `https://rest-ww.telesign.com/v1`
+#### JSON-LD (1)
 
-#### Tags
+Linked-data contexts for the provider's vocabulary.
 
-- Authentication
-- MFA
-- OTP
-- Two-Factor Authentication
-- Verification
+- [Telesign Context](https://apis.io/jsonld/telesign/telesign-context/)
 
-#### Properties
+#### Vocabulary (1)
 
-- [Documentation](https://developer.telesign.com/enterprise/docs/verify-api-overview)
-- [OpenAPI](openapi/telesign-verify-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/telesign-verify.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/telesign-verify.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The provider's domain terms, defined.
 
-### Telesign Score API
+- [Telesign Vocabulary](https://apis.io/vocabularies/telesign/telesign-vocabulary/)
 
-Assess fraud risk for phone numbers using reputation scoring based on intelligence, traffic patterns, machine learning, and a global data consortium. Returns a risk level and numeric score with a recommended action (allow, flag, block).
+#### Examples (3)
 
-- **Human URL:** [https://developer.telesign.com/enterprise/docs/score-api-overview](https://developer.telesign.com/enterprise/docs/score-api-overview)
-- **Base URL:** `https://rest-ww.telesign.com/v1`
+Example requests and responses.
 
-#### Tags
+- [Telesign Create Verification Example](https://apis.io/examples/telesign/telesign-create-verification-example/)
+- [Telesign Phoneid Lookup Example](https://apis.io/examples/telesign/telesign-phoneid-lookup-example/)
+- [Telesign Send Sms Example](https://apis.io/examples/telesign/telesign-send-sms-example/)
 
-- Fraud Detection
-- Phone Intelligence
-- Risk Scoring
+#### Overlays (21)
 
-#### Properties
+OpenAPI overlays, including conversational phrasing for each operation.
 
-- [Documentation](https://developer.telesign.com/enterprise/docs/score-api-overview)
-- [OpenAPI](openapi/telesign-score-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/telesign-score.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/telesign-score.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Telesign Accounts Api Overlay](https://apis.io/overlays/telesign/telesign-accounts-api-overlay/)
+- [Telesign App Verify Api Overlay](https://apis.io/overlays/telesign/telesign-app-verify-api-overlay/)
+- [Telesign Deactivated Numbers Api Overlay](https://apis.io/overlays/telesign/telesign-deactivated-numbers-api-overlay/)
+- [Telesign Detect Api Overlay](https://apis.io/overlays/telesign/telesign-detect-api-overlay/)
+- [Telesign Email Intelligence Api Overlay](https://apis.io/overlays/telesign/telesign-email-intelligence-api-overlay/)
+- [Telesign Email Intelligence Extended Response Overlay](https://apis.io/overlays/telesign/telesign-email-intelligence-extended-response-overlay/)
+- [Telesign Engage Api Number Masking Overlay](https://apis.io/overlays/telesign/telesign-engage-api-number-masking-overlay/)
+- [Telesign Engage Api Overlay](https://apis.io/overlays/telesign/telesign-engage-api-overlay/)
+- [Telesign Engage Api Voice Overlay](https://apis.io/overlays/telesign/telesign-engage-api-voice-overlay/)
+- [Telesign Engage Callbacks Overlay](https://apis.io/overlays/telesign/telesign-engage-callbacks-overlay/)
+- [Telesign Flow Builder Api Overlay](https://apis.io/overlays/telesign/telesign-flow-builder-api-overlay/)
+- [Telesign Intelligence Cloud Api Overlay](https://apis.io/overlays/telesign/telesign-intelligence-cloud-api-overlay/)
+- [Telesign Legacy Phone Id Api Overlay](https://apis.io/overlays/telesign/telesign-legacy-phone-id-api-overlay/)
+- [Telesign Protect Platform Api Overlay](https://apis.io/overlays/telesign/telesign-protect-platform-api-overlay/)
+- [Telesign Silent Verify Api Overlay](https://apis.io/overlays/telesign/telesign-silent-verify-api-overlay/)
+- [Telesign Smart Verify Api Overlay](https://apis.io/overlays/telesign/telesign-smart-verify-api-overlay/)
+- [Telesign Sms Verify Api Callbacks Overlay](https://apis.io/overlays/telesign/telesign-sms-verify-api-callbacks-overlay/)
+- [Telesign Sms Verify Api Overlay](https://apis.io/overlays/telesign/telesign-sms-verify-api-overlay/)
+- [Telesign Verify Api Callbacks Overlay](https://apis.io/overlays/telesign/telesign-verify-api-callbacks-overlay/)
+- [Telesign Verify Api Overlay](https://apis.io/overlays/telesign/telesign-verify-api-overlay/)
+- [Telesign Voice Verify Api Overlay](https://apis.io/overlays/telesign/telesign-voice-verify-api-overlay/)
 
-### Telesign Voice API
+#### Governance rules (2)
 
-Send voice messages including OTPs, alerts, and notifications to phone numbers worldwide. Supports text-to-speech message delivery and call status tracking.
+Spectral rulesets for the provider's contracts.
 
-- **Human URL:** [https://developer.telesign.com/enterprise/docs/voice-get-started](https://developer.telesign.com/enterprise/docs/voice-get-started)
-- **Base URL:** `https://rest-ww.telesign.com/v1`
+- [Telesign — jsonschema rules](https://apis.io/rules/telesign/telesign-jsonschema-spectral-rules/)
+- [Telesign API Rules](https://apis.io/rules/telesign/telesign-rules/)
 
-#### Tags
+#### Security (3)
 
-- OTP
-- Telecommunications
-- Voice
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Telesign Authentication](https://apis.io/security/telesign/telesign-authentication/)
+- [Telesign Domain Security](https://apis.io/security/telesign/telesign-domain-security/)
+- [Telesign Trust Center](https://apis.io/security/telesign/telesign-trust-center/)
 
-- [Documentation](https://developer.telesign.com/enterprise/docs/voice-get-started)
-- [Postman Collection](collections/telesign-phoneid.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/telesign-phoneid.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/telesign-score.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/telesign-score.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/telesign-sms.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/telesign-sms.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/telesign-verify.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/telesign-verify.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-## Common Properties
+Published plans, tiers and prices.
 
-- [LinkedIn](https://www.linkedin.com/company/telesign)
+- [Telesign Plans Pricing](https://apis.io/plans/telesign/telesign-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Telesign Rate Limits](https://apis.io/rate-limits/telesign/telesign-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Telesign Finops](https://apis.io/finops/telesign/telesign-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.telesign.com/)
-- [Developer  Portal](https://developer.telesign.com/enterprise)
-- [Authentication](https://developer.telesign.com/enterprise/docs/authentication)
-- [Status Page](https://status.telesign.com/)
+- [Documentation](https://developer.telesign.com/enterprise/docs)
+- [Getting started](https://developer.telesign.com/enterprise/docs/get-started-with-docs)
+- [API reference](https://developer.telesign.com/enterprise/reference)
 - [Pricing](https://www.telesign.com/pricing/)
-- [Terms of Service](https://www.telesign.com/terms-conditions/)
-- [GitHub Organization](https://github.com/TeleSign)
-- [Integrations](https://www.telesign.com/partners)
+- [Support](https://support.telesign.com/)
+- [Changelog](https://developer.telesign.com/enterprise/changelog)
+- [Blog](https://www.telesign.com/blog)
+- [Security](https://www.telesign.com/security)
+- [Compliance](https://www.telesign.com/security)
+- [Terms of service](https://www.telesign.com/terms-conditions/)
+- [Privacy policy](https://www.telesign.com/privacy-notice)
+- [GitHub](https://github.com/TeleSign)
+- [Status](https://status.telesign.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 72.0** — exemplar · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 72.4 |
+| Contract governance | 18.2 |
+| Operational transparency | 92.1 |
+| Developer ergonomics | 55.4 |
+| Access clarity | 92.1 |
+
+**Agent readiness 40.9** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | yes |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | mostly (partial credit) |
+
+**Regulatory alignment 25.0** — Telecommunications
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/telesign/](https://apis.io/providers/telesign/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Telesign: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/telesign/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
