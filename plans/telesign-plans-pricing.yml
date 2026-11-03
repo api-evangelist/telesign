@@ -52,7 +52,7 @@ plans:
   - Preferred pricing and tailored packaging for volume and committed-use.
   limits: []
 x-canonical:
-  generated: '2026-11-01'
+  generated: '2026-11-02'
   vocabulary: engine/economics/plans-canonical.yml
   models: []
   units: []
