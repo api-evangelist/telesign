@@ -50,6 +50,9 @@ artifacts:
   heartbeat/2026-11-02.yml:
     method: unknown
     evidence: no authorship recorded
+  heartbeat/2026-11-06.yml:
+    method: unknown
+    evidence: no authorship recorded
   hosts/telesign-hosts.yml:
     method: derived
     evidence: declared in the artifact
@@ -265,117 +268,120 @@ artifacts:
     evidence: no authorship recorded
   openapi/_original/telesign-accounts-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/accounts-api.json (sha256
+      576316164137, fetched 2026-11-04)
   openapi/_original/telesign-app-verify-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/app-verify-api.json
+      (sha256 34cdca4004d5, fetched 2026-11-03)
   openapi/_original/telesign-deactivated-numbers-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/deactivated-numbers-api.json
+      (sha256 fb2c6201cd02, fetched 2026-11-03)
   openapi/_original/telesign-detect-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: the same operations as https://developer.telesign.com/enterprise/openapi/detect-api.json
+      (sha256 b8b44105c3a1, fetched 2026-11-03)
   openapi/_original/telesign-email-intelligence-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: the same operations as https://developer.telesign.com/enterprise/openapi/email-intelligence-api.json
+      (sha256 c83925f384c7, fetched 2026-11-03)
   openapi/_original/telesign-email-intelligence-extended-response-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: the same operations as https://developer.telesign.com/enterprise/openapi/email-intelligence-api.json
+      (sha256 c83925f384c7, fetched 2026-11-03)
   openapi/_original/telesign-email-intelligence-extended-response-openapi.yml:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: the same operations as https://developer.telesign.com/enterprise/openapi/email-intelligence-api.json
+      (sha256 c83925f384c7, fetched 2026-11-03)
   openapi/_original/telesign-engage-api-number-masking-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/engage-api-number-masking.json
+      (sha256 2cf631f193b0, fetched 2026-11-03)
   openapi/_original/telesign-engage-api-number-masking-openapi.yml:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: the same operations as https://developer.telesign.com/enterprise/openapi/engage-api-number-masking.json
+      (sha256 2cf631f193b0, fetched 2026-11-03)
   openapi/_original/telesign-engage-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/engage-api.json (sha256
+      3d8ef8abc900, fetched 2026-11-03)
   openapi/_original/telesign-engage-api-voice-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/engage-api-voice.json
+      (sha256 f67e7ff3a5f0, fetched 2026-11-03)
   openapi/_original/telesign-engage-api-voice-openapi.yml:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: the same operations as https://developer.telesign.com/enterprise/openapi/engage-api-voice.json
+      (sha256 f67e7ff3a5f0, fetched 2026-11-03)
   openapi/_original/telesign-engage-callbacks-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/engage-callbacks.json
+      (sha256 9cca6993999d, fetched 2026-11-03)
   openapi/_original/telesign-engage-callbacks-openapi.yml:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: the same operations as https://developer.telesign.com/enterprise/openapi/engage-callbacks.json
+      (sha256 9cca6993999d, fetched 2026-11-03)
   openapi/_original/telesign-flow-builder-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/flow-builder-api.json
+      (sha256 40c93432d119, fetched 2026-11-03)
   openapi/_original/telesign-intelligence-cloud-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: the same operations as https://developer.telesign.com/enterprise/openapi/intelligence-cloud-api.json
+      (sha256 599f0c5d7cca, fetched 2026-11-03)
   openapi/_original/telesign-legacy-phone-id-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/legacy-phone-id-api.json
+      (sha256 c61265db50d1, fetched 2026-11-03)
   openapi/_original/telesign-pricing-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/pricing-api.json (sha256
+      0c03916b07a2, fetched 2026-11-03)
   openapi/_original/telesign-protect-platform-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/protect-platform-api.json
+      (sha256 b82592529f13, fetched 2026-11-03)
   openapi/_original/telesign-silent-verify-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/silent-verify-api.json
+      (sha256 11cfe0e3c25e, fetched 2026-11-03)
   openapi/_original/telesign-smart-verify-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/smart-verify-api.json
+      (sha256 56dde1165020, fetched 2026-11-03)
   openapi/_original/telesign-sms-verify-api-callbacks-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/sms-verify-api-callbacks.json
+      (sha256 f8259952a459, fetched 2026-11-03)
   openapi/_original/telesign-sms-verify-api-callbacks-openapi.yml:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: the same operations as https://developer.telesign.com/enterprise/openapi/sms-verify-api-callbacks.json
+      (sha256 f8259952a459, fetched 2026-11-03)
   openapi/_original/telesign-sms-verify-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/sms-verify-api.json
+      (sha256 857f3bb881cc, fetched 2026-11-03)
   openapi/_original/telesign-verify-api-callbacks-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/verify-api-callbacks.json
+      (sha256 a4bce3a3bc68, fetched 2026-11-03)
   openapi/_original/telesign-verify-api-callbacks-openapi.yml:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: the same operations as https://developer.telesign.com/enterprise/openapi/verify-api-callbacks.json
+      (sha256 a4bce3a3bc68, fetched 2026-11-03)
   openapi/_original/telesign-verify-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/verify-api.json (sha256
+      988d20ff0603, fetched 2026-11-03)
   openapi/_original/telesign-voice-verify-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.telesign.com/enterprise/openapi/voice-verify-api.json
+      (sha256 bd4ac9d1d9ab, fetched 2026-11-03)
   openapi/telesign-accounts-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/telesign-accounts-scim-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/telesign-api-keys-api-openapi.yml:
@@ -582,10 +588,16 @@ artifacts:
   well-known/telesign-developer-api-catalog.json:
     method: unknown
     evidence: no authorship recorded
+  well-known/telesign-developer-mcp-server-card.json:
+    method: unknown
+    evidence: no authorship recorded
   well-known/telesign-enterprise-api-catalog.json:
     method: unknown
     evidence: no authorship recorded
   well-known/telesign-status-security.txt:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/telesign-support-openid-configuration.json:
     method: unknown
     evidence: no authorship recorded
   well-known/telesign-well-known.yml:
